@@ -31,13 +31,18 @@ Do not rerun the 515-chunk search first. Preserve the historical state before
 changing or cleaning the source checkout. From a separate output directory:
 
 ```bash
-./scripts/inventory_pc.sh /absolute/path/to/vdw-gpu-starter /absolute/path/to/inventory-output
+./scripts/inventory_pc.sh --public-campaign-scope \
+  /absolute/path/to/vdw-gpu-starter /absolute/path/to/inventory-output
 ```
 
 The script only reads the source checkout. It records the Git state, ignored
-and untracked paths, candidate campaign/claim files, sizes, mtimes, and SHA-256
-digests. It does not copy, delete, compile, or execute campaign software. Review
-that inventory before selecting files for import.
+and untracked paths, files, sizes, mtimes, and SHA-256 digests strictly below
+`results/campaign/`.  The scope is authenticated in the v2 inventory metadata,
+and the validator rejects any candidate or Git-path record outside that prefix.
+The explicit option is mandatory so a future public recovery cannot silently
+inventory filenames and hashes from unrelated private work. The script does not
+copy, delete, compile, or execute campaign software. Review that inventory before
+selecting files for import.
 
 The recovery gate requires the complete 515-row checkpoint/campaign evidence,
 raw or derived per-chunk artifacts, the missing journal case for chunk 7

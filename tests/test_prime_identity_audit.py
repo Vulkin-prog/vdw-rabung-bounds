@@ -86,6 +86,7 @@ class PrimeIdentityAuditTest(unittest.TestCase):
                 for chunk_id, lower, upper in ranges
             ],
             "interval": {
+                "chunk_count": len(ranges),
                 "chunk_width": chunk,
                 "lower_inclusive": lo,
                 "upper_exclusive": hi,
@@ -120,6 +121,33 @@ class PrimeIdentityAuditTest(unittest.TestCase):
         self.assertEqual(len(ranges), 515)
         self.assertEqual(ranges[0], (1, 970_000_000, 972_000_000))
         self.assertEqual(ranges[-1], (515, 1_998_000_000, 2_000_000_000))
+
+    def test_real_four_field_campaign_interval_feeds_narrow_prime_interval(self):
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            root, campaign = self.make_repository(base)
+            scanner = self.make_equivalent_distinct_executable(base)
+
+            self.assertEqual(
+                campaign["interval"],
+                {
+                    "chunk_count": 4,
+                    "chunk_width": 31,
+                    "lower_inclusive": 2,
+                    "upper_exclusive": 100,
+                },
+            )
+            manifest = MODULE.run_audit(
+                root, scanner, self.independent, 2, 100, 31
+            )
+            self.assertEqual(
+                manifest["interval"],
+                {
+                    "chunk_width": 31,
+                    "lower_inclusive": 2,
+                    "upper_exclusive": 100,
+                },
+            )
 
     def test_v2_manifest_is_accepted_by_hardened_contract_on_small_fixture(self):
         with tempfile.TemporaryDirectory() as raw:

@@ -1,6 +1,12 @@
 # Campaign recovery
 
-This directory is still a placeholder, not the 515-chunk campaign archive.
+This directory contains the authenticated recovery of the 515-chunk campaign
+archive.  The retained payload comprises the authoritative checkpoint, the
+campaign journal, 498 per-chunk histograms for chunks 18--515, and 15 other
+auxiliary artifacts.  The unavailable original per-chunk scanner streams for
+chunks 1--17 are not reconstructed; the separately preserved aggregate re-scan
+in `results/redo17/redo_17chunks_v2.txt` covers that interval instead.
+
 The recovery path is deliberately split into discovery, human selection,
 byte-exact import, deterministic derivation, and validation. None of these
 commands launches the scanner or writes to the historical checkout.
@@ -10,9 +16,19 @@ directory outside the source checkout:
 
 ```bash
 ./scripts/inventory_pc.sh \
+  --public-campaign-scope \
   /absolute/path/to/vdw-gpu-starter \
   /absolute/new/path/pc-inventory
 ```
+
+The mandatory public-campaign mode inventories every filesystem object below
+`results/campaign/`, and nothing elsewhere. Its candidate list and its ignored,
+untracked, and porcelain-v2 Git path streams are all restricted to that prefix;
+the authenticated v2 metadata records the exact scope. Validation fails if an
+out-of-scope path is inserted, even when the inventory checksums are recomputed.
+This prevents excluded project names, sizes, mtimes, and hashes from entering a
+future public release merely because they happened to share words such as
+`prime`, `scan`, or `witness`.
 
 Authenticate the inventory and create a complete review ledger:
 

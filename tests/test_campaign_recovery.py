@@ -25,6 +25,14 @@ def write_json(path: Path, value) -> None:
     path.write_bytes(MODULE.canonical_json_bytes(value))
 
 
+def rewrite_inventory_checksums(directory: Path) -> None:
+    rows = [
+        f"{MODULE.sha256_file(directory / name)}  {name}\n"
+        for name in MODULE.INVENTORY_FILES
+    ]
+    (directory / "inventory-files.sha256").write_text("".join(rows), encoding="ascii")
+
+
 def git(source: Path, *args: str) -> str:
     return subprocess.check_output(["git", "-C", str(source), *args], text=True).strip()
 
@@ -118,6 +126,7 @@ class RecoveryFixture:
         subprocess.run(
             [
                 str(ROOT / "scripts/inventory_pc.sh"),
+                "--public-campaign-scope",
                 str(self.source),
                 str(self.inventory),
             ],
@@ -263,6 +272,48 @@ class CampaignRecoveryEndToEndTests(unittest.TestCase):
             )
             self.assertIn("CAMPAIGN_MANIFEST_OK  515 chunks", checked.stdout)
 
+    def test_inventory_is_explicitly_public_campaign_scoped(self):
+        with tempfile.TemporaryDirectory() as raw:
+            fixture = RecoveryFixture(Path(raw))
+            (fixture.source / "paper2").mkdir()
+            (fixture.source / "paper2/prime-private.txt").write_text(
+                "out of publication scope\n", encoding="utf-8"
+            )
+            (fixture.source / "logs").mkdir()
+            (fixture.source / "logs/campaign_daily.md").write_text(
+                "out of publication scope\n", encoding="utf-8"
+            )
+            inventory = fixture.make_inventory()
+
+            self.assertEqual(inventory["metadata"]["scope"], MODULE.INVENTORY_SCOPE)
+            self.assertEqual(len(inventory["records"]), 3)
+            self.assertTrue(
+                all(row["path"].startswith("results/campaign/") for row in inventory["records"])
+            )
+            for name in ("candidate-files.jsonl", "git-ignored.z", "git-status-v2.z", "git-untracked.z"):
+                raw_inventory = inventory["snapshots"][name]
+                self.assertNotIn(b"paper2", raw_inventory)
+                self.assertNotIn(b"logs/campaign_daily.md", raw_inventory)
+
+    def test_inventory_refuses_implicit_unscoped_mode(self):
+        with tempfile.TemporaryDirectory() as raw:
+            fixture = RecoveryFixture(Path(raw))
+            output = fixture.base / "implicit-inventory"
+            process = subprocess.run(
+                [
+                    str(ROOT / "scripts/inventory_pc.sh"),
+                    str(fixture.source),
+                    str(output),
+                ],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(process.returncode, 2)
+            self.assertIn("--public-campaign-scope", process.stderr)
+            self.assertFalse(output.exists())
+
     def test_shared_checkpoint_builds_exact_515_rows_and_chunk7_proof(self):
         with tempfile.TemporaryDirectory() as raw:
             fixture = RecoveryFixture(Path(raw))
@@ -385,6 +436,32 @@ class CampaignRecoveryEndToEndTests(unittest.TestCase):
 
 
 class CampaignRecoveryFailClosedTests(unittest.TestCase):
+    def test_authenticated_inventory_rejects_a_different_scope(self):
+        with tempfile.TemporaryDirectory() as raw:
+            fixture = RecoveryFixture(Path(raw))
+            fixture.make_inventory()
+            metadata_path = fixture.inventory / "metadata.json"
+            metadata = MODULE.load_json(metadata_path)
+            metadata["scope"] = {"mode": "whole_checkout", "path": ""}
+            write_json(metadata_path, metadata)
+            rewrite_inventory_checksums(fixture.inventory)
+            with self.assertRaises(MODULE.RecoveryError):
+                MODULE.validate_inventory(fixture.inventory)
+
+    def test_authenticated_inventory_rejects_out_of_scope_git_metadata(self):
+        with tempfile.TemporaryDirectory() as raw:
+            fixture = RecoveryFixture(Path(raw))
+            fixture.make_inventory()
+            ignored_path = fixture.inventory / "git-ignored.z"
+            ignored_path.write_bytes(ignored_path.read_bytes() + b"paper2/private-prime.txt\0")
+            metadata_path = fixture.inventory / "metadata.json"
+            metadata = MODULE.load_json(metadata_path)
+            metadata["ignored_path_count"] += 1
+            write_json(metadata_path, metadata)
+            rewrite_inventory_checksums(fixture.inventory)
+            with self.assertRaises(MODULE.RecoveryError):
+                MODULE.validate_inventory(fixture.inventory)
+
     def test_inventory_checksum_tampering_is_rejected(self):
         with tempfile.TemporaryDirectory() as raw:
             fixture = RecoveryFixture(Path(raw))

@@ -1,0 +1,18 @@
+{
+  "branch": "master",
+  "candidate_count": 516,
+  "commit_date": "2026-08-01T15:43:39+02:00",
+  "completed_utc": "2026-08-28T16:34:51Z",
+  "git_commit": "23cf5968689dc2f88f6197d0ac462fee924f842b",
+  "git_tree": "6299b6598e94ef8992504d890daec6899dab03e2",
+  "ignored_path_count": 516,
+  "inventory_errors": [],
+  "schema": "vdw-pc-read-only-inventory/v2",
+  "scope": {
+    "mode": "public_campaign_only",
+    "path": "results/campaign/"
+  },
+  "source_checkout_name": "vdw-gpu-starter",
+  "started_utc": "2026-08-28T16:34:51Z",
+  "untracked_path_count": 0
+}

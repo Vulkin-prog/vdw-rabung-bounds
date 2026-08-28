@@ -1,0 +1,16 @@
+# tail_localize r=2 : p | L | start | start/p | classe | q(1er chgt) | 2r|p-1 | test(i) bord=>L==q-1
+1004250001 | L=44 | start=147587900 | 0.1470 | autre | q=7 | 2r|p-1=1 | autre
+1004905729 | L=44 | start=36804769 | 0.0366 | autre | q=17 | 2r|p-1=1 | autre
+1005245089 | L=44 | start=35658257 | 0.0355 | autre | q=11 | 2r|p-1=1 | autre
+1005382439 | L=44 | start=265622039 | 0.2642 | autre | q=19 | 2r|p-1=0 | autre
+1006883981 | L=44 | start=431594442 | 0.4286 | autre | q=2 | 2r|p-1=1 | autre
+1007288783 | L=44 | start=328499161 | 0.3261 | autre | q=5 | 2r|p-1=0 | autre
+1007812277 | L=44 | start=161935685 | 0.1607 | autre | q=2 | 2r|p-1=1 | autre
+1004134849 | L=46 | start=202991633 | 0.2022 | autre | q=17 | 2r|p-1=1 | autre
+1004639029 | L=46 | start=502319492 | 0.5000 | centre | q=2 | 2r|p-1=1 | centre
+1004697119 | L=46 | start=1 | 0.0000 | bord | q=47 | 2r|p-1=0 | bord [test(i) OK]
+1005093541 | L=46 | start=502546748 | 0.5000 | centre | q=2 | 2r|p-1=1 | centre
+1005115549 | L=46 | start=502557752 | 0.5000 | centre | q=2 | 2r|p-1=1 | centre
+1005481441 | L=46 | start=413594260 | 0.4113 | autre | q=7 | 2r|p-1=1 | autre
+1005946031 | L=46 | start=1 | 0.0000 | bord | q=47 | 2r|p-1=0 | bord [test(i) OK]
+# RESUME r=2 : bord=2 centre=3 p3=0 autre=9
