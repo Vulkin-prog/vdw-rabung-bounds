@@ -1,0 +1,76 @@
+\section{Introduction}\label{s:intro}
+
+For integers $r\ge2$ (colours) and $k\ge3$, the van der Waerden number
+$W(r,k)$ is the least $N$ such that every $r$-colouring of $\{1,\dots,N\}$
+contains a monochromatic arithmetic progression of length $k$.  We put the
+number of colours first.  Monroe~\cite{Monroe2026} uses the reverse convention
+$W(k,r)$, while Fox and Hunter~\cite{FoxHunter2026} write $w(k;r)$.
+
+Two different mechanisms for lower bounds must be kept separate.  Rabung's
+power-residue construction~\cite{rabung1979} turns a suitable prime $p$ into a
+direct bound
+\[
+  W(r,k)>(k-1)p+1.
+\]
+Blankenship, Cummings and Taranchuk~\cite[Theorem~2.1]{bct2018}, by contrast,
+prove the finite constructive recurrence
+\begin{equation}\label{eq:bct-intro}
+ W(r,k)>q\left(W\!\left(r-\left\lceil r/q\right\rceil,k\right)-1\right),
+\end{equation}
+where $q$ is the largest prime not exceeding $k$.  It is therefore numerically
+relevant at the values of $k$ considered here, not merely asymptotically.  In
+particular, a documented strict bound $W(2,k)>B$ implies
+$W(3,k)>qB$.  Xu's concatenation recurrence~\cite{xu2013} supplies another
+closure operation.  We consequently assess priority only after closing a
+machine-readable registry of published, archived, and current bounds under
+both recurrences.  The recent superexponential three-colour result of Fox and
+Hunter~\cite{FoxHunter2026} is a separate asymptotic development.
+
+Computational lower bounds based on power-residue colourings and their
+cyclic-zipper extensions have been pursued by Herwig, Heule, van Lambalgen and
+van Maaren~\cite{herwig2007}, Rabung and Lotts~\cite{rabunglotts2012}, Liang,
+Xu, Shao and Xiu~\cite{liang2012}, and Monroe~\cite{Monroe2026}.  Monroe's
+article describes the systematic scan limit
+as $9.5\times10^8$, while its accompanying table lists a larger valid prime,
+$969\,347\,371$.  We use the tabled value as the numerical hand-off.  The
+historical campaign was configured to scan every prime in
+$[9.7\times10^8,2\times10^9)$ and to compute the active target profiles with
+$r\le9$; recovery of its complete checkpoint and ordered-prime evidence remains
+a release gate.
+
+Our first contribution is a set of nine candidate direct three-colour Rabung
+certificates, for $17\le k\le25$.  The headline candidate is
+\[
+  W(3,17)>31\,385\,622\,833
+\]
+from $p=1\,961\,601\,427$, a factor $2.02$ over the previously published
+bound.  Conditional on final acceptance of the claim manifests, recurrence
+closure leaves the direct bounds as the strongest located
+in the registered source corpus for $17\le k\le21$.  For $22\le k\le25$ they
+remain direct Rabung-family champions but are dominated as general bounds.
+Section~\ref{s:bounds} reports both columns and their provenance rather than
+conflating the two notions of record.
+
+Our second contribution is a candidate independent re-verification of four
+two-colour primes recorded in an archived phase of Monroe's
+project~\cite{MonroePhase2Archive}, using a
+stand-alone checker and a fail-closed audit format.  Historical runs accepted
+the four triples; the final raw manifests remain a release gate.  Priority for
+the primes remains Monroe's.  Combining these candidate inputs with
+\eqref{eq:bct-intro} gives the substantially stronger three-colour
+consequences for $25\le k\le28$ in Section~\ref{s:bounds}.  The archive states
+that the historical phase tested primes to four billion~\cite{MonroePage}; our
+checker tests the validity of its listed primes, not the exhaustiveness of that
+historical scan.
+
+Our third contribution is methodological.  Each direct result is a succinct
+certificate $(p,r,k)$, and a separate-source verifier re-establishes the
+hypotheses of Rabung's theorem.  Search paths that share arithmetic are
+described as redundant rather than independent, raw verdicts are parsed
+fail-closed, and the final claims table will be generated only from accepted
+manifests.  We also
+retain a short empirical analysis of run-valid-prime counts.  It concerns one
+correlated cumulative holdout trajectory, not four replications; disjoint
+increments are primary, and the Poisson calculations are explicitly
+conditional on the stated model and accompanied by retrospective dispersion
+diagnostics.

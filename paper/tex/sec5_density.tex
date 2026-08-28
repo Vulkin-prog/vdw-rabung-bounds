@@ -1,0 +1,170 @@
+\section{An empirical density comparison}\label{s:density}
+
+The campaign classified each tested prime by the run-valid predicate and
+preserved the survivor event list and aggregate counts, but not the complete
+per-prime max-run profile.  This section uses those retained data for a deliberately narrow purpose: a prospective
+forecast comparison for the run-valid $(3,17)$ primes beyond a fixed training
+cut.  It does not promote the comparison to a theorem, a universal density
+law, or a proof that any Rabung search has been exhausted.  All probabilistic
+statements below are conditional on the explicitly stated count model.
+
+\subsection{Population and mirror reference}\label{ss:runlaw}
+
+Call a prime \emph{run-valid} for $(r,k)$ when condition~(a) holds, that is,
+when $\operatorname{maxrun}(p,r)<k$, and \emph{valid} when
+$(a)\wedge(b)$ holds.  The statistical estimand in this section is the
+run-valid population.  The bounds of Section~\ref{s:bounds}, by contrast, use
+the full criterion.  Condition~(b) depends on $k$ and is not represented in the
+versioned run-valid event list used below; it must therefore not be silently
+absorbed into a common density correction.
+
+The coloring satisfies
+\[
+  c(p-x)=c(x)+c(-1) \pmod r.
+\]
+Consequently only the first $(p-1)/2$ positions are free.  The natural
+i.i.d.\ reference for the maximal run therefore has length
+$n=(p-1)/2$, not $p-1$.  Descriptively, this accounts for most of the shift in
+the natural reference length.  We make no numerical mean-run claim here,
+because the versioned event list records survivors rather than the full
+per-prime max-run profile.
+
+For $r=3$ the case $c(-1)=r/2$ cannot occur, since $r$ is odd; more generally
+that case exists only for even $r$.
+
+\subsection{Bare reference and domain}\label{ss:barelaw}
+
+With $(p-1)/2$ free positions, the elementary Poisson-clumping reference is
+\[
+  \Lambda_{r,k}(p)=\frac{(r-1)(p-1)}{2r^k},
+  \qquad
+  g_{0}(p)=e^{-\Lambda_{r,k}(p)}.
+\]
+It motivates the qualitative scale $p\asymp k r^k$ at which direct Rabung
+survivors become rare.  We do not use the local fit below to quote precise
+numbers of future primes, to declare a well exhausted, or to assign narrow
+uncertainty intervals far outside the fitted window.
+
+The program frozen during the campaign used the operational convention
+\[
+  \widetilde\Lambda_{r,k}(p)=\frac{(r-1)p}{2r^k},
+  \qquad
+  \widetilde g_0(p)=e^{-\widetilde\Lambda_{r,k}(p)}.
+\]
+Thus $\widetilde\Lambda-\Lambda=(r-1)/(2r^k)$.  We retain the tilded
+convention below so that the holdout calculation is exactly the one that was
+frozen, while keeping $\Lambda$ as the natural half-length reference.
+
+\begin{remark}[Domain of the empirical comparison]\label{r:domain}
+The two corrected candidates considered below are
+\[
+  \widetilde g_{1}(p)=e^{-\widetilde\Lambda_{3,17}(p)}
+            +m e^{-\beta\widetilde\Lambda_{3,17}(p)},
+  \qquad
+  \widetilde g_{2}(p)=e^{-\widetilde\Lambda_{3,17}(p)}+\eta,
+\]
+with $m=8\cdot10^{-4}$, $\beta=1/2$, and
+$\eta=1.62\cdot10^{-5}$.  These are local intensity models for condition~(a)
+in the observed deep-tail window.  In particular $\widetilde g_1(p)\to1+m>1$ as
+$\widetilde\Lambda\to0$, so it is not a global probability law.  The numerical
+parameters were selected on the training window; freezing them prevents
+holdout tuning but does not remove their estimation uncertainty.
+\end{remark}
+
+\subsection{Prospective forecast comparison}\label{ss:eta}
+
+After completion of chunk $180$, when $1727$ run-valid $(3,17)$ primes had
+been observed, the three numerical candidates
+$\widetilde g_0,\widetilde g_1,\widetilde g_2$ were fixed.  The
+four scheduled checkpoint values $250,300,400,515$ were recorded before the
+first read.  The versioned $1859$-entry list, labelled complete by the historical
+analysis, reconstructs the count in every campaign chunk conditional on that
+list.
+
+Let
+\[
+ I_j=[970\,000\,000+(j-1)\,2\,000\,000,
+      970\,000\,000+j\,2\,000\,000)
+\]
+and, for a set $A$ of chunks, define the corrected mean derived from a frozen
+intensity,
+\[
+  \mu_\ell(A)=\sum_{j\in A}\int_{I_j}
+       \frac{\widetilde g_\ell(p)}{2\log p}\,dp,
+  \qquad \ell\in\{0,1,2\}.
+\]
+The factor $1/(2\log p)$ is the analytic density used for primes
+$p\equiv1\pmod3$.  Table~\ref{tab:milestones} uses the four \emph{disjoint}
+increments as its primary view.
+
+\input{generated_density_holdout_table}
+
+The corresponding cumulative observations are $90,110,126,132$.  They are
+four views of the same trajectory, not four replications.  The fixed decaying
+forecast is close to the observed total, the frozen constant-floor candidate
+substantially overpredicts it, and the bare reference underpredicts it.
+
+\begin{remark}[Frozen readout and post hoc diagnostics]\label{r:sigma}
+Three layers must be kept distinct.
+
+First, the frozen inputs were the three intensity functions, their numerical
+parameters, the baseline count, and---before the first scheduled read---the
+reading times.  Second, the live tool selected the closest displayed mean and
+printed Wald-type discrepancies $(N-\mu)/\sqrt{N}$ for the bare and
+constant-floor candidates.  That was the original prospective readout.  It
+did not compute deviance residuals or exact Poisson tails; two manually noted
+standardizations for the decaying candidate were later found to use the wrong
+denominator.
+
+Third, all deviance, dispersion, autocorrelation, negative-binomial,
+and block calculations are retrospective diagnostics.  The archival script
+also used chunk midpoints as the two endpoints of a cumulative integral.
+Table~\ref{tab:milestones} corrects that endpoint convention by integrating the
+full observed chunk intervals.  This changes no observation and no frozen
+operational intensity function; it changes only the integration limits.  The
+corrected numerical means are therefore post-campaign recalculations of the
+frozen functions.  Replacing the operational $\widetilde\Lambda=p/3^{17}$ by
+the natural $\Lambda=(p-1)/3^{17}$ changes every holdout total by less than
+$9\cdot10^{-7}$ and changes no cell of Table~\ref{tab:milestones} at two
+decimal places.
+
+The four increments are non-overlapping.  They are independent only under the
+specified inhomogeneous-Poisson model; disjointness alone is not evidence of
+independence.  Accordingly, we do not promote a conditional Poisson tail
+probability as a model-robust significance level.
+\end{remark}
+
+The versioned event list permits limited retrospective checks.  On the $335$
+post-freeze chunks, the frozen decaying model gives Pearson statistic
+$X^2=324.2$ (quasi-Poisson scale $X^2/335=0.968$); an NB2 sensitivity fit puts
+the additional-dispersion parameter at the Poisson boundary, and the Poisson
+deviance is $210.46$.  The Pearson
+residuals have Ljung--Box $Q_{12}=7.17$ (asymptotic conditional reference
+$p=0.85$), and aggregation into blocks of $5,10,20$ chunks gives Pearson
+scales $0.81,0.96,1.05$.  These checks reveal no gross overdispersion or serial
+correlation for that fixed model, but they remain post hoc and have limited
+power in a sparse, non-stationary tail.  A moving-block resampling of the
+per-chunk log-score difference (circular blocks of length $10$, $20\,000$
+seeded replicates) gives a mean decaying-minus-bare advantage of $0.01185$ per
+chunk, with percentile interval $[-0.00509,0.02957]$ and bootstrap fraction
+$0.092$ at or below zero.  For decaying minus the frozen constant-floor model,
+the corresponding interval is $[0.31298,0.49363]$ and no replicate is
+non-positive.  Thus the former comparison is less decisive than the latter.
+We therefore report the
+forecast ordering, not a universal fitted family or a discovery-level
+$p$-value.
+
+The scanner changed earlier in the campaign, but the final source fingerprint
+begins at chunk $79$.  Thus all chunks after the forecast cut use the same
+scanner fingerprint.  This removes scanner-source changes as a confounder for the
+prospective comparison, while whole-campaign descriptive aggregates still
+require the revision table discussed in Section~\ref{ss:execution}.
+
+\subsection{Summary}\label{ss:densitysummary}
+
+The mirror symmetry supplies a useful first-order reference, and one fixed
+decaying correction tracked the held-out $(3,17)$ trajectory more closely than
+the bare and constant-floor candidates.  The result is an empirically useful
+forecast check for one target and one finite window.  It is not four
+independent confirmations, not a proof of a universal two-exponential law,
+and not a quantitative certificate that any future Rabung search is empty.

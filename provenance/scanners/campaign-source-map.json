@@ -1,0 +1,27 @@
+{
+  "schema": "vdw-campaign-source-map/v1",
+  "source_repository": "Vulkin-prog/vdw-gpu-starter",
+  "artifacts": {
+    "campaign_062cc3c": {"encoded_path": "provenance/scanners/historical/campaign_062cc3c.py.base64", "decoded_path": "src/campaign.py", "git_blob_sha1": "f5bad86c67cfcfe6da426260417332ccae279059", "sha256": "d796c55bcf35d5e7b67efd50bbfbd5cc2bfbf59dbd2e6b3c5046db58b36682e4", "bytes": 13545},
+    "campaign_185b868": {"encoded_path": "provenance/scanners/historical/campaign_185b868.py.base64", "decoded_path": "src/campaign.py", "git_blob_sha1": "3e4481648ea18c18b4f34b68e0d0ceb460617abf", "sha256": "872cf7781626ccb042587d9c64682eed4bae2bc76560de1b01dccb1d7f0b6802", "bytes": 12253},
+    "campaign_4f9e2cf": {"encoded_path": "provenance/scanners/historical/campaign_4f9e2cf.py.base64", "decoded_path": "src/campaign.py", "git_blob_sha1": "525353d099fad3d786f0bfa82e90d400a7e1e657", "sha256": "d68890ebeb5bef4439df81532d2e7ffa339f6760110e21bb68e72e5bd73caabe", "bytes": 14830},
+    "campaign_657a140": {"encoded_path": "provenance/scanners/historical/campaign_657a140.py.base64", "decoded_path": "src/campaign.py", "git_blob_sha1": "6a2d1715b0b2d929638320220a9bad3f0444a9f1", "sha256": "332faf161d6aed2649c1c025ba927a893f73af1c48afdeea5923f10e32358389", "bytes": 11893},
+    "campaign_a93cec9": {"encoded_path": "provenance/scanners/historical/campaign_a93cec9.py.base64", "decoded_path": "src/campaign.py", "git_blob_sha1": "dc06cf3f8f494f5bc4aedec739dda6289e26ef61", "sha256": "de4637a4a9c96b16320a94093f5c122446812a2fde08d09b5c42a103f38283d1", "bytes": 16355},
+    "campaign_c3a9b9e": {"encoded_path": "provenance/scanners/historical/campaign_c3a9b9e.py.base64", "decoded_path": "src/campaign.py", "git_blob_sha1": "4b2e630a6f24d02836c85263287fc9168472a696", "sha256": "af952ab12c3b2fe8f0b9357583680b5a02db0268a130f909052527d55d0d650b", "bytes": 14962},
+    "campaign_ebd54ea": {"encoded_path": "provenance/scanners/historical/campaign_ebd54ea.py.base64", "decoded_path": "src/campaign.py", "git_blob_sha1": "314ce77fc5377bd84648d688960ce275bb04f1a7", "sha256": "2d7c27d86ec1e07f98bf4bbe59575b46f438cbcb7b4a1f35ad0bc725f973af37", "bytes": 8289},
+    "scan_09a89151": {"encoded_path": "provenance/scanners/historical/scan_gpu_09a89151.cu.base64", "decoded_path": "src/scan_gpu.cu", "git_blob_sha1": "09a89151f78f3d89f5e5c03b8c9802436df352f8", "sha256": "cca301fe923b661643ebc33eee68db0bbc63d68cea2c16740c0701a6ca39d31e", "bytes": 46748},
+    "scan_8e22d632": {"encoded_path": "provenance/scanners/historical/scan_gpu_8e22d632.cu.base64", "decoded_path": "src/scan_gpu.cu", "git_blob_sha1": "8e22d6329f9c7cd6e193763bfc835afda06200a5", "sha256": "3b5d1049c4695e3e2f7854aeceef731cc801142df503f4248fcb2cc5924d5c7e", "bytes": 47870},
+    "scan_9cef0b03": {"encoded_path": "provenance/scanners/historical/scan_gpu_9cef0b03.cu.base64", "decoded_path": "src/scan_gpu.cu", "git_blob_sha1": "9cef0b03fdf5f0db5b7fe85221e4961634f92080", "sha256": "87f10166f15cf7d9f0dd0c7b51cd943220cdbe7d51f0f995b901c34921b6ce92", "bytes": 43494},
+    "scan_b2c529cc": {"encoded_path": "provenance/scanners/historical/scan_gpu_b2c529cc.cu.base64", "decoded_path": "src/scan_gpu.cu", "git_blob_sha1": "b2c529cc723d9283dc6ff375c7aeaa061a3d0b5b", "sha256": "3598aea6115e05cfeec8d00f569c466ea5c39b9811db2060e872e7dada9ae62e", "bytes": 45359}
+  },
+  "revisions": [
+    {"git_commit": "ebd54ea0fbdf78287392e9be80b2578618964975", "chunks": 7, "first_chunk": 1, "last_chunk": 7, "scanner": "scan_9cef0b03", "driver": "campaign_ebd54ea"},
+    {"git_commit": "657a140a1d907a54d168c4e37b4d79c774fef539", "chunks": 10, "first_chunk": 8, "last_chunk": 17, "scanner": "scan_b2c529cc", "driver": "campaign_657a140"},
+    {"git_commit": "185b8680172bb4e20be1d7765f72cda3d26cf72d", "chunks": 18, "first_chunk": 18, "last_chunk": 35, "scanner": "scan_b2c529cc", "driver": "campaign_185b868"},
+    {"git_commit": "062cc3cdf97ff2d158b907ed3d62c2f68884e89b", "chunks": 43, "first_chunk": 36, "last_chunk": 78, "scanner": "scan_09a89151", "driver": "campaign_062cc3c"},
+    {"git_commit": "4f9e2cf8e56c659684d2bb7269d65a89f68069b8", "chunks": 1, "first_chunk": 79, "last_chunk": 79, "scanner": "scan_8e22d632", "driver": "campaign_4f9e2cf"},
+    {"git_commit": "c3a9b9eb318f63720146c03d3032de7d5c9183e0", "chunks": 274, "first_chunk": 80, "last_chunk": 353, "scanner": "scan_8e22d632", "driver": "campaign_c3a9b9e"},
+    {"git_commit": "a93cec91826d73df4200903bda941a9c805929ff", "chunks": 72, "first_chunk": 354, "last_chunk": 425, "scanner": "scan_8e22d632", "driver": "campaign_a93cec9"},
+    {"git_commit": "7c1ba34b1cb09dc0bf5fd08ffc4ef2812075f066", "chunks": 90, "first_chunk": 426, "last_chunk": 515, "scanner": "scan_8e22d632", "driver": "campaign_a93cec9"}
+  ]
+}

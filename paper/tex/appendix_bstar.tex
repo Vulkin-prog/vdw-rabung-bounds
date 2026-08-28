@@ -1,0 +1,132 @@
+\appendix
+\section{Equivalence of the operational criterion}\label{s:bstar}
+
+The scan tests the criterion $(a)\wedge(B^{*})$ of Section~\ref{s:method} rather
+than Rabung's $(a)\wedge(b)$ verbatim. The two are equivalent, and since every
+bound in this paper rests on that equivalence we prove it here rather than rely
+on the exhaustive machine comparison of Section~\ref{s:method}, which we regard
+as a check on the \emph{implementation}, not as a substitute for a proof.
+
+\paragraph{Setting.}
+Let $p\equiv1\pmod r$ with $p>k\ge3$, let $g$ be a primitive root, and colour $x\in[1,p-1]$ by
+$c(x)=\operatorname{ind}_g(x)\bmod r$; this is the power-residue colouring, and
+$c(xy)=c(x)+c(y)$. Extend it to $[0,(k-1)p]$ by reducing modulo $p$ and colouring
+the multiples of $p$ (the \emph{jokers}) by an arbitrary map
+$\vartheta':\{0,p,\dots,(k-1)p\}\to\mathbb{Z}_r$. Write $\vartheta(-1)=c(p-1)$,
+which is $0$ if $-1$ is an $r$-th power residue and $r/2$ otherwise (the latter
+requires $r$ even).
+
+An arithmetic progression of length $k$ and common difference $d$ is monochromatic
+iff its terms all receive one colour. Progressions avoiding the jokers are handled
+by~(a): by complete multiplicativity of $c$, the progression $a,a+d,\dots,a+(k-1)d$
+reduces, after dividing by $d$ (which permutes the classes by the constant
+$c(d)$), to the window $\{a/d,\,a/d+1,\dots,a/d+k-1\}$ of $k$ consecutive
+residues. Hence \emph{some} joker-free progression is monochromatic iff \emph{some}
+window of $k$ consecutive residues in $[1,p-1]$ is, which is exactly the negation
+of~(a).
+
+\paragraph{The joker condition.}
+It remains to treat the progressions that meet a joker. First bound the common
+difference: a $k$-term progression inside $[0,(k-1)p]$ has
+$(k-1)d\le(k-1)p$, so $1\le d\le p$, and the case $d=p$ occurs for exactly one
+progression, namely $0,p,2p,\dots,(k-1)p$, which consists \emph{entirely} of
+jokers. That progression is monochromatic if and only if $\vartheta'$ is
+constant---it is precisely the reason Rabung's statement requires a
+\emph{non-constant} joker colouring, and any non-constant $\vartheta'$ breaks
+it. For the remaining case $0<d<p$: since the progression has $k<p$ terms, two
+of them congruent to $0$ modulo $p$ would force $p\mid(i'-i)d$ with
+$0<|i'-i|<k<p$ and $p\nmid d$, which is impossible; so the progression meets at
+most one multiple of $p$. Say it is the $(j+1)$-st term, $0\le j\le k-1$.
+Dividing by $d$ as before, the progression becomes the \emph{shifted string}
+\[
+  S_j \;=\; \{-j,\dots,-1\}\cup\{1,\dots,k-1-j\}\pmod p,
+\]
+centred on the joker, together with the joker itself.
+
+\begin{proposition}\label{p:bstar}
+Fix $p\equiv1\pmod r$ and $k$. The colouring above is free of monochromatic
+$k$-term progressions for \emph{some} choice of $\vartheta'$ if and only if
+$(a)\wedge(B^{*})$ holds, where
+\[
+  (B^{*}):\qquad \text{no shifted string }S_j\ (0\le j\le k-1)\text{ is monochromatic.}
+\]
+Moreover, when $(a)\wedge(B^{*})$ holds, \emph{every} non-constant $\vartheta'$
+works; and when it fails, \emph{no} $\vartheta'$ works. In particular the choice of
+$\vartheta'$ is immaterial, as asserted by Rabung.
+\end{proposition}
+
+\begin{proof}
+Suppose some $S_j$ is monochromatic, of colour $w$ say.
+
+\emph{The lift.} We first check that every residue class of $d$ is realised by a
+genuine progression inside $[0,(k-1)p]$ through a joker. Fix a representative
+$d\in[1,p-1]$ and take the joker to be $jp$ and the first term to be
+\[
+  a \;=\; j\,(p-d).
+\]
+Then $a+jd=jp$, so the $(j+1)$-st term is the joker; the first term
+$a=j(p-d)\ge0$ since $d<p$; and the last term is
+\[
+  a+(k-1)d \;=\; jp+(k-1-j)d \;\le\; jp+(k-1-j)(p-1) \;\le\; (k-1)p ,
+\]
+with equality in the last step only at $j=k-1$, where that last term is the
+joker $jp$ itself; so all $k$ terms lie in $[0,(k-1)p]$. The non-joker terms are $jp+id$ for
+$i\in S_j$, whose residues are $id \bmod p$; hence their colours are
+$c(i)+c(d)=w+c(d)$.
+
+\emph{The all-or-nothing mechanism.} As $d$ ranges over $(\mathbb{Z}/p)^{*}$, the
+value $w+c(d)$ ranges over \emph{all} of $\mathbb{Z}_r$ (because $c$ is onto), and
+by the lift each such value is attained by an admissible progression through the
+\emph{same, fixed} joker $jp$. Hence for each colour $u\in\mathbb{Z}_r$ there is a
+progression through $jp$ whose other $k-1$ terms are all of colour $u$; assigning
+$\vartheta'(jp)=u$ makes it monochromatic. Every value of $\vartheta'$ at the
+single joker $jp$ is thus forbidden, so no choice of $\vartheta'$---constant or
+not---avoids a monochromatic progression. Conversely, if no $S_j$ is
+monochromatic then no progression with $d<p$ through a joker has all its other
+$k-1$ terms of a single colour, so no assignment of $\vartheta'$ can complete
+one; the only remaining progression is the all-joker one ($d=p$), which any
+\emph{non-constant} $\vartheta'$ breaks; combined with~(a) for the joker-free
+progressions, every non-constant $\vartheta'$ works. (An earlier version of this
+proof overlooked the all-joker progression and concluded that \emph{any}
+$\vartheta'$ works; that is false for constant $\vartheta'$, and the
+non-constancy in the Proposition is exactly what the $d=p$ case consumes. The
+condition $(a)\wedge(B^{*})$ is thus all-or-nothing over the non-constant
+$\vartheta'$, which is why Rabung may state it without reference to the joker
+colouring.)
+\end{proof}
+
+\paragraph{Reduction of $(B^{*})$ to a single interval.}
+Since $c(-x)=c(x)+\vartheta(-1)$, the string $S_j$ is monochromatic iff the two
+intervals $\{1,\dots,j\}$ and $\{1,\dots,k-1-j\}$ are each monochromatic and their
+colours agree after the shift by $\vartheta(-1)$.
+
+\emph{Case $\vartheta(-1)=0$.} Then $c(-x)=c(x)$, so $S_j$ is monochromatic iff the
+interval $\{1,\dots,\max(j,\,k-1-j)\}$ is. Minimising $\max(j,k-1-j)$ over
+$0\le j\le k-1$ gives $\lceil(k-1)/2\rceil$, attained at $j=\lfloor(k-1)/2\rfloor$.
+Hence
+\[
+  (B^{*})\iff \{1,2,\dots,\lceil (k-1)/2\rceil\}\ \text{is not monochromatic.}
+\]
+A one-element interval \emph{is} monochromatic, and therefore fails the condition;
+under the standing assumption $k\ge3$ this is the case $k=3$, and it is the reason
+a singleton must be counted as ``all in the same class''.
+
+\emph{Case $\vartheta(-1)=r/2$ ($r$ even).} Now $c(-x)=c(x)+r/2\ne c(x)$, so a
+two-sided string can never be monochromatic: only the one-sided strings $j=0$ and
+$j=k-1$ survive, both giving the interval $\{1,\dots,k-1\}$. Hence
+\[
+  (B^{*})\iff \{1,2,\dots,k-1\}\ \text{is not monochromatic,}
+\]
+Unlike the length-$k$ prohibition of~(a), this is a condition on an interval of
+length $k-1$, and is therefore \emph{not} implied by~(a): it is a genuine
+additional constraint, and on a longer interval than in the previous case.
+
+\begin{remark}
+Both refinements matter. Replacing $\lceil\cdot\rceil$ by $\lfloor\cdot\rfloor$, or
+treating a singleton as vacuously satisfying the condition, gives a boundary
+condition that is not equivalent to~(b).  Counterexamples occur already at
+$p=13$, $r=2$, $k=4$ for the floor variant and at $p=5$, $r=2$, $k=3$ for the
+singleton convention; condition~(a) can mask some such boundary errors.
+An early version of our own tester made exactly these two errors, and the
+comparison against the oracle is what caught them.
+\end{remark}

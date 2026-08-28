@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "campaign_window": {
+    "lower_inclusive": 970000000,
+    "upper_exclusive": 2000000000,
+    "chunk_width": 2000000,
+    "chunk_count": 515
+  },
+  "prime_enumerator": {
+    "function": "sieve_primes",
+    "function_bytes": 249,
+    "function_sha256": "7492d76b7cf13fc49d1b9367552c87eac588bacf181f9e8078b1bffcafee008d",
+    "identical_in_all_four_github_blobs": true,
+    "historical_interval_convention": "inclusive [lo,hi]",
+    "campaign_boundary_invariant": "all chunk upper bounds are even and greater than 2, hence composite; historical inclusive enumeration equals [lo,hi) on every campaign chunk"
+  },
+  "fingerprints": [
+    {
+      "source_sha256_prefix": "87f10166",
+      "github_blob_sha": "9cef0b03fdf5f0db5b7fe85221e4961634f92080",
+      "first_chunk": 1,
+      "last_chunk": 7,
+      "revisions": [{"git": "ebd54ea0fbdf78287392e9be80b2578618964975", "chunks": 7}],
+      "target_count": 10,
+      "active_targets": ["2,25", "3,17", "3,18", "3,19", "3,20", "3,21", "3,22", "3,23", "3,24", "3,25"],
+      "change": "Initial campaign fingerprint; fused and mirror max-run paths already active.",
+      "cross_test": "Covered by the frozen pre-flight agreement suite."
+    },
+    {
+      "source_sha256_prefix": "3598aea6",
+      "github_blob_sha": "b2c529cc723d9283dc6ff375c7aeaa061a3d0b5b",
+      "first_chunk": 8,
+      "last_chunk": 35,
+      "revisions": [
+        {"git": "657a140a1d907a54d168c4e37b4d79c774fef539", "chunks": 10},
+        {"git": "185b8680172bb4e20be1d7765f72cda3d26cf72d", "chunks": 18}
+      ],
+      "target_count": 10,
+      "active_targets": ["2,25", "3,17", "3,18", "3,19", "3,20", "3,21", "3,22", "3,23", "3,24", "3,25"],
+      "change": "Added the point-verification mode and record reporting; the production target predicate was unchanged.",
+      "cross_test": "Point claims were checked by mirror, full, CPU-walk, and separate verifiers."
+    },
+    {
+      "source_sha256_prefix": "cca301fe",
+      "github_blob_sha": "09a89151f78f3d89f5e5c03b8c9802436df352f8",
+      "first_chunk": 36,
+      "last_chunk": 78,
+      "revisions": [{"git": "062cc3cdf97ff2d158b907ed3d62c2f68884e89b", "chunks": 43}],
+      "target_count": 13,
+      "active_targets": ["2,25", "2,26", "2,27", "2,28", "3,17", "3,18", "3,19", "3,20", "3,21", "3,22", "3,23", "3,24", "3,25"],
+      "change": "Added the three two-colour bonus targets; the already-computed r=2 max-run profile was reused.",
+      "cross_test": "The new bookkeeping was exercised on [1026949000,1026950000); the (3,17) path was unchanged."
+    },
+    {
+      "source_sha256_prefix": "3b5d1049",
+      "github_blob_sha": "8e22d6329f9c7cd6e193763bfc835afda06200a5",
+      "first_chunk": 79,
+      "last_chunk": 515,
+      "revisions": [
+        {"git": "4f9e2cf8e56c659684d2bb7269d65a89f68069b8", "chunks": 1},
+        {"git": "c3a9b9eb318f63720146c03d3032de7d5c9183e0", "chunks": 274},
+        {"git": "a93cec91826d73df4200903bda941a9c805929ff", "chunks": 72},
+        {"git": "7c1ba34b1cb09dc0bf5fd08ffc4ef2812075f066", "chunks": 90}
+      ],
+      "target_count": 13,
+      "active_targets": ["2,25", "2,26", "2,27", "2,28", "3,17", "3,18", "3,19", "3,20", "3,21", "3,22", "3,23", "3,24", "3,25"],
+      "change": "Added aggregate congruence counters; later revisions changed the driver or theory files, not scan_gpu.cu.",
+      "cross_test": "Old/new TARGET and CHECKSUM outputs agreed exactly and an end-to-end test passed."
+    }
+  ]
+}

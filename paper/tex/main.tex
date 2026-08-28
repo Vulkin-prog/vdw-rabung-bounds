@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{graphicx,booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks]{hyperref}
+\hypersetup{pdftitle={Certified lower bounds for van der Waerden numbers from a GPU scan and recurrence closure},
+  pdfauthor={Brice Pouly},
+  pdfsubject={van der Waerden numbers},
+  pdfkeywords={van der Waerden numbers, lower bounds, power residues, Rabung, GPU, certificates}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\newtheorem{remark}[theorem]{Remark}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\title{Certified lower bounds for van der Waerden numbers\\
+from a GPU scan and recurrence closure}
+\author{Brice Pouly}
+\date{}
+\begin{document}\maketitle
+\begin{center}
+\fbox{\begin{minipage}{0.90\linewidth}\small
+\textbf{Qualification status (28 August 2026).}
+This is a private prepublication draft, not the citable release.  The final
+13 claim manifests, 515-chunk campaign recovery, ordered-prime audit, CUDA
+qualification, four external replications, outbound licences, and DOI/tag
+freeze remain open as recorded in \texttt{STATUS.json}.  Numerical statements
+below report the current computation; release-level reproducibility claims
+remain conditional on those gates.
+\end{minipage}}
+\end{center}
+\begin{abstract}
+We report outputs from a historical single-GPU campaign configured to scan
+power-residue colorings over all primes in
+$[9.7\times10^{8},\,2\times10^{9})$.  Its retained summaries identify candidate
+direct Rabung certificates for $W(3,k)$, $17\le k\le25$, headed by
+$W(3,17)>31\,385\,622\,833$.  After automatically closing the registered
+published and archived baselines under the recurrences of
+Blankenship--Cummings--Taranchuk and Xu, these candidate direct values rank
+above every bound located in that corpus for $17\le k\le21$; the rows
+$22\le k\le25$ are direct-method improvements, not general van der Waerden
+records.  We also
+report historical independent acceptances of four archived two-colour
+certificates; release-level rechecks remain an explicit gate.  Applying the
+Blankenship--Cummings--Taranchuk recurrence to them gives
+$W(3,25)>628\,673\,328\,287$ and, respectively for $k=26,27,28$, the further
+bounds $1\,221\,912\,599\,848$, $2\,068\,976\,009\,617$, and
+$2\,159\,051\,058\,266$.  Each direct computational claim is represented by a
+succinct Rabung certificate $(p,r,k)$ whose hypotheses can be re-established by
+a stand-alone verifier.  As a secondary empirical result, one frozen forecast
+is compared with a cumulative holdout trajectory at four predetermined
+checkpoints; the disjoint increments are the primary summary and all Poisson
+calculations are reported conditionally on that model.
+
+\medskip
+\noindent\emph{Provenance.} The scanning software, historical campaign,
+analysis, and first draft were produced in collaboration with Anthropic's
+Claude (models \texttt{claude-fable-5} and \texttt{claude-opus-4-8}).  OpenAI
+Codex in ChatGPT Work subsequently contributed to publication-package
+engineering, contract hardening, automated audits, CPU reruns, and manuscript
+revision.  All systems were operated under the author's direction. Every
+direct computational claim reported here can be
+rechecked by a separate-source verifier that shares no code with the search
+engine and runs in time $O(p\log p)$. See the AI contribution
+statement (p.~\pageref{s:ai}).
+\end{abstract}
+% ============ STRUCTURE ============
+\input{sec1_intro}
+\input{sec2_method}
+\input{sec3_campaign}
+\input{sec4_bounds}
+\input{sec5_density}
+\input{sec6_prereg}
+\input{sec7_data}
+\input{appendix_bstar}
+\input{sec9_ack}
+\input{sec8_disclosure}
+\bibliographystyle{plainnat}\bibliography{../references}
+\end{document}

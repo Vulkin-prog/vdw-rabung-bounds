@@ -1,0 +1,79 @@
+{
+  "artifacts": {
+    "compiler": {
+      "path": "results/cpu/rabung-p10000.compiler.txt",
+      "sha256": "78b5d66fa8e53c3cfadb14889dfb5936f1c58888ad49c019e15d3dc59fc64e30",
+      "size": 244
+    },
+    "stderr_base64": {
+      "decoded_sha256": "a0457169176befbe929361aa53da5c3797699af203707de30abe2d2218371d3a",
+      "decoded_size": 1351,
+      "encoding": "base64-rfc4648",
+      "path": "results/cpu/verify-claim-w2-k25.stderr.base64",
+      "sha256": "5b3baca9346deec10162ee3724a481208766d23d6b0d66dbcaf688c176e189ad",
+      "size": 1828
+    },
+    "stdout": {
+      "path": "results/cpu/verify-claim-w2-k25.stdout.txt",
+      "sha256": "59f7ef171eb5b3cac6d9f44421cf1f0183fd0455f86e513996e9bf0ac1926df0",
+      "size": 56
+    }
+  },
+  "build": {
+    "binary": {
+      "preserved": false,
+      "sha256": "90db4486f14fc308a33279ac37af3f34b340226ddb469e968cc8a7cf19f7c416",
+      "size": 21944
+    },
+    "command_argv": [
+      "g++",
+      "-O2",
+      "-std=c++17",
+      "tools/verify_claim.cpp",
+      "-o",
+      "verify_claim"
+    ],
+    "source": {
+      "path": "tools/verify_claim.cpp",
+      "sha256": "072a52fa2391a6f9376b7bb17b26307653e5b0d32385bb1ae504ab556104286c",
+      "size": 8282
+    }
+  },
+  "claim": {
+    "colors": 2,
+    "id": "w2_k25_p1138900957",
+    "length": 25,
+    "lower_bound": 27333622969,
+    "prime": 1138900957
+  },
+  "environment": {
+    "architecture": "x86_64",
+    "kernel": "Linux 6.18.35",
+    "operating_system": "Ubuntu 24.04.3 LTS"
+  },
+  "execution": {
+    "command_argv": [
+      "verify_claim",
+      "1138900957",
+      "2",
+      "25"
+    ],
+    "completed_utc": "2026-08-28T12:32:08Z",
+    "exit_code": 0,
+    "real_seconds": 224.785,
+    "started_utc": "2026-08-28T12:28:23Z",
+    "verdict": "ACCEPT"
+  },
+  "external_replication_gate_satisfied": false,
+  "git": {
+    "head_at_run": "a9fd04387c22ec370c6c0df1eb9f7b908a0738b4",
+    "head_source_sha256": "072a52fa2391a6f9376b7bb17b26307653e5b0d32385bb1ae504ab556104286c",
+    "published_equivalent_commit": "521f7f18edc72ff74eb1ea8035e9d6b9ec47b996",
+    "source_matches_head": true,
+    "tree": "34f497e4f1249553f728bc2d54ea5dd4550a73ba",
+    "worktree_clean_before_build": true
+  },
+  "release_claim_gate_satisfied": false,
+  "schema": "vdw-verify-claim-staging-evidence/v1",
+  "status": "preliminary_staging"
+}

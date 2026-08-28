@@ -1,0 +1,2431 @@
+{
+  "inputs": {
+    "baselines": "audit/baselines.json",
+    "baselines_sha256": "7d4871754699a6345d69f8ac42908df957a8fbd63e0ed4959019b898a7b5e3f2",
+    "claims": "audit/claims.json",
+    "claims_sha256": "3b3ffc1739b091194e9b54d2f9435bcfbff7ab2ba84d7176330e9dead12d0aeb"
+  },
+  "nodes": [
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k17-1b41216454acb268",
+      "kind": "ordinary",
+      "label": "W(1,17)=17",
+      "length": 17,
+      "lower_bound": 16,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k18-df1475d9e8af9912",
+      "kind": "ordinary",
+      "label": "W(1,18)=18",
+      "length": 18,
+      "lower_bound": 17,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k19-cf91bb7a27bbd652",
+      "kind": "ordinary",
+      "label": "W(1,19)=19",
+      "length": 19,
+      "lower_bound": 18,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k20-633bfea4da3cd410",
+      "kind": "ordinary",
+      "label": "W(1,20)=20",
+      "length": 20,
+      "lower_bound": 19,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k21-cbe774b003b37da4",
+      "kind": "ordinary",
+      "label": "W(1,21)=21",
+      "length": 21,
+      "lower_bound": 20,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k22-002b3ef31396cb07",
+      "kind": "ordinary",
+      "label": "W(1,22)=22",
+      "length": 22,
+      "lower_bound": 21,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k23-223ecffdf897c41b",
+      "kind": "ordinary",
+      "label": "W(1,23)=23",
+      "length": 23,
+      "lower_bound": 22,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k24-f946f5ee681e435d",
+      "kind": "ordinary",
+      "label": "W(1,24)=24",
+      "length": 24,
+      "lower_bound": 23,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k25-af643a7e28b48398",
+      "kind": "ordinary",
+      "label": "W(1,25)=25",
+      "length": 25,
+      "lower_bound": 24,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k26-d1269a9b929da21f",
+      "kind": "ordinary",
+      "label": "W(1,26)=26",
+      "length": 26,
+      "lower_bound": 25,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k27-2e0a63a17606f797",
+      "kind": "ordinary",
+      "label": "W(1,27)=27",
+      "length": 27,
+      "lower_bound": 26,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k28-1ec1cafbe224f387",
+      "kind": "ordinary",
+      "label": "W(1,28)=28",
+      "length": 28,
+      "lower_bound": 27,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k17-1dfe845c1cef8964",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 46397776,
+      "method": "xu2013",
+      "parameters": {
+        "n": 2899861,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k17-b95bd28f315ff343",
+        "ordinary-r1-k17-1b41216454acb268"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k17-2d456789579ab822",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 272,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 17
+      },
+      "parents": [
+        "ordinary-r1-k17-1b41216454acb268"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k17-f643707c86a1907a",
+      "kind": "ordinary",
+      "label": "monroe_w2_17",
+      "length": 17,
+      "lower_bound": 46397777,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k18-2d0d8fb713fa7c1e",
+      "kind": "ordinary",
+      "label": "monroe_w2_18",
+      "length": 18,
+      "lower_bound": 91079252,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k18-55f90ae80594877d",
+      "kind": "ordinary",
+      "label": null,
+      "length": 18,
+      "lower_bound": 289,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 17
+      },
+      "parents": [
+        "ordinary-r1-k18-df1475d9e8af9912"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k18-efab1c71a9367d64",
+      "kind": "ordinary",
+      "label": null,
+      "length": 18,
+      "lower_bound": 91079251,
+      "method": "xu2013",
+      "parameters": {
+        "n": 5357603,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k18-29b8c9d62495bda6",
+        "ordinary-r1-k18-df1475d9e8af9912"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k19-381a6be43a8ad83e",
+      "kind": "ordinary",
+      "label": null,
+      "length": 19,
+      "lower_bound": 342,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r1-k19-cf91bb7a27bbd652"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k19-c13033404ac9c15e",
+      "kind": "ordinary",
+      "label": null,
+      "length": 19,
+      "lower_bound": 250546914,
+      "method": "xu2013",
+      "parameters": {
+        "n": 13919273,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k19-e5327c5f6bed2d03",
+        "ordinary-r1-k19-cf91bb7a27bbd652"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k19-e77a52036317b59f",
+      "kind": "ordinary",
+      "label": "monroe_w2_19",
+      "length": 19,
+      "lower_bound": 250546915,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k20-07b5b7ef7b70a8f6",
+      "kind": "ordinary",
+      "label": "monroe_w2_20",
+      "length": 20,
+      "lower_bound": 526317462,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k20-71c2d02a16ba1cef",
+      "kind": "ordinary",
+      "label": null,
+      "length": 20,
+      "lower_bound": 526317461,
+      "method": "xu2013",
+      "parameters": {
+        "n": 27700919,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k20-fd180566d0354d47",
+        "ordinary-r1-k20-633bfea4da3cd410"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k20-cfc3d24d8cac11b5",
+      "kind": "ordinary",
+      "label": null,
+      "length": 20,
+      "lower_bound": 361,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r1-k20-633bfea4da3cd410"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k21-e4352d45fe8078ea",
+      "kind": "ordinary",
+      "label": "monroe_w2_21",
+      "length": 21,
+      "lower_bound": 1409670741,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k21-e6f0ae21c4ba3fff",
+      "kind": "ordinary",
+      "label": null,
+      "length": 21,
+      "lower_bound": 1409670740,
+      "method": "xu2013",
+      "parameters": {
+        "n": 70483537,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k21-a374ab6c65fda35a",
+        "ordinary-r1-k21-cbe774b003b37da4"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k21-fb2365a70789d2ef",
+      "kind": "ordinary",
+      "label": null,
+      "length": 21,
+      "lower_bound": 380,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r1-k21-cbe774b003b37da4"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k22-246cbc19afe824af",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 2582037633,
+      "method": "xu2013",
+      "parameters": {
+        "n": 122954173,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k22-7b4e5c01940c35bf",
+        "ordinary-r1-k22-002b3ef31396cb07"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k22-4c94a22c2f925395",
+      "kind": "ordinary",
+      "label": "monroe_w2_22",
+      "length": 22,
+      "lower_bound": 2582037634,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k22-874deb58fc08547a",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 399,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r1-k22-002b3ef31396cb07"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k23-8b934fc3305c10b7",
+      "kind": "ordinary",
+      "label": "monroe_w2_23",
+      "length": 23,
+      "lower_bound": 6206141987,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k23-e6d511ec68054acc",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 506,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r1-k23-223ecffdf897c41b"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k23-f3749ef07800094b",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 6206141986,
+      "method": "xu2013",
+      "parameters": {
+        "n": 282097363,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k23-34ec2f12bdbcd532",
+        "ordinary-r1-k23-223ecffdf897c41b"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k24-2a0b8654af0b031e",
+      "kind": "ordinary",
+      "label": "monroe_w2_24",
+      "length": 24,
+      "lower_bound": 10980093212,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k24-5ce41a3167470c39",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 10980093211,
+      "method": "xu2013",
+      "parameters": {
+        "n": 477395357,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k24-e06bd16e7050906f",
+        "ordinary-r1-k24-f946f5ee681e435d"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k24-914d8ad413a3e80b",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 529,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r1-k24-f946f5ee681e435d"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k25-2012130c6d391079",
+      "kind": "ordinary",
+      "label": "monroe_w2_25",
+      "length": 25,
+      "lower_bound": 23003662489,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k25-2256f3824b2cec32",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 27333622968,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1138900957,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k25-df51defc311786d5",
+        "ordinary-r1-k25-af643a7e28b48398"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k25-296171cafd2fe269",
+      "kind": "ordinary",
+      "label": "w2_k25_p1138900957",
+      "length": 25,
+      "lower_bound": 27333622969,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_phase2_archive_and_this_scan"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k25-32cd7b13983124b9",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 552,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r1-k25-af643a7e28b48398"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k26-19ccd04d459b91f9",
+      "kind": "ordinary",
+      "label": "w2_k26_p2125065391",
+      "length": 26,
+      "lower_bound": 53126634776,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_phase2_archive"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k26-c9aa2e56b117bc7c",
+      "kind": "ordinary",
+      "label": null,
+      "length": 26,
+      "lower_bound": 575,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r1-k26-d1269a9b929da21f"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k26-d6b4b7d0c70a6c95",
+      "kind": "ordinary",
+      "label": null,
+      "length": 26,
+      "lower_bound": 53126634775,
+      "method": "xu2013",
+      "parameters": {
+        "n": 2125065391,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k26-c1b543666cccccfc",
+        "ordinary-r1-k26-d1269a9b929da21f"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k27-3f088a9a4aea67bf",
+      "kind": "ordinary",
+      "label": "w2_k27_p3459826103",
+      "length": 27,
+      "lower_bound": 89955478679,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_phase2_archive"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k27-837c920744b4a091",
+      "kind": "ordinary",
+      "label": null,
+      "length": 27,
+      "lower_bound": 89955478678,
+      "method": "xu2013",
+      "parameters": {
+        "n": 3459826103,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k27-eda2794274dc28d0",
+        "ordinary-r1-k27-2e0a63a17606f797"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k27-8745dc1b24029ce2",
+      "kind": "ordinary",
+      "label": null,
+      "length": 27,
+      "lower_bound": 598,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r1-k27-2e0a63a17606f797"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k28-49814df0904aeb15",
+      "kind": "ordinary",
+      "label": null,
+      "length": 28,
+      "lower_bound": 93871785141,
+      "method": "xu2013",
+      "parameters": {
+        "n": 3476732783,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k28-e6419fe31ce5b8e7",
+        "ordinary-r1-k28-1ec1cafbe224f387"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k28-76fc914af8eb001e",
+      "kind": "ordinary",
+      "label": null,
+      "length": 28,
+      "lower_bound": 621,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r1-k28-1ec1cafbe224f387"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k28-81429e35417982e1",
+      "kind": "ordinary",
+      "label": "w2_k28_p3476732783",
+      "length": 28,
+      "lower_bound": 93871785142,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_phase2_archive"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k17-25d9af5090f7295a",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 31385622832,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1961601427,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k17-9d1372ff4e6c7347",
+        "ordinary-r1-k17-1b41216454acb268"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k17-290e526dc1289a26",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_17",
+      "length": 17,
+      "lower_bound": 15509557937,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k17-5b7795681856f838",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 788762209,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 17
+      },
+      "parents": [
+        "ordinary-r2-k17-f643707c86a1907a"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k17-f2ccab3ba852beb1",
+      "kind": "ordinary",
+      "label": "w3_k17_p1961601427",
+      "length": 17,
+      "lower_bound": 31385622833,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k18-1e2525de65602857",
+      "kind": "ordinary",
+      "label": null,
+      "length": 18,
+      "lower_bound": 33999912467,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1999994851,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k18-50224d53535cd533",
+        "ordinary-r1-k18-df1475d9e8af9912"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k18-55ca728e625f5406",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_18",
+      "length": 18,
+      "lower_bound": 16479723552,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k18-8ffb2b606ee5043f",
+      "kind": "ordinary",
+      "label": "w3_k18_p1999994851",
+      "length": 18,
+      "lower_bound": 33999912468,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k18-f91c0b0a8f4ab23c",
+      "kind": "ordinary",
+      "label": null,
+      "length": 18,
+      "lower_bound": 1548347284,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 17
+      },
+      "parents": [
+        "ordinary-r2-k18-2d0d8fb713fa7c1e"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k19-65b660ed50fc1280",
+      "kind": "ordinary",
+      "label": null,
+      "length": 19,
+      "lower_bound": 35999998686,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k19-aef97ef88df38d17",
+        "ordinary-r1-k19-cf91bb7a27bbd652"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k19-6f8685b5cbcbcb8e",
+      "kind": "ordinary",
+      "label": null,
+      "length": 19,
+      "lower_bound": 4760391385,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r2-k19-e77a52036317b59f"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k19-9e4361096b48f4ad",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_19",
+      "length": 19,
+      "lower_bound": 17449137523,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k19-d215f9fdcc7371b6",
+      "kind": "ordinary",
+      "label": "w3_k19_p1999999927",
+      "length": 19,
+      "lower_bound": 35999998687,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k20-058f4b6297b415f9",
+      "kind": "ordinary",
+      "label": null,
+      "length": 20,
+      "lower_bound": 10000031778,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r2-k20-07b5b7ef7b70a8f6"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k20-67cdc014e553cc10",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_20",
+      "length": 20,
+      "lower_bound": 18418533254,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k20-8a00ce5c23b6c33a",
+      "kind": "ordinary",
+      "label": null,
+      "length": 20,
+      "lower_bound": 37999998613,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k20-c091c4607703b9ba",
+        "ordinary-r1-k20-633bfea4da3cd410"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k20-b99873650be7f87c",
+      "kind": "ordinary",
+      "label": "w3_k20_p1999999927",
+      "length": 20,
+      "lower_bound": 37999998614,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k21-169abb5abf7d5510",
+      "kind": "ordinary",
+      "label": "w3_k21_p1999999927",
+      "length": 21,
+      "lower_bound": 39999998541,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k21-4349de86ae634db3",
+      "kind": "ordinary",
+      "label": null,
+      "length": 21,
+      "lower_bound": 39999998540,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k21-e201acd9efde6ce3",
+        "ordinary-r1-k21-cbe774b003b37da4"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k21-53966211cc3d86fd",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_21",
+      "length": 21,
+      "lower_bound": 19387932141,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k21-95a112eb4199442f",
+      "kind": "ordinary",
+      "label": null,
+      "length": 21,
+      "lower_bound": 26783744079,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r2-k21-e4352d45fe8078ea"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k22-4d1ad51a73de1ff9",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 49058715046,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r2-k22-4c94a22c2f925395"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k22-687c766e5d81348f",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_22",
+      "length": 22,
+      "lower_bound": 20357316652,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k22-aee8e71dde57c7d1",
+      "kind": "ordinary",
+      "label": "w3_k22_p1999999927",
+      "length": 22,
+      "lower_bound": 41999998468,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k22-bc97579745498007",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 41999998467,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k22-47dffe06ccab0c76",
+        "ordinary-r1-k22-002b3ef31396cb07"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k23-24fec4a6f43d0304",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_23",
+      "length": 23,
+      "lower_bound": 21326716247,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k23-7eba4cc2f18eeb2b",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 142741265701,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r2-k23-8b934fc3305c10b7"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k23-a2519aeeefd62588",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 43999998394,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k23-3c7fd23cd0f57414",
+        "ordinary-r1-k23-223ecffdf897c41b"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k23-dcbcf81c5b3098ef",
+      "kind": "ordinary",
+      "label": "w3_k23_p1999999927",
+      "length": 23,
+      "lower_bound": 43999998395,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k24-450d47a78a9db195",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 45999998321,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k24-ad08204c557eeef3",
+        "ordinary-r1-k24-f946f5ee681e435d"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k24-651c964b289b62ec",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_24",
+      "length": 24,
+      "lower_bound": 22296077664,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k24-993e1419a5f74df8",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 252542143876,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r2-k24-2a0b8654af0b031e"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k24-fadc11c12d431084",
+      "kind": "ordinary",
+      "label": "w3_k24_p1999999927",
+      "length": 24,
+      "lower_bound": 45999998322,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k25-2d6432de3d478bb7",
+      "kind": "ordinary",
+      "label": "w3_k25_p1999999927",
+      "length": 25,
+      "lower_bound": 47999998249,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k25-676b88f37d202c7f",
+      "kind": "ordinary",
+      "label": "monroe_tally_w3_25",
+      "length": 25,
+      "lower_bound": 23265085993,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k25-e234c01edd2407d4",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 628673328287,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r2-k25-296171cafd2fe269"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k25-fbf88a8c492cad30",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 47999998248,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k25-2341be4a7361f482",
+        "ordinary-r1-k25-af643a7e28b48398"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k26-787509abe64b7bb4",
+      "kind": "ordinary",
+      "label": null,
+      "length": 26,
+      "lower_bound": 1221912599848,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r2-k26-19ccd04d459b91f9"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k27-d4fe08cb1b074b09",
+      "kind": "ordinary",
+      "label": null,
+      "length": 27,
+      "lower_bound": 2068976009617,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r2-k27-3f088a9a4aea67bf"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k28-5084d8e296dec8c3",
+      "kind": "ordinary",
+      "label": null,
+      "length": 28,
+      "lower_bound": 2159051058266,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r2-k28-81429e35417982e1"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k17-01ae16e099db4ec5",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 533555588161,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 17
+      },
+      "parents": [
+        "ordinary-r3-k17-f2ccab3ba852beb1"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k17-10964189d364dfd1",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 134547104008997,
+      "method": "xu2013",
+      "parameters": {
+        "n": 2899861,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k17-b95bd28f315ff343",
+        "ordinary-r2-k17-f643707c86a1907a"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k18-0e41309f58c9bbe0",
+      "kind": "ordinary",
+      "label": null,
+      "length": 18,
+      "lower_bound": 487966473752956,
+      "method": "xu2013",
+      "parameters": {
+        "n": 5357603,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k18-29b8c9d62495bda6",
+        "ordinary-r2-k18-2d0d8fb713fa7c1e"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k18-8963f36bee67ed62",
+      "kind": "ordinary",
+      "label": null,
+      "length": 18,
+      "lower_bound": 577998511956,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 17
+      },
+      "parents": [
+        "ordinary-r3-k18-8ffb2b606ee5043f"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k19-2e3d13c1cbe3e420",
+      "kind": "ordinary",
+      "label": null,
+      "length": 19,
+      "lower_bound": 3487430909192795,
+      "method": "xu2013",
+      "parameters": {
+        "n": 13919273,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k19-e5327c5f6bed2d03",
+        "ordinary-r2-k19-e77a52036317b59f"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k19-f896429afafef9bc",
+      "kind": "ordinary",
+      "label": null,
+      "length": 19,
+      "lower_bound": 683999975053,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r3-k19-d215f9fdcc7371b6"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k20-721e3975da1df085",
+      "kind": "ordinary",
+      "label": null,
+      "length": 20,
+      "lower_bound": 721999973666,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r3-k20-b99873650be7f87c"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k20-e5a14bf6bef12586",
+      "kind": "ordinary",
+      "label": null,
+      "length": 20,
+      "lower_bound": 14579477383147578,
+      "method": "xu2013",
+      "parameters": {
+        "n": 27700919,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k20-fd180566d0354d47",
+        "ordinary-r2-k20-07b5b7ef7b70a8f6"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k21-8cb5c1f43b4e907f",
+      "kind": "ordinary",
+      "label": null,
+      "length": 21,
+      "lower_bound": 759999972279,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r3-k21-169abb5abf7d5510"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k21-edfa54e82c070efe",
+      "kind": "ordinary",
+      "label": null,
+      "length": 21,
+      "lower_bound": 99358579831090917,
+      "method": "xu2013",
+      "parameters": {
+        "n": 70483537,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k21-a374ab6c65fda35a",
+        "ordinary-r2-k21-e4352d45fe8078ea"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k22-291aa9e78eec7037",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 932115585874,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r3-k22-4d1ad51a73de1ff9"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k22-37dbb00fd42c4100",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 797999970892,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 19
+      },
+      "parents": [
+        "ordinary-r3-k22-aee8e71dde57c7d1"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k22-ebdce83a7fbd138e",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 317472301943346682,
+      "method": "xu2013",
+      "parameters": {
+        "n": 122954173,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k22-7b4e5c01940c35bf",
+        "ordinary-r2-k22-4c94a22c2f925395"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k23-148198c2bc90a434",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 1011999963085,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k23-dcbcf81c5b3098ef"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k23-a05d5503b7159e73",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 1750736288936280281,
+      "method": "xu2013",
+      "parameters": {
+        "n": 282097363,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k23-34ec2f12bdbcd532",
+        "ordinary-r2-k23-8b934fc3305c10b7"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k23-d392872a71b9e943",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 3283049111123,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k23-7eba4cc2f18eeb2b"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k24-7ebcf0a83ba1e89b",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 5808469309148,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k24-993e1419a5f74df8"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k24-b31b8b4ecca95694",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 1057999961406,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k24-fadc11c12d431084"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k24-d1a87a33981a2287",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 5241845518836016684,
+      "method": "xu2013",
+      "parameters": {
+        "n": 477395357,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k24-e06bd16e7050906f",
+        "ordinary-r2-k24-2a0b8654af0b031e"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k25-05479e9fd600f711",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 31130289357671281333,
+      "method": "xu2013",
+      "parameters": {
+        "n": 1138900957,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k25-df51defc311786d5",
+        "ordinary-r2-k25-296171cafd2fe269"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k25-44daede5fd5a9f52",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 14459486550601,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k25-e234c01edd2407d4"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k25-f4344c8d83508b19",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 1103999959727,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k25-2d6432de3d478bb7"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k26-349a2df6fa076c6c",
+      "kind": "ordinary",
+      "label": null,
+      "length": 26,
+      "lower_bound": 112897572902774637416,
+      "method": "xu2013",
+      "parameters": {
+        "n": 2125065391,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k26-c1b543666cccccfc",
+        "ordinary-r2-k26-19ccd04d459b91f9"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k26-6755eb861489b973",
+      "kind": "ordinary",
+      "label": null,
+      "length": 26,
+      "lower_bound": 28103989796504,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k26-787509abe64b7bb4"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k27-0ea7dab4f5b1a1d7",
+      "kind": "ordinary",
+      "label": null,
+      "length": 27,
+      "lower_bound": 47586448221191,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k27-d4fe08cb1b074b09"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k27-364fe7c4e83e41b4",
+      "kind": "ordinary",
+      "label": null,
+      "length": 27,
+      "lower_bound": 311230313241464157937,
+      "method": "xu2013",
+      "parameters": {
+        "n": 3459826103,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k27-eda2794274dc28d0",
+        "ordinary-r2-k27-3f088a9a4aea67bf"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k28-6356a21f8e40d497",
+      "kind": "ordinary",
+      "label": null,
+      "length": 28,
+      "lower_bound": 49658174340118,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 23
+      },
+      "parents": [
+        "ordinary-r3-k28-5084d8e296dec8c3"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k28-75a92a691cb2f421",
+      "kind": "ordinary",
+      "label": null,
+      "length": 28,
+      "lower_bound": 326367112801923710186,
+      "method": "xu2013",
+      "parameters": {
+        "n": 3476732783,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k28-e6419fe31ce5b8e7",
+        "ordinary-r2-k28-81429e35417982e1"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k17-b95bd28f315ff343",
+      "kind": "ring",
+      "label": "monroe_wr2_17",
+      "length": 17,
+      "lower_bound": 2899861,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k18-29b8c9d62495bda6",
+      "kind": "ring",
+      "label": "monroe_wr2_18",
+      "length": 18,
+      "lower_bound": 5357603,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k19-e5327c5f6bed2d03",
+      "kind": "ring",
+      "label": "monroe_wr2_19",
+      "length": 19,
+      "lower_bound": 13919273,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k20-fd180566d0354d47",
+      "kind": "ring",
+      "label": "monroe_wr2_20",
+      "length": 20,
+      "lower_bound": 27700919,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k21-a374ab6c65fda35a",
+      "kind": "ring",
+      "label": "monroe_wr2_21",
+      "length": 21,
+      "lower_bound": 70483537,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k22-7b4e5c01940c35bf",
+      "kind": "ring",
+      "label": "monroe_wr2_22",
+      "length": 22,
+      "lower_bound": 122954173,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k23-34ec2f12bdbcd532",
+      "kind": "ring",
+      "label": "monroe_wr2_23",
+      "length": 23,
+      "lower_bound": 282097363,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k24-e06bd16e7050906f",
+      "kind": "ring",
+      "label": "monroe_wr2_24",
+      "length": 24,
+      "lower_bound": 477395357,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k25-1e13599ba17e073b",
+      "kind": "ring",
+      "label": "monroe_wr2_25",
+      "length": 25,
+      "lower_bound": 958485937,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe2026"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k25-df51defc311786d5",
+      "kind": "ring",
+      "label": "w2_k25_p1138900957",
+      "length": 25,
+      "lower_bound": 1138900957,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_phase2_archive_and_this_scan"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k26-c1b543666cccccfc",
+      "kind": "ring",
+      "label": "w2_k26_p2125065391",
+      "length": 26,
+      "lower_bound": 2125065391,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_phase2_archive"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k27-eda2794274dc28d0",
+      "kind": "ring",
+      "label": "w2_k27_p3459826103",
+      "length": 27,
+      "lower_bound": 3459826103,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_phase2_archive"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k28-e6419fe31ce5b8e7",
+      "kind": "ring",
+      "label": "w2_k28_p3476732783",
+      "length": 28,
+      "lower_bound": 3476732783,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "monroe_phase2_archive"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k17-9d1372ff4e6c7347",
+      "kind": "ring",
+      "label": "w3_k17_p1961601427",
+      "length": 17,
+      "lower_bound": 1961601427,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k18-50224d53535cd533",
+      "kind": "ring",
+      "label": "w3_k18_p1999994851",
+      "length": 18,
+      "lower_bound": 1999994851,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k19-aef97ef88df38d17",
+      "kind": "ring",
+      "label": "w3_k19_p1999999927",
+      "length": 19,
+      "lower_bound": 1999999927,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k20-c091c4607703b9ba",
+      "kind": "ring",
+      "label": "w3_k20_p1999999927",
+      "length": 20,
+      "lower_bound": 1999999927,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k21-e201acd9efde6ce3",
+      "kind": "ring",
+      "label": "w3_k21_p1999999927",
+      "length": 21,
+      "lower_bound": 1999999927,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k22-47dffe06ccab0c76",
+      "kind": "ring",
+      "label": "w3_k22_p1999999927",
+      "length": 22,
+      "lower_bound": 1999999927,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k23-3c7fd23cd0f57414",
+      "kind": "ring",
+      "label": "w3_k23_p1999999927",
+      "length": 23,
+      "lower_bound": 1999999927,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k24-ad08204c557eeef3",
+      "kind": "ring",
+      "label": "w3_k24_p1999999927",
+      "length": 24,
+      "lower_bound": 1999999927,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k25-2341be4a7361f482",
+      "kind": "ring",
+      "label": "w3_k25_p1999999927",
+      "length": 25,
+      "lower_bound": 1999999927,
+      "method": "direct_rabung",
+      "parameters": {},
+      "parents": [],
+      "source": "this_scan"
+    }
+  ],
+  "notation": "W(colors,length) > lower_bound",
+  "schema_version": 1,
+  "sources": {
+    "bct2018": {
+      "arxiv": "1705.09673",
+      "citation_key": "bct2018",
+      "doi": "10.1016/j.ejc.2017.10.007",
+      "location": "Theorem 2.1",
+      "title": "A new lower bound for van der Waerden numbers"
+    },
+    "monroe2026": {
+      "citation_key": "Monroe2026",
+      "doi": "10.61091/jcmcc128-19",
+      "location": "Tables 1 and 2",
+      "title": "New Lower Bounds for van der Waerden Numbers Using Distributed Computing"
+    },
+    "monroe_code_tally": {
+      "citation_key": "MonroeCodeTally",
+      "provenance": "publication/baseline-provenance.json#/sources/monroe_code_tally",
+      "title": "Unpublished direct Rabung tally distributed with Monroe's code"
+    },
+    "monroe_phase2_archive": {
+      "citation_key": "MonroePhase2Archive",
+      "provenance": "publication/baseline-provenance.json#/sources/monroe_phase2_archive",
+      "title": "Archived BOINC phase-2 table; candidate triples historically rechecked"
+    },
+    "this_work": {
+      "location": "audit/claims.json",
+      "title": "Succinct Rabung certificates verified in this work"
+    },
+    "xu2013": {
+      "citation_key": "xu2013",
+      "doi": "10.1016/j.jnt.2013.05.008",
+      "title": "A generalization of sets without long arithmetic progressions based on Szekeres algorithm"
+    }
+  },
+  "winners": [
+    {
+      "colors": 1,
+      "length": 17,
+      "lower_bound": 16,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k17-1b41216454acb268"
+    },
+    {
+      "colors": 2,
+      "length": 17,
+      "lower_bound": 46397777,
+      "method": "published_seed",
+      "node_id": "ordinary-r2-k17-f643707c86a1907a"
+    },
+    {
+      "colors": 3,
+      "length": 17,
+      "lower_bound": 31385622833,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r3-k17-f2ccab3ba852beb1"
+    },
+    {
+      "colors": 4,
+      "length": 17,
+      "lower_bound": 134547104008997,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k17-10964189d364dfd1"
+    },
+    {
+      "colors": 1,
+      "length": 18,
+      "lower_bound": 17,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k18-df1475d9e8af9912"
+    },
+    {
+      "colors": 2,
+      "length": 18,
+      "lower_bound": 91079252,
+      "method": "published_seed",
+      "node_id": "ordinary-r2-k18-2d0d8fb713fa7c1e"
+    },
+    {
+      "colors": 3,
+      "length": 18,
+      "lower_bound": 33999912468,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r3-k18-8ffb2b606ee5043f"
+    },
+    {
+      "colors": 4,
+      "length": 18,
+      "lower_bound": 487966473752956,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k18-0e41309f58c9bbe0"
+    },
+    {
+      "colors": 1,
+      "length": 19,
+      "lower_bound": 18,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k19-cf91bb7a27bbd652"
+    },
+    {
+      "colors": 2,
+      "length": 19,
+      "lower_bound": 250546915,
+      "method": "published_seed",
+      "node_id": "ordinary-r2-k19-e77a52036317b59f"
+    },
+    {
+      "colors": 3,
+      "length": 19,
+      "lower_bound": 35999998687,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r3-k19-d215f9fdcc7371b6"
+    },
+    {
+      "colors": 4,
+      "length": 19,
+      "lower_bound": 3487430909192795,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k19-2e3d13c1cbe3e420"
+    },
+    {
+      "colors": 1,
+      "length": 20,
+      "lower_bound": 19,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k20-633bfea4da3cd410"
+    },
+    {
+      "colors": 2,
+      "length": 20,
+      "lower_bound": 526317462,
+      "method": "published_seed",
+      "node_id": "ordinary-r2-k20-07b5b7ef7b70a8f6"
+    },
+    {
+      "colors": 3,
+      "length": 20,
+      "lower_bound": 37999998614,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r3-k20-b99873650be7f87c"
+    },
+    {
+      "colors": 4,
+      "length": 20,
+      "lower_bound": 14579477383147578,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k20-e5a14bf6bef12586"
+    },
+    {
+      "colors": 1,
+      "length": 21,
+      "lower_bound": 20,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k21-cbe774b003b37da4"
+    },
+    {
+      "colors": 2,
+      "length": 21,
+      "lower_bound": 1409670741,
+      "method": "published_seed",
+      "node_id": "ordinary-r2-k21-e4352d45fe8078ea"
+    },
+    {
+      "colors": 3,
+      "length": 21,
+      "lower_bound": 39999998541,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r3-k21-169abb5abf7d5510"
+    },
+    {
+      "colors": 4,
+      "length": 21,
+      "lower_bound": 99358579831090917,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k21-edfa54e82c070efe"
+    },
+    {
+      "colors": 1,
+      "length": 22,
+      "lower_bound": 21,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k22-002b3ef31396cb07"
+    },
+    {
+      "colors": 2,
+      "length": 22,
+      "lower_bound": 2582037634,
+      "method": "published_seed",
+      "node_id": "ordinary-r2-k22-4c94a22c2f925395"
+    },
+    {
+      "colors": 3,
+      "length": 22,
+      "lower_bound": 49058715046,
+      "method": "bct2018",
+      "node_id": "ordinary-r3-k22-4d1ad51a73de1ff9"
+    },
+    {
+      "colors": 4,
+      "length": 22,
+      "lower_bound": 317472301943346682,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k22-ebdce83a7fbd138e"
+    },
+    {
+      "colors": 1,
+      "length": 23,
+      "lower_bound": 22,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k23-223ecffdf897c41b"
+    },
+    {
+      "colors": 2,
+      "length": 23,
+      "lower_bound": 6206141987,
+      "method": "published_seed",
+      "node_id": "ordinary-r2-k23-8b934fc3305c10b7"
+    },
+    {
+      "colors": 3,
+      "length": 23,
+      "lower_bound": 142741265701,
+      "method": "bct2018",
+      "node_id": "ordinary-r3-k23-7eba4cc2f18eeb2b"
+    },
+    {
+      "colors": 4,
+      "length": 23,
+      "lower_bound": 1750736288936280281,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k23-a05d5503b7159e73"
+    },
+    {
+      "colors": 1,
+      "length": 24,
+      "lower_bound": 23,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k24-f946f5ee681e435d"
+    },
+    {
+      "colors": 2,
+      "length": 24,
+      "lower_bound": 10980093212,
+      "method": "published_seed",
+      "node_id": "ordinary-r2-k24-2a0b8654af0b031e"
+    },
+    {
+      "colors": 3,
+      "length": 24,
+      "lower_bound": 252542143876,
+      "method": "bct2018",
+      "node_id": "ordinary-r3-k24-993e1419a5f74df8"
+    },
+    {
+      "colors": 4,
+      "length": 24,
+      "lower_bound": 5241845518836016684,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k24-d1a87a33981a2287"
+    },
+    {
+      "colors": 1,
+      "length": 25,
+      "lower_bound": 24,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k25-af643a7e28b48398"
+    },
+    {
+      "colors": 2,
+      "length": 25,
+      "lower_bound": 27333622969,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r2-k25-296171cafd2fe269"
+    },
+    {
+      "colors": 3,
+      "length": 25,
+      "lower_bound": 628673328287,
+      "method": "bct2018",
+      "node_id": "ordinary-r3-k25-e234c01edd2407d4"
+    },
+    {
+      "colors": 4,
+      "length": 25,
+      "lower_bound": 31130289357671281333,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k25-05479e9fd600f711"
+    },
+    {
+      "colors": 1,
+      "length": 26,
+      "lower_bound": 25,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k26-d1269a9b929da21f"
+    },
+    {
+      "colors": 2,
+      "length": 26,
+      "lower_bound": 53126634776,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r2-k26-19ccd04d459b91f9"
+    },
+    {
+      "colors": 3,
+      "length": 26,
+      "lower_bound": 1221912599848,
+      "method": "bct2018",
+      "node_id": "ordinary-r3-k26-787509abe64b7bb4"
+    },
+    {
+      "colors": 4,
+      "length": 26,
+      "lower_bound": 112897572902774637416,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k26-349a2df6fa076c6c"
+    },
+    {
+      "colors": 1,
+      "length": 27,
+      "lower_bound": 26,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k27-2e0a63a17606f797"
+    },
+    {
+      "colors": 2,
+      "length": 27,
+      "lower_bound": 89955478679,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r2-k27-3f088a9a4aea67bf"
+    },
+    {
+      "colors": 3,
+      "length": 27,
+      "lower_bound": 2068976009617,
+      "method": "bct2018",
+      "node_id": "ordinary-r3-k27-d4fe08cb1b074b09"
+    },
+    {
+      "colors": 4,
+      "length": 27,
+      "lower_bound": 311230313241464157937,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k27-364fe7c4e83e41b4"
+    },
+    {
+      "colors": 1,
+      "length": 28,
+      "lower_bound": 27,
+      "method": "one_color_exact",
+      "node_id": "ordinary-r1-k28-1ec1cafbe224f387"
+    },
+    {
+      "colors": 2,
+      "length": 28,
+      "lower_bound": 93871785142,
+      "method": "direct_rabung",
+      "node_id": "ordinary-r2-k28-81429e35417982e1"
+    },
+    {
+      "colors": 3,
+      "length": 28,
+      "lower_bound": 2159051058266,
+      "method": "bct2018",
+      "node_id": "ordinary-r3-k28-5084d8e296dec8c3"
+    },
+    {
+      "colors": 4,
+      "length": 28,
+      "lower_bound": 326367112801923710186,
+      "method": "xu2013",
+      "node_id": "ordinary-r4-k28-75a92a691cb2f421"
+    }
+  ]
+}

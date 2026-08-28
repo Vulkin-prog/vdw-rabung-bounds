@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "notation": "W(colors,length) > lower_bound",
+  "claims": [
+    {
+      "id": "w2_k25_p1138900957",
+      "colors": 2,
+      "length": 25,
+      "prime": 1138900957,
+      "lower_bound": 27333622969,
+      "origin": "monroe_phase2_archive_and_this_scan",
+      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rediscovered and rechecked here; release manifest pending",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w2_k26_p2125065391",
+      "colors": 2,
+      "length": 26,
+      "prime": 2125065391,
+      "lower_bound": 53126634776,
+      "origin": "monroe_phase2_archive",
+      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here; release manifest pending",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w2_k27_p3459826103",
+      "colors": 2,
+      "length": 27,
+      "prime": 3459826103,
+      "lower_bound": 89955478679,
+      "origin": "monroe_phase2_archive",
+      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here; release manifest pending",
+      "evidence_class": "succinct_rabung_certificate",
+      "requires_montgomery_free_witness": true
+    },
+    {
+      "id": "w2_k28_p3476732783",
+      "colors": 2,
+      "length": 28,
+      "prime": 3476732783,
+      "lower_bound": 93871785142,
+      "origin": "monroe_phase2_archive",
+      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here; release manifest pending",
+      "evidence_class": "succinct_rabung_certificate",
+      "requires_montgomery_free_witness": true
+    },
+    {
+      "id": "w3_k17_p1961601427",
+      "colors": 3,
+      "length": 17,
+      "prime": 1961601427,
+      "lower_bound": 31385622833,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w3_k18_p1999994851",
+      "colors": 3,
+      "length": 18,
+      "prime": 1999994851,
+      "lower_bound": 33999912468,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w3_k19_p1999999927",
+      "colors": 3,
+      "length": 19,
+      "prime": 1999999927,
+      "lower_bound": 35999998687,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w3_k20_p1999999927",
+      "colors": 3,
+      "length": 20,
+      "prime": 1999999927,
+      "lower_bound": 37999998614,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w3_k21_p1999999927",
+      "colors": 3,
+      "length": 21,
+      "prime": 1999999927,
+      "lower_bound": 39999998541,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w3_k22_p1999999927",
+      "colors": 3,
+      "length": 22,
+      "prime": 1999999927,
+      "lower_bound": 41999998468,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w3_k23_p1999999927",
+      "colors": 3,
+      "length": 23,
+      "prime": 1999999927,
+      "lower_bound": 43999998395,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w3_k24_p1999999927",
+      "colors": 3,
+      "length": 24,
+      "prime": 1999999927,
+      "lower_bound": 45999998322,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    },
+    {
+      "id": "w3_k25_p1999999927",
+      "colors": 3,
+      "length": 25,
+      "prime": 1999999927,
+      "lower_bound": 47999998249,
+      "origin": "this_scan",
+      "priority_credit": "this work",
+      "evidence_class": "succinct_rabung_certificate"
+    }
+  ]
+}

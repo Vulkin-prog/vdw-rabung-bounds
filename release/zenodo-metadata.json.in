@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "title": "Reproducibility package for: Certified lower bounds for van der Waerden numbers from a GPU scan and recurrence closure",
+    "upload_type": "software",
+    "publication_date": "@@RELEASE_DATE@@",
+    "description": "@@FINAL_ABSTRACT_AND_SCOPE@@",
+    "creators": [
+      {
+        "name": "Pouly, Brice"
+      }
+    ],
+    "version": "@@VERSION@@",
+    "license": "@@LICENSE_ID@@",
+    "keywords": [
+      "van der Waerden numbers",
+      "Rabung certificates",
+      "power-residue colorings",
+      "GPU computation",
+      "reproducible research"
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "@@PAPER_IDENTIFIER@@",
+        "relation": "isSupplementTo",
+        "scheme": "@@PAPER_IDENTIFIER_SCHEME@@"
+      },
+      {
+        "identifier": "https://github.com/Vulkin-prog/vdw-rabung-bounds/releases/tag/@@TAG@@",
+        "relation": "isIdenticalTo",
+        "scheme": "url"
+      }
+    ]
+  }
+}

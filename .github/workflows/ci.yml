@@ -1,0 +1,104 @@
+name: publication checks
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '*'
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      structural_release_audit:
+        description: Run the structural release audit (no tag freeze)
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publication-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cpu:
+    name: CPU reproducibility suite
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out the candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Select Python 3.12
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12.10'
+      - name: Run CPU checks
+        run: ./scripts/run_cpu_checks.sh
+
+  paper:
+    name: Deterministic paper build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out the candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install the minimal TeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            lmodern \
+            texlive-fonts-recommended \
+            texlive-latex-base \
+            texlive-latex-recommended
+      - name: Build the paper twice and compare bytes
+        run: ./scripts/build_paper.sh
+      - name: Verify the complete immutable release freeze
+        if: ${{ github.ref_type == 'tag' }}
+        run: python3 tools/freeze_release.py check --tag "$GITHUB_REF_NAME" --require-head-tag
+      - name: Build and recheck the deterministic release archive
+        if: ${{ github.ref_type == 'tag' }}
+        run: |
+          archive_name="vdw-rabung-bounds-${GITHUB_REF_NAME}.tar.gz"
+          archive_path="$RUNNER_TEMP/$archive_name"
+          python3 tools/build_release_archive.py build "$archive_path"
+          python3 tools/build_release_archive.py check "$archive_path"
+          (cd "$RUNNER_TEMP" && sha256sum "$archive_name" > "$archive_name.sha256")
+      - name: Upload the checked PDF
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-main-${{ github.sha }}
+          path: paper/main.pdf
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload the checked release archive and digest
+        if: ${{ github.ref_type == 'tag' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: release-archive-${{ github.ref_name }}
+          path: |
+            ${{ runner.temp }}/vdw-rabung-bounds-${{ github.ref_name }}.tar.gz
+            ${{ runner.temp }}/vdw-rabung-bounds-${{ github.ref_name }}.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 14
+
+  publication-contract:
+    name: Publication contract
+    needs:
+      - cpu
+      - paper
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out the candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Select Python 3.12
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12.10'
+      - name: Check the staging contract
+        run: python3 tools/check_publication_contract.py --mode staging
+      - name: Check the release contract on tags or explicit structural audit
+        if: ${{ github.ref_type == 'tag' || (github.event_name == 'workflow_dispatch' && inputs.structural_release_audit) }}
+        run: python3 tools/check_publication_contract.py --mode release
