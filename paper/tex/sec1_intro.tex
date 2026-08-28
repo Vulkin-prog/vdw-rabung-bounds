@@ -16,7 +16,7 @@ contains a monochromatic arithmetic progression of length $k$.  We put the
 number of colours first.  Monroe~\cite{Monroe2026} uses the reverse convention
 $W(k,r)$, while Fox and Hunter~\cite{FoxHunter2026} write $w(k;r)$.
 
-The registered release claim contains nine direct three-colour Rabung
+The registered numerical claim contains nine direct three-colour Rabung
 certificates, for $17\le k\le25$.  The headline certificate is
 \[
   W(3,17)>31\,385\,622\,833,
@@ -26,8 +26,9 @@ The fail-closed audit accepts all thirteen registered claim manifests, and
 recurrence closure leaves the direct bounds as
 the strongest values located in the registered corpus for $17\le k\le21$.
 For $22\le k\le25$ they remain improvements within the direct Rabung family
-but are dominated as general bounds.  This distinction between a direct
-champion and a general record is part of the claim, not a bibliographic
+but are dominated as general bounds. This distinction between the strongest
+direct Rabung bound located in the dated corpus and its strongest general
+consequence is part of the claim, not a bibliographic
 afterthought.
 
 Two mechanisms make that distinction necessary.  Rabung's power-residue
@@ -44,9 +45,15 @@ where $q$ is the largest prime not exceeding $k$.  In particular, a documented
 strict bound $W(2,k)>B$ implies $W(3,k)>qB$.  Xu's concatenation
 recurrence~\cite{xu2013} supplies another closure operation.  We therefore
 compare bounds only after a machine-readable registry of published, archived,
-and current inputs has been closed under both recurrences.  The recent
-superexponential three-colour result of Fox and Hunter~\cite{FoxHunter2026} is
-a separate asymptotic development.
+and current inputs has been closed under both recurrences.
+Section~\ref{s:bounds}
+states Xu's formula, the strict-integer convention and the finite corpus
+policy explicitly.  The recent superexponential three-colour result of Fox and
+Hunter~\cite{FoxHunter2026} and the asymptotic two-colour bound
+$w(k)\ge(1-o(1))k2^{k-1}$ of Campos, Fox and
+Schildkraut~\cite{CamposFoxSchildkraut2026} are separate asymptotic
+developments; neither supplies a replacement numerical entry for the finite
+range compared here.
 
 The historical campaign was configured to scan every prime in
 $[9.7\times10^8,2\times10^9)$ and to compute the active profiles with $r\le9$.
@@ -81,11 +88,11 @@ the GPU engine.  We do not claim global optimality, exhaustive coverage beyond
 the stated window, first discovery of Monroe's archived primes, or a universal
 density law.
 
-Section~\ref{s:bounds} states the registered numerical results and their exact
-scope before the technical inventory.  Section~\ref{s:method} explains why a
-triple is a succinct certificate and how it is checked;
-Section~\ref{s:campaign} describes how candidates were found and how campaign
-coverage is audited.  Sections~\ref{s:prereg} and~\ref{s:density} isolate the
-secondary prospective holdout analysis from the proved bounds.  We conclude
-with the scientific boundary of the computation, then record the release and
-provenance contract separately.
+Section~\ref{s:bounds} states the registered numerical results, the recurrence
+closure and their exact scope before the technical inventory.
+Section~\ref{s:method} gives the Rabung criterion, proves the operational form
+and explains the stand-alone certificate check.  Section~\ref{s:campaign}
+describes discovery and the evidence needed for campaign coverage.  We conclude
+with the scientific boundary and release contract.  The reconstructed holdout
+record and its model-conditional analysis are separated into
+Appendices~\ref{s:prereg}--\ref{s:densitydiagnostics}.

@@ -80,9 +80,7 @@ The targeted PC evidence package then records:
    two claims that requires one;
 5. a fail-closed validation of exactly 13 manifests and 67 required executions;
 6. byte-for-byte agreement of the ordered scanner and independent CPU prime
-   streams on all 515 campaign chunks, totaling 48,823,489 primes, plus exact
-   agreement with the retained historical ordered-chunk root
-   `b7afe3a79de1ff17c2051caadb6a3bf709e16f8ffe70c8b56a51ebcdc2966b39`.
+   streams on all 515 campaign chunks, totaling 48,823,489 primes.
 
 The CUDA qualification is `PASS` for the complete SM120 suite.  The exact Git
 commit existed before these runs because it is part of every manifest.  The

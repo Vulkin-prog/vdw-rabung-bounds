@@ -3,12 +3,16 @@
 The computational source of truth registers exactly thirteen direct Rabung
 claims: nine three-colour triples for $17\le k\le25$ and four two-colour
 triples for $25\le k\le28$.  The exact set of thirteen fail-closed manifests
-is present and accepted in the current evidence package.  The document build
-displays the following numerical theorem only after revalidating that set.
+is present and accepted in the current evidence package.  In the validated
+build below, the finite hypotheses established by those manifests are facts,
+not assumptions attached to a future claim.  The resulting numerical theorem
+is therefore unconditional in this build.
 
 \IfFileExists{generated_validated_claims.tex}{%
   \begin{theorem}[Certified Rabung bounds]\label{thm:certified-rabung}
-  For every triple $(p,r,k)$ in Table~\ref{tab:validated-claims},
+  For every triple $(p,r,k)$ in Table~\ref{tab:validated-claims}, $p$ is
+  prime, $p\equiv1\pmod r$, $p>k$, and the power-residue colouring satisfies
+  conditions $(a)\wedge(B^{*})$. Consequently
   \[
     W(r,k)>(k-1)p+1.
   \]
@@ -38,8 +42,18 @@ displays the following numerical theorem only after revalidating that set.
 
 \subsection{Three colours: direct and recurrence-closed bounds}\label{ss:r3}
 
-The historical scan produced nine candidate direct Rabung certificates, all
-now accepted by the final manifest audit.  The headline value
+The historical scan produced nine direct Rabung rows, all now accepted by the
+final manifest audit. They involve only three distinct primes. By
+Lemma~\ref{lem:k-monotone}, the certificate
+$(1\,999\,999\,927,3,19)$ implies all six rows with the same prime and
+$20\le k\le25$. Thus only seven triples in the thirteen-row theorem are
+mathematically primitive: three at three colours and the four two-colour
+triples below. The evidence package nevertheless re-evaluates the complete
+criterion at all thirteen registered triples as deliberate audit redundancy;
+the six repeated checks are neither mathematically necessary nor counted as
+independent implementation paths.
+
+The headline value
 \[
   W(3,17)>31\,385\,622\,833
 \]
@@ -53,24 +67,74 @@ Blankenship--Cummings--Taranchuk~\cite[Theorem~2.1]{bct2018},
 \[
   W(3,k)>q_k\bigl(W(2,k)-1\bigr).
 \]
+Their theorem permits every prime $q\le k$. For three colours, $q=2$ reduces
+to the one-colour case, while every $q\ge3$ uses the same two-colour input;
+choosing the largest such prime therefore loses no BCT consequence for the
+three-colour outputs considered here.
 If the registered input is the strict integer bound $W(2,k)>B$, then
 $W(2,k)-1\ge B$, and the generated consequence is exactly
 \begin{equation}\label{eq:bct-r3}
   W(3,k)>q_k B,
 \end{equation}
-with no off-by-one ambiguity.  The baseline program iterates this rule and
-Xu's recurrence to a fixed point, preserves a provenance path for every
-candidate, and selects the best bound only afterwards.  Its output embeds the
-source catalogue and SHA-256 hashes of both input registries.
+with no off-by-one ambiguity.
+
+For completeness, write $WR(s,k)$ for Xu's ring van der Waerden number: the
+least $N$ such that, for every $n\ge N$, every $s$-colouring of
+$\mathbb Z/n\mathbb Z$ has a monochromatic $k$-term arithmetic progression.
+Xu's concatenation theorem states that, for $k\ge3$, $s,t\ge2$, and
+$5\le n<WR(s,k)$ whose least prime divisor exceeds $k$,
+\begin{equation}\label{eq:xu}
+  W(st,k)\ge n\bigl(W(t,k)-1\bigr)+1.
+\end{equation}
+Our registry stores strict integer bounds. Every ring witness $R$ used here
+has least prime divisor greater than $k$, a precondition checked by the closure
+tests. Hence inputs $WR(s,k)>R$ and $W(t,k)>B$ permit $n=R$ and give exactly
+$W(st,k)>RB$, with no rounding or off-by-one convention left implicit.
+
+The baseline program iterates the registered BCT specialization and
+\eqref{eq:xu} to a fixed point. Its finite scope is $17\le k\le28$ and at most
+four colours. At each step it retains exact integer bounds and a full
+provenance path. Candidates are compared first by bound; numerical ties use
+the deterministic order direct Rabung, published or archived seed, BCT, Xu,
+one-colour exact, and finally the hash-derived node identifier. These
+tie-breaks affect provenance only. Since both operators are monotone in their
+input bounds, a dominated parent cannot improve a descendant. Iteration stops
+when no winning node changes.
+
+The comparison corpus was frozen on 28~August~2026 and consists exactly of the
+seeds listed in \texttt{audit/baselines.json}: Monroe's published ordinary and
+ring tables, the immutable direct tally distributed with his code, the four
+archived phase-2 rows credited to Monroe, and the thirteen claims of this work.
+Published entries require a stable primary locator. An unpublished or archived
+entry is included only with an immutable source identity and explicit priority
+attribution; a merely announced value is not silently promoted to a seed.
+The generated output embeds this catalogue, SHA-256 hashes of both registries,
+and the winning provenance paths. Accordingly, ``strongest'' below always
+means strongest consequence of these explicitly listed inputs, not global
+optimality over an unspecified literature corpus.
 
 \input{generated_bounds_table}
 
-Thus, conditional on the direct-claim gate, the certificates for
-$17\le k\le21$ give the strongest bounds located in the registered,
-recurrence-closed source corpus.  For $22\le k\le25$ the direct rows improve
-the direct Rabung family but are not best general bounds.  In particular, the
-published two-colour values already dominate the direct rows at
-$k=22,23,24$.
+\IfFileExists{generated_validated_claims.tex}{%
+\begin{corollary}[Recurrence-closed consequences]\label{cor:closed-bounds}
+Within the frozen seed set and finite scope just specified, closing under the
+Blankenship--Cummings--Taranchuk and Xu recurrences gives the winning strict
+bounds in Table~\ref{tab:r3}. In particular, the certified direct rows are the
+strongest closed consequences for $17\le k\le21$, while for
+$22\le k\le25$ the direct rows are dominated by the displayed recurrence
+consequences.
+\end{corollary}
+}{%
+% A non-validated qualification build cannot state the release corollary.
+}
+
+Thus the certified rows for $17\le k\le21$ give the strongest bounds located
+in the registered, recurrence-closed source corpus. For $22\le k\le25$ the
+direct rows improve the direct Rabung family but are not the strongest general
+bounds in that corpus. In particular, the published two-colour values already
+dominate the direct rows at $k=22,23,24$. No winning three-colour row in this
+finite scope uses Xu's recurrence; it is retained because the comparison claim
+is closure under both registered operations.
 
 \subsection{Archived two-colour inputs and recurrence consequences}\label{ss:r2}
 
@@ -115,8 +179,8 @@ These four inequalities are theorem consequences of the corresponding
 two-colour inputs, not additional GPU discoveries.  Priority for the primes
 remains Monroe's.  Xu's recurrence is included in the automatic closure but
 does not improve any of these three-colour winners.  Release-level
-reproducibility remains conditional on the external rechecks and the other
-open release gates described in Section~\ref{s:data}.
+reproducibility still requires the external rechecks and the other open release
+gates described in Section~\ref{s:data}.
 
 For $k=25$ the authenticated campaign record identifies the same last
 candidate in $[9.7\times10^8,2\times10^9)$ as the archived table, and the

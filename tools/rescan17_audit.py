@@ -5,7 +5,7 @@ The July 2026 re-scan predates the current structured scanner protocol.  This
 parser is deliberately version-specific: it accepts exactly the historical
 combined transcript and checks every TARGET, candidate, COLQ, HISTO, and TOP
 record before comparing the eight aggregate histogram totals with the
-separate-source counts committed before the re-scan completed.
+separate-source counts placed earlier in the retained Git history.
 
 It does *not* turn one aggregate run into 17 per-chunk observations, and it
 does not infer prime-list identity from matching counts.
@@ -312,7 +312,7 @@ def render_markdown(result: dict) -> str:
         "",
         f"Status: **{result['status']}**.",
         "",
-        "| modulus `r` | re-scan `sum(HISTO[r])` | preregistered separate-source count |",
+        "| modulus `r` | re-scan `sum(HISTO[r])` | earlier separate-source count |",
         "|---:|---:|---:|",
     ]
     expected = result["preregistered_independent_counts"]["congruence_classes"]
@@ -345,8 +345,9 @@ def render_latex(result: dict) -> str:
         "\\bottomrule",
         "\\end{tabular}",
         "\\caption{Aggregate congruence-class totals from the post-campaign re-scan of",
-        "the first 17 chunks.  All eight equal the separate-source counts committed before",
-        "the re-scan completed.  This is one aggregate comparison, not 17 per-chunk",
+        "the first 17 chunks. All eight equal the separate-source counts placed earlier in",
+        "the retained Git history. This relative order is not an external timestamp. It is one",
+        "aggregate comparison, not 17 per-chunk",
         "comparisons and not an ordered-prime identity test.}",
         "\\label{tab:rescan17}",
         "\\end{table}",
@@ -391,7 +392,7 @@ def main() -> None:
     else:
         for path, content in outputs.items():
             write_text(path, content)
-    print("PASS: aggregate re-scan transcript matches all eight preregistered counts")
+    print("PASS: aggregate re-scan transcript matches all eight earlier separate-source counts")
 
 
 if __name__ == "__main__":

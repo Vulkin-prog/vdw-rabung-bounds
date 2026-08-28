@@ -1,5 +1,4 @@
-\appendix
-\section{Equivalence of the operational criterion}\label{s:bstar}
+\subsection{Equivalence of the operational criterion}\label{s:bstar}
 
 The scan tests the criterion $(a)\wedge(B^{*})$ of Section~\ref{s:method} rather
 than Rabung's $(a)\wedge(b)$ verbatim. The two are equivalent, and since every
@@ -12,7 +11,8 @@ Let $p\equiv1\pmod r$ with $p>k\ge3$, let $g$ be a primitive root, and colour $x
 $c(x)=\operatorname{ind}_g(x)\bmod r$; this is the power-residue colouring, and
 $c(xy)=c(x)+c(y)$. Extend it to $[0,(k-1)p]$ by reducing modulo $p$ and colouring
 the multiples of $p$ (the \emph{jokers}) by an arbitrary map
-$\vartheta':\{0,p,\dots,(k-1)p\}\to\mathbb{Z}_r$. Write $\vartheta(-1)=c(p-1)$,
+$\vartheta':\{0,p,\dots,(k-1)p\}\to\mathbb{Z}_r$. Put
+$\varepsilon:=c(-1)=c(p-1)$,
 which is $0$ if $-1$ is an $r$-th power residue and $r/2$ otherwise (the latter
 requires $r$ even).
 
@@ -93,11 +93,11 @@ why Rabung may state it without reference to the joker colouring.
 \end{proof}
 
 \paragraph{Reduction of $(B^{*})$ to a single interval.}
-Since $c(-x)=c(x)+\vartheta(-1)$, the string $S_j$ is monochromatic iff the two
+Since $c(-x)=c(x)+\varepsilon$, the string $S_j$ is monochromatic iff the two
 intervals $\{1,\dots,j\}$ and $\{1,\dots,k-1-j\}$ are each monochromatic and their
-colours agree after the shift by $\vartheta(-1)$.
+colours agree after the shift by $\varepsilon$.
 
-\emph{Case $\vartheta(-1)=0$.} Then $c(-x)=c(x)$, so $S_j$ is monochromatic iff the
+\emph{Case $\varepsilon=0$.} Then $c(-x)=c(x)$, so $S_j$ is monochromatic iff the
 interval $\{1,\dots,\max(j,\,k-1-j)\}$ is. Minimising $\max(j,k-1-j)$ over
 $0\le j\le k-1$ gives $\lceil(k-1)/2\rceil$, attained at $j=\lfloor(k-1)/2\rfloor$.
 Hence
@@ -108,7 +108,7 @@ A one-element interval \emph{is} monochromatic, and therefore fails the conditio
 under the standing assumption $k\ge3$ this is the case $k=3$, and it is the reason
 a singleton must be counted as ``all in the same class''.
 
-\emph{Case $\vartheta(-1)=r/2$ ($r$ even).} Now $c(-x)=c(x)+r/2\ne c(x)$, so a
+\emph{Case $\varepsilon=r/2$ ($r$ even).} Now $c(-x)=c(x)+r/2\ne c(x)$, so a
 two-sided string can never be monochromatic: only the one-sided strings $j=0$ and
 $j=k-1$ survive, both giving the interval $\{1,\dots,k-1\}$. Hence
 \[

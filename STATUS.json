@@ -42,7 +42,7 @@
         "paper/references.bib",
         "publication/bibliography-audit.json"
       ],
-      "note": "The thirteen cited entries were checked on 2026-08-28; the version-sensitive Fox--Hunter preprint is pinned to v1 and must be rechecked before the release freeze."
+      "note": "The fourteen cited entries were checked on 2026-08-28; the version-sensitive Fox--Hunter and Campos--Fox--Schildkraut preprints are pinned to v1 and must be rechecked before the release freeze."
     },
     {
       "id": "paper-clean-build",

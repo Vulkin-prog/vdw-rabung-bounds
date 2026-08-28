@@ -13,12 +13,13 @@
     "does_not_establish": [
       "per-chunk histogram agreement for the first 17 chunks",
       "identity of the ordered prime lists",
+      "an independently timestamped precommitment of the separate-source counts",
       "a rebuild-identical historical GPU binary",
       "the full Rabung boundary criterion for the listed run-valid candidates"
     ],
     "establishes": [
       "the preserved aggregate transcript is complete and internally consistent",
-      "its eight aggregate HISTO totals equal the independent counts committed before completion",
+      "its eight aggregate HISTO totals equal the separate-source counts placed earlier in the retained Git history",
       "its 405 listed run-valid (3,17) candidates agree with the TARGET and HISTO fields"
     ]
   },

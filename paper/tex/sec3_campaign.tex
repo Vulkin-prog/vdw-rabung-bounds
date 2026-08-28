@@ -3,9 +3,9 @@
 The campaign has one logical role: it generates candidate triples $(p,r,k)$.
 No lower bound follows from a scanner verdict alone.  A retained candidate
 becomes a numerical claim only after the criterion is re-established through
-the verification protocol below; recovery of the complete campaign record is
-needed for coverage and density statements, but not for the pointwise validity
-of an accepted certificate.
+the verification protocol below.  The authenticated coverage-evidence package
+supports the coverage and density statements, but is not needed for the
+pointwise validity of an accepted certificate.
 
 \subsection{Fused character evaluation}\label{ss:b7}
 
@@ -132,10 +132,20 @@ do not quote a wall-clock modular-multiplication rate. Several plausible
 optimizations (e.g.\ a 2-adic factorization of the exponentiation) were
 implemented, measured, and rejected as memory-bound regressions.
 
+These retained figures are historical engineering measurements, not a
+standardized performance study: the surviving record does not reconstruct a
+fixed warm-up, repetition count, dispersion statistic, clock state or complete
+power telemetry for every figure. They are not used in any mathematical claim.
+If they remain in the citable release, the accompanying CUDA artifact must
+separately record driver and toolkit versions, compiler flags, source and
+binary hashes, frequencies and power limit, warm-up, repetitions, and median
+and dispersion; otherwise only the qualitative campaign description will be
+retained.
+
 \subsection{Campaign execution}\label{ss:execution}
 
-The authenticated campaign record shows that the production run was configured
-to scan every prime in
+The authenticated coverage-evidence package shows that the production run was
+configured to scan every prime in
 $[9.70\times 10^{8},\, 2.0\times 10^{9})$ (each prime tested for every
 $r\le 9$ dividing $p-1$), starting just above the largest
 published prime $969\,347\,371$ of Monroe's distributed scan~\cite{Monroe2026},
@@ -159,11 +169,11 @@ journal also records automatic cross-checks every $50$ chunks: nine completed
 samples agreed across the redundant scan paths and separate CPU checks, while a
 tenth timed out and was not counted.  These samples do not turn the single
 production campaign into a duplicated run.  Checkpoint transaction mechanics
-are documented in \texttt{REPRODUCIBILITY.md}.  The authenticated recovery
-contains the immutable checkpoint, a matching journal record for $514$ chunks,
-the checkpoint-only record for chunk~7, $498$ per-chunk histograms for
-chunks~18--515, and the retained transition artifacts selected by the recovery
-ledger.
+are documented in \texttt{REPRODUCIBILITY.md}.  The authenticated
+coverage-evidence package contains the immutable checkpoint, a matching journal
+record for $514$ chunks, the checkpoint-only record for chunk~7, $498$
+per-chunk histograms for chunks~18--515, and the retained transition artifacts
+selected by the recovery ledger.
 
 \paragraph{Exhaustiveness of the prime enumeration.}
 The per-prime computation is validated by the redundancy above; the
@@ -184,13 +194,15 @@ chunks). For the first $17$ chunks, which predate the histogram feature,
 per-class counts were not logged during the campaign; that range,
 $[9.70\times10^{8},1.004\times10^{9})$, was therefore re-scanned after the
 campaign in one aggregate invocation with the post-campaign audit build
-(commit \texttt{c81383885bd9}; full identities are in the registry).  The eight
-separate-source counts were committed before that invocation completed
-(commit \texttt{30e8b83df3c0}).  A version-specific,
+(commit \texttt{c81383885bd9}; full identities are in the registry).  The
+retained Git history places the eight separate-source counts in commit
+\texttt{30e8b83df3c0} before the completed re-scan transcript.  This establishes
+relative order inside the preserved Git DAG, not an independently timestamped
+precommitment.  A version-specific,
 fail-closed parser now checks the preserved transcript, whose SHA-256 is
 \texttt{dff4e409\ldots de184};
 it verifies every historical TARGET, candidate, COLQ, HISTO, and TOP row before
-comparing the eight histogram sums with those precommitted counts.
+comparing the eight histogram sums with those separately recorded counts.
 
 \input{generated_rescan17_table}
 
@@ -202,10 +214,8 @@ counts; counts alone do not establish
 identity of the ordered prime lists.  The audit utility therefore also emits a
 canonical ordered stream for byte comparison and hashing.  Its final manifest
 records byte-for-byte scanner/CPU identity on all $515$ chunks, independently
-of the $3\,984$ matching counts.  A supplementary comparison also reproduces
-the retained historical ordered-chunk root
-\texttt{b7afe3a79de1\ldots c2966b39} exactly.  The four historical
-scanner blobs contain a byte-identical $249$-byte \texttt{sieve\_primes}
+of the $3\,984$ matching counts.  The four historical scanner blobs contain a
+byte-identical $249$-byte \texttt{sieve\_primes}
 function (SHA-256 recorded in the registry).  That function accepted an
 inclusive upper endpoint, whereas the audit stream is half-open; every campaign
 boundary is an even integer greater than two, hence composite, so the two
@@ -227,6 +237,6 @@ contiguous chunks without inventing the absent chunk~7 journal row; the saved
 driver ordering establishes why that row can be recovered from the checkpoint.
 Together with the $515$-chunk ordered-prime identity audit, this closes the
 local coverage audit while preserving the distinction between the $498$
-per-chunk histograms and the one aggregate re-scan of chunks~1--17.  Candidate
-champions were passed to
+per-chunk histograms and the one aggregate re-scan of chunks~1--17.  The
+strongest candidate direct bounds located by the scan were passed to
 Section~\ref{ss:protocol}; no bound was recorded from the scanning pass alone.
