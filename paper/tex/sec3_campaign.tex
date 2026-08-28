@@ -1,4 +1,11 @@
-\section{The GPU campaign}\label{s:campaign}
+\section{GPU discovery campaign}\label{s:campaign}
+
+The campaign has one logical role: it generates candidate triples $(p,r,k)$.
+No lower bound follows from a scanner verdict alone.  A retained candidate
+becomes a numerical claim only after the criterion is re-established through
+the verification protocol below; recovery of the complete campaign record is
+needed for coverage and density statements, but not for the pointwise validity
+of an accepted certificate.
 
 \subsection{Fused character evaluation}\label{ss:b7}
 
@@ -17,7 +24,7 @@ of the sequence is the reversal of the first half shifted by the constant
 $c(-1)$; it suffices to scan $x=1,\dots,(p-1)/2$ and to splice the two halves
 at the center. We refer to this half-interval variant as the mirror scan.
 
-\subsection{Validation by redundant and independent paths}\label{ss:validation}
+\subsection{Redundant and separate-source validation paths}\label{ss:validation}
 
 Correctness is supported by cross-agreement among redundant paths and by
 separate-source checkers rather than by trust in any single path. On all primes $p<105\,000$ (both residue classes of $p \bmod 4$ and varied
@@ -38,15 +45,15 @@ pre-flight records.  Their exact raw GPU outputs and benchmark logs must still
 be recovered from the campaign PC and bound to the release candidate; the
 portable staging suite exercises the algorithms but does not treat these
 totals as release-qualified evidence.
-For $r=2$ a CPU Jacobi-symbol evaluation provides one further independent
-route. This redundancy is not decorative: during pre-flight testing the
+For $r=2$ a CPU Jacobi-symbol evaluation provides a further
+separate-arithmetic route. This redundancy is not decorative: during pre-flight testing the
 cross-check caught a genuine bug (a non-commutative run-summary operator fed to
 a reduction that assumes commutativity, producing phantom runs at
 $p\sim 1.8\times 10^{9}$); the repaired, order-respecting reduction is covered
 by a regression test that has run at every commit since.
 
-The word \emph{independent} is reserved below for separations of source and
-arithmetic.  The main paths have the following dependency structure.
+The main paths have the following dependency structure; agreement between
+paths is interpreted in light of their shared source and arithmetic.
 \begin{table}[ht]
 \centering\scriptsize
 \begin{tabular}{P{2.3cm} P{1.7cm} P{2.4cm} P{2.4cm} P{3.0cm}}
@@ -55,7 +62,7 @@ path & language & modular arithmetic & class/run construction & shared component
 \midrule
 mirror V2a & CUDA C++ & GPU Montgomery & character, half interval & same source and helpers as full B7 \\
 full B7 & CUDA C++ & GPU Montgomery & character, full interval & same source and helpers as V2a \\
-sort-based GPU & CUDA C++ & GPU Montgomery & sort then run scan & earlier GPU design; arithmetic is not independent \\
+sort-based GPU & CUDA C++ & GPU Montgomery & sort then run scan & earlier GPU design; shares GPU Montgomery arithmetic \\
 CPU walk & C++ host & native 64-bit walk & discrete logarithm, sequential & same executable and host primitive-root code \\
 CPU criterion & C++ & separate 128-bit path & separate walk and (B$^*$) & separate source and binary \\
 \texttt{verify\_claim} & C++ & 128-bit exponentiation & roots of unity and full criterion & strongest source/arithmetic separation \\
@@ -63,11 +70,40 @@ high-range witness & C & no Montgomery & full sequential walk & separate arithme
 \bottomrule
 \end{tabular}
 \caption{Dependency matrix for the verification paths.  V2a and B7 are
-redundant paths, not independent implementations.  The principal independent
+correlated redundant paths.  The principal source- or arithmetic-separated
 checks are the separate CPU criterion, \texttt{verify\_claim}, and, for the
 high-range arithmetic defect, the Montgomery-free witness.}
 \label{tab:dependencies}
 \end{table}
+
+\subsection{Claim-verification protocol}\label{ss:protocol}
+
+The computational source of truth registers exactly thirteen direct Rabung
+claims: nine three-colour triples for $17\le k\le25$ and four two-colour
+triples for $25\le k\le28$.  For each triple $(p,r,k)$ the release protocol
+requires:
+\begin{enumerate}
+\item two executions of the structured triplet \{mirror scan, full scan,
+  CPU walk\}, with internal profile equality and equality between executions;
+\item two acceptances by the separate full CPU criterion;
+\item acceptance by the stand-alone \texttt{verify\_claim}; and
+\item for the two primes above the historical Montgomery-safety threshold, an
+  additional full-interval witness that uses no Montgomery arithmetic.
+\end{enumerate}
+The parser is fail-closed: it checks the process status, the exact $p,r,k$,
+all profile equalities, (a), (B$^*$), and the final verdict, and rejects any
+output containing \texttt{DIFF}, \texttt{FAIL}, \texttt{ECHEC}, or a negative
+verdict.  Its digest binds the claim identity, profiles, criterion values, and
+final verdict.  The manifest separately records source and binary hashes,
+compiler version, exact commands, and hashes of every raw output.  The final
+Markdown and \LaTeX{} claim tables are generated only from the exact set of
+thirteen accepted manifests.
+
+This rule is stricter than the historical transcript, whose max-run checksum
+did not bind $p$ and whose pasted \texttt{verify\_claim} outputs were sometimes
+truncated.  Those files remain historical evidence, not the final source of
+truth.  The expensive release run must populate the complete manifests before
+the candidate theorem of Section~\ref{s:bounds} can be promoted.
 
 \subsection{Measured throughput}\label{ss:throughput}
 
@@ -109,26 +145,14 @@ $(2,26)$--$(2,28)$, whose early online tallies are therefore incomplete; the
 second added congruence counters and reproduced the previous target profiles
 and checksums in an old/new comparison.  This supports code-path
 comparability for the retained $(3,17)$ counts, although version-stratified
-dispersion diagnostics remain distinct from that code audit.  Each checkpoint
-row records the range, duration, git revision, and deterministic scientific
-checksum.  The revised orchestrator additionally binds a new checkpoint to the
-exact half-open range, chunk width, target set, criterion, and logical output
-directory; completed keys must form a canonical prefix, and smoke tests use a
-separate output directory.  This post-campaign safeguard does not retrofit the
-historical checkpoint, whose immutable release copy remains an audit gate.
-Because the host memory is not error-correcting, the historical journal reports
-that every $50$ chunks an automatic cross-check re-verified a sample of primes
-with the redundant scan paths and separate CPU checks (nine completed in full
-agreement; a tenth attempt timed out and was not counted).  The raw outputs
-remain a release artifact, and these samples do not turn the
-single production campaign into a duplicated run.  Separate historical point
-checks later reported acceptance of the claim primes (Section~\ref{s:bounds}),
-while the complete checkpoint, chunk, and ordered-prime evidence remains
-subject to the release gates below.
-The registry binds every row to full Git commit and Git-blob identities.  The
-exact raw transition-test outputs and their hashes remain required release
-artifacts; the prose summary in Table~\ref{tab:scanner-revisions} is not a
-substitute for those files.
+dispersion diagnostics remain distinct from that code audit.  The historical
+journal also records automatic cross-checks every $50$ chunks: nine completed
+samples agreed across the redundant scan paths and separate CPU checks, while a
+tenth timed out and was not counted.  These samples do not turn the single
+production campaign into a duplicated run.  Checkpoint transaction mechanics
+are documented in \texttt{REPRODUCIBILITY.md}; the immutable checkpoint,
+transition outputs, chunk evidence, and ordered-prime stream remain release
+gates.
 
 \paragraph{Exhaustiveness of the prime enumeration.}
 The per-prime computation is validated by the redundancy above; the
@@ -143,14 +167,14 @@ separately written segmented sieve with no shared code:
 over the $498$ chunks for which per-chunk histograms were logged (the histogram
 feature was added at an early restart, from $p=1.004\times10^{9}$ on), the
 campaign's per-chunk counts of primes in every congruence class $p\equiv1\pmod
-r$, $2\le r\le9$---$3\,984$ counts in all---agree with the independent sieve
+r$, $2\le r\le9$---$3\,984$ counts in all---agree with the separate-source sieve
 \emph{exactly}, with zero discrepancies ($47\,181\,875$ primes on those
 chunks). For the first $17$ chunks, which predate the histogram feature,
 per-class counts were not logged during the campaign; that range,
 $[9.70\times10^{8},1.004\times10^{9})$, was therefore re-scanned after the
 campaign in one aggregate invocation with the post-campaign audit build
 (commit \texttt{c81383885bd9}; full identities are in the registry).  The eight
-independent counts were committed before that invocation completed
+separate-source counts were committed before that invocation completed
 (commit \texttt{30e8b83df3c0}).  A version-specific,
 fail-closed parser now checks the preserved transcript, whose SHA-256 is
 \texttt{dff4e409\ldots de184};
@@ -175,24 +199,19 @@ boundary is an even integer greater than two, hence composite, so the two
 conventions enumerate exactly the same primes on all $515$ chunks.  The current
 scanner makes the half-open convention explicit.  In total the window
 $[9.7\times10^{8},2\times10^{9})$ contains $48\,823\,489$ primes in the
-independent sieve.  Across the retained $498$-chunk histograms and the aggregate
+separate-source sieve.  Across the retained $498$-chunk histograms and the aggregate
 17-chunk re-scan, the preserved outputs report corresponding per-class totals;
-full byte-level ordered-prime identity remains a release gate.  The independent
+full byte-level ordered-prime identity remains a release gate.  The separate-source
 sieve counts $1\,448\,736$ primes in
 $[9.7\times10^{8},10^{9})$, hence $47\,374\,753$ in
 $[10^{9},2\times10^{9})$.  This equals the externally published difference
 $\pi(2\times10^{9})-\pi(10^{9})=98\,222\,287-50\,847\,534$ from Oliveira e
-Silva's table~\cite{OliveiraSilvaPi}; it checks the interval difference, not the
-two absolute values independently.
+Silva's table~\cite{OliveiraSilvaPi}; it checks the interval difference, not
+either absolute value separately.
 
-The historical journal reports a ten-day campaign, a clean chunk-boundary stop
-and checkpoint resume after one disk-full incident caused by an unrelated job,
-and an intact checkpoint followed by resume after one forced reboot.  The
-available summaries, deterministic chunk checksums, periodic cross-checks, and
-aggregate coverage comparison report no inconsistency.  They do not yet prove
-the stronger phrase ``without data loss'': the release recovery must still
-substantiate checkpoint continuity, the chunk~7 reconstruction, and the raw
-artifact inventory.  These checks hash summaries, not every byte of output.
-Candidate direct Rabung champions detected during the scan were frozen and passed to the
-verification protocol of Section~\ref{s:bounds}; no bound was recorded from the
-scanning pass alone.
+The available summaries, deterministic chunk checksums, periodic cross-checks,
+and aggregate coverage comparison report no inconsistency, but they do not yet
+prove continuity without data loss.  Release recovery must still substantiate
+checkpoint continuity, the chunk~7 reconstruction, and the raw inventory.
+Candidate champions were therefore passed to
+Section~\ref{ss:protocol}; no bound was recorded from the scanning pass alone.

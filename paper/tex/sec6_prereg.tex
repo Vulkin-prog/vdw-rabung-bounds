@@ -1,12 +1,12 @@
-\section{Prospective and retrospective analyses}\label{s:prereg}
+\section{Prospective protocol and evidence boundary}\label{s:prereg}
 
-The computation mixes proved claims, validated certificates, descriptive
-measurements, and statistical models.  We keep those categories separate:
-the lower bounds are consequences of the Rabung theorem after machine
-verification of its hypotheses, whereas the density discussion of
-Section~\ref{s:density} is empirical and model-conditional.
+The lower bounds and the holdout comparison have different epistemic status.
+The former follow from Rabung's theorem after machine verification of its
+hypotheses; the latter is empirical and conditional on the count model of
+Section~\ref{s:density}.  This section records what was fixed before the
+holdout was read and what the retained evidence can reproduce.
 
-\paragraph{What was fixed prospectively.}
+\paragraph{Frozen protocol.}
 Chunks $1$--$180$ form the training window for the $(3,17)$ comparison.  At
 chunk $180$ the repository fixed the baseline count and the three numerical
 intensities of Remark~\ref{r:domain}.  A later commit, still before chunk $250$,
@@ -15,58 +15,49 @@ the cut.  The word \emph{prospective} refers only to the data after chunk
 $180$; the discovery of the candidate forms and the choice of their parameters
 used the training data and are not called blind.
 
-\paragraph{The original rule.}
-The live program compared the cumulative observed increment with the three
-means displayed by the frozen functions, identified the closest displayed
-mean, and printed Wald-type
-discrepancies normalized by $\sqrt{N_{\mathrm{obs}}}$ for two candidates.  This
-is the rule that was actually executed at the scheduled reads.  It was not an
-exact Poisson test and did not contain the deviance or dispersion analyses now
-reported in the paper.  Two manually transcribed standardizations for the
-third candidate were erroneous; the counts and forecast functions were not.
-
-\paragraph{Retrospective corrections and sensitivities.}
-After completion of the campaign we recomputed the means on the full half-open
-chunk intervals, rather than between chunk midpoints, and calculated Pearson
-and deviance diagnostics, residual
-autocorrelations, a quasi-Poisson scale, an NB2 sensitivity fit, and block
-aggregations.  These are labelled post hoc.  They are useful checks on the
-specified fixed forecast, but they do not retroactively become part of the
-prospective decision rule.  Likewise, freezing $m$ and $\beta$ prevents
-holdout refitting but does not make their training-window uncertainty vanish;
-we therefore make no family-wide or long-range extrapolative claim from this
-comparison.
+At each scheduled read the live program compared the cumulative observed
+increment with the three displayed means, identified the closest displayed
+mean, and
+printed Wald-type discrepancies normalized by $\sqrt{N_{\mathrm{obs}}}$ for
+two candidates.  It was not an exact Poisson test and did not contain the
+deviance or dispersion analyses now reported in the paper.  Two manually
+transcribed standardizations for the third candidate were erroneous; the
+counts and forecast functions were not.  The full-interval correction and all
+later sensitivity calculations are explicitly post hoc and are collected in
+Appendix~\ref{s:densitydiagnostics}; they do not retroactively become part of
+the prospective rule.  Likewise, freezing $m$ and $\beta$ prevents holdout
+refitting but does not remove their training-window uncertainty; we make no
+family-wide or long-range extrapolative claim from this comparison.
 
 \paragraph{One trajectory, four scheduled views.}
-The four cumulative readings share their early data.  The primary presentation
-is therefore the four disjoint increments of Table~\ref{tab:milestones}.  Even
-those increments are statistically independent only conditional on the
-inhomogeneous-Poisson model.  We retain the cumulative values as an audit trail,
-not as four replications, and do not advertise a small conditional tail as a
-model-robust significance level.
+The four cumulative readings share their early data.  Table~\ref{tab:milestones}
+therefore presents the four disjoint increments as its primary view and retains
+the cumulative values only as an audit trail.  The model-conditional
+interpretation of those increments is stated with the result in
+Section~\ref{ss:eta}.
 
-\paragraph{Scanner revisions.}
+\paragraph{Source and predicate checks.}
 The $515$ campaign chunks span eight git revisions and four scanner-source
 fingerprints.  The final fingerprint starts at chunk $79$, before the training
-cut, so the complete post-freeze comparison uses one scanner source.  This is
-the relevant stratification fact for Section~\ref{ss:eta}.  Descriptive
-whole-campaign summaries must nevertheless be accompanied by the full revision
-table and by tests across the earlier transitions.
+cut, so the complete post-freeze comparison uses one scanner source.  This
+removes scanner-source changes as a confounder for the prospective comparison;
+descriptive whole-campaign summaries must nevertheless be accompanied by the
+full revision table and by tests across the earlier transitions.
 
-\paragraph{Targeted independent checks.}
-The historical campaign journal reports that $200$ sampled run-valid $(3,17)$
-primes were re-tested through a separate CPU discrete-logarithm walk without a
-reported failure.  The present event-list audit does not reproduce that test;
-its sampled-prime list and complete raw output must be included and hashed in
-the release before the numerical statement is treated as machine-audited.
-Even then, the check addresses false survivors, not omissions, prime
-enumeration, dispersion, or temporal dependence.
+The historical campaign journal also reports that $200$ sampled run-valid
+$(3,17)$ primes were re-tested through a separate CPU discrete-logarithm walk
+without a reported failure.  The present event-list audit does not reproduce
+that test; its sampled-prime list and complete raw output must be included and
+hashed in the release before the numerical statement is treated as
+machine-audited.  Even then, the check addresses false survivors, not
+omissions, prime enumeration, dispersion, or temporal dependence.
 
 \paragraph{Reproducibility boundary.}
-The versioned $1859$-entry list of reported run-valid $(3,17)$ primes is
-sufficient to reconstruct all $515$ success counts and the disjoint increments in
-Table~\ref{tab:milestones}, conditional on that list.  It does not by itself
-re-evaluate the max-run predicate or prove that no run-valid prime was omitted.
+The versioned $1859$-entry list of reported run-valid $(3,17)$ primes, labelled
+complete by the historical analysis, is sufficient to reconstruct all $515$
+success counts and the disjoint increments in Table~\ref{tab:milestones},
+conditional on that list.  It does not by itself re-evaluate the max-run
+predicate or prove that no run-valid prime was omitted.
 The live tracking script additionally reads
 \texttt{results/campaign/checkpoint.json}, while the campaign directory is
 excluded from ordinary source tracking.  An end-to-end archival claim therefore
@@ -75,6 +66,6 @@ machine-readable revision map in the final data release.  Until those files are
 part of the cited release, the git history alone reproduces the narrow
 $(3,17)$ event-count analysis, not every campaign-level diagnostic.
 
-This separation is intentional: the prospective record is preserved as it was
-executed, later statistical repairs are visible as repairs, and the paper's
-conclusions are limited to what the released evidence can support.
+This boundary preserves the prospective record as executed, makes later
+repairs visible as repairs, and limits the conclusions to what the released
+evidence can support.

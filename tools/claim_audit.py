@@ -1011,19 +1011,19 @@ def render_tex(document):
         (
             r"\caption{Canonical fail-closed audit view of the thirteen accepted "
             r"direct claims. The GPU column records the two captured structured "
-            r"checks; the independent column records the separate CPU criterion, "
+            r"checks; the separate-source column records the separate CPU criterion, "
             r"stand-alone verifier, and Montgomery-free witness when required. "
             r"Each claim is followed by its full claim, profile, and manifest "
             r"identities. The JSON and Markdown views retain the full commands, "
             r"artifacts, and provenance.}\label{tab:validated-claims}\\"
         ),
         r"\toprule",
-        r"Claim and certificate & Provenance & GPU triplet & Independent checks \\",
+        r"Claim and certificate & Provenance & GPU triplet & Separate-source checks \\",
         r"\midrule",
         r"\endfirsthead",
         r"\multicolumn{4}{@{}l}{\footnotesize Table~\thetable\ continued}\\",
         r"\toprule",
-        r"Claim and certificate & Provenance & GPU triplet & Independent checks \\",
+        r"Claim and certificate & Provenance & GPU triplet & Separate-source checks \\",
         r"\midrule",
         r"\endhead",
         r"\midrule",

@@ -3,21 +3,21 @@
 **Private preparation repository — no citable release yet.**
 
 This repository is the publication-oriented reproducibility package for
-*Certified lower bounds for van der Waerden numbers from a GPU scan and
-recurrence closure*. It is being assembled under an explicit allowlist from
+*Succinct Rabung certificates and recurrence-closed lower bounds for van der
+Waerden numbers*. It is being assembled under an explicit allowlist from
 [`Vulkin-prog/vdw-gpu-starter`](https://github.com/Vulkin-prog/vdw-gpu-starter)
 at the immutable source commit
 `02796ae9e08da5b051a94b2d9001763908375f6e`.
 
-The current repository is deliberately private and is not a scientific release:
-the 13 final claim manifests, the complete 515-chunk campaign archive, the
-ordered-prime identity audit, external replications, licensing decisions, and
-the DOI freeze are still open gates. The machine-readable state is
+The current repository is deliberately private and is not a scientific release.
+Open gates include the 13 final claim manifests, the complete 515-chunk campaign
+archive, the ordered-prime identity audit, external certificate rechecks, licensing
+decisions, and the DOI freeze. The machine-readable state is
 [`STATUS.json`](STATUS.json).
 
 ## What is already here
 
-- the CUDA search source and the independent CPU reference/verifier sources;
+- the CUDA search source and the separate-source CPU reference/verifier sources;
 - the canonical 13-claim and baseline registries;
 - fail-closed parsers, generators, and their CPU test suite;
 - the paper source and its currently available aggregate evidence;

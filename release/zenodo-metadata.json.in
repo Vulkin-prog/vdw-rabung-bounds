@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Reproducibility package for: Certified lower bounds for van der Waerden numbers from a GPU scan and recurrence closure",
+    "title": "Reproducibility package for: Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers",
     "upload_type": "software",
     "publication_date": "@@RELEASE_DATE@@",
     "description": "@@FINAL_ABSTRACT_AND_SCOPE@@",

@@ -2,14 +2,18 @@
 
 \subsection{Power-residue colorings}\label{ss:prc}
 
-Throughout, $W(r,k)$ denotes the least $N$ such that every $r$-coloring of
-$\{1,\dots,N\}$ contains a monochromatic arithmetic progression of length $k$.
-An \emph{explicit certificate} for the lower bound $W(r,k)>n$ is an
-$r$-colouring of $\{1,\dots,n\}$ with no monochromatic $k$-term progression.
-The large claims below instead use a \emph{succinct Rabung certificate}
-$(p,r,k)$: an autonomous checker re-establishes the hypotheses of a proved
-construction theorem.  This is not an exhaustive enumeration of all
-progressions in the resulting colouring.
+The certification argument has three layers.  Rabung's theorem turns a finite
+criterion into a lower bound; Proposition~\ref{p:bstar} proves the equivalent
+operational form used here; and a stand-alone, separate-source checker
+re-establishes that criterion for each reported triple.  The GPU search of
+Section~\ref{s:campaign} discovers candidate triples but is not a premise of
+this implication.
+
+An \emph{explicit certificate} for $W(r,k)>n$ is an $r$-colouring of
+$\{1,\dots,n\}$ with no monochromatic $k$-term progression.  The large claims
+instead use a \emph{succinct Rabung certificate} $(p,r,k)$, from which the
+checker reconstructs the hypotheses of the construction theorem.  It does not
+enumerate every progression in the resulting colouring.
 
 Let $p$ be a prime with $p\equiv 1 \pmod r$ and $p>k$, let $g$ be a primitive
 root modulo $p$, and let $\operatorname{ind}(x)$ denote the discrete logarithm
@@ -53,10 +57,9 @@ Both details of~(b) matter. Replacing the ceiling by a floor, or treating a
 singleton as vacuously satisfying the condition, yields a criterion that is
 \emph{not} equivalent to Rabung's.  Explicit counterexamples occur already at
 $p=13$, $r=2$, $k=4$ for the floor variant and at $p=5$, $r=2$, $k=3$ when a
-singleton is mishandled.  The ceiling and floor coincide only for odd~$k$. We
-record this because an early version of our own tester made exactly these two
-mistakes, and comparison against the oracle described below is what caught
-them.
+singleton is mishandled.  The ceiling and floor coincide only for odd~$k$.
+Both failure modes occurred during development and were detected by comparison
+with the finite oracle described below.
 \end{remark}
 Since $[0,(k-1)p]$ contains $(k-1)p+1$ integers, a prime satisfying
 (a)$\wedge$(b) yields
@@ -74,13 +77,12 @@ multiplicative structure: if a single shifted window is monochromatic, its
 dilates realize every color at the central position (surjectivity of
 $c$ requires exactly $p \equiv 1 \bmod r$), so the joker position cannot be
 colored at all; otherwise any non-constant coloring of the multiples of $p$
-works. A literal transcription of (b) is error-prone --- an early version of our
-own tester mishandled the singleton case and the rounding of $(k-1)/2$ --- which
-is one reason we insist on machine verification of the criterion itself.
+works.  Proposition~\ref{p:bstar} gives the mathematical proof; the finite
+comparison below audits the implementation rather than replacing that proof.
 
-\subsection{Machine verification of the criterion}\label{ss:oracle}
+\subsection{Finite oracle audit of the implementation}\label{ss:oracle}
 
-We verified the criterion (a)$\wedge$(B$^{*}$) against a frozen reference
+We tested the implementation of (a)$\wedge$(B$^{*}$) against a frozen reference
 oracle that explicitly builds the coloring of $[1,(k-1)p+1]$ and exhaustively
 checks all $k$-term progressions. One bookkeeping detail matters: Rabung's
 construction lives on $[0,(k-1)p]$, and the oracle works on its translate by
@@ -125,33 +127,33 @@ Section~\ref{ss:validation} records which paths share source code or
 arithmetic; cross-agreement is not described as statistical or implementation
 independence.
 
-Two kinds of certificate should be distinguished. An \emph{explicit}
-certificate is a full coloring of $\{1,\dots,n\}$; for the bounds of
-Section~\ref{s:bounds}, with $n$ up to $10^{11}$, distributing one is neither
-feasible nor useful. What the reproducibility package distributes is a
-\emph{succinct Rabung certificate}:
-the triple $(p,r,k)$, from which a stand-alone independent verifier,
-\texttt{verify\_claim}, re-derives everything. Its protocol, in full:
+At the large sizes of Section~\ref{s:bounds}, distributing the full colouring
+would be neither feasible nor useful.  The reproducibility package therefore
+distributes the triple $(p,r,k)$, from which the stand-alone, separate-source
+verifier \texttt{verify\_claim} re-derives every required hypothesis.  Its
+protocol is:
 \begin{enumerate}
-\item check that $p$ is prime (deterministic Miller--Rabin on the first twelve
-prime bases $2,3,5,\dots,37$; Sorenson and Webster's Theorem~1.1 gives
-$\psi_{12}=318\,665\,857\,834\,031\,151\,167\,461>2^{64}$, so this is exact
-through the unsigned $64$-bit range~\cite{SorensonWebster2017}, far beyond the
-$p<2^{32}$ actually used);
+\item check that $p$ is prime by deterministic Miller--Rabin on the first
+twelve prime bases $2,3,5,\dots,37$.  Sorenson and Webster's Theorem~1.1 gives
+\[
+  \psi_{12}=318\,665\,857\,834\,031\,151\,167\,461>2^{64},
+\]
+so this is exact through the unsigned $64$-bit
+range~\cite{SorensonWebster2017}, far beyond the $p<2^{32}$ actually used;
 \item check the preconditions $p\equiv1\pmod r$ and $p>k$;
 \item \emph{find} a primitive root $g$ by trial, certifying primitivity against
 the full trial-division factorization of $p-1$ (nothing about $g$ is taken as
 input);
 \item build the residue classes by modular exponentiation---$x^{(p-1)/r}$
-compared against the powers of $\zeta=g^{(p-1)/r}$, a method independent of
-both the discrete-logarithm walk and the GPU pipeline;
+compared against the powers of $\zeta=g^{(p-1)/r}$---using neither the
+discrete-logarithm walk nor the GPU pipeline;
 \item test (a)$\wedge$(B$^{*}$) and print \textsc{accept} or \textsc{reject}.
 \end{enumerate}
 The whole run takes $O(p\log p)$ time and $O(p)$ memory. Each claimed bound in
 this paper can thus be re-derived from the triple $(p,r,k)$ alone---no
 generator, witness, or auxiliary data are part of the certificate---in about
-two to just over seven minutes on a single core (Table~\ref{tab:bench}); the certificates are
-independently verifiable in this precise, succinct sense.
+two to just over seven minutes on a single core (Table~\ref{tab:bench}).  In
+this precise sense, every claim is recheckable from its triple alone.
 
 \begin{table}[ht]\centering
 \begin{tabular}{r l r r l}
@@ -164,8 +166,8 @@ $3\,459\,826\,103$ & $(2,27)$ & $404$ s & $3.3$ GB & \textsc{accept} \\
 $3\,476\,732\,783$ & $(2,28)$ & $425$ s & $3.3$ GB & \textsc{accept} \\
 \bottomrule
 \end{tabular}
-\caption{Measured cost of the independent verifier on the four headline
-certificates. The two high-range rows are cross-documented with the
+\caption{Measured cost of the stand-alone, separate-source verifier on four
+representative certificates. The two high-range rows are cross-documented with the
 corrected-scanner and Montgomery-free checks required by the fail-closed claim
 manifest protocol. Those release manifests are not yet populated, so these
 historical timings are not themselves release evidence. Single-threaded on an AMD Ryzen~7 9800X3D under Ubuntu 26.04,

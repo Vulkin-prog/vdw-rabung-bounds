@@ -438,7 +438,7 @@ class ClaimAuditTableTests(unittest.TestCase):
         self.assertIn(r"\endlastfoot", rendered)
         self.assertIn("Claim and certificate", rendered)
         self.assertIn("GPU triplet", rendered)
-        self.assertIn("Independent checks", rendered)
+        self.assertIn("Separate-source checks", rendered)
         self.assertNotIn(r"\resizebox", rendered)
         self.assertIn(r"W(2,25)&>27\,333\,622\,969", rendered)
         self.assertIn(r"p&=1\,138\,900\,957", rendered)

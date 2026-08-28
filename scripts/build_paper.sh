@@ -31,7 +31,7 @@ if [[ -d "$PAPER_OUTPUT" || -L "$PAPER_OUTPUT" ]]; then
   exit 2
 fi
 
-for PAPER_COMMAND in pdflatex bibtex sha256sum cmp mktemp; do
+for PAPER_COMMAND in pdflatex bibtex python3 sha256sum cmp mktemp; do
   if ! command -v "$PAPER_COMMAND" >/dev/null 2>&1; then
     printf 'ERROR: required paper-build command is unavailable: %s\n' "$PAPER_COMMAND" >&2
     exit 2
@@ -88,6 +88,10 @@ build_once() {
         "$validated_claims_table" >&2
       exit 2
     fi
+    run_paper_command "$build_dir/claim-audit.log" \
+      python3 "$REPOSITORY_ROOT/tools/claim_audit.py" \
+        validate-set "$REPOSITORY_ROOT/results/claims" \
+        --repository-root "$REPOSITORY_ROOT"
     cp -- "$validated_claims_table" "$build_dir/tex/generated_validated_claims.tex"
   fi
 
