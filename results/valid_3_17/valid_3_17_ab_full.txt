@@ -1,8 +1,8 @@
 # Liste COMPLETE des (3,17) (a)^(b)-valides -- 1830 premiers (2026-07-25)
-# = valid_3_17_full.txt filtre par tools/bcheck (condition B*, O(k log p)/premier).
+# = valid_3_17_full.txt filtre par tools/filter_bstar.py (condition B*, O(k log p)/premier).
 # Tally : 1859 lus, 1830 acceptes, 29 rejets-(b) = 1.560 %.
 # Decoupe au gel (p < 1.33e9) : pre-gel 1727/1702 (1.448 %), post-gel 132/128 (3.030 %).
-# Concordance exacte avec le recomptage independant de l'audit Codex du 25/07.
+# Reproductible par tools/filter_bstar.py --check; aucun audit conversationnel n'est une entree.
 970019599
 970071001
 970091839

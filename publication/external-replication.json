@@ -20,6 +20,7 @@
     "stderr_sha256",
     "exit_code",
     "verdict",
+    "operator_id",
     "operator_attestation"
   ],
   "replications": []

@@ -4,8 +4,9 @@
 // [1,p-1] (méthode indépendante du walk log-discret et de la voie GPU), teste le
 // critère de Rabung 1979 (a)∧(b) [concordant avec l'oracle sur le domaine
 // exhaustif T1.1], O(p·log p).
-// -> W(r,k) > (k-1)p+1 ssi ACCEPT. Pour records L~10^10 où l'oracle explicite
-//    check_naive (~(kp)^2/... ops) est infaisable ; ici O(p log p) est faisable.
+// -> ACCEPT certifie W(r,k) > (k-1)p+1. REJECT n'etablit pas la reciproque.
+//    Pour records L~10^10 où l'oracle explicite check_naive (~(kp)^2/... ops)
+//    est infaisable ; ici O(p log p) est faisable.
 //
 // THÉORÈME (Rabung, Canad. Math. Bull. 22(1) 1979 p.88 ; son l=notre k, son k=notre r ;
 //   p premier ≡1 mod r, p>k) : ϑ' libre de k-progressions mono sur [0,(k-1)p] ⟺
@@ -90,6 +91,42 @@ static u64 prim_root(u64 p) {
     return 0;
 }
 
+// Stockage compact sans tronquer les classes lorsque r > 256. Les claims publies
+// n'utilisent que r=2 ou 3, pour lesquels le cout memoire reste d'un octet par x.
+class ColorTable {
+public:
+    ColorTable(size_t count, int colors) {
+        if (colors <= 256) {
+            width_ = 1;
+            col8_.resize(count);
+        } else if (colors <= 65536) {
+            width_ = 2;
+            col16_.resize(count);
+        } else {
+            width_ = 4;
+            col32_.resize(count);
+        }
+    }
+
+    void set(size_t index, uint32_t color) {
+        if (width_ == 1) col8_[index] = static_cast<uint8_t>(color);
+        else if (width_ == 2) col16_[index] = static_cast<uint16_t>(color);
+        else col32_[index] = color;
+    }
+
+    uint32_t operator[](size_t index) const {
+        if (width_ == 1) return col8_[index];
+        if (width_ == 2) return col16_[index];
+        return col32_[index];
+    }
+
+private:
+    int width_ = 1;
+    vector<uint8_t> col8_;
+    vector<uint16_t> col16_;
+    vector<uint32_t> col32_;
+};
+
 // verifie (p,r,k). Renvoie 1=ACCEPT, 0=REJECT ; *why rempli.
 static int verify(u64 p,int r,int k,const char** why){
     if(r<2||k<2){*why="params";return 0;}
@@ -100,11 +137,12 @@ static int verify(u64 p,int r,int k,const char** why){
     // ζ = g^((p-1)/r) : racine r-ième primitive ; roots[j]=ζ^j -> classe j=ind(x) mod r.
     u64 zeta=powm(g,(p-1)/r,p); vector<u64> roots(r); roots[0]=1; for(int j=1;j<r;j++)roots[j]=mulm(roots[j-1],zeta,p);
     // col(x)=ind(x) mod r via powmod : y=x^((p-1)/r) puis index dans roots.
-    vector<uint8_t> col(p); // col[x] pour x=1..p-1
+    ColorTable col(static_cast<size_t>(p), r); // col[x] pour x=1..p-1
     // progression + ETA (règle 2 ; coût negligeable : throttle par pas de p/20, stderr).
     time_t t0=time(0); u64 stepp=(p/20)?(p/20):1;
     for(u64 x=1;x<p;++x){ u64 y=powm(x,(p-1)/r,p); int j=0; while(j<r && roots[j]!=y) j++;
-        if(j==r){*why="racine de classe introuvable";return 0;} col[x]=(uint8_t)j;
+        if(j==r){*why="racine de classe introuvable";return 0;}
+        col.set(static_cast<size_t>(x), static_cast<uint32_t>(j));
         if(p>2000000 && x%stepp==0){ double f=(double)x/p; double el=(double)(time(0)-t0);
             fprintf(stderr,"\r  [verify p=%llu] coloriage %.0f%% ; %.0fs ecoule, ETA %.0fs   ",
                 (unsigned long long)p, 100*f, el, f>0?el*(1-f)/f:0); fflush(stderr); } }
@@ -117,7 +155,13 @@ static int verify(u64 p,int r,int k,const char** why){
     if(th==0){*why="theta(-1) anormal";return 0;}
     // (b) forme B* : pour chaque j in 0..k-1, les k-1 positions {-j..-1,1..k-1-j}
     //   (couleur de t = col[((t%p)+p)%p]) ne sont PAS toutes de la meme couleur.
-    auto cat=[&](long t)->int{ long m=((t%(long)p)+(long)p)%(long)p; return col[m]; };
+    // int64_t is required here: on 64-bit Windows, long remains 32-bit (LLP64),
+    // while the frozen high-prime claims exceed INT32_MAX.
+    auto cat=[&](int64_t t)->int{
+        int64_t modulus=static_cast<int64_t>(p);
+        int64_t m=((t%modulus)+modulus)%modulus;
+        return col[static_cast<u64>(m)];
+    };
     for(int j=0;j<=k-1;++j){ int first=0; bool have=false,same=true;
         for(int t=-j;t<=k-1-j;++t){ if(!t)continue; int c=cat(t); if(!have){first=c;have=true;} else if(c!=first){same=false;break;} }
         if(have&&same){*why="(b) viole (B*)";return 0;} }
@@ -135,7 +179,8 @@ int main(int argc,char**argv){
     // confirmées vs rabung_criterion (concordance finie T1.1 ; 550/550 accord).
     struct C{u64 p;int r,k;int exp;const char*note;};
     C fast[]={
-        {11,2,4,1,"(2,4) valide {5,7,11}"}, {29,2,5,1,"(2,5) valide"}, {13,2,6,1,"(2,6) valide"},
+        {11,2,4,1,"(2,4) valide {5,7,11}"}, {29,2,5,1,"(2,5) valide"},
+        {521,520,3,1,"regression classes >255 sans troncature"},
         {43,3,8,1,"(3,8) valide"}, {409,3,9,1,"(3,9) valide"},
         {13,2,4,0,"(2,4) invalide"}, {17,2,4,0,"(2,4) invalide"}, {23,2,4,0,"(2,4) invalide"},
         {101,2,6,0,"(2,6) invalide"}, {163,4,8,0,"(4,8) invalide"} };

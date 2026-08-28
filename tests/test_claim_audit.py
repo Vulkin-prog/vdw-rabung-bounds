@@ -33,6 +33,19 @@ def fixture(name):
 
 
 class ClaimAuditParserTests(unittest.TestCase):
+    def test_strict_json_rejects_duplicates_nonfinite_and_bom(self):
+        malformed = (
+            b'{"a": 1, "a": 2}',
+            b'{"a": NaN}',
+            b'{"a": Infinity}',
+            b'{"a": 1e9999}',
+            b'\xef\xbb\xbf{"a": 1}',
+        )
+        for payload in malformed:
+            with self.subTest(payload=payload):
+                with self.assertRaises(MODULE.ClaimAuditError):
+                    MODULE.strict_json_loads(payload, label="fixture")
+
     def test_positive_outputs(self):
         verify = MODULE.parse_verify1(
             fixture("claim_audit_verify1_accept.txt"), 0, CLAIM
@@ -113,6 +126,8 @@ class ClaimAuditParserTests(unittest.TestCase):
 
 
 class ClaimAuditManifestTests(unittest.TestCase):
+    COMMIT = "a" * 40
+
     def artifact(self, directory, name, data):
         path = directory / name
         path.write_bytes(data)
@@ -122,20 +137,51 @@ class ClaimAuditManifestTests(unittest.TestCase):
             "bytes": len(data),
         }
 
-    def run_record(self, directory, stage, attempt, data, parsed):
-        suffix = {
-            "scan_gpu_verify1": ["--verify1", "11", "4", "2"],
-            "rabung_criterion": ["-q", "11", "2", "4"],
-            "verify_claim": ["11", "2", "4"],
-            "highp_witness": ["11", "100"],
-        }[stage]
+    def compiler_versions(self):
+        return {
+            name: json.dumps(
+                {
+                    "command": name,
+                    "resolved_path": f"/fixture/{name}",
+                    "sha256": ("d" if name == "nvcc" else "e" if name == "g++" else "f") * 64,
+                    "version": f"{name} fixture 1.0",
+                },
+                sort_keys=True,
+                separators=(",", ":"),
+            )
+            for name in MODULE.COMPILER_NAMES
+        }
+
+    def build_record(self):
+        binaries = MODULE.preserved_binary_paths(self.COMMIT)
+        commands = MODULE.exact_compile_commands("build/fixture")
+        return {
+            "git_commit": self.COMMIT,
+            "git_clean": True,
+            "sources_sha256": {
+                source: "b" * 64 for source in MODULE.REQUIRED_SOURCE_PATHS
+            },
+            "binaries_sha256": {
+                binaries[program]: "c" * 64 for program in MODULE.PROGRAMS
+            },
+            "compile_commands": {
+                binaries[program]: commands[program] for program in MODULE.PROGRAMS
+            },
+            "compiler_versions": self.compiler_versions(),
+        }
+
+    def run_record(self, directory, ordinal, stage, attempt, data, parsed):
+        program = MODULE.STAGE_TO_PROGRAM[stage]
+        binary = MODULE.preserved_binary_paths(self.COMMIT)[program]
+        suffix = MODULE.frozen_argv_suffix(stage, CLAIM)
+        stem = f"run-{ordinal:02d}-{stage}-attempt-{attempt}"
         return {
             "stage": stage,
             "attempt": attempt,
-            "argv": [stage, *suffix],
+            "argv": [binary, *suffix],
             "exit_code": 0,
-            "stdout": self.artifact(directory, f"{stage}-{attempt}.stdout", data),
-            "stderr": self.artifact(directory, f"{stage}-{attempt}.stderr", b""),
+            "stdout": self.artifact(directory, f"{stem}.stdout", data),
+            "stderr": self.artifact(directory, f"{stem}.stderr", b""),
             "parsed": parsed,
         }
 
@@ -149,20 +195,13 @@ class ClaimAuditManifestTests(unittest.TestCase):
         return {
             "schema": MODULE.SCHEMA_ID,
             "claim": dict(CLAIM),
-            "build": {
-                "git_commit": "a" * 40,
-                "git_clean": True,
-                "sources_sha256": {"source": "b" * 64},
-                "binaries_sha256": {"binary": "c" * 64},
-                "compile_commands": {"binary": ["cc", "source"]},
-                "compiler_versions": {"cc": "fixture 1.0"},
-            },
+            "build": self.build_record(),
             "runs": [
-                self.run_record(directory, "scan_gpu_verify1", 1, verify_data, parsed_verify),
-                self.run_record(directory, "scan_gpu_verify1", 2, verify_data, parsed_verify),
-                self.run_record(directory, "rabung_criterion", 1, rabung_data, parsed_rabung),
-                self.run_record(directory, "rabung_criterion", 2, rabung_data, parsed_rabung),
-                self.run_record(directory, "verify_claim", 1, claim_data, parsed_claim),
+                self.run_record(directory, 1, "scan_gpu_verify1", 1, verify_data, parsed_verify),
+                self.run_record(directory, 2, "scan_gpu_verify1", 2, verify_data, parsed_verify),
+                self.run_record(directory, 3, "rabung_criterion", 1, rabung_data, parsed_rabung),
+                self.run_record(directory, 4, "rabung_criterion", 2, rabung_data, parsed_rabung),
+                self.run_record(directory, 5, "verify_claim", 1, claim_data, parsed_claim),
             ],
             "final": {"verdict": "ACCEPT", "fail_closed": True},
         }
@@ -174,11 +213,27 @@ class ClaimAuditManifestTests(unittest.TestCase):
             result = MODULE.validate_manifest(manifest, directory, CLAIM)
             self.assertEqual(result["verdict"], "ACCEPT")
 
+    def test_manifest_loader_uses_strict_json(self):
+        with tempfile.TemporaryDirectory() as raw:
+            directory = Path(raw)
+            path = directory / "manifest.json"
+            for payload in (
+                b'{"claim":{"id":"fixture"},"claim":{}}',
+                b'{"claim":NaN}',
+                b'\xef\xbb\xbf{"claim":{}}',
+            ):
+                with self.subTest(payload=payload):
+                    path.write_bytes(payload)
+                    with self.assertRaises(MODULE.ClaimAuditError):
+                        MODULE.load_and_validate_manifest(
+                            path, {CLAIM["id"]: CLAIM}
+                        )
+
     def test_tampered_raw_output_is_rejected(self):
         with tempfile.TemporaryDirectory() as raw:
             directory = Path(raw)
             manifest = self.make_manifest(directory)
-            (directory / "verify_claim-1.stdout").write_bytes(b"tampered\n")
+            (directory / "run-05-verify_claim-attempt-1.stdout").write_bytes(b"tampered\n")
             with self.assertRaises(MODULE.ClaimAuditError):
                 MODULE.validate_manifest(manifest, directory, CLAIM)
 
@@ -187,9 +242,10 @@ class ClaimAuditManifestTests(unittest.TestCase):
             directory = Path(raw)
             manifest = self.make_manifest(directory)
             negative = b"FAIL: device comparison disagreed\n"
-            (directory / "scan_gpu_verify1-1.stderr").write_bytes(negative)
+            path = "run-01-scan_gpu_verify1-attempt-1.stderr"
+            (directory / path).write_bytes(negative)
             manifest["runs"][0]["stderr"] = {
-                "path": "scan_gpu_verify1-1.stderr",
+                "path": path,
                 "sha256": MODULE.sha256_bytes(negative),
                 "bytes": len(negative),
             }
@@ -213,6 +269,50 @@ class ClaimAuditManifestTests(unittest.TestCase):
             directory = Path(raw)
             manifest = self.make_manifest(directory)
             manifest["runs"][2]["argv"][-1] = "5"
+            with self.assertRaises(MODULE.ClaimAuditError):
+                MODULE.validate_manifest(manifest, directory, CLAIM)
+
+    def test_argv_zero_must_be_the_hashed_stage_binary(self):
+        with tempfile.TemporaryDirectory() as raw:
+            directory = Path(raw)
+            manifest = self.make_manifest(directory)
+            manifest["runs"][0]["argv"][0] = manifest["runs"][2]["argv"][0]
+            with self.assertRaises(MODULE.ClaimAuditError):
+                MODULE.validate_manifest(manifest, directory, CLAIM)
+
+    def test_source_binary_and_compile_sets_are_exact(self):
+        mutations = []
+        with tempfile.TemporaryDirectory() as raw:
+            directory = Path(raw)
+
+            manifest = self.make_manifest(directory)
+            manifest["build"]["sources_sha256"]["extra/source.cpp"] = "d" * 64
+            mutations.append(manifest)
+
+            manifest = self.make_manifest(directory)
+            manifest["build"]["binaries_sha256"]["results/claims/extra"] = "d" * 64
+            mutations.append(manifest)
+
+            manifest = self.make_manifest(directory)
+            binary = next(iter(manifest["build"]["compile_commands"]))
+            manifest["build"]["compile_commands"][binary][-3] = "wrong-source.cpp"
+            mutations.append(manifest)
+
+            for index, malformed in enumerate(mutations):
+                with self.subTest(index=index):
+                    with self.assertRaises(MODULE.ClaimAuditError):
+                        MODULE.validate_manifest(malformed, directory, CLAIM)
+
+    def test_extra_run_and_noncanonical_artifact_path_are_rejected(self):
+        with tempfile.TemporaryDirectory() as raw:
+            directory = Path(raw)
+            manifest = self.make_manifest(directory)
+            manifest["runs"].append(dict(manifest["runs"][-1]))
+            with self.assertRaises(MODULE.ClaimAuditError):
+                MODULE.validate_manifest(manifest, directory, CLAIM)
+
+            manifest = self.make_manifest(directory)
+            manifest["runs"][0]["stdout"]["path"] = "./run-01-scan_gpu_verify1-attempt-1.stdout"
             with self.assertRaises(MODULE.ClaimAuditError):
                 MODULE.validate_manifest(manifest, directory, CLAIM)
 
@@ -253,6 +353,7 @@ class ClaimAuditManifestTests(unittest.TestCase):
             binary = root / "build" / "program"
             binary.parent.mkdir()
             binary.write_bytes(b"fixture binary\n")
+            binary.chmod(0o755)
             build = {
                 "git_commit": commit,
                 "git_clean": True,
@@ -321,9 +422,49 @@ class ClaimAuditTableTests(unittest.TestCase):
                 13,
             )
             self.assertEqual(
-                sum(" & " in line and line.rstrip().endswith(r"\\") for line in tex_path.read_text(encoding="utf-8").splitlines()) - 1,
+                sum(
+                    line.startswith("% claim-id: ")
+                    for line in tex_path.read_text(encoding="utf-8").splitlines()
+                ),
                 13,
             )
+
+    def test_tex_view_is_multipage_readable_and_binds_full_identities(self):
+        results = [self.result_for(claim_id) for claim_id in self.claims]
+        document = MODULE.build_set_document(results, self.claims)
+        rendered = MODULE.render_tex(document)
+        self.assertIn(r"\begin{longtable}", rendered)
+        self.assertIn(r"\endfirsthead", rendered)
+        self.assertIn(r"\endlastfoot", rendered)
+        self.assertIn("Claim and certificate", rendered)
+        self.assertIn("GPU triplet", rendered)
+        self.assertIn("Independent checks", rendered)
+        self.assertNotIn(r"\resizebox", rendered)
+        self.assertIn(r"W(2,25)&>27\,333\,622\,969", rendered)
+        self.assertIn(r"p&=1\,138\,900\,957", rendered)
+        self.assertEqual(rendered.count("manifest SHA-256 "), 13)
+        self.assertEqual(rendered.count(r"\textit{Evidence identity:}"), 13)
+        self.assertIn(
+            r"33333333\allowbreak{}33333333\allowbreak{}33333333",
+            rendered,
+        )
+
+    def test_canonical_outputs_are_verified_byte_for_byte(self):
+        results = [self.result_for(claim_id) for claim_id in self.claims]
+        document = MODULE.build_set_document(results, self.claims)
+        with tempfile.TemporaryDirectory() as raw:
+            directory = Path(raw)
+            outputs = MODULE.write_canonical_set_outputs(document, directory)
+            self.assertEqual(len(outputs), 3)
+            self.assertEqual(
+                {Path(path).name for path in outputs},
+                set(MODULE.CANONICAL_SET_OUTPUTS.values()),
+            )
+            MODULE.verify_canonical_set_outputs(document, directory)
+            markdown = directory / MODULE.CANONICAL_SET_OUTPUTS["markdown"]
+            markdown.write_bytes(markdown.read_bytes() + b"tampered\n")
+            with self.assertRaises(MODULE.ClaimAuditError):
+                MODULE.verify_canonical_set_outputs(document, directory)
 
 if __name__ == "__main__":
     unittest.main()

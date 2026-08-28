@@ -802,26 +802,27 @@ int main(int argc,char**argv){
         assert(hi < (1ull<<32));
         auto all=sieve_primes(lo,hi);std::vector<u32> samp;if(!make_prime_sample("--xcheck",all,n,&samp))return 2;
         Buffers b; alloc_buffers_b7(b,(long)hi);
-        // Fiables (PASS/FAIL) : V2a (char, moteur campagne) vs CPU-walk (log discret) + Jacobi(r=2).
-        // B7-plein = diagnostic WARN (bug grand-p connu, à corriger avant emploi comme 3e impl).
-        long cmp=0,dis=0,warn=0,done=0; auto tx0=std::chrono::steady_clock::now();
+        // Qualification fail-closed : V2a, B7-plein, CPU-walk et Jacobi(r=2)
+        // doivent tous concorder. Toute divergence B7 est désormais fatale.
+        long cmp=0,dis=0,b7dis=0,done=0; auto tx0=std::chrono::steady_clock::now();
         for(u32 p: samp){ u32 g=primitive_root(p);
             int va[RMAX+1]={0},ch[RMAX+1]={0},cp[RMAX+1]={0},av[RMAX+1]={0},ac[RMAX+1]={0};
             process_prime_char_v2a(b,p,g,va,av,nullptr);   // V2a (char-powmod demi-miroir)
-            process_prime_char(b,p,g,ch,ac);                // B7-plein (DIAGNOSTIC)
+            process_prime_char(b,p,g,ch,ac);                // B7-plein
             cpu_maxrun(p,g,cp);                             // CPU-walk (log discret), O(p) ponctuel
             for(int r=RMIN;r<=RMAX;++r) if(av[r]){ cmp++;
                 if(va[r]!=cp[r]){ dis++; if(dis<=10) printf("FAIL V2a!=CPU p=%u r=%d : v2a=%d cpu=%d\n",p,r,va[r],cp[r]); }
-                if(ch[r]!=cp[r]){ warn++; if(warn<=6) printf("WARN B7plein!=CPU p=%u r=%d : b7=%d cpu=%d (bug grand-p connu)\n",p,r,ch[r],cp[r]); } }
+                if(ch[r]!=cp[r]){ b7dis++; if(b7dis<=6) printf("FAIL B7plein!=CPU p=%u r=%d : b7=%d cpu=%d\n",p,r,ch[r],cp[r]); } }
             int j2=cpu_maxrun_jacobi_r2(p);                 // Jacobi r=2 (réciprocité), indépendant
             if(av[2] && j2!=cp[2]){ dis++; printf("FAIL Jacobi!=CPU p=%u r=2 : jac=%d cpu=%d\n",p,j2,cp[2]); }
             done++; double el=std::chrono::duration<double>(std::chrono::steady_clock::now()-tx0).count();
             fprintf(stderr,"\r  [xcheck] %ld/%zu premiers ; %.0fs ecoule, ETA %.0fs   ",done,samp.size(),el,el*(samp.size()-done)/done); fflush(stderr);
         }
         fprintf(stderr,"\n");
-        printf("XCHECK [%llu,%llu] %zu prem. : %ld comp. ; V2a/Jacobi vs CPU desaccords=%ld -> %s ; B7plein WARN=%ld\n",
-               (unsigned long long)lo,(unsigned long long)hi,samp.size(),cmp,dis, dis==0?"ACCORD (moteur campagne OK)":"ECHEC", warn);
-        return dis?1:0;
+        printf("XCHECK [%llu,%llu] %zu prem. : %ld comp. ; V2a/Jacobi vs CPU desaccords=%ld -> %s ; B7plein desaccords=%ld -> %s\n",
+               (unsigned long long)lo,(unsigned long long)hi,samp.size(),cmp,dis,
+               dis==0?"ACCORD":"ECHEC",b7dis,b7dis==0?"ACCORD":"ECHEC");
+        return (dis||b7dis)?1:0;
     }
     if(!strcmp(argv[1],"--scan")){   // CAMPAGNE : tous les premiers de [lo,hi], cibles (r,k)
         u64 lo=strtoull(argv[2],0,10),hi=strtoull(argv[3],0,10);

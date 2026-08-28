@@ -52,7 +52,7 @@ odd, $(p-1)/r$ is even and hence $c(-1)=0$ necessarily.
 Both details of~(b) matter. Replacing the ceiling by a floor, or treating a
 singleton as vacuously satisfying the condition, yields a criterion that is
 \emph{not} equivalent to Rabung's.  Explicit counterexamples occur already at
-$p=13$, $r=2$, $k=4$ for the floor variant and at $p=5$, $r=2$, $k=4$ when a
+$p=13$, $r=2$, $k=4$ for the floor variant and at $p=5$, $r=2$, $k=3$ when a
 singleton is mishandled.  The ceiling and floor coincide only for odd~$k$. We
 record this because an early version of our own tester made exactly these two
 mistakes, and comparison against the oracle described below is what caught
@@ -87,11 +87,14 @@ construction lives on $[0,(k-1)p]$, and the oracle works on its translate by
 one---it colors $x$ by the class of $(x-1)\bmod p$ and places the jokers at
 $x\equiv1\pmod p$---so the two objects are literally the same coloring up to
 relabeling of positions, and freedom from monochromatic progressions is
-translation-invariant. A historical two-run sweep over all primes $p<10^{4}$ with
+translation-invariant. A sweep over all primes $p<10^{4}$ with
 $p\equiv 1 \pmod r$, $p>k$, $r\in[2,6]$, $k\in[3,8]$ --- $20\,170$ cases, of
 which $4\,499$ were valid according to the criterion --- reported zero
-disagreements.  Its exact long-run outputs are not part of this staging export;
-the final CPU/tag gate must rerun and preserve them. A
+disagreements.  A fresh staging replay reproduced those counts and its exact
+source identity, environment, and output streams are archived with this
+repository.  Because that replay was not made from the final clean release
+candidate, the final CPU gate must still rerun it from the exact candidate
+commit and preserve durable raw outputs before the local tag is published. A
 stronger test enumerates all $r^{k}$ colorings of the joker positions
 ($p<150$, $r\le 4$, $k\le 5$) and confirms both directions of the equivalence:
 (a)$\wedge$(b) holds if and only if some valid extension exists, and when it
@@ -146,8 +149,8 @@ both the discrete-logarithm walk and the GPU pipeline;
 \end{enumerate}
 The whole run takes $O(p\log p)$ time and $O(p)$ memory. Each claimed bound in
 this paper can thus be re-derived from the triple $(p,r,k)$ alone---no
-generator, witness, or auxiliary data are part of the certificate---in two to
-seven minutes on a single core (Table~\ref{tab:bench}); the certificates are
+generator, witness, or auxiliary data are part of the certificate---in about
+two to just over seven minutes on a single core (Table~\ref{tab:bench}); the certificates are
 independently verifiable in this precise, succinct sense.
 
 \begin{table}[ht]\centering
@@ -166,7 +169,7 @@ certificates. The two high-range rows are cross-documented with the
 corrected-scanner and Montgomery-free checks required by the fail-closed claim
 manifest protocol. Those release manifests are not yet populated, so these
 historical timings are not themselves release evidence. Single-threaded on an AMD Ryzen~7 9800X3D under Ubuntu 26.04,
-\texttt{g++ 15.2.0 -O2 -std=c++17}; full environment in the repository. The time is modest;
+\texttt{g++ 15.2.0 -O2 -std=c++17}. The time is modest;
 the memory is the real constraint, since the present implementation stores the
 colouring, i.e.\ $O(p)$ bytes. A two-pass streaming variant with $O(1)$ memory is
 possible and would be a worthwhile improvement, but it is not what we ran, and we

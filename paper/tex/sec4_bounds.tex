@@ -24,6 +24,19 @@ output.  A SHA-256 of that manifest therefore binds the computational claim to
 its build and evidence.  The final Markdown and \LaTeX{} claim tables are
 generated only from an exact set of thirteen accepted manifests.
 
+\IfFileExists{generated_validated_claims.tex}{%
+  \input{generated_validated_claims}%
+}{%
+  \begin{center}
+  \fbox{\begin{minipage}{0.91\linewidth}\small
+  \textbf{Validated-claim table unavailable in this build.}
+  The canonical table appears only when the exact set of thirteen fail-closed
+  claim manifests is available and validated.  The publication contract
+  requires the generated table in a release build.
+  \end{minipage}}
+  \end{center}
+}
+
 This rule is stricter than the historical campaign transcript.  The latter
 recorded a max-run checksum that did not engage $p$, and some pasted
 \texttt{verify\_claim} outputs were truncated.  Those files are retained as
@@ -36,7 +49,7 @@ checker described in Section~\ref{ss:certificates}.
 
 \subsection{Three colours: direct and recurrence-derived bounds}\label{ss:r3}
 
-The scan produces nine direct Rabung certificates.  The headline value
+The historical scan produced nine candidate direct Rabung certificates.  The headline value
 \[
   W(3,17)>31\,385\,622\,833
 \]
@@ -69,14 +82,14 @@ direct Rabung family but are not best general bounds.  In particular, the
 published two-colour values already dominate the direct rows at $k=22,23,24$.
 For $k=25$, even Monroe's published
 $W(2,25)>23\,003\,662\,489$ would give
-$W(3,25)>529\,084\,237\,247$; the independently verified archived input
+$W(3,25)>529\,084\,237\,247$; the archived input accepted by historical independent checks,
 $W(2,25)>27\,333\,622\,969$ strengthens this to the first line below.
 
 \input{generated_bct_corollaries}
 
 The four displayed inequalities are theorem consequences, not additional GPU
-claims.  Priority for the two-colour primes remains Monroe's; we report an
-independent re-verification and apply the published recurrence.  The final
+claims.  Priority for the two-colour primes remains Monroe's; we report the
+candidate re-verification and apply the published recurrence.  The final
 reproducibility claim remains conditional on completion of the raw-manifest
 release protocol above.  Xu's recurrence is included in the automatic closure
 but does not improve any of these three-colour winners.
@@ -84,7 +97,7 @@ but does not improve any of these three-colour winners.
 \subsection{Two colours and archived provenance}\label{ss:r2}
 
 After the scan, we located a table from a second, unpublished phase of Monroe's
-BOINC project (2021, two colours only).  The author's project page states that
+BOINC project (2021, two colours only)~\cite{MonroePhase2Archive}.  The author's project page states that
 this phase pushed the checked range from one billion to four
 billion~\cite{MonroePage}; the largest prime actually listed in the recovered
 table is $3\,478\,685\,143$.  We credit the listed primes to Monroe and use our
@@ -97,29 +110,31 @@ criterion.
 \toprule
 $k$ & prime $p$ & $W(2,k)>$ & method and provenance \\
 \midrule
-25 & $1\,138\,900\,957$ & $27\,333\,622\,969$ & archive and this scan; independently verified \\
-26 & $2\,125\,065\,391$ & $53\,126\,634\,776$ & archived Monroe prime; independently verified \\
-27 & $3\,459\,826\,103$ & $89\,955\,478\,679$ & archived Monroe prime; verified with no-Montgomery witness \\
-28 & $3\,476\,732\,783$ & $93\,871\,785\,142$ & archived Monroe prime; verified with no-Montgomery witness \\
+25 & $1\,138\,900\,957$ & $27\,333\,622\,969$ & archive and historical recheck; final manifest pending \\
+26 & $2\,125\,065\,391$ & $53\,126\,634\,776$ & archived Monroe prime; final manifest pending \\
+27 & $3\,459\,826\,103$ & $89\,955\,478\,679$ & historical no-Montgomery recheck; final manifest pending \\
+28 & $3\,476\,732\,783$ & $93\,871\,785\,142$ & historical no-Montgomery recheck; final manifest pending \\
 \bottomrule
 \end{tabular}
 \caption{Two-colour succinct Rabung certificates used as recurrence inputs.
-The method column separates priority for the archived prime from the present
-independent verification.}
+The method column separates priority for the archived prime from the candidate
+re-verification; final raw manifests are still pending.}
 \label{tab:r2}
 \end{table}
 
-For $k=25$ our exhaustive scan of
-$[9.7\times10^8,2\times10^9)$ independently returned the same last valid prime
-as the archived table.  For $k=26,27,28$ our campaign-range champions are
-weaker; the displayed archive primes were checked directly.  Our computation
-therefore establishes the mathematical validity of the listed triples.  It
+For $k=25$ the historical campaign summaries identify the same last candidate
+valid prime in $[9.7\times10^8,2\times10^9)$ as the archived table; complete
+campaign recovery and ordered-prime identity remain release gates.  For
+$k=26,27,28$ our campaign-range candidates are weaker; the displayed archive
+primes were checked directly in historical runs.
+Those runs supply candidate evidence for the listed triples; final release
+manifests must make the checks independently auditable.  The computation
 does not establish that Monroe's historical phase tested every prime up to
 four billion: that coverage statement is an attributed archival claim, not a
 consequence of the recovered table.
 
 The source is the Internet Archive capture of 28~April~2022 of
-\url{http://vdwnumbers.org/bounds.txt}; its own header reads ``Last updated:
+\url{http://vdwnumbers.org/bounds.txt}~\cite{MonroePhase2Archive}; its own header reads ``Last updated:
 18~Aug~2021''.  The release records the immutable capture URL, both dates, the
 source-repository blob identity, and its SHA-256 in
 \texttt{publication/baseline-provenance.json}; it does not redistribute the

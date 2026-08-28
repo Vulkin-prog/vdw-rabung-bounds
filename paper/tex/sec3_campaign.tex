@@ -23,8 +23,8 @@ Correctness is supported by cross-agreement among redundant paths and by
 separate-source checkers rather than by trust in any single path. On all primes $p<105\,000$ (both residue classes of $p \bmod 4$ and varied
 $m$; the $r$-range of each comparison set is given with it):
 \begin{itemize}
-\item the sort-based GPU pipeline (an earlier design retained precisely as an
-  independent implementation) agrees with the CPU reference on $50\,105$
+\item the sort-based GPU pipeline (an earlier, algorithmically distinct GPU
+  design retained as a redundant path) agrees with the CPU reference on $50\,105$
   comparisons ($r\in[2,6]$) with zero disagreements;
 \item the fused multi-$r$ kernel agrees with the CPU reference on $27\,508$
   comparisons ($r\in[2,9]$) with zero disagreements (and the specialized $r=2,3$ variant on a
@@ -55,6 +55,7 @@ path & language & modular arithmetic & class/run construction & shared component
 \midrule
 mirror V2a & CUDA C++ & GPU Montgomery & character, half interval & same source and helpers as full B7 \\
 full B7 & CUDA C++ & GPU Montgomery & character, full interval & same source and helpers as V2a \\
+sort-based GPU & CUDA C++ & GPU Montgomery & sort then run scan & earlier GPU design; arithmetic is not independent \\
 CPU walk & C++ host & native 64-bit walk & discrete logarithm, sequential & same executable and host primitive-root code \\
 CPU criterion & C++ & separate 128-bit path & separate walk and (B$^*$) & separate source and binary \\
 \texttt{verify\_claim} & C++ & 128-bit exponentiation & roots of unity and full criterion & strongest source/arithmetic separation \\
@@ -88,16 +89,17 @@ implemented, measured, and rejected as memory-bound regressions.
 
 \subsection{Campaign execution}\label{ss:execution}
 
-The production run scanned every prime in
+According to the preserved campaign design and summaries, the production run
+was configured to scan every prime in
 $[9.70\times 10^{8},\, 2.0\times 10^{9})$ (each prime tested for every
 $r\le 9$ dividing $p-1$), starting just above the largest
 published prime $969\,347\,371$ of Monroe's distributed scan~\cite{Monroe2026},
 in a single multi-$r$ pass ($r\le 9$). (The narrow interval
 $[969\,347\,371,\,9.70\times10^{8})$ was therefore not scanned; it is immaterial,
 since any valid prime in it would give a bound below every one we report.) The
-range was processed in $515$
+historical checkpoint reports that the range was processed in $515$
 restartable chunks of width $2\times 10^{6}$, each with a fixed walltime cap.
-The checkpoint spans \emph{eight} git revisions and \emph{four}
+The registered revision map spans \emph{eight} git revisions and \emph{four}
 scanner-source fingerprints.  Their exact allocation and the scientific
 effect of each transition are generated from the audit registry below.
 \input{generated_scanner_revisions}
@@ -105,7 +107,7 @@ The $(3,17)$ max-run statistic and its target predicate are unchanged across
 all four fingerprints.  The first functional expansion added only
 $(2,26)$--$(2,28)$, whose early online tallies are therefore incomplete; the
 second added congruence counters and reproduced the previous target profiles
-and checksums in an old/new comparison.  This establishes code-path
+and checksums in an old/new comparison.  This supports code-path
 comparability for the retained $(3,17)$ counts, although version-stratified
 dispersion diagnostics remain distinct from that code audit.  Each checkpoint
 row records the range, duration, git revision, and deterministic scientific
@@ -114,12 +116,15 @@ exact half-open range, chunk width, target set, criterion, and logical output
 directory; completed keys must form a canonical prefix, and smoke tests use a
 separate output directory.  This post-campaign safeguard does not retrofit the
 historical checkpoint, whose immutable release copy remains an audit gate.
-Because the host memory is not
-error-correcting, no result that matters rests on a single execution: every
-$50$ chunks an automatic cross-check re-verified a sample of primes with the
-  redundant scan paths and separate CPU checks (nine such cross-checks completed, all in full
-agreement; a tenth attempt timed out and was not counted --- the claim primes
-themselves were later re-verified separately, see Section~\ref{s:bounds}).
+Because the host memory is not error-correcting, the historical journal reports
+that every $50$ chunks an automatic cross-check re-verified a sample of primes
+with the redundant scan paths and separate CPU checks (nine completed in full
+agreement; a tenth attempt timed out and was not counted).  The raw outputs
+remain a release artifact, and these samples do not turn the
+single production campaign into a duplicated run.  Separate historical point
+checks later reported acceptance of the claim primes (Section~\ref{s:bounds}),
+while the complete checkpoint, chunk, and ordered-prime evidence remains
+subject to the release gates below.
 The registry binds every row to full Git commit and Git-blob identities.  The
 exact raw transition-test outputs and their hashes remain required release
 artifacts; the prose summary in Table~\ref{tab:scanner-revisions} is not a
@@ -133,8 +138,8 @@ scanner enumerates primes with a plain in-process sieve per chunk; chunks are
 contiguous by construction ($[\,\mathrm{lo}+2i\cdot10^{6}$,
 $\mathrm{lo}+2(i{+}1)\cdot10^{6}\,)$), and the checkpoint protocol resumes only
 at chunk boundaries, so interruptions can neither skip nor duplicate primes
-within the range. We verified coverage against a separately written segmented
-sieve with no shared code:
+within the range. We verified the retained aggregate coverage counts against a
+separately written segmented sieve with no shared code:
 over the $498$ chunks for which per-chunk histograms were logged (the histogram
 feature was added at an early restart, from $p=1.004\times10^{9}$ on), the
 campaign's per-chunk counts of primes in every congruence class $p\equiv1\pmod
@@ -169,9 +174,10 @@ inclusive upper endpoint, whereas the audit stream is half-open; every campaign
 boundary is an even integer greater than two, hence composite, so the two
 conventions enumerate exactly the same primes on all $515$ chunks.  The current
 scanner makes the half-open convention explicit.  In total the window
-$[9.7\times10^{8},2\times10^{9})$ contains $48\,823\,489$ primes, every one of
-which appears in the independent sieve; the campaign reports the corresponding
-per-class counts for every modulus $r\le9$ dividing $p-1$.  The independent
+$[9.7\times10^{8},2\times10^{9})$ contains $48\,823\,489$ primes in the
+independent sieve.  Across the retained $498$-chunk histograms and the aggregate
+17-chunk re-scan, the preserved outputs report corresponding per-class totals;
+full byte-level ordered-prime identity remains a release gate.  The independent
 sieve counts $1\,448\,736$ primes in
 $[9.7\times10^{8},10^{9})$, hence $47\,374\,753$ in
 $[10^{9},2\times10^{9})$.  This equals the externally published difference
@@ -179,13 +185,14 @@ $\pi(2\times10^{9})-\pi(10^{9})=98\,222\,287-50\,847\,534$ from Oliveira e
 Silva's table~\cite{OliveiraSilvaPi}; it checks the interval difference, not the
 two absolute values independently.
 
-The campaign ran for ten days and survived, without data loss, one disk-full
-incident caused by an unrelated job (clean stop at a chunk boundary, resume
-from checkpoint) and one forced reboot on a hung system process (checkpoint
-intact, resume at the next chunk). No inconsistency was detected by the deterministic chunk checksums, the
-duplicate executions, the periodic cross-checks, the checkpoint audit, and the
-independent coverage comparison; these checks hash summaries, not every byte
-of output, and we claim no more than what they test.
+The historical journal reports a ten-day campaign, a clean chunk-boundary stop
+and checkpoint resume after one disk-full incident caused by an unrelated job,
+and an intact checkpoint followed by resume after one forced reboot.  The
+available summaries, deterministic chunk checksums, periodic cross-checks, and
+aggregate coverage comparison report no inconsistency.  They do not yet prove
+the stronger phrase ``without data loss'': the release recovery must still
+substantiate checkpoint continuity, the chunk~7 reconstruction, and the raw
+artifact inventory.  These checks hash summaries, not every byte of output.
 Candidate direct Rabung champions detected during the scan were frozen and passed to the
 verification protocol of Section~\ref{s:bounds}; no bound was recorded from the
 scanning pass alone.

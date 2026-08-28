@@ -118,10 +118,10 @@ _VALIDATE_PASS_RE=re.compile(
 )
 _XCHECK_PASS_RE=re.compile(
     r"^XCHECK \[[0-9]+,[0-9]+\] [0-9]+ prem\. : [0-9]+ comp\. ; "
-    r"V2a/Jacobi vs CPU desaccords=0 -> ACCORD \(moteur campagne OK\) ; "
-    r"B7plein WARN=[0-9]+\s*$"
+    r"V2a/Jacobi vs CPU desaccords=0 -> ACCORD ; "
+    r"B7plein desaccords=0 -> ACCORD\s*$"
 )
-_NEGATIVE_VERDICT_RE=re.compile(r"\b(?:DIFF|FAIL|ECHEC)\b",re.IGNORECASE)
+_NEGATIVE_VERDICT_RE=re.compile(r"\b(?:DIFF|FAIL|ECHEC|WARN)\b",re.IGNORECASE)
 CAMPAIGN_TARGETS={
     (2,25),(2,26),(2,27),(2,28),
     (3,17),(3,18),(3,19),(3,20),(3,21),(3,22),(3,23),(3,24),(3,25),

@@ -13,10 +13,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
+import os
 import re
 import subprocess
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +33,30 @@ NEGATIVE_RE = re.compile(
     r"(?:\*\*DIFF\*\*|\bECHEC\b|\bFAIL\b|\bREJECT\b|\bINVALIDE\b)",
     re.IGNORECASE,
 )
+PROGRAMS = ("scan_gpu", "rabung_criterion", "verify_claim", "highp_witness")
+REQUIRED_SOURCE_PATHS = (
+    "audit/claim-manifest-v1.schema.json",
+    "audit/claims.json",
+    "scripts/capture_claim_evidence.py",
+    "src/scan_gpu.cu",
+    "tools/claim_audit.py",
+    "tools/highp_witness.c",
+    "tools/rabung_criterion.cpp",
+    "tools/verify_claim.cpp",
+)
+STAGE_TO_PROGRAM = {
+    "scan_gpu_verify1": "scan_gpu",
+    "rabung_criterion": "rabung_criterion",
+    "verify_claim": "verify_claim",
+    "highp_witness": "highp_witness",
+}
+COMPILER_NAMES = ("nvcc", "g++", "gcc")
+WITNESS_SAMPLES = 20000
+CANONICAL_SET_OUTPUTS = {
+    "json": "validated-claims.json",
+    "markdown": "validated-claims.md",
+    "tex": "validated-claims.tex",
+}
 
 
 class ClaimAuditError(ValueError):
@@ -39,6 +65,60 @@ class ClaimAuditError(ValueError):
 
 def fail(message: str) -> None:
     raise ClaimAuditError(message)
+
+
+def _no_duplicate_pairs(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            fail(f"duplicate JSON key {key!r}")
+        result[key] = value
+    return result
+
+
+def _reject_json_constant(value):
+    fail(f"non-finite JSON constant {value!r}")
+
+
+def _strict_json_float(value):
+    parsed = float(value)
+    if not math.isfinite(parsed):
+        fail(f"non-finite JSON number {value!r}")
+    return parsed
+
+
+def strict_json_loads(data, *, label="JSON"):
+    if isinstance(data, bytes):
+        if data.startswith(b"\xef\xbb\xbf"):
+            fail(f"{label}: UTF-8 BOM is forbidden")
+        try:
+            text = data.decode("utf-8", errors="strict")
+        except UnicodeDecodeError as exc:
+            fail(f"{label}: invalid UTF-8: {exc}")
+    elif isinstance(data, str):
+        text = data
+        if text.startswith("\ufeff"):
+            fail(f"{label}: UTF-8 BOM is forbidden")
+    else:
+        fail(f"{label}: expected bytes or text")
+    try:
+        return json.loads(
+            text,
+            object_pairs_hook=_no_duplicate_pairs,
+            parse_constant=_reject_json_constant,
+            parse_float=_strict_json_float,
+        )
+    except json.JSONDecodeError as exc:
+        fail(f"{label}: malformed JSON: {exc}")
+
+
+def load_strict_json(path, *, label="JSON"):
+    path = Path(path)
+    try:
+        data = path.read_bytes()
+    except OSError as exc:
+        fail(f"{label}: cannot read {path}: {exc}")
+    return strict_json_loads(data, label=label)
 
 
 def fnv1a64_le(values) -> int:
@@ -315,8 +395,15 @@ def parse_highp_witness(stdout, exit_code, claim, expected_maxrun):
 
 
 def load_claims(path=DEFAULT_CLAIMS):
-    with Path(path).open(encoding="utf-8") as handle:
-        document = json.load(handle)
+    document = load_strict_json(path, label="claims document")
+    if not isinstance(document, dict) or set(document) != {
+        "claims", "notation", "schema_version"
+    }:
+        fail("claims document keys differ from the canonical contract")
+    if document["schema_version"] != 1 or document["notation"] != (
+        "W(colors,length) > lower_bound"
+    ):
+        fail("claims document schema metadata is not canonical")
     claims = document.get("claims")
     if not isinstance(claims, list) or not claims:
         fail("claims document has no non-empty claims array")
@@ -330,11 +417,14 @@ def load_claims(path=DEFAULT_CLAIMS):
     return result
 
 
-def verify_artifact(reference, base_dir):
+def verify_artifact(reference, base_dir, *, expected_path=None):
     if not isinstance(reference, dict) or set(reference) != {"path", "sha256", "bytes"}:
         fail("artifact keys must be exactly path, sha256, bytes")
-    if not isinstance(reference["path"], str) or not reference["path"]:
-        fail("artifact path must be a non-empty string")
+    canonical_repository_path(reference["path"], "artifact")
+    if expected_path is not None and reference["path"] != expected_path:
+        fail(
+            f"artifact path {reference['path']!r} != canonical {expected_path!r}"
+        )
     if not SHA256_RE.fullmatch(str(reference["sha256"])):
         fail("artifact has malformed SHA-256")
     if (
@@ -343,8 +433,16 @@ def verify_artifact(reference, base_dir):
         or reference["bytes"] < 0
     ):
         fail("artifact byte count must be a non-negative integer")
-    base = Path(base_dir).resolve()
-    candidate = (base / str(reference["path"])).resolve()
+    base = Path(base_dir).resolve(strict=True)
+    raw_candidate = base / reference["path"]
+    current = base
+    for part in PurePosixPath(reference["path"]).parts:
+        current = current / part
+        if current.is_symlink():
+            fail(f"artifact traverses symbolic link: {reference['path']}")
+    if not raw_candidate.is_file():
+        fail(f"artifact is missing or not a regular file: {reference['path']}")
+    candidate = raw_candidate.resolve(strict=True)
     try:
         candidate.relative_to(base)
     except ValueError:
@@ -360,34 +458,95 @@ def verify_artifact(reference, base_dir):
     return data
 
 
-def validate_argv(stage, argv, claim):
-    if not isinstance(argv, list) or not argv or any(not isinstance(item, str) or not item for item in argv):
-        fail(f"{stage}: argv must be a non-empty array of non-empty strings")
+def preserved_binary_paths(commit):
+    if not isinstance(commit, str) or not re.fullmatch(r"[0-9a-f]{40}", commit):
+        fail("cannot derive preserved binary paths from malformed Git commit")
+    return {
+        program: f"results/claims/_build/{commit}/{program}"
+        for program in PROGRAMS
+    }
+
+
+def exact_compile_commands(build_rel):
+    canonical_repository_path(build_rel, "compile output directory")
+    return {
+        "scan_gpu": [
+            "nvcc", "-O3", "-std=c++17", "-lineinfo", "-Xptxas=-v",
+            "-gencode", "arch=compute_120,code=sm_120",
+            "-gencode", "arch=compute_120,code=compute_120",
+            "src/scan_gpu.cu", "-o", f"{build_rel}/scan_gpu",
+        ],
+        "rabung_criterion": [
+            "g++", "-O2", "-std=c++17", "tools/rabung_criterion.cpp",
+            "-o", f"{build_rel}/rabung_criterion",
+        ],
+        "verify_claim": [
+            "g++", "-O2", "-std=c++17", "tools/verify_claim.cpp",
+            "-o", f"{build_rel}/verify_claim",
+        ],
+        "highp_witness": [
+            "gcc", "-O2", "-std=c17", "-Wall", "-Wextra", "-Werror",
+            "tools/highp_witness.c", "-o", f"{build_rel}/highp_witness",
+        ],
+    }
+
+
+def canonical_repository_path(raw_path, label):
+    if not isinstance(raw_path, str) or not raw_path:
+        fail(f"{label}: path must be a non-empty string")
+    relative = PurePosixPath(raw_path)
+    if (
+        relative.is_absolute()
+        or ".." in relative.parts
+        or "." in relative.parts
+        or relative.as_posix() != raw_path
+    ):
+        fail(f"{label}: path must be canonical and repository-relative")
+    return raw_path
+
+
+def expected_run_sequence(claim):
+    sequence = [
+        ("scan_gpu_verify1", 1),
+        ("scan_gpu_verify1", 2),
+        ("rabung_criterion", 1),
+        ("rabung_criterion", 2),
+        ("verify_claim", 1),
+    ]
+    if claim.get("requires_montgomery_free_witness"):
+        sequence.append(("highp_witness", 1))
+    return sequence
+
+
+def frozen_argv_suffix(stage, claim):
     p, r, k, _ = claim_numbers(claim)
-    expected = {
+    return {
         "scan_gpu_verify1": ["--verify1", str(p), str(k), str(r)],
         "rabung_criterion": ["-q", str(p), str(r), str(k)],
         "verify_claim": [str(p), str(r), str(k)],
-    }
-    if stage in expected:
-        suffix = expected[stage]
-        if len(argv) != len(suffix) + 1 or argv[1:] != suffix:
-            fail(f"{stage}: argv does not identify the expected claim")
-    else:
-        if len(argv) not in (2, 3) or argv[1] != str(p):
-            fail("highp_witness: argv does not identify the expected prime")
-        if len(argv) == 3 and (not argv[2].isdigit() or int(argv[2]) <= 0):
-            fail("highp_witness: invalid sample count")
+        "highp_witness": [str(p), str(WITNESS_SAMPLES)],
+    }[stage]
+
+
+def validate_argv(stage, argv, claim, binary_path):
+    if not isinstance(argv, list) or not argv or any(not isinstance(item, str) or not item for item in argv):
+        fail(f"{stage}: argv must be a non-empty array of non-empty strings")
+    expected = [binary_path, *frozen_argv_suffix(stage, claim)]
+    if argv != expected:
+        fail(f"{stage}: argv must be exactly {expected}")
 
 
 def safe_repository_path(root, raw_path, label):
-    if not isinstance(raw_path, str) or not raw_path:
-        fail(f"{label}: path must be a non-empty string")
-    relative = Path(raw_path)
-    if relative.is_absolute() or ".." in relative.parts or relative.as_posix() != raw_path:
-        fail(f"{label}: path must be canonical and repository-relative")
-    root = Path(root).resolve()
-    candidate = (root / relative).resolve()
+    canonical_repository_path(raw_path, label)
+    relative = PurePosixPath(raw_path)
+    root = Path(root).resolve(strict=True)
+    raw_candidate = root / Path(*relative.parts)
+    current = root
+    for part in relative.parts:
+        current = current / part
+        if current.is_symlink():
+            fail(f"{label}: path traverses symbolic link")
+    candidate = raw_candidate.resolve()
     try:
         candidate.relative_to(root)
     except ValueError:
@@ -445,12 +604,75 @@ def verify_build_artifacts(build, repository_root):
 
     for path, expected in build["binaries_sha256"].items():
         candidate = safe_repository_path(root, path, "binary hash")
+        if (
+            not candidate.is_file()
+            or candidate.is_symlink()
+            or not os.access(candidate, os.X_OK)
+        ):
+            fail(f"declared binary is missing, symlinked, or non-executable: {path}")
         try:
             binary = candidate.read_bytes()
         except OSError as exc:
             fail(f"cannot read declared binary {path}: {exc}")
         if sha256_bytes(binary) != expected:
             fail(f"preserved binary SHA-256 mismatch: {path}")
+
+
+def validate_compiler_versions(versions):
+    if not isinstance(versions, dict) or set(versions) != set(COMPILER_NAMES):
+        fail(f"compiler versions must describe exactly {list(COMPILER_NAMES)}")
+    for name in COMPILER_NAMES:
+        encoded = versions[name]
+        if not isinstance(encoded, str) or not encoded:
+            fail(f"compiler identity is missing: {name}")
+        identity = strict_json_loads(encoded, label=f"compiler identity {name}")
+        expected_keys = {"command", "resolved_path", "sha256", "version"}
+        if not isinstance(identity, dict) or set(identity) != expected_keys:
+            fail(f"compiler identity keys differ: {name}")
+        if identity["command"] != name:
+            fail(f"compiler identity command differs: {name}")
+        if (
+            not isinstance(identity["resolved_path"], str)
+            or not identity["resolved_path"]
+            or not Path(identity["resolved_path"]).is_absolute()
+        ):
+            fail(f"compiler resolved path is not absolute: {name}")
+        if not isinstance(identity["sha256"], str) or not SHA256_RE.fullmatch(
+            identity["sha256"]
+        ):
+            fail(f"compiler SHA-256 is malformed: {name}")
+        if not isinstance(identity["version"], str) or not identity["version"]:
+            fail(f"compiler version is missing: {name}")
+
+
+def validate_compile_commands(commands, binary_paths):
+    expected_keys = set(binary_paths.values())
+    if not isinstance(commands, dict) or set(commands) != expected_keys:
+        fail("compile-command keys must equal the exact preserved binary set")
+    for program, binary_path in binary_paths.items():
+        command = commands[binary_path]
+        if (
+            not isinstance(command, list)
+            or not command
+            or any(not isinstance(token, str) or not token for token in command)
+        ):
+            fail(f"compile command is malformed: {program}")
+        if len(command) < 3 or command[-2] != "-o":
+            fail(f"compile command has no canonical output: {program}")
+        output_path = canonical_repository_path(
+            command[-1], f"compile output {program}"
+        )
+        output = PurePosixPath(output_path)
+        if (
+            len(output.parts) < 2
+            or output.parts[0] != "build"
+            or output.name != program
+        ):
+            fail(f"compile output is not canonical build evidence: {program}")
+        build_rel = output.parent.as_posix()
+        expected_command = exact_compile_commands(build_rel)[program]
+        if command != expected_command:
+            fail(f"compile command differs from the frozen argv: {program}")
 
 
 def validate_manifest(manifest, manifest_dir, expected_claim, repository_root=None):
@@ -472,36 +694,20 @@ def validate_manifest(manifest, manifest_dir, expected_claim, repository_root=No
         fail("build metadata is incomplete or the worktree was not clean")
     if not re.fullmatch(r"[0-9a-f]{40}", str(build["git_commit"])):
         fail("build git_commit must be a full lowercase SHA-1")
+    if not isinstance(build["sources_sha256"], dict) or set(
+        build["sources_sha256"]
+    ) != set(REQUIRED_SOURCE_PATHS):
+        fail("source hash map must contain exactly the frozen protocol sources")
+    binary_paths = preserved_binary_paths(build["git_commit"])
+    if not isinstance(build["binaries_sha256"], dict) or set(
+        build["binaries_sha256"]
+    ) != set(binary_paths.values()):
+        fail("binary hash map must contain exactly the four preserved binaries")
     for collection in (build["sources_sha256"], build["binaries_sha256"]):
-        if not isinstance(collection, dict) or not collection:
-            fail("source and binary hash maps must be non-empty")
-        if any(not isinstance(key, str) or not key for key in collection):
-            fail("source and binary hash names must be non-empty strings")
         if any(not SHA256_RE.fullmatch(str(value)) for value in collection.values()):
             fail("malformed source or binary SHA-256")
-    if not isinstance(build["compile_commands"], dict) or not build["compile_commands"]:
-        fail("compile commands are missing")
-    if any(
-        not isinstance(key, str)
-        or not key
-        or not isinstance(command, list)
-        or not command
-        or any(not isinstance(item, str) or not item for item in command)
-        for key, command in build["compile_commands"].items()
-    ):
-        fail("compile commands must be non-empty argv arrays")
-    if not isinstance(build["compiler_versions"], dict) or not build["compiler_versions"]:
-        fail("compiler versions are missing")
-    if any(
-        not isinstance(key, str)
-        or not key
-        or not isinstance(version, str)
-        or not version
-        for key, version in build["compiler_versions"].items()
-    ):
-        fail("compiler versions must be non-empty strings")
-    if set(build["compile_commands"]) != set(build["binaries_sha256"]):
-        fail("compile-command keys must equal declared binary paths")
+    validate_compile_commands(build["compile_commands"], binary_paths)
+    validate_compiler_versions(build["compiler_versions"])
     if repository_root is not None:
         verify_build_artifacts(build, repository_root)
 
@@ -512,7 +718,12 @@ def validate_manifest(manifest, manifest_dir, expected_claim, repository_root=No
     verify_maxrun = None
     attempts_by_stage = {}
     artifact_paths = set()
-    for run in runs:
+    expected_sequence = expected_run_sequence(expected_claim)
+    if len(runs) != len(expected_sequence):
+        fail(
+            f"manifest must contain exactly {len(expected_sequence)} canonical runs"
+        )
+    for ordinal, run in enumerate(runs, start=1):
         required_run = {"stage", "attempt", "argv", "exit_code", "stdout", "stderr", "parsed"}
         if not isinstance(run, dict) or set(run) != required_run:
             fail("run keys differ from the v1 contract")
@@ -528,14 +739,27 @@ def validate_manifest(manifest, manifest_dir, expected_claim, repository_root=No
         if run["attempt"] in attempts_by_stage.setdefault(stage, set()):
             fail(f"{stage}: duplicate attempt {run['attempt']}")
         attempts_by_stage[stage].add(run["attempt"])
-        validate_argv(stage, run["argv"], expected_claim)
+        if (stage, run["attempt"]) != expected_sequence[ordinal - 1]:
+            fail(
+                f"run {ordinal}: expected {expected_sequence[ordinal - 1]}, "
+                f"got {(stage, run['attempt'])}"
+            )
+        program = STAGE_TO_PROGRAM[stage]
+        validate_argv(
+            stage, run["argv"], expected_claim, binary_paths[program]
+        )
         for stream in ("stdout", "stderr"):
             artifact_path = run[stream].get("path") if isinstance(run[stream], dict) else None
             if artifact_path in artifact_paths:
                 fail(f"raw artifact reused by multiple runs: {artifact_path!r}")
             artifact_paths.add(artifact_path)
-        stdout = verify_artifact(run["stdout"], manifest_dir)
-        stderr = verify_artifact(run["stderr"], manifest_dir)
+        stem = f"run-{ordinal:02d}-{stage}-attempt-{run['attempt']}"
+        stdout = verify_artifact(
+            run["stdout"], manifest_dir, expected_path=f"{stem}.stdout"
+        )
+        stderr = verify_artifact(
+            run["stderr"], manifest_dir, expected_path=f"{stem}.stderr"
+        )
         require_no_negative(decode_output(stderr), f"{stage} stderr")
         if stage == "scan_gpu_verify1":
             parsed = parse_verify1(stdout, run["exit_code"], expected_claim)
@@ -554,10 +778,16 @@ def validate_manifest(manifest, manifest_dir, expected_claim, repository_root=No
             fail(f"stored parsed result differs from raw output for {stage}")
         parsed_by_stage.setdefault(stage, []).append(parsed)
 
-    minimums = {"scan_gpu_verify1": 2, "rabung_criterion": 2, "verify_claim": 1}
-    for stage, minimum in minimums.items():
-        if len(parsed_by_stage.get(stage, [])) < minimum:
-            fail(f"manifest has fewer than {minimum} {stage} runs")
+    exact_counts = {"scan_gpu_verify1": 2, "rabung_criterion": 2, "verify_claim": 1}
+    if expected_claim.get("requires_montgomery_free_witness"):
+        exact_counts["highp_witness"] = 1
+    for stage, count in exact_counts.items():
+        if len(parsed_by_stage.get(stage, [])) != count:
+            fail(f"manifest must contain exactly {count} {stage} runs")
+    if not expected_claim.get("requires_montgomery_free_witness") and parsed_by_stage.get(
+        "highp_witness"
+    ):
+        fail("manifest contains an unrequired Montgomery-free witness")
     for stage, attempts in attempts_by_stage.items():
         if attempts != set(range(1, len(attempts) + 1)):
             fail(f"{stage}: attempts must be contiguous from 1")
@@ -602,8 +832,10 @@ def validate_manifest(manifest, manifest_dir, expected_claim, repository_root=No
 
 def load_and_validate_manifest(path, claims, repository_root=None):
     path = Path(path)
+    if path.is_symlink() or not path.is_file():
+        fail(f"manifest is missing, symlinked, or not a regular file: {path}")
     data = path.read_bytes()
-    manifest = json.loads(data)
+    manifest = strict_json_loads(data, label=f"claim manifest {path}")
     if not isinstance(manifest, dict):
         fail("manifest JSON must be an object")
     claim_id = manifest.get("claim", {}).get("id")
@@ -690,30 +922,235 @@ def tex_escape(value):
     return "".join(replacements.get(char, char) for char in text).replace("\n", " ")
 
 
+CLAIM_ID_RE = re.compile(r"w(?P<colors>[0-9]+)_k(?P<length>[0-9]+)_p(?P<prime>[0-9]+)")
+CLAIM_TEXT_RE = re.compile(
+    r"W\((?P<colors>[0-9]+),(?P<length>[0-9]+)\) > (?P<bound>[0-9]+)"
+)
+
+
+def tex_group_integer(value):
+    digits = str(value)
+    if not re.fullmatch(r"[0-9]+", digits):
+        fail(f"cannot render non-integer value in claim table: {value!r}")
+    groups = []
+    while digits:
+        groups.append(digits[-3:])
+        digits = digits[:-3]
+    return r"\,".join(reversed(groups))
+
+
+def tex_breakable_digest(value):
+    digest = str(value)
+    if not re.fullmatch(r"[0-9a-f]+", digest):
+        fail(f"cannot render malformed digest in claim table: {value!r}")
+    chunks = [digest[offset : offset + 8] for offset in range(0, len(digest), 8)]
+    return r"\texttt{" + r"\allowbreak{}".join(chunks) + "}"
+
+
+def tex_claim_certificate(row):
+    claim_id = str(row.get("claim_id", ""))
+    claim = str(row.get("claim", ""))
+    identity = CLAIM_ID_RE.fullmatch(claim_id)
+    inequality = CLAIM_TEXT_RE.fullmatch(claim)
+    if identity is None or inequality is None:
+        fail(f"cannot render malformed claim identity {claim_id!r} / {claim!r}")
+    for field in ("colors", "length"):
+        if identity.group(field) != inequality.group(field):
+            fail(f"claim id and inequality disagree on {field}: {claim_id!r}")
+    return (
+        r"\(\begin{aligned}"
+        f"W({identity.group('colors')},{identity.group('length')})&>"
+        f"{tex_group_integer(inequality.group('bound'))}"
+        r"\\ p&="
+        f"{tex_group_integer(identity.group('prime'))}"
+        r"\end{aligned}\)"
+    )
+
+
+def tex_provenance(row):
+    origin = str(row.get("provenance", "")).split(" — ", 1)[0]
+    labels = {
+        "this_scan": "this scan",
+        "monroe_phase2_archive": "Monroe phase-2 archive; verification here",
+        "monroe_phase2_archive_and_this_scan": (
+            "Monroe phase-2 archive; rediscovery and verification here"
+        ),
+    }
+    return tex_escape(labels.get(origin, origin))
+
+
+def tex_compact_status(value, *, internal_repeats=False):
+    text = str(value)
+    if text == "not required":
+        return r"\emph{not required}"
+    match = re.fullmatch(
+        r"PASS \(([0-9]+) outputs(?: x ([0-9]+) repeats)?\)", text
+    )
+    if match is None:
+        fail(f"cannot render malformed status in claim table: {value!r}")
+    outputs, repeats = match.groups()
+    if internal_repeats:
+        if repeats is None:
+            fail(f"status lacks internal repeat count: {value!r}")
+        return (
+            rf"\textbf{{PASS}}: {outputs} captures $\times$ {repeats} "
+            r"internal repeats"
+        )
+    if repeats is not None:
+        fail(f"unexpected internal repeat count: {value!r}")
+    return rf"\textbf{{PASS}} ({outputs})"
+
+
 def render_tex(document):
-    columns = "l" * len(TABLE_FIELDS)
-    header = " & ".join(tex_escape(name) for name, _ in TABLE_FIELDS) + r" \\"
-    lines = [r"\begin{tabular}{" + columns + "}", header, r"\hline"]
+    lines = [
+        r"\begingroup",
+        r"\footnotesize",
+        r"\setlength{\tabcolsep}{3pt}",
+        r"\renewcommand{\arraystretch}{1.12}",
+        r"\begin{longtable}{@{}P{0.23\linewidth}P{0.18\linewidth}P{0.26\linewidth}P{0.27\linewidth}@{}}",
+        (
+            r"\caption{Canonical fail-closed audit view of the thirteen accepted "
+            r"direct claims. The GPU column records the two captured structured "
+            r"checks; the independent column records the separate CPU criterion, "
+            r"stand-alone verifier, and Montgomery-free witness when required. "
+            r"Each claim is followed by its full claim, profile, and manifest "
+            r"identities. The JSON and Markdown views retain the full commands, "
+            r"artifacts, and provenance.}\label{tab:validated-claims}\\"
+        ),
+        r"\toprule",
+        r"Claim and certificate & Provenance & GPU triplet & Independent checks \\",
+        r"\midrule",
+        r"\endfirsthead",
+        r"\multicolumn{4}{@{}l}{\footnotesize Table~\thetable\ continued}\\",
+        r"\toprule",
+        r"Claim and certificate & Provenance & GPU triplet & Independent checks \\",
+        r"\midrule",
+        r"\endhead",
+        r"\midrule",
+        r"\multicolumn{4}{r@{}}{\footnotesize Continued on next page}\\",
+        r"\endfoot",
+        r"\bottomrule",
+        r"\endlastfoot",
+    ]
     for row in document["claims"]:
-        lines.append(" & ".join(tex_escape(row[key]) for _, key in TABLE_FIELDS) + r" \\")
-    lines.append(r"\end{tabular}")
+        gpu_statuses = {row["v2a"], row["b7"], row["cpu_walk"]}
+        if len(gpu_statuses) != 1:
+            fail(f"claim {row['claim_id']}: GPU triplet statuses disagree")
+        gpu = (
+            r"\texttt{V2a}, \texttt{B7}, and CPU walk\newline "
+            + tex_compact_status(row["v2a"], internal_repeats=True)
+        )
+        independent = r"\newline ".join(
+            (
+                r"criterion: " + tex_compact_status(row["cpu_criterion"]),
+                r"stand-alone verifier: " + tex_compact_status(row["verify_claim"]),
+                r"Montgomery-free: "
+                + tex_compact_status(row["no_montgomery_witness"]),
+            )
+        )
+        identity = r"\quad ".join(
+            (
+                r"claim " + tex_breakable_digest(row["claim_digest"]),
+                r"profile " + tex_breakable_digest(row["profile_digest"]),
+            )
+        ) + (
+            r"\newline manifest SHA-256 "
+            + tex_breakable_digest(row["manifest_sha256"])
+        )
+        lines.append(f"% claim-id: {row['claim_id']}")
+        lines.append(
+            " & ".join(
+                (
+                    tex_claim_certificate(row),
+                    tex_provenance(row),
+                    gpu,
+                    independent,
+                )
+            )
+            + r" \\"
+        )
+        lines.append(
+            r"\multicolumn{4}{@{}P{0.93\linewidth}@{}}{\scriptsize "
+            r"\textit{Evidence identity:} "
+            + identity
+            + r"} \\"
+        )
+        lines.append(r"\addlinespace[4pt]")
+    lines.extend((r"\end{longtable}", r"\endgroup"))
     return "\n".join(lines) + "\n"
+
+
+def set_output_payloads(document):
+    return {
+        "json": json.dumps(
+            document, sort_keys=True, indent=2, allow_nan=False
+        ) + "\n",
+        "markdown": render_markdown(document),
+        "tex": render_tex(document),
+    }
 
 
 def write_set_outputs(document, output_json=None, output_md=None, output_tex=None):
     outputs = []
+    rendered = set_output_payloads(document)
     payloads = (
-        (output_json, json.dumps(document, sort_keys=True, indent=2) + "\n"),
-        (output_md, render_markdown(document)),
-        (output_tex, render_tex(document)),
+        (output_json, rendered["json"]),
+        (output_md, rendered["markdown"]),
+        (output_tex, rendered["tex"]),
     )
     for path, payload in payloads:
         if path is None:
             continue
         path = Path(path)
-        path.write_text(payload, encoding="utf-8")
+        temporary = path.with_name(path.name + ".tmp")
+        if temporary.exists() or temporary.is_symlink():
+            fail(f"set-output temporary path already exists: {temporary}")
+        try:
+            temporary.write_text(payload, encoding="utf-8")
+            os.replace(temporary, path)
+        finally:
+            if temporary.exists():
+                temporary.unlink()
         outputs.append(str(path))
     return outputs
+
+
+def canonical_set_output_paths(directory):
+    directory = Path(directory)
+    return {
+        kind: directory / filename
+        for kind, filename in CANONICAL_SET_OUTPUTS.items()
+    }
+
+
+def write_canonical_set_outputs(document, directory):
+    paths = canonical_set_output_paths(directory)
+    if any(path.exists() or path.is_symlink() for path in paths.values()):
+        fail("canonical validated-claim outputs already exist")
+    outputs = write_set_outputs(
+        document,
+        paths["json"],
+        paths["markdown"],
+        paths["tex"],
+    )
+    verify_canonical_set_outputs(document, directory)
+    return outputs
+
+
+def verify_canonical_set_outputs(document, directory):
+    paths = canonical_set_output_paths(directory)
+    payloads = set_output_payloads(document)
+    for kind, path in paths.items():
+        if path.is_symlink() or not path.is_file():
+            fail(f"canonical {kind} claim table is missing or symlinked: {path}")
+        try:
+            data = path.read_bytes()
+        except OSError as exc:
+            fail(f"cannot read canonical {kind} claim table: {exc}")
+        expected = payloads[kind].encode("utf-8")
+        if data != expected:
+            fail(f"canonical {kind} claim table differs byte-for-byte")
+    return [str(paths[kind]) for kind in ("json", "markdown", "tex")]
 
 
 def command_parse(args, claims):
@@ -781,6 +1218,9 @@ def main(argv=None):
                 for path in paths
             ]
             document = build_set_document(results, claims)
+            canonical_outputs = verify_canonical_set_outputs(
+                document, args.directory
+            )
             outputs = write_set_outputs(
                 document, args.output_json, args.output_md, args.output_tex
             )
@@ -788,6 +1228,7 @@ def main(argv=None):
                 "verdict": "ACCEPT",
                 "claim_count": document["claim_count"],
                 "claims": [row["claim_id"] for row in document["claims"]],
+                "canonical_outputs": canonical_outputs,
                 "outputs": outputs,
             }, indent=2))
         return 0

@@ -25,6 +25,7 @@ class SourceImportTest(unittest.TestCase):
         (self.root / "publication").mkdir()
         (self.root / "src").mkdir()
         self.manifest = self.root / "publication" / "source-import.json"
+        self.scope = self.root / "publication" / "scope.json"
         self.bootstrap = base / "bootstrap.json"
 
         self.imported_bytes = b"exact source bytes\n"
@@ -32,6 +33,25 @@ class SourceImportTest(unittest.TestCase):
         (self.root / "src" / "imported.txt").write_bytes(self.imported_bytes)
         (self.root / "src" / "derived.txt").write_bytes(b"after adaptation\n")
         (self.root / "new.txt").write_bytes(b"created for publication\n")
+        self.scope_value = {
+            "allowed_paths": sorted(
+                [
+                    "new.txt",
+                    "publication/scope.json",
+                    "publication/source-import.json",
+                    "src/derived.txt",
+                    "src/imported.txt",
+                ]
+            ),
+            "excluded_topics": ["unrelated fixture work"],
+            "forbidden_exact_paths": ["private-note.txt"],
+            "forbidden_name_fragments": [".pyc"],
+            "forbidden_prefixes": ["private/"],
+            "included_scientific_scope": "source-import fixture",
+            "schema": MODULE.SCOPE_SCHEMA,
+            "source_policy": "explicit_allowlist",
+        }
+        self.write_scope()
         self.bootstrap_value = {
             "schema": MODULE.BOOTSTRAP_SCHEMA,
             "source": dict(MODULE.SOURCE),
@@ -56,6 +76,19 @@ class SourceImportTest(unittest.TestCase):
             encoding="utf-8",
         )
 
+    def write_scope(self):
+        self.scope.write_text(
+            json.dumps(self.scope_value, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
+    def approve_path(self, path: str):
+        self.scope_value["allowed_paths"].append(path)
+        self.scope_value["allowed_paths"] = sorted(
+            set(self.scope_value["allowed_paths"])
+        )
+        self.write_scope()
+
     def build(self):
         return MODULE.write_manifest(self.root, self.bootstrap, self.manifest)
 
@@ -75,16 +108,31 @@ class SourceImportTest(unittest.TestCase):
         )
         self.assertEqual(MODULE.check_manifest(self.root, self.manifest, self.bootstrap), value)
 
-    def test_target_tampering_and_unrecorded_file_are_rejected(self):
+    def test_target_tampering_and_unapproved_innocent_file_are_rejected(self):
         self.build()
         (self.root / "src" / "imported.txt").write_bytes(b"tampered\n")
         with self.assertRaisesRegex(MODULE.SourceImportError, "mismatch"):
             MODULE.check_manifest(self.root, self.manifest)
 
         self.build()
-        (self.root / "unrecorded.txt").write_bytes(b"not in the manifest\n")
-        with self.assertRaisesRegex(MODULE.SourceImportError, "coverage mismatch"):
-            MODULE.check_manifest(self.root, self.manifest)
+        (self.root / "meeting-notes.txt").write_bytes(b"innocently named but unapproved\n")
+        for operation in (
+            lambda: MODULE.check_manifest(self.root, self.manifest),
+            self.build,
+        ):
+            with self.subTest(operation=operation.__name__), self.assertRaisesRegex(
+                MODULE.SourceImportError,
+                r"scope allowlist mismatch; unapproved=\['meeting-notes.txt'\]",
+            ):
+                operation()
+
+    def test_stale_allowlist_decision_is_rejected(self):
+        self.approve_path("approved-but-missing.txt")
+        with self.assertRaisesRegex(
+            MODULE.SourceImportError,
+            r"stale=\['approved-but-missing.txt'\]",
+        ):
+            self.build()
 
     def test_bootstrap_pin_and_source_identity_are_never_inferred(self):
         bad_pin = copy.deepcopy(self.bootstrap_value)
@@ -119,6 +167,28 @@ class SourceImportTest(unittest.TestCase):
             "d670460b4b4aece5915caf5c68d12f560a9fe3e4",
         )
         self.assertEqual(MODULE.byte_identity(data)["sha256"], hashlib.sha256(data).hexdigest())
+
+    def test_release_checksum_manifest_is_the_only_fixed_file_exclusion(self):
+        (self.root / "MANIFEST.sha256").write_text(
+            "release checksum file may hash source-import.json\n", encoding="utf-8"
+        )
+        self.approve_path("MANIFEST.sha256")
+        value = self.build()
+        self.assertEqual(
+            value["inventory"]["excluded_paths"],
+            ["MANIFEST.sha256", "publication/source-import.json"],
+        )
+        self.assertNotIn(
+            "MANIFEST.sha256", {record["path"] for record in value["files"]}
+        )
+        self.assertEqual(MODULE.check_manifest(self.root, self.manifest, self.bootstrap), value)
+
+        (self.root / "release-extra.txt").write_text(
+            "must remain inventoried\n", encoding="utf-8"
+        )
+        self.approve_path("release-extra.txt")
+        with self.assertRaisesRegex(MODULE.SourceImportError, "coverage mismatch"):
+            MODULE.check_manifest(self.root, self.manifest)
 
 
 if __name__ == "__main__":

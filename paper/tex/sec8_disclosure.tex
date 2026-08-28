@@ -1,19 +1,26 @@
 \section*{AI contribution statement}\label{s:ai}
 \addcontentsline{toc}{section}{AI contribution statement}
 
-The research reported here was carried out in collaboration with AI systems
-(Anthropic's Claude, models \texttt{claude-fable-5} and \texttt{claude-opus-4-8}),
-which contributed at a level well beyond copy-editing. Following the practice now
+The research reported here was carried out in collaboration with AI systems:
+Anthropic's Claude (models \texttt{claude-fable-5} and
+\texttt{claude-opus-4-8}) and OpenAI Codex in ChatGPT Work.  These systems
+contributed at a level well beyond copy-editing. Following the practice now
 emerging in this literature, we state precisely what the models did, what the
 author did, and---most importantly---how the results can be checked without
 trusting either.
 
 \paragraph{What the AI systems did.}
-Under the author's direction, the models wrote the GPU scanning engine
+Under the author's direction, the Claude models wrote the GPU scanning engine
 (\texttt{scan\_gpu.cu}) and the independent verifiers, designed and executed the
 campaign of Section~\ref{s:campaign}, carried out the statistical analysis of
 Section~\ref{s:density}, and produced the first draft of this paper. They also
-performed the pre-announcement literature scan discussed below.
+performed the pre-announcement literature scan discussed below.  During the
+publication-finalization phase, OpenAI Codex developed and hardened parts of
+the reproducibility package and its release contracts, wrote tests and
+operator/recovery tooling, ran CPU-only checks, audited provenance and internal
+consistency, and proposed or drafted the corresponding manuscript revisions.
+It did not operate the historical campaign PC, execute the missing GPU release
+qualification, or supply external-replication evidence.
 
 \paragraph{What the author did.}
 The author conceived the project and set its scope; made every decision about
@@ -46,13 +53,17 @@ max-run profile.
 Section~\ref{s:density} were committed to the repository before the corresponding
 data existed, and read at four fixed cumulative checkpoints
 (Section~\ref{s:prereg}).  These readings form one correlated trajectory, not
-four replications; their commit hashes are in the repository history.
+four replications.  Full commit identifiers and derived public records are
+preserved in the audit registry; the underlying commits belong to the source
+repository history and are not asserted to be objects in this export's Git
+database.
 \item \emph{Novelty, not just correctness.} Because literature-search errors can
 invalidate novelty claims, we audited priority separately rather than assuming
 it. Our pre-announcement scan located an unpublished
 two-colour computation that had gone further than ours for $r=2$; rather than
-claim those bounds, we verified its primes with our own certificate machinery and
-credit them to their author (Section~\ref{s:bounds}). Every bibliographic
+claim those primes, we credit them to their author and report that our historical
+certificate runs rechecked them; final release manifests remain required
+(Section~\ref{s:bounds}). Every bibliographic
 reference in the release bibliography is restricted to an entry actually cited
 by this paper.  Each locator is checked against a publisher record or the
 primary document, and a machine-readable public qualification report records

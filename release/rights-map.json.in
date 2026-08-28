@@ -1,0 +1,22 @@
+{
+  "schema": "vdw-release-rights/v1",
+  "components": {
+    "code": {
+      "license_id": "@@CODE_LICENSE_ID@@",
+      "license_file": "@@CODE_LICENSE_FILE@@"
+    },
+    "paper_pdf": {
+      "license_id": "@@PAPER_PDF_LICENSE_ID@@",
+      "license_file": "@@PAPER_PDF_LICENSE_FILE@@"
+    },
+    "data": {
+      "license_id": "@@DATA_LICENSE_ID@@",
+      "license_file": "@@DATA_LICENSE_FILE@@"
+    }
+  },
+  "third_party": {
+    "redistributed": false,
+    "policy": "not_redistributed",
+    "notice_file": "THIRD_PARTY_NOTICES.md"
+  }
+}

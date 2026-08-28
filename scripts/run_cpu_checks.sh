@@ -44,6 +44,7 @@ printf '[cpu] strict JSON and generated-artifact checks\n'
 "$CPU_PYTHON" tools/close_baselines.py --check
 "$CPU_PYTHON" tools/density_holdout_audit.py --check
 "$CPU_PYTHON" tools/rescan17_audit.py --check
+"$CPU_PYTHON" tools/filter_bstar.py --check
 "$CPU_PYTHON" tools/render_scanner_revisions.py --check
 
 printf '[cpu] Python unit tests\n'

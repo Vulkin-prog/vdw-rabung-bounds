@@ -1,0 +1,16 @@
+=== T1.1 : equivalence critere de Rabung (1979) <-> oracle ===
+Domaine principal : p < 10000 premiers, r in [2,6], k in [3,8], p > k, p ≡ 1 (mod r).
+
+[KA] Reponses connues :
+  p=37 (r=4,k=3) W(4,3)=76, cert 75               crit=1 (a=1 b=1 theta(-1)=-1 maxrun=2 m_b=-1) oracle=1  L=(k-1)p+1=75
+  p=11 (r=2,k=4) W(2,4)=35, cert 34               crit=1 (a=1 b=1 theta(-1)=-1 maxrun=3 m_b=-1) oracle=1  L=(k-1)p+1=34
+  p=5 (r=2,k=3) singleton de (b) correctement rejete crit=0 (a=1 b=0 theta(-1)=+1 maxrun=2 m_b=1) oracle=0  L=(k-1)p+1=11
+
+[FORT] Enumeration complete des coloriages libres (p<150, r<=4, k<=5) :
+  -> 190 cas testes, 0 incoherence(s) fortes.
+
+[SWEEP] critere vs oracle (coloriage libre canonique non-constant) :
+
+  -> 20170 (p,r,k) testes ; 4499 valides selon critere ; 0 MISMATCH(es).
+
+=== EQUIVALENCE PROUVEE sur le domaine (0 mismatch) : Q0 = proven ===

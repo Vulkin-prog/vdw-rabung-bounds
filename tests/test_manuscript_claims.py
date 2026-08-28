@@ -36,6 +36,17 @@ class ManuscriptClaimRegressionTest(unittest.TestCase):
         self.assertIn(r"\input{generated_bounds_table}", bounds)
         self.assertNotIn(r"41\,999\,998\,468", bounds)
 
+    def test_validated_claim_table_is_optional_and_copied_by_builder(self):
+        bounds = (TEX / "sec4_bounds.tex").read_text(encoding="utf-8")
+        self.assertIn(r"\IfFileExists{generated_validated_claims.tex}", bounds)
+        self.assertIn(r"\input{generated_validated_claims}", bounds)
+        self.assertIn("Validated-claim table unavailable in this build", bounds)
+        self.assertNotIn("Pending validated-claim table", bounds)
+        self.assertNotIn("staging build", bounds)
+        builder = (ROOT / "scripts" / "build_paper.sh").read_text(encoding="utf-8")
+        self.assertIn("results/claims/validated-claims.tex", builder)
+        self.assertIn('"$build_dir/tex/generated_validated_claims.tex"', builder)
+
 
 if __name__ == "__main__":
     unittest.main()

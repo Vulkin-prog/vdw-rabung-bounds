@@ -5,7 +5,9 @@
   "cited_keys": [
     "FoxHunter2026",
     "Monroe2026",
+    "MonroeCodeTally",
     "MonroePage",
+    "MonroePhase2Archive",
     "OliveiraSilvaPi",
     "SorensonWebster2017",
     "bct2018",
@@ -74,6 +76,23 @@
       "immutable_url": "https://github.com/daniel-monroe/daniel-monroe.github.io/blob/825778cca5e669cbf60140e35170113603010076/projects.html",
       "immutable_commit": "825778cca5e669cbf60140e35170113603010076",
       "observed_html_sha256": "9ac30412b14f1e7f9f890fdb0d53cafc9e1ab5591fe10c59b71bcb7f53b5a23c",
+      "redistributed": false
+    },
+    {
+      "key": "MonroeCodeTally",
+      "status": "author_owned_immutable_source",
+      "source_url": "https://github.com/hmonroe/vdw/blob/f1223097f4adc0a41ccb92ace51ebafd2b996fb1/output.txt",
+      "immutable_commit": "f1223097f4adc0a41ccb92ace51ebafd2b996fb1",
+      "observed_sha256": "bd88e781acdceead847e0b736ca788cbc510aac744d025c2efbde4b152725774",
+      "redistributed": false
+    },
+    {
+      "key": "MonroePhase2Archive",
+      "status": "versioned_web_archive_capture",
+      "source_url": "https://web.archive.org/web/20220428101631id_/http://vdwnumbers.org/bounds.txt",
+      "original_url": "http://vdwnumbers.org/bounds.txt",
+      "capture_utc": "2022-04-28T10:16:31Z",
+      "observed_sha256": "0e8f79232e3855cbc64026a4c2f3a82433c0508456e0c23f76eb1a400efeb556",
       "redistributed": false
     },
     {

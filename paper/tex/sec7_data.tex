@@ -8,7 +8,7 @@ the immutable source commit
 revision it remains a private preparation repository, not a citable release.
 Its machine-readable status ledger deliberately leaves the certificate,
 campaign-recovery, ordered-prime, external-replication, rights, and DOI gates
-open.  An immutable archive of a signed release tag, rather than a moving
+open.  An immutable archive of the frozen release tag, rather than a moving
 branch, will be cited after those gates pass.
 
 The source registry \texttt{audit/claims.json} contains exactly the thirteen
@@ -61,10 +61,36 @@ turn an archived claim of exhaustive coverage into a newly audited fact.
 
 Before submission, a clean release candidate must rebuild the scanner and
 verifiers, execute and validate the thirteen claim manifests, regenerate every
-table, compile this PDF, and produce a top-level checksum manifest covering the
-PDF, source archive, certificates, logs, and data.  Four fixed headline
-certificates must additionally be checked on independently administered
-hardware with complete outputs preserved.  The DOI, version, tag, archive
-digest, and outbound licences will be inserted only after these gates pass;
-until then this manuscript does not claim that a complete citable artifact is
-available.
+table, and compile this PDF.  After the pre-freeze gates pass and the DOI
+metadata are final, the entire intended payload is staged.  Immediately before
+the inner-freeze transaction, the staged release form of \texttt{STATUS.json}
+sets \texttt{repository\_state} to \texttt{archived\_release}, sets
+\texttt{citable\_release} true, and marks every gate passed.  For the DOI gate,
+that transient staged state means only that the metadata are final and the
+inner-freeze transaction is ready; it does not assert that a tag, archive,
+deposit, or receipt is already public.
+
+The transaction \texttt{tools/freeze\_release.py create} validates that staged
+candidate, rebuilds the PDF, and writes the top-level
+\texttt{MANIFEST.sha256}.  This is the first checksum layer and binds the
+tracked payload files: the PDF, source files, certificates, logs, and data.  If
+the transaction fails, the staged release state is neither committed nor
+published.  Only after success is the manifest staged with the payload, which
+is then committed, tagged locally, and rechecked.  A deterministic archive is
+subsequently created from that checked immutable local tag and rechecked
+byte-for-byte by \texttt{tools/build\_release\_archive.py}; this is the second
+checksum layer.  The archive's own byte length and SHA-256, together with the
+post-tag draft-deposit comparison, belong in an external deposit receipt or
+release record.  They cannot be inserted into the archive they hash without a
+cycle.  The fail-closed utility \texttt{tools/deposit\_receipt.py} creates and
+rechecks that JSON only at an absolute path outside the repository, and the
+receipt is not embedded evidence for the DOI gate.
+
+Four fixed headline certificates must additionally be checked on independently
+administered hardware with complete outputs preserved.  After the scientific,
+replication, and rights gates pass, the DOI can be reserved and inserted into
+the exact final candidate.  The successful inner-freeze transaction precedes
+the commit and local tag; the checked tagged tree is then archived and compared
+with the draft upload.  The tag and deposit are made public only if that
+comparison succeeds.  Until then this manuscript does not claim that a
+complete citable artifact is available.

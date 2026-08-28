@@ -38,20 +38,20 @@ for PAPER_COMMAND in pdflatex bibtex sha256sum cmp mktemp; do
   fi
 done
 
-if [[ -n ${SOURCE_DATE_EPOCH:-} ]]; then
-  PAPER_SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH
-elif git -C "$REPOSITORY_ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  PAPER_SOURCE_DATE_EPOCH=$(git -C "$REPOSITORY_ROOT" log -1 --format=%ct)
-else
-  # Stable fallback for source archives without .git: timestamp of the pinned
-  # export source commit (2026-08-20T19:08:06Z).
-  PAPER_SOURCE_DATE_EPOCH=1787252886
+PAPER_EPOCH_POLICY="$REPOSITORY_ROOT/release/SOURCE_DATE_EPOCH"
+if [[ ! -f "$PAPER_EPOCH_POLICY" || -L "$PAPER_EPOCH_POLICY" ]]; then
+  printf 'ERROR: missing regular paper epoch policy: %s\n' "$PAPER_EPOCH_POLICY" >&2
+  exit 2
 fi
+PAPER_SOURCE_DATE_EPOCH=$(<"$PAPER_EPOCH_POLICY")
 if [[ ! "$PAPER_SOURCE_DATE_EPOCH" =~ ^[0-9]+$ ]]; then
-  printf 'ERROR: SOURCE_DATE_EPOCH must be a non-negative integer.\n' >&2
+  printf 'ERROR: release/SOURCE_DATE_EPOCH must contain exactly one non-negative integer.\n' >&2
   exit 2
 fi
 
+# Never derive PDF bytes from HEAD: committing paper/main.pdf changes HEAD and
+# would otherwise change the next rebuild.  The tracked epoch policy is part of
+# the candidate and is itself covered by the release manifest.
 export SOURCE_DATE_EPOCH=$PAPER_SOURCE_DATE_EPOCH
 export FORCE_SOURCE_DATE=1
 export TZ=UTC
@@ -78,9 +78,18 @@ run_paper_command() {
 
 build_once() {
   local build_dir=$1
+  local validated_claims_table="$REPOSITORY_ROOT/results/claims/validated-claims.tex"
   mkdir -p "$build_dir/tex"
   cp -a "$REPOSITORY_ROOT/paper/tex/." "$build_dir/tex/"
   cp "$REPOSITORY_ROOT/paper/references.bib" "$build_dir/references.bib"
+  if [[ -e "$validated_claims_table" || -L "$validated_claims_table" ]]; then
+    if [[ ! -f "$validated_claims_table" || -L "$validated_claims_table" ]]; then
+      printf 'ERROR: validated claim table must be a regular, non-symbolic file: %s\n' \
+        "$validated_claims_table" >&2
+      exit 2
+    fi
+    cp -- "$validated_claims_table" "$build_dir/tex/generated_validated_claims.tex"
+  fi
 
   (
     cd "$build_dir/tex"
@@ -111,6 +120,7 @@ build_once() {
 }
 
 printf '[paper] deterministic build 1/2\n'
+printf '[paper] SOURCE_DATE_EPOCH=%s (release/SOURCE_DATE_EPOCH)\n' "$SOURCE_DATE_EPOCH"
 build_once "$PAPER_BUILD_ROOT/first"
 printf '[paper] deterministic build 2/2\n'
 build_once "$PAPER_BUILD_ROOT/second"

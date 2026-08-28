@@ -34,30 +34,36 @@ remain conditional on those gates.
 \end{minipage}}
 \end{center}
 \begin{abstract}
-We report a single-GPU scan of power-residue colorings over all primes in
-$[9.7\times10^{8},\,2\times10^{9})$.  It produces direct Rabung certificates
-for $W(3,k)$, $17\le k\le25$, headed by
+We report outputs from a historical single-GPU campaign configured to scan
+power-residue colorings over all primes in
+$[9.7\times10^{8},\,2\times10^{9})$.  Its retained summaries identify candidate
+direct Rabung certificates for $W(3,k)$, $17\le k\le25$, headed by
 $W(3,17)>31\,385\,622\,833$.  After automatically closing the registered
 published and archived baselines under the recurrences of
-Blankenship--Cummings--Taranchuk and Xu, the direct bounds remain the strongest
-bounds located in that corpus for $17\le k\le21$; the rows $22\le k\le25$ are
-direct-method improvements, not general van der Waerden records.  We also
-independently verify four archived two-colour certificates.  Applying the
+Blankenship--Cummings--Taranchuk and Xu, these candidate direct values rank
+above every bound located in that corpus for $17\le k\le21$; the rows
+$22\le k\le25$ are direct-method improvements, not general van der Waerden
+records.  We also
+report historical independent acceptances of four archived two-colour
+certificates; release-level rechecks remain an explicit gate.  Applying the
 Blankenship--Cummings--Taranchuk recurrence to them gives
 $W(3,25)>628\,673\,328\,287$ and, respectively for $k=26,27,28$, the further
 bounds $1\,221\,912\,599\,848$, $2\,068\,976\,009\,617$, and
 $2\,159\,051\,058\,266$.  Each direct computational claim is represented by a
-succinct Rabung certificate $(p,r,k)$ whose hypotheses are re-established by a
-stand-alone verifier.  As a secondary empirical result, one frozen forecast is
-compared with a cumulative holdout trajectory at four predetermined dates; the
-disjoint increments are the primary summary and all Poisson calculations are
-reported conditionally on that model.
+succinct Rabung certificate $(p,r,k)$ whose hypotheses can be re-established by
+a stand-alone verifier.  As a secondary empirical result, one frozen forecast
+is compared with a cumulative holdout trajectory at four predetermined
+checkpoints; the disjoint increments are the primary summary and all Poisson
+calculations are reported conditionally on that model.
 
 \medskip
-\noindent\emph{Provenance.} The scanning software, the campaign, the analysis, and
-the first draft of this paper were produced in collaboration with AI systems
-(Anthropic's Claude, models \texttt{claude-fable-5} and \texttt{claude-opus-4-8})
-operated by the author. Every direct computational claim reported here can be
+\noindent\emph{Provenance.} The scanning software, historical campaign,
+analysis, and first draft were produced in collaboration with Anthropic's
+Claude (models \texttt{claude-fable-5} and \texttt{claude-opus-4-8}).  OpenAI
+Codex in ChatGPT Work subsequently contributed to publication-package
+engineering, contract hardening, automated audits, CPU reruns, and manuscript
+revision.  All systems were operated under the author's direction. Every
+direct computational claim reported here can be
 rechecked by a separate-source verifier that shares no code with the search
 engine and runs in time $O(p\log p)$. See the AI contribution
 statement (p.~\pageref{s:ai}).

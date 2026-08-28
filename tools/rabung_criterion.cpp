@@ -318,7 +318,7 @@ int main(int argc, char** argv) {
     printf("[KA] Reponses connues :\n");
     struct KA { u64 p; int r, k; const char* note; };
     for (KA ka : { KA{37,4,3,"W(4,3)=76, cert 75"}, KA{11,2,4,"W(2,4)=35, cert 34"},
-                   KA{5,2,4,"oracle accepte (cas singleton de (b))"} }) {
+                   KA{5,2,3,"singleton de (b) correctement rejete"} }) {
         CritInfo nfo; bool crit = rabung_criterion(ka.p, ka.r, ka.k, &nfo);
         bool orac = oracle_valid_canonical(ka.p, ka.r, ka.k);
         long L = (long)(ka.k - 1) * (long)ka.p + 1;

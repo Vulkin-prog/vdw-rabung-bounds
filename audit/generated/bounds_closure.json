@@ -1,9 +1,9 @@
 {
   "inputs": {
     "baselines": "audit/baselines.json",
-    "baselines_sha256": "97f8541631abf3114d1392c48e51260bdfba6c15e29b2a1c075a29a0c5e63d54",
+    "baselines_sha256": "7d4871754699a6345d69f8ac42908df957a8fbd63e0ed4959019b898a7b5e3f2",
     "claims": "audit/claims.json",
-    "claims_sha256": "5752902fd5a67abda8ae7c45928d1207634c6b3d01eef3a0e13f3d2801f5e12c"
+    "claims_sha256": "3b3ffc1739b091194e9b54d2f9435bcfbff7ab2ba84d7176330e9dead12d0aeb"
   },
   "nodes": [
     {
@@ -2071,14 +2071,14 @@
       "title": "New Lower Bounds for van der Waerden Numbers Using Distributed Computing"
     },
     "monroe_code_tally": {
-      "citation_key": "Monroe2026",
+      "citation_key": "MonroeCodeTally",
       "provenance": "publication/baseline-provenance.json#/sources/monroe_code_tally",
       "title": "Unpublished direct Rabung tally distributed with Monroe's code"
     },
     "monroe_phase2_archive": {
-      "citation_key": "MonroePage",
+      "citation_key": "MonroePhase2Archive",
       "provenance": "publication/baseline-provenance.json#/sources/monroe_phase2_archive",
-      "title": "Archived BOINC phase-2 table, independently verified in this work"
+      "title": "Archived BOINC phase-2 table; candidate triples historically rechecked"
     },
     "this_work": {
       "location": "audit/claims.json",

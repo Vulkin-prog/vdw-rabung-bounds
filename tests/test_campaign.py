@@ -148,11 +148,18 @@ class CrosscheckParsingTests(unittest.TestCase):
     def test_xcheck_rejects_negative_output(self):
         success = (
             "XCHECK [1800000000,1802000000] 6 prem. : 12 comp. ; "
-            "V2a/Jacobi vs CPU desaccords=0 -> ACCORD (moteur campagne OK) ; B7plein WARN=1"
+            "V2a/Jacobi vs CPU desaccords=0 -> ACCORD ; "
+            "B7plein desaccords=0 -> ACCORD"
         )
         self.assertEqual(MODULE.crosscheck_pass(self.completed(0, success), "xcheck"), (True, "ok"))
         self.assertFalse(MODULE.crosscheck_pass(
             self.completed(0, "FAIL detail\n" + success), "xcheck"
+        )[0])
+        self.assertFalse(MODULE.crosscheck_pass(
+            self.completed(0, success.replace(
+                "B7plein desaccords=0 -> ACCORD",
+                "B7plein desaccords=1 -> ECHEC",
+            )), "xcheck"
         )[0])
 
 

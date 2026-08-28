@@ -39,11 +39,28 @@ itself.
 python3 tools/check_publication_contract.py --mode staging
 ```
 
-The release check is expected to fail while any publication gate remains open:
+The structural publication-contract check is expected to fail while any gate
+remains open:
 
 ```bash
 python3 tools/check_publication_contract.py --mode release
 ```
+
+It is not by itself the archival freeze. Immediately before the inner-freeze
+transaction, the complete candidate and its release-form `STATUS.json` are
+staged; `tools/freeze_release.py create` must succeed before
+`MANIFEST.sha256` is committed and the local tag is created. A failed `create`
+is neither committed nor published. The exact local tag must then pass
+`tools/freeze_release.py check --require-head-tag`, followed by
+`tools/build_release_archive.py build` and `check` for the outer container and
+the external `tools/deposit_receipt.py create`/`check` draft-deposit comparison
+described in
+[`REPRODUCIBILITY.md`](REPRODUCIBILITY.md).
+
+Within the staged release payload, the DOI gate's `passed` state means
+"metadata final and inner-freeze transaction ready". It does not claim that the
+tag or deposit is already public. The post-tag deposit receipt stays outside the
+payload as a separate JSON file and is not evidence embedded by that gate.
 
 See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the evidence tiers and the
 read-only recovery procedure to run later on the campaign PC.

@@ -1,0 +1,14 @@
+Operator ID:
+Operator name (or independently retained identity record):
+Affiliation or independent role:
+UTC date:
+Candidate Git commit:
+Machine under my independent administration: yes/no
+
+I attest that I personally ran my assigned claim with the repository's CPU-only
+external replication kit from the clean candidate commit stated above, without
+modifying the frozen claim, verifier source, parser source, command, or captured
+outputs. I am independent of the authors for purposes of this computational
+check.
+
+Notes (state any relationship, interruption, anomaly, or deviation explicitly):

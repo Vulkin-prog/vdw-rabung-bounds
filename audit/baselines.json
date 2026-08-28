@@ -14,7 +14,7 @@
       "location": "Tables 1 and 2"
     },
     "monroe_code_tally": {
-      "citation_key": "Monroe2026",
+      "citation_key": "MonroeCodeTally",
       "title": "Unpublished direct Rabung tally distributed with Monroe's code",
       "provenance": "publication/baseline-provenance.json#/sources/monroe_code_tally"
     },
@@ -31,8 +31,8 @@
       "doi": "10.1016/j.jnt.2013.05.008"
     },
     "monroe_phase2_archive": {
-      "citation_key": "MonroePage",
-      "title": "Archived BOINC phase-2 table, independently verified in this work",
+      "citation_key": "MonroePhase2Archive",
+      "title": "Archived BOINC phase-2 table; candidate triples historically rechecked",
       "provenance": "publication/baseline-provenance.json#/sources/monroe_phase2_archive"
     },
     "this_work": {

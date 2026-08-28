@@ -1,7 +1,8 @@
 \section{An empirical density comparison}\label{s:density}
 
-The campaign records the maximal monochromatic run for every tested prime.
-This section uses those data for a deliberately narrow purpose: a prospective
+The campaign classified each tested prime by the run-valid predicate and
+preserved the survivor event list and aggregate counts, but not the complete
+per-prime max-run profile.  This section uses those retained data for a deliberately narrow purpose: a prospective
 forecast comparison for the run-valid $(3,17)$ primes beyond a fixed training
 cut.  It does not promote the comparison to a theorem, a universal density
 law, or a proof that any Rabung search has been exhausted.  All probabilistic
@@ -75,9 +76,10 @@ holdout tuning but does not remove their estimation uncertainty.
 After completion of chunk $180$, when $1727$ run-valid $(3,17)$ primes had
 been observed, the three numerical candidates
 $\widetilde g_0,\widetilde g_1,\widetilde g_2$ were fixed.  The
-four reading times $250,300,400,515$ were recorded before the first of them.
-The complete versioned list of $1859$ run-valid primes reconstructs the count
-in every campaign chunk.
+four scheduled checkpoint values $250,300,400,515$ were recorded before the
+first read.  The versioned $1859$-entry list, labelled complete by the historical
+analysis, reconstructs the count in every campaign chunk conditional on that
+list.
 
 Let
 \[
@@ -154,7 +156,7 @@ $p$-value.
 
 The scanner changed earlier in the campaign, but the final source fingerprint
 begins at chunk $79$.  Thus all chunks after the forecast cut use the same
-scanner fingerprint.  This removes revision changes as a confounder for the
+scanner fingerprint.  This removes scanner-source changes as a confounder for the
 prospective comparison, while whole-campaign descriptive aggregates still
 require the revision table discussed in Section~\ref{ss:execution}.
 

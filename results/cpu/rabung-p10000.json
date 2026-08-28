@@ -1,0 +1,71 @@
+{
+  "artifacts": {
+    "compiler": {
+      "path": "results/cpu/rabung-p10000.compiler.txt",
+      "sha256": "78b5d66fa8e53c3cfadb14889dfb5936f1c58888ad49c019e15d3dc59fc64e30",
+      "size": 244
+    },
+    "stderr": {
+      "path": "results/cpu/rabung-p10000.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "stdout": {
+      "path": "results/cpu/rabung-p10000.stdout.txt",
+      "sha256": "3fb9c409eec4273c05811e6c15a5c89993d66ca9262c08b35a2c7fdcf71e43ba",
+      "size": 872
+    }
+  },
+  "build": {
+    "binary": {
+      "preserved": false,
+      "sha256": "5d158ce9c511a8028c6f48a8e8728952ab4c7032774bc992e5dd41bf67977592",
+      "size": 26352
+    },
+    "command_argv": [
+      "g++",
+      "-O2",
+      "-std=c++17",
+      "tools/rabung_criterion.cpp",
+      "-o",
+      "rabung_criterion"
+    ],
+    "source": {
+      "path": "tools/rabung_criterion.cpp",
+      "sha256": "b7ef60c3d23b1e3d1c3172b06276ddf005d35921e833d32c2ebb1807b417bb44",
+      "size": 17544
+    }
+  },
+  "environment": {
+    "architecture": "x86_64",
+    "kernel": "Linux 6.18.35",
+    "operating_system": "Ubuntu 24.04.3 LTS"
+  },
+  "execution": {
+    "command_argv": [
+      "rabung_criterion",
+      "10000"
+    ],
+    "completed_utc": "2026-08-28T11:52:54Z",
+    "elapsed_seconds": 472,
+    "exit_code": 0,
+    "started_utc": "2026-08-28T11:45:02Z"
+  },
+  "git": {
+    "commit": "332683ffd5c2ec0a6c84106b713629fc79e3fdd5",
+    "source_matches_commit": false,
+    "tree": "d982ce9329da13a39396835650d76e6e2f5e98fe",
+    "worktree_clean_before_build": false
+  },
+  "release_gate_satisfied": false,
+  "results": {
+    "criterion_accepted": 4499,
+    "criterion_oracle_cases": 20170,
+    "criterion_oracle_mismatches": 0,
+    "p_exclusive_upper_bound": 10000,
+    "strong_cases": 190,
+    "strong_inconsistencies": 0
+  },
+  "schema": "vdw-rabung-sweep-evidence/v1",
+  "status": "preliminary_staging"
+}
