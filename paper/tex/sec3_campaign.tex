@@ -123,6 +123,16 @@ do not quote a wall-clock modular-multiplication rate. Several plausible
 optimizations (e.g.\ a 2-adic factorization of the exponentiation) were
 implemented, measured, and rejected as memory-bound regressions.
 
+These retained figures are historical engineering measurements, not a
+standardized performance study: the surviving record does not reconstruct a
+fixed warm-up, repetition count, dispersion statistic, clock state or complete
+power telemetry for every figure. They are not used in any mathematical claim.
+If they remain in the citable release, the accompanying CUDA artifact must
+separately record driver and toolkit versions, compiler flags, source and
+binary hashes, frequencies and power limit, warm-up, repetitions, and median
+and dispersion; otherwise only the qualitative campaign description will be
+retained.
+
 \subsection{Campaign execution}\label{ss:execution}
 
 According to the preserved campaign design and summaries, the production run
@@ -174,12 +184,14 @@ per-class counts were not logged during the campaign; that range,
 $[9.70\times10^{8},1.004\times10^{9})$, was therefore re-scanned after the
 campaign in one aggregate invocation with the post-campaign audit build
 (commit \texttt{c81383885bd9}; full identities are in the registry).  The eight
-separate-source counts were committed before that invocation completed
-(commit \texttt{30e8b83df3c0}).  A version-specific,
+the retained Git history places the separate-source counts before the commit
+recording completion of that invocation (commit \texttt{30e8b83df3c0}). This
+establishes documentary order inside the preserved DAG, not an independently
+timestamped precommitment. A version-specific,
 fail-closed parser now checks the preserved transcript, whose SHA-256 is
 \texttt{dff4e409\ldots de184};
 it verifies every historical TARGET, candidate, COLQ, HISTO, and TOP row before
-comparing the eight histogram sums with those precommitted counts.
+comparing the eight histogram sums with those separately recorded counts.
 
 \input{generated_rescan17_table}
 
@@ -213,5 +225,5 @@ The available summaries, deterministic chunk checksums, periodic cross-checks,
 and aggregate coverage comparison report no inconsistency, but they do not yet
 prove continuity without data loss.  Release recovery must still substantiate
 checkpoint continuity, the chunk~7 reconstruction, and the raw inventory.
-Candidate champions were therefore passed to
+The strongest candidate direct bounds located by the scan were therefore passed to
 Section~\ref{ss:protocol}; no bound was recorded from the scanning pass alone.

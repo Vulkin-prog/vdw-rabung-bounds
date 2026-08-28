@@ -40,20 +40,20 @@ non-constant assignment, is free of monochromatic $k$-term progressions
 \begin{itemize}
 \item[(a)] no $k$ consecutive positions in $[1,p-1]$ receive the same color
   (max run $<k$); and
-\item[(b)] a boundary condition holds: write $\vartheta(-1)=+1$ if $p-1$ lies in
-  the class of the $r$-th powers (i.e.\ $c(p-1)=0$; the \emph{palindromic}
-  case --- additively, in the appendix, $\vartheta(-1)=+1$ corresponds to
-  $c(p-1)=0$ and $\vartheta(-1)=-1$ to $c(p-1)=r/2$)
-  and $\vartheta(-1)=-1$ otherwise. If $\vartheta(-1)=+1$ the integers
+\item[(b)] a boundary condition holds. Put
+  $\varepsilon:=c(-1)=c(p-1)\in\{0,r/2\}$, where the second value is possible
+  only for even $r$. In Rabung's multiplicative notation the corresponding
+  sign is $+1$ when $\varepsilon=0$ and $-1$ when $\varepsilon=r/2$. If
+  $\varepsilon=0$ the integers
   $1,2,\dots,\lceil (k-1)/2 \rceil$ must not all lie in the same class, while if
-  $\vartheta(-1)=-1$ the same is required of $1,2,\dots,k-1$. A \emph{singleton}
+  $\varepsilon=r/2$ the same is required of $1,2,\dots,k-1$. A \emph{singleton}
   counts as ``all in the same class'', and so fails~(b).
 \end{itemize}
-The second alternative $c(p-1)=r/2$ can occur only for even $r$.  If $r$ is
-odd, $(p-1)/r$ is even and hence $c(-1)=0$ necessarily.
+If $r$ is odd, $(p-1)/r$ is even and hence $\varepsilon=0$ necessarily.
 
 \begin{remark}\label{r:ceiling}
-Both details of~(b) matter. Replacing the ceiling by a floor, or treating a
+Both details of~(b) matter. Rabung's bracket here denotes the ceiling.
+Replacing it by a floor, or treating a
 singleton as vacuously satisfying the condition, yields a criterion that is
 \emph{not} equivalent to Rabung's.  Explicit counterexamples occur already at
 $p=13$, $r=2$, $k=4$ for the floor variant and at $p=5$, $r=2$, $k=3$ when a
@@ -69,7 +69,7 @@ Since $[0,(k-1)p]$ contains $(k-1)p+1$ integers, a prime satisfying
 We call such a prime \emph{valid} for $(r,k)$.
 
 Our implementations test an equivalent form of (b), denoted (B$^{*}$), which is
-uniform in the parity of $k$ and the value of $\vartheta(-1)$: for every shift
+uniform in the parity of $k$ and the value of $\varepsilon$: for every shift
 $j\in\{0,\dots,k-1\}$, the $k-1$ character positions
 $\{-j,\dots,-1,1,\dots,k-1-j\}$ of a $k$-window centered on a multiple of $p$
 must not all receive the same color. The equivalence rests on the
@@ -79,6 +79,29 @@ $c$ requires exactly $p \equiv 1 \bmod r$), so the joker position cannot be
 colored at all; otherwise any non-constant coloring of the multiples of $p$
 works.  Proposition~\ref{p:bstar} gives the mathematical proof; the finite
 comparison below audits the implementation rather than replacing that proof.
+
+\begin{lemma}[Monotonicity at fixed prime]\label{lem:k-monotone}
+Let $r\ge2$, let $3\le k\le \ell<p$, and let $p\equiv1\pmod r$ be prime. If
+$p$ satisfies $(a)\wedge(B^{*})$ for $(r,k)$, then it satisfies the same
+criterion for $(r,\ell)$. Consequently
+\[
+  W(r,\ell)>(\ell-1)p+1.
+\]
+\end{lemma}
+\begin{proof}
+It is enough to pass from $k$ to $k+1$. A monochromatic run of length $k+1$
+would contain one of length $k$, so condition~(a) persists. Write
+\[
+ S_j^{(m)}=\{-j,\dots,-1\}\cup\{1,\dots,m-1-j\},
+ \qquad 0\le j\le m-1.
+\]
+For $0\le j\le k-1$ we have $S_j^{(k)}\subset S_j^{(k+1)}$, and
+$S_{k-1}^{(k)}\subset S_k^{(k+1)}$. Thus every boundary string for length
+$k+1$ contains one already known to be non-monochromatic, so $(B^{*})$
+persists. Iteration gives the claim.
+\end{proof}
+
+\input{appendix_bstar}
 
 \subsection{Finite oracle audit of the implementation}\label{ss:oracle}
 

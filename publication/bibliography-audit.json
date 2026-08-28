@@ -3,6 +3,7 @@
   "checked_at_utc": "2026-08-28T00:00:00Z",
   "policy": "Every cited key is checked against a publisher record, author-owned immutable source, or versioned primary preprint. No cited web object is redistributed by this file.",
   "cited_keys": [
+    "CamposFoxSchildkraut2026",
     "FoxHunter2026",
     "Monroe2026",
     "MonroeCodeTally",
@@ -53,7 +54,7 @@
       "status": "stable_publisher_record",
       "source_url": "https://www.sciencedirect.com/science/article/pii/S0022314X13001601",
       "doi": "10.1016/j.jnt.2013.05.008",
-      "implementation_check": "The strict-bound recurrence stores R*B, consistent with Xu's published W_4(7) example."
+      "implementation_check": "The closure enforces k >= 3, s,t >= 2, 5 <= n < WR(s,k), and least-prime-factor(n) > k; every registered ring witness used as n is prime and exceeds k. The strict-bound recurrence stores R*B, consistent with Xu's published W_4(7) example."
     },
     {
       "key": "Monroe2026",
@@ -68,6 +69,15 @@
       "source_url": "https://arxiv.org/abs/2606.02541v1",
       "version": "v1",
       "doi": "10.48550/arXiv.2606.02541"
+    },
+    {
+      "key": "CamposFoxSchildkraut2026",
+      "status": "versioned_preprint_recheck_at_release",
+      "source_url": "https://arxiv.org/abs/2608.20824v1",
+      "version": "v1",
+      "submitted_utc": "2026-08-21",
+      "doi": "10.48550/arXiv.2608.20824",
+      "supported_statement": "Theorem 1 gives w(k) >= (1-o(1)) k 2^(k-1) asymptotically. Evaluating the explicit product construction from Lemmas 2 and 4 over distinct-prime decompositions in the finite range does not improve any registered W(2,k) seed for 17 <= k <= 28; at k=28 it gives at most the strict integer 3168958653, versus the registered 93871785142."
     },
     {
       "key": "MonroePage",

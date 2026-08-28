@@ -74,6 +74,41 @@ class ClosureTests(unittest.TestCase):
                 ring_parent["lower_bound"] * ordinary_parent["lower_bound"],
                 node["id"],
             )
+            self.assertGreaterEqual(node["parameters"]["t"], 2, node["id"])
+            self.assertEqual(
+                node["parameters"]["least_prime_factor_n"],
+                MODULE.least_prime_factor(node["parameters"]["n"]),
+                node["id"],
+            )
+            self.assertGreater(
+                node["parameters"]["least_prime_factor_n"],
+                node["length"],
+                node["id"],
+            )
+
+    def test_least_prime_factor(self):
+        self.assertEqual(MODULE.least_prime_factor(2), 2)
+        self.assertEqual(MODULE.least_prime_factor(49), 7)
+        self.assertEqual(MODULE.least_prime_factor(617), 617)
+
+    def test_registered_ring_witnesses_meet_xu_precondition(self):
+        baselines = MODULE.load_json(MODULE.BASELINES_PATH)
+        claims = {
+            claim["id"]: claim
+            for claim in MODULE.load_json(MODULE.CLAIMS_PATH)["claims"]
+        }
+        for seed in baselines["ring_seeds"]:
+            if "claim_id" in seed:
+                claim = claims[seed["claim_id"]]
+                witness = claim["prime"]
+                length = claim["length"]
+                label = claim["id"]
+            else:
+                witness = seed["lower_bound"]
+                length = seed["length"]
+                label = seed["id"]
+            self.assertGreaterEqual(witness, 5, label)
+            self.assertGreater(MODULE.least_prime_factor(witness), length, label)
 
 
 if __name__ == "__main__":
