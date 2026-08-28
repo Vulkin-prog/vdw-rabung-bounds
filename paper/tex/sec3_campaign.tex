@@ -41,10 +41,10 @@ $m$; the $r$-range of each comparison set is given with it):
   disagreements.
 \end{itemize}
 These comparison totals and the performance measurements below are historical
-pre-flight records.  Their exact raw GPU outputs and benchmark logs must still
-be recovered from the campaign PC and bound to the release candidate; the
-portable staging suite exercises the algorithms but does not treat these
-totals as release-qualified evidence.
+pre-flight records.  Neither the authenticated campaign recovery nor the
+current SM120 qualification reclassifies them as fresh executions; each
+current evidence object has its own manifest, while these totals retain their
+stated historical scope.
 For $r=2$ a CPU Jacobi-symbol evaluation provides a further
 separate-arithmetic route. This redundancy is not decorative: during pre-flight testing the
 cross-check caught a genuine bug (a non-commutative run-summary operator fed to
@@ -102,8 +102,17 @@ thirteen accepted manifests.
 This rule is stricter than the historical transcript, whose max-run checksum
 did not bind $p$ and whose pasted \texttt{verify\_claim} outputs were sometimes
 truncated.  Those files remain historical evidence, not the final source of
-truth.  The expensive release run must populate the complete manifests before
-the candidate theorem of Section~\ref{s:bounds} can be promoted.
+truth.  The targeted PC run populated the exact thirteen-manifest set, and the
+fail-closed audit accepts its $67$ required executions: five per claim plus the
+two additional Montgomery-free high-range witnesses.
+
+\paragraph{Current CUDA qualification.}
+The recorded qualification builds the committed scanner for \texttt{sm\_120}
+and passes the complete qualification suite on the target RTX~5090.  Its
+manifest binds the source and binary hashes, compiler, driver, GPU identity,
+commands, logs, exit status, and clean pre-build state.  This qualifies the
+discovery implementation and hardware path; it does not replace any Rabung
+certificate check.
 
 \subsection{Measured throughput}\label{ss:throughput}
 
@@ -125,8 +134,8 @@ implemented, measured, and rejected as memory-bound regressions.
 
 \subsection{Campaign execution}\label{ss:execution}
 
-According to the preserved campaign design and summaries, the production run
-was configured to scan every prime in
+The authenticated campaign record shows that the production run was configured
+to scan every prime in
 $[9.70\times 10^{8},\, 2.0\times 10^{9})$ (each prime tested for every
 $r\le 9$ dividing $p-1$), starting just above the largest
 published prime $969\,347\,371$ of Monroe's distributed scan~\cite{Monroe2026},
@@ -150,9 +159,11 @@ journal also records automatic cross-checks every $50$ chunks: nine completed
 samples agreed across the redundant scan paths and separate CPU checks, while a
 tenth timed out and was not counted.  These samples do not turn the single
 production campaign into a duplicated run.  Checkpoint transaction mechanics
-are documented in \texttt{REPRODUCIBILITY.md}; the immutable checkpoint,
-transition outputs, chunk evidence, and ordered-prime stream remain release
-gates.
+are documented in \texttt{REPRODUCIBILITY.md}.  The authenticated recovery
+contains the immutable checkpoint, a matching journal record for $514$ chunks,
+the checkpoint-only record for chunk~7, $498$ per-chunk histograms for
+chunks~18--515, and the retained transition artifacts selected by the recovery
+ledger.
 
 \paragraph{Exhaustiveness of the prime enumeration.}
 The per-prime computation is validated by the redundancy above; the
@@ -189,19 +200,21 @@ whole interval, however, so it supplies aggregate class totals rather than
 $17\times8$ per-chunk cells.  These audits establish exact agreement of the
 counts; counts alone do not establish
 identity of the ordered prime lists.  The audit utility therefore also emits a
-canonical ordered stream for byte comparison and hashing.  Populating its
-per-chunk identity manifest for all $515$ chunks is a release gate, not a
-consequence inferred from the $3\,984$ matching counts.  The four historical
+canonical ordered stream for byte comparison and hashing.  Its final manifest
+records byte-for-byte scanner/CPU identity on all $515$ chunks, independently
+of the $3\,984$ matching counts.  A supplementary comparison also reproduces
+the retained historical ordered-chunk root
+\texttt{b7afe3a79de1\ldots c2966b39} exactly.  The four historical
 scanner blobs contain a byte-identical $249$-byte \texttt{sieve\_primes}
 function (SHA-256 recorded in the registry).  That function accepted an
 inclusive upper endpoint, whereas the audit stream is half-open; every campaign
 boundary is an even integer greater than two, hence composite, so the two
 conventions enumerate exactly the same primes on all $515$ chunks.  The current
 scanner makes the half-open convention explicit.  In total the window
-$[9.7\times10^{8},2\times10^{9})$ contains $48\,823\,489$ primes in the
-separate-source sieve.  Across the retained $498$-chunk histograms and the aggregate
-17-chunk re-scan, the preserved outputs report corresponding per-class totals;
-full byte-level ordered-prime identity remains a release gate.  The separate-source
+$[9.7\times10^{8},2\times10^{9})$ contains $48\,823\,489$ primes in both
+byte-identical ordered streams.  Across the retained $498$-chunk histograms and
+the aggregate 17-chunk re-scan, the preserved outputs report corresponding
+per-class totals.  The separate-source
 sieve counts $1\,448\,736$ primes in
 $[9.7\times10^{8},10^{9})$, hence $47\,374\,753$ in
 $[10^{9},2\times10^{9})$.  This equals the externally published difference
@@ -209,9 +222,11 @@ $\pi(2\times10^{9})-\pi(10^{9})=98\,222\,287-50\,847\,534$ from Oliveira e
 Silva's table~\cite{OliveiraSilvaPi}; it checks the interval difference, not
 either absolute value separately.
 
-The available summaries, deterministic chunk checksums, periodic cross-checks,
-and aggregate coverage comparison report no inconsistency, but they do not yet
-prove continuity without data loss.  Release recovery must still substantiate
-checkpoint continuity, the chunk~7 reconstruction, and the raw inventory.
-Candidate champions were therefore passed to
+The authenticated checkpoint and journal manifest accounts for all $515$
+contiguous chunks without inventing the absent chunk~7 journal row; the saved
+driver ordering establishes why that row can be recovered from the checkpoint.
+Together with the $515$-chunk ordered-prime identity audit, this closes the
+local coverage audit while preserving the distinction between the $498$
+per-chunk histograms and the one aggregate re-scan of chunks~1--17.  Candidate
+champions were passed to
 Section~\ref{ss:protocol}; no bound was recorded from the scanning pass alone.

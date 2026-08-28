@@ -1,0 +1,10 @@
+# TEMOIN HAUTE PLAGE  p=3476732783  g=5  p-1 = 2*97*17921303(...)   memoire=6.95 Go
+[C1] racine primitive : OK
+[C2] marche fermee (x=1 apres p-1 pas) et couverture complete : OK (retour=1, non ecrits=0)
+[C3] marche vs caractere : 20000 comparaisons, 0 desaccords -> OK
+[C4] identite miroir (hypothese V2a) : 20000 comparaisons, 0 desaccords -> OK
+# maxrun par r (balayage sequentiel plein intervalle)
+WITNESS p=3476732783 r=2 maxrun=27
+WITNESS_CHECKSUM 8281856215137894185
+# temps : marche 16.2 s, balayage 23.3 s
+VERDICT_TEMOIN : VALIDE

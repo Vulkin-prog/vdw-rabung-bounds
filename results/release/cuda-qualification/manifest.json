@@ -1,0 +1,168 @@
+{
+  "build": {
+    "binaries": [
+      {
+        "path": "results/release/cuda-qualification/scan_gpu",
+        "sha256": "8b1a00a4523158960d34a5f5c91eb6f8d6f888c6f5b80920cde4b655554320a1",
+        "size": 5071944
+      }
+    ],
+    "command_argv": [
+      "bash",
+      "tests/gpu/test_scan_sm120.sh"
+    ],
+    "git_commit": "cae83b4a59185686e5ce3b48c1640917f0b503e6",
+    "git_tree": "46039074d50e4d8498eafb8a8adc0217a4ec9635",
+    "sources": [
+      {
+        "path": "scripts/validate_cuda.sh",
+        "sha256": "8d3aacfc7b2ae74b3f1e01103a6c6a407c9d3d06c072452c2230a0452e59e732",
+        "size": 11838
+      },
+      {
+        "path": "src/scan_gpu.cu",
+        "sha256": "05a907076ff88255ace7c46570391b766a096aea3f9edc7db6c86e3ba32cde21",
+        "size": 62913
+      },
+      {
+        "path": "tests/gpu/test_scan_sm120.sh",
+        "sha256": "4d6805f0ab57b76e6e6544d0b12a85a00af5ded9afae50c40a93ee0fd6fa43fc",
+        "size": 2101
+      }
+    ],
+    "worktree_clean_before_build": true
+  },
+  "environment": {
+    "compiler": {
+      "identity": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_07:22:02_PM_PDT_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0",
+      "version_log": {
+        "path": "results/release/cuda-qualification/nvcc-version.txt",
+        "sha256": "12ee3e28e8c7b70dffd25d97fa7d2c410c20de2d2fbded632b0740570b49e341",
+        "size": 211
+      }
+    },
+    "cuda": {
+      "cuobjdump_identity": "cuobjdump: NVIDIA (R) fat binary listing tool\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_17_07:22:20_PM_PDT_2026\nCuda compilation tools, release 13.3, V13.3.29\nBuild cuda_13.3.r13.3/compiler.37818446_0",
+      "cuobjdump_version_log": {
+        "path": "results/release/cuda-qualification/cuobjdump-version.txt",
+        "sha256": "7840d76ecfabd9ecf49b32c076e9fefd048bec44145ea6a91d35f4561e414abe",
+        "size": 219
+      },
+      "version": "13.3"
+    },
+    "driver": {
+      "device_query": {
+        "path": "results/release/cuda-qualification/gpu-devices.csv",
+        "sha256": "3e06f13a9ac9d7470049e11ffc0598d1d622ce1b0f676dccc566dad19359548f",
+        "size": 93
+      },
+      "versions": [
+        "610.43.02"
+      ]
+    },
+    "gpu": [
+      {
+        "compute_capability": "12.0",
+        "index": "0",
+        "memory_mib": "32607",
+        "name": "NVIDIA GeForce RTX 5090",
+        "uuid": "GPU-32fa19a6-f875-f11f-703f-9aaf68116eec"
+      }
+    ],
+    "kernel_log": {
+      "path": "results/release/cuda-qualification/kernel.txt",
+      "sha256": "f2941f18003b6e567b304829e36af8a68952e890c828dfdcdfc3829e154dd72c",
+      "size": 30
+    },
+    "nvidia_smi_inventory": {
+      "path": "results/release/cuda-qualification/nvidia-smi-L.txt",
+      "sha256": "2b34a8435bf1d69350d747c28b2b7428966e54552576b20231573297bc8d98db",
+      "size": 80
+    },
+    "os_release": {
+      "path": "results/release/cuda-qualification/os-release.txt",
+      "sha256": "de1a366db70de1ae4b6612a1696f9c1f37948028fab733508a3d5cf49836faac",
+      "size": 406
+    }
+  },
+  "finished_utc": "2026-08-28T16:40:21Z",
+  "logs": [
+    {
+      "path": "results/release/cuda-qualification/command.txt",
+      "sha256": "7d2ed89fe0e92c1fd758cb58a2cbcdda632b2408857b62cd144d224a45d70f84",
+      "size": 34
+    },
+    {
+      "path": "results/release/cuda-qualification/git-commit.txt",
+      "sha256": "54a03293ee038a9f108cc3d31fcd1c9fc548ceba363113c764e4a290c11a734e",
+      "size": 41
+    },
+    {
+      "path": "results/release/cuda-qualification/logs/scan.sass",
+      "sha256": "eee30697154ce646bd671f517a196b23200aba31dbed6270ed9364eefa60ccc6",
+      "size": 11471116
+    },
+    {
+      "path": "results/release/cuda-qualification/logs/scan_b7db.log",
+      "sha256": "ae935da238a1bc6b1cedcda28fc3b21313a59431c37d7179fc043796041bc7f3",
+      "size": 233
+    },
+    {
+      "path": "results/release/cuda-qualification/logs/scan_bstar.log",
+      "sha256": "651594b86ca3972fde0ff00d5b8a152293c55138d6c23b93de39ca5564a53985",
+      "size": 12213
+    },
+    {
+      "path": "results/release/cuda-qualification/logs/scan_compile.log",
+      "sha256": "c5f6840a1c49071bd81e41ce0a64ce8c54504c5084f59b71cf23cd1c6a4b1dc4",
+      "size": 19936
+    },
+    {
+      "path": "results/release/cuda-qualification/logs/scan_montcheck.log",
+      "sha256": "627850cdc5be7328b486c835703d58f93e041ad7bbb07c78e1205c7b1ffeaa9d",
+      "size": 1010
+    },
+    {
+      "path": "results/release/cuda-qualification/logs/scan_montcheck_composite.log",
+      "sha256": "53fe0a5ce562b002bf50a1a22ad53713da4a1d67be084fdac1102db16c81554d",
+      "size": 659
+    },
+    {
+      "path": "results/release/cuda-qualification/logs/scan_validate.log",
+      "sha256": "bb47f7d1c6189f992c868de01bc5930e517feb80d74e7cba305779454db40909",
+      "size": 496
+    },
+    {
+      "path": "results/release/cuda-qualification/source-sha256.txt",
+      "sha256": "de1db7729bdd074900da8bce891904d3aa1bb738ad1ce237e85e9e251f1175f2",
+      "size": 268
+    }
+  ],
+  "qualification": "PASS",
+  "schema": "vdw-cuda-qualification/v1",
+  "started_utc": "2026-08-28T16:40:03Z",
+  "tests": [
+    {
+      "command_argv": [
+        "bash",
+        "tests/gpu/test_scan_sm120.sh"
+      ],
+      "exit_code": 0,
+      "id": "scan-sm120-regression",
+      "stderr": {
+        "path": "results/release/cuda-qualification/qualification.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "results/release/cuda-qualification/qualification.stdout",
+        "sha256": "cd1be189fcfd687defb4c8493eef83602ebf2897b52b8e7a90c4af4638300f1f",
+        "size": 25
+      },
+      "success_marker": "SCAN_SM120_REGRESSION_OK",
+      "success_marker_count": 1,
+      "verdict": "PASS",
+      "working_directory": "."
+    }
+  ]
+}

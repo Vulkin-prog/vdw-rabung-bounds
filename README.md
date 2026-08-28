@@ -10,9 +10,11 @@ at the immutable source commit
 `02796ae9e08da5b051a94b2d9001763908375f6e`.
 
 The current repository is deliberately private and is not a scientific release.
-Open gates include the 13 final claim manifests, the complete 515-chunk campaign
-archive, the ordered-prime identity audit, external certificate rechecks, licensing
-decisions, and the DOI freeze. The machine-readable state is
+The local PC package now contains the accepted 13-manifest claim set, the
+authenticated 515-chunk campaign archive, the 515-of-515 ordered-prime identity
+audit, and the passing SM120 CUDA qualification. Open gates include clean final
+CPU and document replays, external certificate rechecks, licensing decisions,
+and the DOI/tag freeze. The machine-readable state is
 [`STATUS.json`](STATUS.json).
 
 ## What is already here
@@ -20,6 +22,14 @@ decisions, and the DOI freeze. The machine-readable state is
 - the CUDA search source and the separate-source CPU reference/verifier sources;
 - the canonical 13-claim and baseline registries;
 - fail-closed parsers, generators, and their CPU test suite;
+- the accepted 13-claim evidence set (67 required executions, including two
+  Montgomery-free high-range witnesses);
+- the authenticated 515-chunk campaign record, with 514 journal/checkpoint
+  matches and the missing chunk-7 journal case resolved from the checkpoint;
+- 498 per-chunk histograms for chunks 18--515 and the preserved aggregate
+  re-scan for chunks 1--17;
+- byte-identical scanner/CPU prime streams on all 515 chunks, containing
+  48,823,489 primes, and a passing SM120 CUDA qualification;
 - the paper source and its currently available aggregate evidence;
 - the four historical scanner blobs used across the campaign, preserved by
   exact Git blob identity;
@@ -62,8 +72,8 @@ Within the staged release payload, the DOI gate's `passed` state means
 tag or deposit is already public. The post-tag deposit receipt stays outside the
 payload as a separate JSON file and is not evidence embedded by that gate.
 
-See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the evidence tiers and the
-read-only recovery procedure to run later on the campaign PC.
+See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the evidence tiers, the
+completed read-only recovery record, and the remaining release procedure.
 
 ## Scope
 

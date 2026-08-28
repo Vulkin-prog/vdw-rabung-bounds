@@ -91,6 +91,8 @@ driver and verifies the causal order
 `checkpoint_recovers_missing_journal`. This proves checkpoint completion; it
 does not reconstruct unavailable raw scanner output.
 
-The separate ordered-prime audit remains mandatory. Aggregate counts or this
-recovery manifest do not replace byte equality of both prime streams on all
-515 chunks.
+The separate ordered-prime audit is preserved in
+`prime_identity_manifest.json`.  It records byte equality of the scanner and
+independent CPU streams on all 515 chunks: 48,823,489 ordered primes and
+535,628,154 stream bytes.  Aggregate counts or the recovery manifest alone
+would not replace that stronger check.

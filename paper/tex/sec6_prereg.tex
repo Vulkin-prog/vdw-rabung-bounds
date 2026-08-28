@@ -61,14 +61,15 @@ predicate or prove that no run-valid prime was omitted.
 The live tracking script additionally reads
 \texttt{results/campaign/checkpoint.json}, while the campaign directory is
 excluded from ordinary source tracking.  An end-to-end archival claim therefore
-requires an immutable copy of the checkpoint, the $498$ retained per-chunk
-histograms for chunks $18$--$515$, the audited aggregate re-scan that covers
-chunks $1$--$17$, every other retained raw or derived campaign artifact, and a
-machine-readable revision map in the final data release.
-Unavailable historical streams must be declared unavailable rather than
-reconstructed as $17$ fictitious per-chunk histograms.  Until that evidence is
-part of the cited release, the git history alone reproduces the narrow
-$(3,17)$ event-count analysis, not every campaign-level diagnostic.
+requires an immutable copy of the checkpoint and campaign journal, the $498$
+retained per-chunk histograms for chunks $18$--$515$, the audited aggregate
+re-scan covering chunks $1$--$17$, and a machine-readable revision map.  The
+recovered package now preserves those available artifacts.  The aggregate
+re-scan restores histogram coverage over the first $17$ chunks, but not a
+fictitious $17$-way decomposition; unavailable historical per-chunk streams
+are declared unavailable rather than reconstructed.  The git history alone
+remains sufficient only for the narrow $(3,17)$ event-count analysis; the
+archived evidence is required for campaign-level diagnostics.
 
 This boundary preserves the prospective record as executed, makes later
 repairs visible as repairs, and limits the conclusions to what the released

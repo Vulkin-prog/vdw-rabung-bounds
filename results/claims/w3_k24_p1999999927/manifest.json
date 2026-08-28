@@ -1,0 +1,299 @@
+{
+  "build": {
+    "binaries_sha256": {
+      "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/highp_witness": "7a43e863cadd5c70f040b41d4f877d80f64ea6a533b5c9116e71e178fa6de430",
+      "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/rabung_criterion": "7e21471a67113497e9d6fac972f3e63b145452e139a7d57268defb2ebfa54642",
+      "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/scan_gpu": "4945a030cf5c7ab8006f4d3b05731bed9d14be5466ae77573ecc3dff67f0b748",
+      "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/verify_claim": "5db42a923b30469fa32652570a2ac5b57e7a0cd1636c28fda3078388a3684366"
+    },
+    "compile_commands": {
+      "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/highp_witness": [
+        "gcc",
+        "-O2",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "tools/highp_witness.c",
+        "-o",
+        "build/claim-evidence/cae83b4a59185686e5ce3b48c1640917f0b503e6/highp_witness"
+      ],
+      "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/rabung_criterion": [
+        "g++",
+        "-O2",
+        "-std=c++17",
+        "tools/rabung_criterion.cpp",
+        "-o",
+        "build/claim-evidence/cae83b4a59185686e5ce3b48c1640917f0b503e6/rabung_criterion"
+      ],
+      "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/scan_gpu": [
+        "nvcc",
+        "-O3",
+        "-std=c++17",
+        "-lineinfo",
+        "-Xptxas=-v",
+        "-gencode",
+        "arch=compute_120,code=sm_120",
+        "-gencode",
+        "arch=compute_120,code=compute_120",
+        "src/scan_gpu.cu",
+        "-o",
+        "build/claim-evidence/cae83b4a59185686e5ce3b48c1640917f0b503e6/scan_gpu"
+      ],
+      "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/verify_claim": [
+        "g++",
+        "-O2",
+        "-std=c++17",
+        "tools/verify_claim.cpp",
+        "-o",
+        "build/claim-evidence/cae83b4a59185686e5ce3b48c1640917f0b503e6/verify_claim"
+      ]
+    },
+    "compiler_versions": {
+      "g++": "{\"command\":\"g++\",\"resolved_path\":\"/usr/bin/x86_64-linux-gnu-g++-15\",\"sha256\":\"e6718f7e0c7d057c3ff77b550c603da9bc4030e3ede3c053705acce1293dbe4d\",\"version\":\"x86_64-linux-gnu-g++-15 (Ubuntu 15.2.0-16ubuntu1) 15.2.0\\nCopyright (C) 2025 Free Software Foundation, Inc.\\nThis is free software; see the source for copying conditions.  There is NO\\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\"}",
+      "gcc": "{\"command\":\"gcc\",\"resolved_path\":\"/usr/bin/x86_64-linux-gnu-gcc-15\",\"sha256\":\"b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88\",\"version\":\"x86_64-linux-gnu-gcc-15 (Ubuntu 15.2.0-16ubuntu1) 15.2.0\\nCopyright (C) 2025 Free Software Foundation, Inc.\\nThis is free software; see the source for copying conditions.  There is NO\\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\"}",
+      "nvcc": "{\"command\":\"nvcc\",\"resolved_path\":\"/usr/local/cuda-13.3/bin/nvcc\",\"sha256\":\"6b55d91cd23f314ccb6801d71d64d20760a7ec31d37d87017ea0681d79bd3285\",\"version\":\"nvcc: NVIDIA (R) Cuda compiler driver\\nCopyright (c) 2005-2026 NVIDIA Corporation\\nBuilt on Fri_Apr_24_07:22:02_PM_PDT_2026\\nCuda compilation tools, release 13.3, V13.3.33\\nBuild cuda_13.3.r13.3/compiler.37862127_0\"}"
+    },
+    "git_clean": true,
+    "git_commit": "cae83b4a59185686e5ce3b48c1640917f0b503e6",
+    "sources_sha256": {
+      "audit/claim-manifest-v1.schema.json": "a49b8abfd0ab31fec75ed5c14f5dd856a086dcd0f292e4e859a04d02fa9aca04",
+      "audit/claims.json": "3b3ffc1739b091194e9b54d2f9435bcfbff7ab2ba84d7176330e9dead12d0aeb",
+      "scripts/capture_claim_evidence.py": "671a48efaac47e0bdb3ed0371a696a3c4f3b55d71ee3da36318102b7e74559c6",
+      "src/scan_gpu.cu": "05a907076ff88255ace7c46570391b766a096aea3f9edc7db6c86e3ba32cde21",
+      "tools/claim_audit.py": "3964252564157a7b416217863489fe0a60d2c2917eb1d25b835d70877c9abf6a",
+      "tools/highp_witness.c": "c0db025c3720cd206c95406d197887ea0755e490558e26614a1356609b677fcd",
+      "tools/rabung_criterion.cpp": "b7ef60c3d23b1e3d1c3172b06276ddf005d35921e833d32c2ebb1807b417bb44",
+      "tools/verify_claim.cpp": "072a52fa2391a6f9376b7bb17b26307653e5b0d32385bb1ae504ab556104286c"
+    }
+  },
+  "claim": {
+    "colors": 3,
+    "evidence_class": "succinct_rabung_certificate",
+    "id": "w3_k24_p1999999927",
+    "length": 24,
+    "lower_bound": 45999998322,
+    "origin": "this_scan",
+    "prime": 1999999927,
+    "priority_credit": "this work"
+  },
+  "final": {
+    "fail_closed": true,
+    "verdict": "ACCEPT"
+  },
+  "runs": [
+    {
+      "argv": [
+        "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/scan_gpu",
+        "--verify1",
+        "1999999927",
+        "24",
+        "3"
+      ],
+      "attempt": 1,
+      "exit_code": 0,
+      "parsed": {
+        "bound": 45999998322,
+        "claim_digest": "ee9f28861146d0c3",
+        "k": 24,
+        "maxrun": 18,
+        "p": 1999999927,
+        "profile_digest": "03107afa6942f295",
+        "profiles": {
+          "2": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "3": [
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "6": [
+            13,
+            13,
+            13,
+            13,
+            13,
+            13
+          ],
+          "9": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "r": 3,
+        "verdict": "ACCEPT"
+      },
+      "stage": "scan_gpu_verify1",
+      "stderr": {
+        "bytes": 51,
+        "path": "run-01-scan_gpu_verify1-attempt-1.stderr",
+        "sha256": "45bb8a845f590d892131c9bddc2e354043fbe10d9011978d74f0e35eeb7a913d"
+      },
+      "stdout": {
+        "bytes": 730,
+        "path": "run-01-scan_gpu_verify1-attempt-1.stdout",
+        "sha256": "a7fc258f0002807d687b99245d4116e2f42bd16ea31c3247f97d5d3fba6128c3"
+      }
+    },
+    {
+      "argv": [
+        "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/scan_gpu",
+        "--verify1",
+        "1999999927",
+        "24",
+        "3"
+      ],
+      "attempt": 2,
+      "exit_code": 0,
+      "parsed": {
+        "bound": 45999998322,
+        "claim_digest": "ee9f28861146d0c3",
+        "k": 24,
+        "maxrun": 18,
+        "p": 1999999927,
+        "profile_digest": "03107afa6942f295",
+        "profiles": {
+          "2": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "3": [
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "6": [
+            13,
+            13,
+            13,
+            13,
+            13,
+            13
+          ],
+          "9": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "r": 3,
+        "verdict": "ACCEPT"
+      },
+      "stage": "scan_gpu_verify1",
+      "stderr": {
+        "bytes": 51,
+        "path": "run-02-scan_gpu_verify1-attempt-2.stderr",
+        "sha256": "45bb8a845f590d892131c9bddc2e354043fbe10d9011978d74f0e35eeb7a913d"
+      },
+      "stdout": {
+        "bytes": 730,
+        "path": "run-02-scan_gpu_verify1-attempt-2.stdout",
+        "sha256": "a7fc258f0002807d687b99245d4116e2f42bd16ea31c3247f97d5d3fba6128c3"
+      }
+    },
+    {
+      "argv": [
+        "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/rabung_criterion",
+        "-q",
+        "1999999927",
+        "3",
+        "24"
+      ],
+      "attempt": 1,
+      "exit_code": 0,
+      "parsed": {
+        "criterion": 1,
+        "verdict": "ACCEPT"
+      },
+      "stage": "rabung_criterion",
+      "stderr": {
+        "bytes": 0,
+        "path": "run-03-rabung_criterion-attempt-1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 2,
+        "path": "run-03-rabung_criterion-attempt-1.stdout",
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      }
+    },
+    {
+      "argv": [
+        "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/rabung_criterion",
+        "-q",
+        "1999999927",
+        "3",
+        "24"
+      ],
+      "attempt": 2,
+      "exit_code": 0,
+      "parsed": {
+        "criterion": 1,
+        "verdict": "ACCEPT"
+      },
+      "stage": "rabung_criterion",
+      "stderr": {
+        "bytes": 0,
+        "path": "run-04-rabung_criterion-attempt-2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 2,
+        "path": "run-04-rabung_criterion-attempt-2.stdout",
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      }
+    },
+    {
+      "argv": [
+        "results/claims/_build/cae83b4a59185686e5ce3b48c1640917f0b503e6/verify_claim",
+        "1999999927",
+        "3",
+        "24"
+      ],
+      "attempt": 1,
+      "exit_code": 0,
+      "parsed": {
+        "bound": 45999998322,
+        "k": 24,
+        "p": 1999999927,
+        "r": 3,
+        "verdict": "ACCEPT"
+      },
+      "stage": "verify_claim",
+      "stderr": {
+        "bytes": 1351,
+        "path": "run-05-verify_claim-attempt-1.stderr",
+        "sha256": "7df738e638be3038a446511016d21e0b8e494ec7dd408df535073076f838a3b3"
+      },
+      "stdout": {
+        "bytes": 56,
+        "path": "run-05-verify_claim-attempt-1.stdout",
+        "sha256": "e2d634f59c38871734743e8f061af141fadf3e5725c54c06b6275b28eab85460"
+      }
+    }
+  ],
+  "schema": "vdw-claim-manifest/v1"
+}

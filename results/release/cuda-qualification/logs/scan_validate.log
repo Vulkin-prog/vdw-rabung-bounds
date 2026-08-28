@@ -1,0 +1,10 @@
+[scan_gpu] NVIDIA GeForce RTX 5090 sm_120, 33.7 Go
+
+=== VALIDATION DIFFERENTIELLE (3 voies) ===
+premiers testes : 3244 (p<30000)
+SORT vs CPU : 25928 comparaisons, 0 desaccords
+CHAR(B7) vs CPU : 10743 comparaisons (r|p-1), 0 desaccords
+V2a(miroir) vs CPU : 10743 comparaisons (r|p-1), 0 desaccords
+V2b(parite 2-adique) vs CPU : 10743 comparaisons (r|p-1), 0 desaccords
+B*(powmod) vs B*(walk) : 279136 comparaisons, 0 desaccords
+VERDICT : ACCORD 100% (V2a/V2b + B7 + tri + CPU concordants)  (5.9s)

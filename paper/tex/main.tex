@@ -4,7 +4,7 @@
 \usepackage{microtype}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage[margin=1.1in]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{graphicx,booktabs,longtable,array}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[colorlinks]{hyperref}
@@ -26,11 +26,13 @@ lower bounds for van der Waerden numbers}
 \fbox{\begin{minipage}{0.90\linewidth}\small
 \textbf{Qualification status (28 August 2026).}
 This is a private prepublication draft, not the citable release.  Open gates
-include the final 13 claim manifests, 515-chunk campaign recovery,
-ordered-prime audit, CUDA qualification, four external certificate rechecks, outbound
-licences, and DOI/tag freeze, as recorded in \texttt{STATUS.json}.  Numerical
-statements below report the current computation; release-level reproducibility
-claims remain conditional on the full ledger.
+include clean final CPU and document replays, four external certificate
+rechecks, outbound licences, and DOI/tag freeze, as recorded in
+\texttt{STATUS.json}.  The local PC evidence now includes the fail-closed
+13-manifest claim audit, authenticated 515-chunk campaign recovery,
+515-of-515 ordered-prime identity, and SM120 CUDA qualification.  Numerical
+statements below report the current computation; the repository remains
+non-citable until every release gate has passed.
 \end{minipage}}
 \end{center}
 \begin{abstract}
@@ -40,14 +42,14 @@ summaries identify nine candidate direct Rabung certificates for $W(3,k)$,
 $17\le k\le25$, headed by $W(3,17)>31\,385\,622\,833$.  The GPU discovers the
 triples; it is not the source of the proof.  For each triple $(p,r,k)$, a
 stand-alone, separate-source CPU verifier can re-establish the finite
-hypotheses of Rabung's theorem from scratch.  Conditional on acceptance of the
-registered claim manifests, closing a dated corpus
+hypotheses of Rabung's theorem from scratch.  A fail-closed audit accepts all
+thirteen registered claim manifests.  Closing a dated corpus
 of published, archived, and current baselines under the recurrences of
 Blankenship--Cummings--Taranchuk and Xu leaves the direct values as the
 strongest bounds located there for $17\le k\le21$.  The rows
 $22\le k\le25$ improve the direct Rabung family but are not general van der
-Waerden records.  Retained historical runs also report separate-source
-acceptance of four archived two-colour certificates due to Monroe; final
+Waerden records.  The final separate-source manifests also accept four
+archived two-colour certificates due to Monroe; independently administered
 release rechecks remain open.  Applying the Blankenship--Cummings--Taranchuk
 recurrence gives, in particular,
 $W(3,25)>628\,673\,328\,287$ and

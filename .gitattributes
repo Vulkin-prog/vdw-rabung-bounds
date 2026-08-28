@@ -1,3 +1,10 @@
 * text=auto eol=lf
 *.pdf binary
 *.gz binary
+
+# Captured process streams and disassembly are byte-bound evidence.  They can
+# legitimately contain carriage-return progress records and trailing spaces;
+# keep them out of textual diffs without rewriting their authenticated bytes.
+results/claims/**/run-*.stdout -diff
+results/claims/**/run-*.stderr -diff
+results/release/cuda-qualification/logs/scan.sass -diff

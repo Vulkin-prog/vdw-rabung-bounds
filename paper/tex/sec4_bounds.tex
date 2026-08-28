@@ -2,10 +2,9 @@
 
 The computational source of truth registers exactly thirteen direct Rabung
 claims: nine three-colour triples for $17\le k\le25$ and four two-colour
-triples for $25\le k\le28$.  In this private build they retain candidate
-status because the final fail-closed manifests have not yet been populated.
-The release build promotes them to the following numerical theorem only when
-the exact set of thirteen accepted manifests is present.
+triples for $25\le k\le28$.  The exact set of thirteen fail-closed manifests
+is present and accepted in the current evidence package.  The document build
+displays the following numerical theorem only after revalidating that set.
 
 \IfFileExists{generated_validated_claims.tex}{%
   \begin{theorem}[Certified Rabung bounds]\label{thm:certified-rabung}
@@ -39,8 +38,8 @@ the exact set of thirteen accepted manifests is present.
 
 \subsection{Three colours: direct and recurrence-closed bounds}\label{ss:r3}
 
-The historical scan produced nine candidate direct Rabung certificates.  The
-headline value
+The historical scan produced nine candidate direct Rabung certificates, all
+now accepted by the final manifest audit.  The headline value
 \[
   W(3,17)>31\,385\,622\,833
 \]
@@ -89,15 +88,15 @@ criterion.
 \toprule
 $k$ & prime $p$ & $W(2,k)>$ & method and provenance \\
 \midrule
-25 & $1\,138\,900\,957$ & $27\,333\,622\,969$ & archive and historical separate-source recheck; final manifest pending \\
-26 & $2\,125\,065\,391$ & $53\,126\,634\,776$ & archived Monroe prime; final manifest pending \\
-27 & $3\,459\,826\,103$ & $89\,955\,478\,679$ & historical no-Montgomery recheck; final manifest pending \\
-28 & $3\,476\,732\,783$ & $93\,871\,785\,142$ & historical no-Montgomery recheck; final manifest pending \\
+25 & $1\,138\,900\,957$ & $27\,333\,622\,969$ & archived Monroe prime; accepted separate-source manifest \\
+26 & $2\,125\,065\,391$ & $53\,126\,634\,776$ & archived Monroe prime; accepted separate-source manifest \\
+27 & $3\,459\,826\,103$ & $89\,955\,478\,679$ & archived Monroe prime; accepted manifest and no-Montgomery witness \\
+28 & $3\,476\,732\,783$ & $93\,871\,785\,142$ & archived Monroe prime; accepted manifest and no-Montgomery witness \\
 \bottomrule
 \end{tabular}
 \caption{Two-colour succinct Rabung certificates used as recurrence inputs.
 The method column separates priority for the archived prime from the
-separate-source recheck; final raw manifests remain pending.}
+separate-source recheck recorded in the accepted final manifests.}
 \label{tab:r2}
 \end{table}
 
@@ -107,7 +106,7 @@ For $k=25$, even Monroe's published input would give
   \quad\Longrightarrow\quad
   W(3,25)>529\,084\,237\,247.
 \]
-The archived input accepted in retained historical checks,
+The archived input accepted in the final manifest audit,
 $W(2,25)>27\,333\,622\,969$, strengthens this to the first line below.
 
 \input{generated_bct_corollaries}
@@ -115,15 +114,15 @@ $W(2,25)>27\,333\,622\,969$, strengthens this to the first line below.
 These four inequalities are theorem consequences of the corresponding
 two-colour inputs, not additional GPU discoveries.  Priority for the primes
 remains Monroe's.  Xu's recurrence is included in the automatic closure but
-does not improve any of these three-colour winners.  Final release-level
-reproducibility remains conditional on the manifest protocol of
-Section~\ref{ss:protocol}.
+does not improve any of these three-colour winners.  Release-level
+reproducibility remains conditional on the external rechecks and the other
+open release gates described in Section~\ref{s:data}.
 
-For $k=25$ the campaign summaries identify the same last candidate in
-$[9.7\times10^8,2\times10^9)$ as the archived table; complete campaign
-recovery and ordered-prime identity remain release gates.  For $k=26,27,28$
+For $k=25$ the authenticated campaign record identifies the same last
+candidate in $[9.7\times10^8,2\times10^9)$ as the archived table, and the
+ordered-prime audit agrees on all $515$ chunks.  For $k=26,27,28$
 our campaign-range candidates are weaker, and the displayed archive primes
-were checked directly in retained historical runs.  None of this establishes
+are accepted directly by the final manifests.  None of this establishes
 that Monroe's phase exhaustively tested every prime up to four billion: that is
 an attributed archival statement, not a consequence of the recovered table.
 
@@ -132,8 +131,8 @@ The source is the Internet Archive capture of 28~April~2022 of
 dates the file to 18~August~2021.  The release records the immutable capture
 URL, both dates, source-repository blob identity, and SHA-256 in
 \path{publication/baseline-provenance.json}.  It does not redistribute the
-third-party table absent permission.  Once the final manifests and external
-execution records are complete, the defensible novelty claim is a
-separately auditable re-verification with a public stand-alone checker and
-complete logs---not first discovery of the primes and not a newly audited claim
-of historical scan coverage.
+third-party table absent permission.  With the final manifests complete, the
+defensible novelty claim remains a separately auditable re-verification with a
+public stand-alone checker and complete logs---not first discovery of the
+primes and not a newly audited claim of historical scan coverage.  The four
+external execution records are still required before release.

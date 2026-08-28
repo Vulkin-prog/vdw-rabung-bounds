@@ -1,0 +1,7 @@
+[scan_gpu] NVIDIA GeForce RTX 5090 sm_120, 33.7 Go
+MONTCHECK modulus=3459826103 prime=1 samples=20000 pow_mismatch=0 recur_mismatch=0 jacobi_cmp=10000 jacobi_mismatch=0 checksum=9457096413974874593 verdict=PASS
+MONTCHECK modulus=3476732783 prime=1 samples=20000 pow_mismatch=0 recur_mismatch=0 jacobi_cmp=10000 jacobi_mismatch=0 checksum=12623268597576855678 verdict=PASS
+MONTCHECK modulus=4294967197 prime=1 samples=20000 pow_mismatch=0 recur_mismatch=0 jacobi_cmp=5000 jacobi_mismatch=0 checksum=17516606149855709318 verdict=PASS
+MONTCHECK modulus=4294967231 prime=1 samples=20000 pow_mismatch=0 recur_mismatch=0 jacobi_cmp=5000 jacobi_mismatch=0 checksum=4826217851347776590 verdict=PASS
+MONTCHECK modulus=4294967279 prime=1 samples=20000 pow_mismatch=0 recur_mismatch=0 jacobi_cmp=5000 jacobi_mismatch=0 checksum=17295400533125627757 verdict=PASS
+MONTCHECK modulus=4294967291 prime=1 samples=20000 pow_mismatch=0 recur_mismatch=0 jacobi_cmp=5000 jacobi_mismatch=0 checksum=6762569189809763181 verdict=PASS
