@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "notation": "W(colors,length) > lower_bound",
+  "scope": {
+    "length_min": 17,
+    "length_max": 28,
+    "max_colors": 4
+  },
+  "sources": {
+    "monroe2026": {
+      "citation_key": "Monroe2026",
+      "title": "New Lower Bounds for van der Waerden Numbers Using Distributed Computing",
+      "doi": "10.61091/jcmcc128-19",
+      "location": "Tables 1 and 2"
+    },
+    "monroe_code_tally": {
+      "citation_key": "Monroe2026",
+      "title": "Unpublished direct Rabung tally distributed with Monroe's code",
+      "provenance": "publication/baseline-provenance.json#/sources/monroe_code_tally"
+    },
+    "bct2018": {
+      "citation_key": "bct2018",
+      "title": "A new lower bound for van der Waerden numbers",
+      "doi": "10.1016/j.ejc.2017.10.007",
+      "arxiv": "1705.09673",
+      "location": "Theorem 2.1"
+    },
+    "xu2013": {
+      "citation_key": "xu2013",
+      "title": "A generalization of sets without long arithmetic progressions based on Szekeres algorithm",
+      "doi": "10.1016/j.jnt.2013.05.008"
+    },
+    "monroe_phase2_archive": {
+      "citation_key": "MonroePage",
+      "title": "Archived BOINC phase-2 table, independently verified in this work",
+      "provenance": "publication/baseline-provenance.json#/sources/monroe_phase2_archive"
+    },
+    "this_work": {
+      "title": "Succinct Rabung certificates verified in this work",
+      "location": "audit/claims.json"
+    }
+  },
+  "ordinary_seeds": [
+    {"id": "monroe_w2_17", "colors": 2, "length": 17, "lower_bound": 46397777, "source": "monroe2026"},
+    {"id": "monroe_w2_18", "colors": 2, "length": 18, "lower_bound": 91079252, "source": "monroe2026"},
+    {"id": "monroe_w2_19", "colors": 2, "length": 19, "lower_bound": 250546915, "source": "monroe2026"},
+    {"id": "monroe_w2_20", "colors": 2, "length": 20, "lower_bound": 526317462, "source": "monroe2026"},
+    {"id": "monroe_w2_21", "colors": 2, "length": 21, "lower_bound": 1409670741, "source": "monroe2026"},
+    {"id": "monroe_w2_22", "colors": 2, "length": 22, "lower_bound": 2582037634, "source": "monroe2026"},
+    {"id": "monroe_w2_23", "colors": 2, "length": 23, "lower_bound": 6206141987, "source": "monroe2026"},
+    {"id": "monroe_w2_24", "colors": 2, "length": 24, "lower_bound": 10980093212, "source": "monroe2026"},
+    {"id": "monroe_w2_25", "colors": 2, "length": 25, "lower_bound": 23003662489, "source": "monroe2026"},
+    {"id": "monroe_tally_w3_17", "colors": 3, "length": 17, "lower_bound": 15509557937, "source": "monroe_code_tally"},
+    {"id": "monroe_tally_w3_18", "colors": 3, "length": 18, "lower_bound": 16479723552, "source": "monroe_code_tally"},
+    {"id": "monroe_tally_w3_19", "colors": 3, "length": 19, "lower_bound": 17449137523, "source": "monroe_code_tally"},
+    {"id": "monroe_tally_w3_20", "colors": 3, "length": 20, "lower_bound": 18418533254, "source": "monroe_code_tally"},
+    {"id": "monroe_tally_w3_21", "colors": 3, "length": 21, "lower_bound": 19387932141, "source": "monroe_code_tally"},
+    {"id": "monroe_tally_w3_22", "colors": 3, "length": 22, "lower_bound": 20357316652, "source": "monroe_code_tally"},
+    {"id": "monroe_tally_w3_23", "colors": 3, "length": 23, "lower_bound": 21326716247, "source": "monroe_code_tally"},
+    {"id": "monroe_tally_w3_24", "colors": 3, "length": 24, "lower_bound": 22296077664, "source": "monroe_code_tally"},
+    {"id": "monroe_tally_w3_25", "colors": 3, "length": 25, "lower_bound": 23265085993, "source": "monroe_code_tally"},
+    {"claim_id": "w2_k25_p1138900957"},
+    {"claim_id": "w2_k26_p2125065391"},
+    {"claim_id": "w2_k27_p3459826103"},
+    {"claim_id": "w2_k28_p3476732783"},
+    {"claim_id": "w3_k17_p1961601427"},
+    {"claim_id": "w3_k18_p1999994851"},
+    {"claim_id": "w3_k19_p1999999927"},
+    {"claim_id": "w3_k20_p1999999927"},
+    {"claim_id": "w3_k21_p1999999927"},
+    {"claim_id": "w3_k22_p1999999927"},
+    {"claim_id": "w3_k23_p1999999927"},
+    {"claim_id": "w3_k24_p1999999927"},
+    {"claim_id": "w3_k25_p1999999927"}
+  ],
+  "ring_seeds": [
+    {"id": "monroe_wr2_17", "colors": 2, "length": 17, "lower_bound": 2899861, "source": "monroe2026"},
+    {"id": "monroe_wr2_18", "colors": 2, "length": 18, "lower_bound": 5357603, "source": "monroe2026"},
+    {"id": "monroe_wr2_19", "colors": 2, "length": 19, "lower_bound": 13919273, "source": "monroe2026"},
+    {"id": "monroe_wr2_20", "colors": 2, "length": 20, "lower_bound": 27700919, "source": "monroe2026"},
+    {"id": "monroe_wr2_21", "colors": 2, "length": 21, "lower_bound": 70483537, "source": "monroe2026"},
+    {"id": "monroe_wr2_22", "colors": 2, "length": 22, "lower_bound": 122954173, "source": "monroe2026"},
+    {"id": "monroe_wr2_23", "colors": 2, "length": 23, "lower_bound": 282097363, "source": "monroe2026"},
+    {"id": "monroe_wr2_24", "colors": 2, "length": 24, "lower_bound": 477395357, "source": "monroe2026"},
+    {"id": "monroe_wr2_25", "colors": 2, "length": 25, "lower_bound": 958485937, "source": "monroe2026"},
+    {"claim_id": "w2_k25_p1138900957"},
+    {"claim_id": "w2_k26_p2125065391"},
+    {"claim_id": "w2_k27_p3459826103"},
+    {"claim_id": "w2_k28_p3476732783"},
+    {"claim_id": "w3_k17_p1961601427"},
+    {"claim_id": "w3_k18_p1999994851"},
+    {"claim_id": "w3_k19_p1999999927"},
+    {"claim_id": "w3_k20_p1999999927"},
+    {"claim_id": "w3_k21_p1999999927"},
+    {"claim_id": "w3_k22_p1999999927"},
+    {"claim_id": "w3_k23_p1999999927"},
+    {"claim_id": "w3_k24_p1999999927"},
+    {"claim_id": "w3_k25_p1999999927"}
+  ]
+}

@@ -1,0 +1,175 @@
+\section{The Rabung criterion and certificates}\label{s:method}
+
+\subsection{Power-residue colorings}\label{ss:prc}
+
+Throughout, $W(r,k)$ denotes the least $N$ such that every $r$-coloring of
+$\{1,\dots,N\}$ contains a monochromatic arithmetic progression of length $k$.
+An \emph{explicit certificate} for the lower bound $W(r,k)>n$ is an
+$r$-colouring of $\{1,\dots,n\}$ with no monochromatic $k$-term progression.
+The large claims below instead use a \emph{succinct Rabung certificate}
+$(p,r,k)$: an autonomous checker re-establishes the hypotheses of a proved
+construction theorem.  This is not an exhaustive enumeration of all
+progressions in the resulting colouring.
+
+Let $p$ be a prime with $p\equiv 1 \pmod r$ and $p>k$, let $g$ be a primitive
+root modulo $p$, and let $\operatorname{ind}(x)$ denote the discrete logarithm
+of $x$ to base $g$. The \emph{power-residue coloring} is
+\[
+  c(x) \;=\; \operatorname{ind}(x) \bmod r , \qquad x \in \{1,\dots,p-1\},
+\]
+i.e.\ the partition of $\mathbb{Z}_p^{*}$ into the $r$ classes of $r$-th power
+residues. Its key property is multiplicativity: $c(xy)=c(x)+c(y) \pmod r$.
+Consequently, dilating a progression $\{a,a+d,\dots,a+(k-1)d\}$ with
+$p \nmid d$ by $u=d^{-1} \bmod p$ shifts all colors by the constant $c(u)$ and
+maps the progression to $k$ \emph{consecutive} residues modulo $p$. The search
+for monochromatic progressions therefore reduces to a linear scan of the run
+lengths of the sequence $c(1),c(2),\dots,c(p-1)$, plus a boundary condition at
+the multiples of $p$; this reduction from an $O(p^2/k)$ test to an $O(p)$ test
+per prime is what makes a mass scan possible.
+
+\subsection{Rabung's theorem and the operational criterion}\label{ss:criterion}
+
+Rabung~\cite{rabung1979} proved that the extension $\vartheta'$ of the
+power-residue coloring to $[0,(k-1)p]$, with the multiples of $p$ colored by any
+non-constant assignment, is free of monochromatic $k$-term progressions
+\emph{if and only if}
+\begin{itemize}
+\item[(a)] no $k$ consecutive positions in $[1,p-1]$ receive the same color
+  (max run $<k$); and
+\item[(b)] a boundary condition holds: write $\vartheta(-1)=+1$ if $p-1$ lies in
+  the class of the $r$-th powers (i.e.\ $c(p-1)=0$; the \emph{palindromic}
+  case --- additively, in the appendix, $\vartheta(-1)=+1$ corresponds to
+  $c(p-1)=0$ and $\vartheta(-1)=-1$ to $c(p-1)=r/2$)
+  and $\vartheta(-1)=-1$ otherwise. If $\vartheta(-1)=+1$ the integers
+  $1,2,\dots,\lceil (k-1)/2 \rceil$ must not all lie in the same class, while if
+  $\vartheta(-1)=-1$ the same is required of $1,2,\dots,k-1$. A \emph{singleton}
+  counts as ``all in the same class'', and so fails~(b).
+\end{itemize}
+The second alternative $c(p-1)=r/2$ can occur only for even $r$.  If $r$ is
+odd, $(p-1)/r$ is even and hence $c(-1)=0$ necessarily.
+
+\begin{remark}\label{r:ceiling}
+Both details of~(b) matter. Replacing the ceiling by a floor, or treating a
+singleton as vacuously satisfying the condition, yields a criterion that is
+\emph{not} equivalent to Rabung's.  Explicit counterexamples occur already at
+$p=13$, $r=2$, $k=4$ for the floor variant and at $p=5$, $r=2$, $k=4$ when a
+singleton is mishandled.  The ceiling and floor coincide only for odd~$k$. We
+record this because an early version of our own tester made exactly these two
+mistakes, and comparison against the oracle described below is what caught
+them.
+\end{remark}
+Since $[0,(k-1)p]$ contains $(k-1)p+1$ integers, a prime satisfying
+(a)$\wedge$(b) yields
+\begin{equation}\label{eq:bound}
+  W(r,k) \;>\; (k-1)\,p+1 .
+\end{equation}
+We call such a prime \emph{valid} for $(r,k)$.
+
+Our implementations test an equivalent form of (b), denoted (B$^{*}$), which is
+uniform in the parity of $k$ and the value of $\vartheta(-1)$: for every shift
+$j\in\{0,\dots,k-1\}$, the $k-1$ character positions
+$\{-j,\dots,-1,1,\dots,k-1-j\}$ of a $k$-window centered on a multiple of $p$
+must not all receive the same color. The equivalence rests on the
+multiplicative structure: if a single shifted window is monochromatic, its
+dilates realize every color at the central position (surjectivity of
+$c$ requires exactly $p \equiv 1 \bmod r$), so the joker position cannot be
+colored at all; otherwise any non-constant coloring of the multiples of $p$
+works. A literal transcription of (b) is error-prone --- an early version of our
+own tester mishandled the singleton case and the rounding of $(k-1)/2$ --- which
+is one reason we insist on machine verification of the criterion itself.
+
+\subsection{Machine verification of the criterion}\label{ss:oracle}
+
+We verified the criterion (a)$\wedge$(B$^{*}$) against a frozen reference
+oracle that explicitly builds the coloring of $[1,(k-1)p+1]$ and exhaustively
+checks all $k$-term progressions. One bookkeeping detail matters: Rabung's
+construction lives on $[0,(k-1)p]$, and the oracle works on its translate by
+one---it colors $x$ by the class of $(x-1)\bmod p$ and places the jokers at
+$x\equiv1\pmod p$---so the two objects are literally the same coloring up to
+relabeling of positions, and freedom from monochromatic progressions is
+translation-invariant. A historical two-run sweep over all primes $p<10^{4}$ with
+$p\equiv 1 \pmod r$, $p>k$, $r\in[2,6]$, $k\in[3,8]$ --- $20\,170$ cases, of
+which $4\,499$ were valid according to the criterion --- reported zero
+disagreements.  Its exact long-run outputs are not part of this staging export;
+the final CPU/tag gate must rerun and preserve them. A
+stronger test enumerates all $r^{k}$ colorings of the joker positions
+($p<150$, $r\le 4$, $k\le 5$) and confirms both directions of the equivalence:
+(a)$\wedge$(b) holds if and only if some valid extension exists, and when it
+holds every non-constant joker coloring is valid. We emphasize the epistemic
+status: Rabung's theorem is proved in~\cite{rabung1979}; the agreement of our
+operational form with the explicit oracle is exhaustively machine-checked on
+the stated domain.
+
+\subsection{Certificates and verification regimes}\label{ss:certificates}
+
+For the bounds announced in Section~\ref{s:bounds} the certificate length
+$(k-1)p+1$ is of order $3\times 10^{10}$ to $10^{11}$, so running the naive
+quadratic oracle on the explicit certificate is not feasible. Our verification
+policy therefore distinguishes two regimes. On the finite validation domain
+actually reported above ($p<10^4$, $k\le8$, hence certificate length below
+$7\times10^4$), the explicit certificate was checked directly by the reference
+oracle.  We make no general feasibility claim for length $10^7$: a successful
+naive oracle must inspect
+\[
+ \sum_{d=1}^{\lfloor(n-1)/(k-1)\rfloor}
+       \bigl(n-(k-1)d\bigr)
+\]
+progressions. For the large primes, the proof of~\eqref{eq:bound} is Rabung's
+theorem together with conditions (a)$\wedge$(b), and \emph{these} are what we
+verify redundantly: the mirror, full-interval, and CPU-walk paths, followed by
+separate CPU implementations of the full criterion.
+Section~\ref{ss:validation} records which paths share source code or
+arithmetic; cross-agreement is not described as statistical or implementation
+independence.
+
+Two kinds of certificate should be distinguished. An \emph{explicit}
+certificate is a full coloring of $\{1,\dots,n\}$; for the bounds of
+Section~\ref{s:bounds}, with $n$ up to $10^{11}$, distributing one is neither
+feasible nor useful. What the reproducibility package distributes is a
+\emph{succinct Rabung certificate}:
+the triple $(p,r,k)$, from which a stand-alone independent verifier,
+\texttt{verify\_claim}, re-derives everything. Its protocol, in full:
+\begin{enumerate}
+\item check that $p$ is prime (deterministic Miller--Rabin on the first twelve
+prime bases $2,3,5,\dots,37$; Sorenson and Webster's Theorem~1.1 gives
+$\psi_{12}=318\,665\,857\,834\,031\,151\,167\,461>2^{64}$, so this is exact
+through the unsigned $64$-bit range~\cite{SorensonWebster2017}, far beyond the
+$p<2^{32}$ actually used);
+\item check the preconditions $p\equiv1\pmod r$ and $p>k$;
+\item \emph{find} a primitive root $g$ by trial, certifying primitivity against
+the full trial-division factorization of $p-1$ (nothing about $g$ is taken as
+input);
+\item build the residue classes by modular exponentiation---$x^{(p-1)/r}$
+compared against the powers of $\zeta=g^{(p-1)/r}$, a method independent of
+both the discrete-logarithm walk and the GPU pipeline;
+\item test (a)$\wedge$(B$^{*}$) and print \textsc{accept} or \textsc{reject}.
+\end{enumerate}
+The whole run takes $O(p\log p)$ time and $O(p)$ memory. Each claimed bound in
+this paper can thus be re-derived from the triple $(p,r,k)$ alone---no
+generator, witness, or auxiliary data are part of the certificate---in two to
+seven minutes on a single core (Table~\ref{tab:bench}); the certificates are
+independently verifiable in this precise, succinct sense.
+
+\begin{table}[ht]\centering
+\begin{tabular}{r l r r l}
+\toprule
+$p$ & $(r,k)$ & wall time & peak RAM & verdict \\
+\midrule
+$1\,138\,900\,957$ & $(2,25)$ & $130$ s & $1.1$ GB & \textsc{accept} \\
+$1\,961\,601\,427$ & $(3,17)$ & $229$ s & $1.9$ GB & \textsc{accept} \\
+$3\,459\,826\,103$ & $(2,27)$ & $404$ s & $3.3$ GB & \textsc{accept} \\
+$3\,476\,732\,783$ & $(2,28)$ & $425$ s & $3.3$ GB & \textsc{accept} \\
+\bottomrule
+\end{tabular}
+\caption{Measured cost of the independent verifier on the four headline
+certificates. The two high-range rows are cross-documented with the
+corrected-scanner and Montgomery-free checks required by the fail-closed claim
+manifest protocol. Those release manifests are not yet populated, so these
+historical timings are not themselves release evidence. Single-threaded on an AMD Ryzen~7 9800X3D under Ubuntu 26.04,
+\texttt{g++ 15.2.0 -O2 -std=c++17}; full environment in the repository. The time is modest;
+the memory is the real constraint, since the present implementation stores the
+colouring, i.e.\ $O(p)$ bytes. A two-pass streaming variant with $O(1)$ memory is
+possible and would be a worthwhile improvement, but it is not what we ran, and we
+report what we ran.}
+\label{tab:bench}
+\end{table}

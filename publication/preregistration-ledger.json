@@ -1,0 +1,43 @@
+{
+  "schema": "vdw-preregistration-ledger/v1",
+  "source_repository": "Vulkin-prog/vdw-gpu-starter",
+  "scope": "Prospective density comparison for run-valid (3,17) primes after campaign chunk 180",
+  "training_freeze": {
+    "commit": "2b5f9f94c94bff203022b3b43aa7b4206def1441",
+    "last_training_chunk": 180,
+    "training_observed": 1727,
+    "models": {
+      "bare": "exp(-p/3^17)",
+      "decaying": "exp(-p/3^17) + m*exp(-beta*p/3^17)",
+      "constant_floor": "exp(-p/3^17) + eta"
+    },
+    "parameters": {"m": 0.0008, "beta": 0.5, "eta": 0.0000162}
+  },
+  "schedule_freeze": {
+    "commit": "e52995d159ce802fd7bc81a17d69cb00dbf5aca2",
+    "scheduled_chunks": [250, 300, 400, 515],
+    "tracker": {
+      "encoded_path": "provenance/preregistration/eta_track.py.base64",
+      "git_blob_sha1": "e853ebdf4c7daa9f735e6a7c6105f9fe125ec575",
+      "sha256": "c31197e81c7a4d1f7acb05d7646c2fde824fa2ed2017fc12f10d9f739c53ca5e",
+      "bytes": 1665
+    },
+    "driver_dependency": {
+      "encoded_path": "provenance/scanners/historical/campaign_c3a9b9e.py.base64",
+      "git_blob_sha1": "4b2e630a6f24d02836c85263287fc9168472a696",
+      "sha256": "af952ab12c3b2fe8f0b9357583680b5a02db0268a130f909052527d55d0d650b"
+    }
+  },
+  "scheduled_read_commits": [
+    {"chunk": 250, "commit": "e5ac32d3372e73b8eeb9d5b0a329d744aa9c2739", "cumulative_observed": 90},
+    {"chunk": 300, "commit": "9280fdd3bd09d8bb93112e9d2e52825522feb233", "cumulative_observed": 110},
+    {"chunk": 400, "commit": "56493f094ef5f67e82e1aae9d0861cd334c0ef9e", "cumulative_observed": 126},
+    {"chunk": 515, "commit": "292ca823e6803025f0edd37f2aeab72a2b405ce9", "cumulative_observed": 132}
+  ],
+  "public_derivation": "audit/generated/density_holdout_audit.json",
+  "limitations": [
+    "The four cumulative readings are one trajectory, not four replications.",
+    "Corrected integration limits and all dispersion diagnostics are retrospective.",
+    "The ledger does not replace the missing campaign checkpoint and raw per-chunk archive."
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "vdw-publication-status/v1",
+  "artifact": "vdw-rabung-bounds",
+  "repository_state": "private_preparation",
+  "citable_release": false,
+  "source": {
+    "repository": "Vulkin-prog/vdw-gpu-starter",
+    "commit": "02796ae9e08da5b051a94b2d9001763908375f6e",
+    "commit_date_utc": "2026-08-20T19:08:06Z",
+    "export_policy": "explicit_allowlist"
+  },
+  "allowed_gate_statuses": [
+    "open",
+    "blocked_pc",
+    "blocked_external",
+    "blocked_human_decision",
+    "passed"
+  ],
+  "release_gates": [
+    {
+      "id": "source-export",
+      "status": "passed",
+      "evidence": [
+        "publication/source-import.json",
+        "publication/scope.json"
+      ],
+      "note": "Allowlisted source export and exclusions are machine-checkable."
+    },
+    {
+      "id": "cpu-ci-clean-tag",
+      "status": "open",
+      "evidence": [
+        "scripts/run_cpu_checks.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "note": "Checks are implemented; final evidence must be captured from the release candidate tag."
+    },
+    {
+      "id": "bibliography-primary-source-audit",
+      "status": "passed",
+      "evidence": [
+        "paper/references.bib",
+        "publication/bibliography-audit.json"
+      ],
+      "note": "The eleven cited entries were checked on 2026-08-28; the version-sensitive Fox--Hunter preprint is pinned to v1 and must be rechecked before the release freeze."
+    },
+    {
+      "id": "paper-clean-build",
+      "status": "open",
+      "evidence": [
+        "scripts/build_paper.sh",
+        "paper/tex/main.tex"
+      ],
+      "note": "A clean build exists locally; final evidence must bind the release candidate tag and DOI."
+    },
+    {
+      "id": "claim-manifests-13",
+      "status": "blocked_pc",
+      "evidence": [
+        "results/claims"
+      ],
+      "expected_count": 13,
+      "minimum_recorded_runs": 67,
+      "note": "Requires two GPU verify1 runs, two CPU-criterion runs, and one independent verifier run per claim, plus two high-range witnesses."
+    },
+    {
+      "id": "campaign-archive-515",
+      "status": "blocked_pc",
+      "evidence": [
+        "results/campaign"
+      ],
+      "expected_chunk_count": 515,
+      "note": "Recover the ignored historical campaign material read-only, including checkpoint evidence for chunk 7."
+    },
+    {
+      "id": "ordered-prime-identity-515",
+      "status": "blocked_pc",
+      "evidence": [
+        "results/campaign/prime_identity_manifest.json"
+      ],
+      "expected_chunk_count": 515,
+      "note": "Count agreement is insufficient; ordered prime streams must agree for every chunk."
+    },
+    {
+      "id": "cuda-release-qualification",
+      "status": "blocked_pc",
+      "evidence": [
+        "results/release/cuda-qualification"
+      ],
+      "note": "Clean CUDA build, GPU regression, compiler/driver/device metadata, source and binary hashes are required."
+    },
+    {
+      "id": "external-replication-4",
+      "status": "blocked_external",
+      "evidence": [
+        "publication/external-replication.json",
+        "results/external-replication"
+      ],
+      "expected_claim_ids": [
+        "w2_k25_p1138900957",
+        "w3_k17_p1961601427",
+        "w2_k27_p3459826103",
+        "w2_k28_p3476732783"
+      ],
+      "note": "Four fixed certificates must be checked on independently administered hardware."
+    },
+    {
+      "id": "outbound-rights",
+      "status": "blocked_human_decision",
+      "evidence": [
+        "RIGHTS-STATUS.md",
+        "THIRD_PARTY_NOTICES.md"
+      ],
+      "note": "The author must choose licences for code, paper/data, and resolve redistribution of third-party objects."
+    },
+    {
+      "id": "doi-tag-archive-freeze",
+      "status": "open",
+      "evidence": [
+        "CITATION.cff",
+        "release/zenodo-metadata.json.in",
+        "MANIFEST.sha256",
+        "paper/main.pdf"
+      ],
+      "note": "Reserve DOI only after prior gates pass, inject identifiers, rebuild, sign the tag, hash the deterministic archive, and verify the deposit."
+    }
+  ]
+}

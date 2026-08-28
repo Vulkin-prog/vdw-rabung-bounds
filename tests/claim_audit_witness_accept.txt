@@ -1,0 +1,10 @@
+[C1] racine primitive : OK
+[C2] marche fermee et couverture complete : OK
+[C3] marche vs caractere : 100 comparaisons, 0 desaccords -> OK
+[C4] identite miroir (hypothese V2a) : 100 comparaisons, 0 desaccords -> OK
+# maxrun par r (balayage sequentiel plein intervalle)
+WITNESS p=11 r=2 maxrun=3
+WITNESS p=11 r=5 maxrun=2
+WITNESS_CHECKSUM 8407244234467769480
+# temps : marche 0.0 s, balayage 0.0 s
+VERDICT_TEMOIN : VALIDE

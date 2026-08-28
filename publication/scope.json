@@ -1,0 +1,42 @@
+{
+  "schema": "vdw-export-scope/v1",
+  "included_scientific_scope": "Rabung certificates, the 970000000..2000000000 prime campaign, recurrence closure, and the associated records paper",
+  "source_policy": "explicit_allowlist",
+  "forbidden_prefixes": [
+    "Développements ChatGPT/",
+    "audit/reviews/",
+    "docs/",
+    "external/",
+    "journals/",
+    "logs/",
+    "paper-c-companions/",
+    "paper2/",
+    "paperC/",
+    "results/wc/",
+    "reviews/",
+    "wc/"
+  ],
+  "forbidden_exact_paths": [
+    "audit/wc_claims.json",
+    "paper/tex/appendix_wc.tex",
+    "paper/tex/generated_wc_claims_table.tex",
+    "paper/tex/wc_note_main.tex",
+    "src/mu_fit.py",
+    "src/wc.py",
+    "tests/test_wc_claim_audit.py",
+    "tools/wc_claim_audit.py"
+  ],
+  "forbidden_name_fragments": [
+    "__pycache__",
+    ".aux",
+    ".blg",
+    ".pyc"
+  ],
+  "excluded_topics": [
+    "cyclic W_c pilot and LRAT work",
+    "paper 2 and paper C",
+    "companion projects",
+    "Chowla and Liouville explorations",
+    "internal reviews and conversational journals"
+  ]
+}

@@ -1,0 +1,9 @@
+VERIFY1 p=11 g=2
+r    V2a#1 V2a#2 B7#1   B7#2   CPU#1  CPU#2  accord
+2    3      3      3      3      3      3      OK
+5    2      2      2      2      2      2      OK
+CHECKSUM(maxrun) 14804555800751621385
+PROFILE_DIGEST algorithm=fnv1a64-le64 value=cd745910193fc509
+TRIPLET x2 : ACCORD 100% (V2a=B7=CPU, double-run identique)
+CLASSIFICATION r=2 k=4 maxrun=3 A=PASS Bstar=PASS A_AND_B=PASS
+CLAIM_RESULT version=1 digest_alg=fnv1a64-le64 p=11 r=2 k=4 bound=34 maxrun=3 profile_digest=cd745910193fc509 applicable=YES A=PASS Bstar=PASS A_AND_B=PASS triplet=ACCORD verdict=ACCEPT digest=81182dbb4c586518

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "interval": {
+    "lower_inclusive": 970000000,
+    "upper_exclusive": 1004000000,
+    "campaign_chunk_width": 2000000,
+    "campaign_chunk_count": 17
+  },
+  "transcript": {
+    "path": "results/redo17/redo_17chunks_v2.txt",
+    "sha256": "dff4e4099335a3ecc67e62b80d782e445245d2831a14a098371605170d3de184",
+    "git_blob_sha1": "bb6134adc931f865170b1dc9a8645342a07453a6",
+    "streams": "historical combined transcript; stdout and stderr were not preserved separately"
+  },
+  "execution": {
+    "git_commit": "c81383885bd98cac6e4f9bbce9c8325f8cddd009",
+    "scanner_git_blob_sha1": "8e22d6329f9c7cd6e193763bfc835afda06200a5",
+    "reported_exit_code": 0,
+    "reported_wall_time": "approximately 8 hours",
+    "binary_sha256": null,
+    "compiler": null,
+    "build_command": null,
+    "metadata_status": "historical execution metadata incomplete"
+  },
+  "preregistered_independent_counts": {
+    "evidence_commit": "30e8b83df3c04cc06026983245c0db2cdabc52f2",
+    "evidence_path": "provenance/preregistration/rescan17_expected_counts.md",
+    "source_path": "paper2/audit_log.md",
+    "evidence_git_blob_sha1": "554c858947f7eed46f0542cfe0c541eaafeb8c09",
+    "prime_count": 1641614,
+    "congruence_classes": {
+      "2": 1641614,
+      "3": 821005,
+      "4": 820559,
+      "5": 410333,
+      "6": 821005,
+      "7": 273695,
+      "8": 410485,
+      "9": 273955
+    }
+  },
+  "interpretation": {
+    "establishes": [
+      "the preserved aggregate transcript is complete and internally consistent",
+      "its eight aggregate HISTO totals equal the independent counts committed before completion",
+      "its 405 listed run-valid (3,17) candidates agree with the TARGET and HISTO fields"
+    ],
+    "does_not_establish": [
+      "per-chunk histogram agreement for the first 17 chunks",
+      "identity of the ordered prime lists",
+      "a rebuild-identical historical GPU binary",
+      "the full Rabung boundary criterion for the listed run-valid candidates"
+    ]
+  }
+}

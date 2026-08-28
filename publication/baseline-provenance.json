@@ -1,0 +1,68 @@
+{
+  "schema": "vdw-baseline-provenance/v1",
+  "source_export": {
+    "repository": "Vulkin-prog/vdw-gpu-starter",
+    "commit": "02796ae9e08da5b051a94b2d9001763908375f6e"
+  },
+  "redistribution_policy": {
+    "third_party_artifacts_included": false,
+    "reason": "No permission to redistribute the archived table, captured page, or upstream code tally has been recorded.",
+    "verification_policy": "Retain factual locators and cryptographic identities; establish mathematical validity from public checkers and fail-closed claim manifests."
+  },
+  "sources": {
+    "monroe2026": {
+      "author": "Daniel Monroe",
+      "title": "New Lower Bounds for van der Waerden Numbers Using Distributed Computing",
+      "doi": "10.61091/jcmcc128-19",
+      "location": "Tables 1 and 2",
+      "role": "Published ordinary and ring baseline values"
+    },
+    "monroe_code_tally": {
+      "author": "Daniel Monroe",
+      "title": "Direct Rabung tally distributed with Monroe's code",
+      "role": "Historical three-colour baseline values for lengths 17 through 25",
+      "public_locator": {
+        "repository": "hmonroe/vdw",
+        "commit": "f1223097f4adc0a41ccb92ace51ebafd2b996fb1",
+        "url": "https://github.com/hmonroe/vdw/blob/f1223097f4adc0a41ccb92ace51ebafd2b996fb1/output.txt",
+        "path": "output.txt",
+        "git_blob_sha1": "bd92cc736774584fd25e73cf7f6bd62a67d2431f",
+        "sha256": "bd88e781acdceead847e0b736ca788cbc510aac744d025c2efbde4b152725774",
+        "bytes": 1732
+      },
+      "redistributed": false
+    },
+    "monroe_phase2_archive": {
+      "author": "Daniel Monroe",
+      "title": "BOINC phase-2 bounds table",
+      "role": "Priority provenance for archived two-colour primes; not evidence of the present verification event",
+      "original_url": "http://vdwnumbers.org/bounds.txt",
+      "internet_archive_capture": "https://web.archive.org/web/20220428101631id_/http://vdwnumbers.org/bounds.txt",
+      "capture_utc": "2022-04-28T10:16:31Z",
+      "source_internal_date": "2021-08-18",
+      "upstream_locator": {
+        "repository": "Vulkin-prog/vdw-gpu-starter",
+        "commit": "02796ae9e08da5b051a94b2d9001763908375f6e",
+        "path": "results/archive/monroe_phase2_bounds.txt",
+        "git_blob_sha1": "8ec80cde846df744a3b793e8a1cbcd54f0a0a3af",
+        "sha256": "0e8f79232e3855cbc64026a4c2f3a82433c0508456e0c23f76eb1a400efeb556",
+        "bytes": 1923
+      },
+      "project_page_evidence": {
+        "url": "https://daniel-monroe.github.io/projects.html",
+        "archived_url": "https://web.archive.org/web/20260716073130/https://daniel-monroe.github.io/projects.html",
+        "upstream_path": "results/archive/monroe_projects_page_20260716.html",
+        "git_blob_sha1": "4c76bd2d50e3dbd7283df7152f14e4ccf122df91",
+        "sha256": "9ac30412b14f1e7f9f890fdb0d53cafc9e1ab5591fe10c59b71bcb7f53b5a23c",
+        "bytes": 8860,
+        "supported_statement": "The author reports that the two-colour phase pushed the checked-prime upper limit from one billion to four billion."
+      },
+      "redistributed": false
+    },
+    "this_work": {
+      "title": "Succinct Rabung certificates verified in this work",
+      "location": "audit/claims.json",
+      "role": "Numerical claim registry; final verification requires the release claim manifests"
+    }
+  }
+}

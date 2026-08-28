@@ -1,0 +1,218 @@
+{
+  "campaign": {
+    "chunk_count": 515,
+    "chunk_width": 2000000,
+    "holdout_chunk_count": 335,
+    "holdout_observed": 132,
+    "p_end_exclusive": 2000000000,
+    "p_start_inclusive": 970000000,
+    "training_last_chunk": 180,
+    "training_observed": 1727
+  },
+  "diagnostics_for_frozen_decaying_model": {
+    "block_pearson": [
+      {
+        "block_count": 67,
+        "block_length": 5,
+        "last_block_length": 5,
+        "pearson_statistic": 54.131647737391155,
+        "scale_statistic_over_block_count": 0.8079350408565844
+      },
+      {
+        "block_count": 34,
+        "block_length": 10,
+        "last_block_length": 5,
+        "pearson_statistic": 32.66818690212127,
+        "scale_statistic_over_block_count": 0.9608290265329785
+      },
+      {
+        "block_count": 17,
+        "block_length": 20,
+        "last_block_length": 15,
+        "pearson_statistic": 17.84858205373303,
+        "scale_statistic_over_block_count": 1.0499165913960606
+      },
+      {
+        "block_count": 14,
+        "block_length": 25,
+        "last_block_length": 10,
+        "pearson_statistic": 13.084941004454084,
+        "scale_statistic_over_block_count": 0.9346386431752917
+      },
+      {
+        "block_count": 7,
+        "block_length": 50,
+        "last_block_length": 35,
+        "pearson_statistic": 3.3111943286239134,
+        "scale_statistic_over_block_count": 0.47302776123198764
+      }
+    ],
+    "ljung_box_pearson_residuals": {
+      "autocorrelations": [
+        -0.04851995472056484,
+        -0.03468626373405733,
+        -0.006584285909941441,
+        -0.007394674987953075,
+        0.046005944840924254,
+        -0.047347966451758004,
+        0.0850243790988392,
+        0.031118639828030696,
+        0.05855537723579752,
+        -0.03238984963790592,
+        -0.0038523052626880413,
+        -0.013524182907573899
+      ],
+      "conditional_chi_square_p_value": 0.845915785995608,
+      "lags": 12,
+      "reference": "asymptotic chi-square(12); fixed-model conditional diagnostic",
+      "statistic": 7.173825561964949
+    },
+    "moving_block_log_score_sensitivity": {
+      "block_length": 10,
+      "dependency": "Python standard library random.Random",
+      "method": "paired circular moving-block bootstrap of per-chunk means",
+      "replicates": 20000,
+      "seed": 20260803,
+      "summaries": {
+        "decaying_minus_bare": {
+          "bootstrap_mean": 0.011822744001041248,
+          "bootstrap_probability_nonpositive": 0.092,
+          "observed_mean": 0.011849376013381888,
+          "percentile_95_interval": [
+            -0.005087245865772968,
+            0.02957376137421048
+          ]
+        },
+        "decaying_minus_constant_floor": {
+          "bootstrap_mean": 0.40266848429032015,
+          "bootstrap_probability_nonpositive": 0.0,
+          "observed_mean": 0.40231724302045624,
+          "percentile_95_interval": [
+            0.312981231492771,
+            0.4936318537275714
+          ]
+        }
+      }
+    },
+    "nb2_sensitivity": {
+      "alpha_hat": 0.0,
+      "dependency": "Python standard library only",
+      "profile_grid": {
+        "alpha_max": 1000.0,
+        "alpha_min": 1e-12,
+        "best_log_likelihood_delta_from_poisson": -6.480149750132114e-12,
+        "best_positive_alpha": 1e-12,
+        "point_count": 241
+      },
+      "score_at_alpha_zero": -6.477800585088103,
+      "status": "Poisson boundary",
+      "variance": "mu + alpha * mu^2"
+    },
+    "pearson": {
+      "denominator": 335,
+      "fixed_model_scale_statistic_over_chunk_count": 0.9676243036724221,
+      "statistic": 324.1541417302614
+    },
+    "poisson_deviance": {
+      "statistic": 210.45603652290296
+    },
+    "scope": "335 post-freeze chunks; all diagnostics are retrospective"
+  },
+  "generated_by": "tools/density_holdout_audit.py",
+  "increments": [
+    {
+      "chunks": "181--250",
+      "first_chunk": 181,
+      "last_chunk": 250,
+      "mu_bare": 68.3505988544949,
+      "mu_constant_floor": 122.19858988596982,
+      "mu_decaying": 80.2647243287238,
+      "observed": 90
+    },
+    {
+      "chunks": "251--300",
+      "first_chunk": 251,
+      "last_chunk": 300,
+      "mu_bare": 18.74983594528852,
+      "mu_constant_floor": 57.062600992093415,
+      "mu_decaying": 24.044203785219793,
+      "observed": 20
+    },
+    {
+      "chunks": "301--400",
+      "first_chunk": 301,
+      "last_chunk": 400,
+      "mu_bare": 12.579128811611131,
+      "mu_constant_floor": 88.86671194608586,
+      "mu_decaying": 18.589518254199266,
+      "observed": 16
+    },
+    {
+      "chunks": "401--515",
+      "first_chunk": 401,
+      "last_chunk": 515,
+      "mu_bare": 2.8072102881599528,
+      "mu_constant_floor": 90.04054630086986,
+      "mu_decaying": 5.820887119232712,
+      "observed": 6
+    }
+  ],
+  "input": {
+    "git_blob_sha1": "9bb530be18006a6c992d107ee092ffbe2aaafeb4",
+    "path": "results/valid_3_17/valid_3_17_full.txt",
+    "sha256": "fee301d24213e021e276de09d33ba59b0d65f1ee8c4650359d0425e4bc6a0c32",
+    "source": "versioned event list; no campaign checkpoint is read",
+    "source_event_count": 1859
+  },
+  "interpretation_limits": [
+    "The Poisson, Ljung--Box, NB2, and bootstrap calculations are post hoc.",
+    "Their reference distributions are conditional on the fixed intensity model.",
+    "The event list reproduces this (3,17) count analysis, not omitted campaign logs."
+  ],
+  "models": {
+    "bare": "exp(-lambda)",
+    "constant_floor": "exp(-lambda) + eta",
+    "decaying": "exp(-lambda) + m exp(-beta lambda)",
+    "formula_sensitivity": {
+      "maximum_absolute_total_difference": 8.951750487540266e-07,
+      "operational_minus_theoretical_holdout_totals": {
+        "bare": -7.936089332361007e-07,
+        "constant_floor": -7.936085353321687e-07,
+        "decaying": -8.951750487540266e-07
+      },
+      "printed_table_effect": "none at two decimal places",
+      "purpose": "compare the frozen operational p/3^17 formula with the natural theoretical (p-1)/3^17 formula",
+      "source_note": "src/campaign.py freezes exp(-p*(r-1)/(2*r**k))",
+      "theoretical_formula_holdout_totals": {
+        "bare": 102.48677469316344,
+        "constant_floor": 358.1684499186275,
+        "decaying": 128.7193343825506
+      }
+    },
+    "integration": {
+      "interval_convention": "full half-open chunk boundaries",
+      "method": "composite Simpson rule on each complete chunk",
+      "panels_per_chunk": 32
+    },
+    "natural_theoretical_lambda": "(p-1)/3^17",
+    "operational_lambda": "p/3^17",
+    "parameters": {
+      "beta": 0.5,
+      "eta": 1.62e-05,
+      "m": 0.0008
+    },
+    "prime_intensity_factor": "1/(2 log p)"
+  },
+  "outputs": {
+    "csv": "audit/generated/density_holdout_chunks.csv",
+    "json": "audit/generated/density_holdout_audit.json",
+    "latex": "paper/tex/generated_density_holdout_table.tex"
+  },
+  "schema_version": 1,
+  "totals": {
+    "mu_bare": 102.4867738995545,
+    "mu_constant_floor": 358.168449125019,
+    "mu_decaying": 128.71933348737556,
+    "observed": 132
+  }
+}

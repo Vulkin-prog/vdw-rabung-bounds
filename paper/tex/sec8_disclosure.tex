@@ -1,0 +1,70 @@
+\section*{AI contribution statement}\label{s:ai}
+\addcontentsline{toc}{section}{AI contribution statement}
+
+The research reported here was carried out in collaboration with AI systems
+(Anthropic's Claude, models \texttt{claude-fable-5} and \texttt{claude-opus-4-8}),
+which contributed at a level well beyond copy-editing. Following the practice now
+emerging in this literature, we state precisely what the models did, what the
+author did, and---most importantly---how the results can be checked without
+trusting either.
+
+\paragraph{What the AI systems did.}
+Under the author's direction, the models wrote the GPU scanning engine
+(\texttt{scan\_gpu.cu}) and the independent verifiers, designed and executed the
+campaign of Section~\ref{s:campaign}, carried out the statistical analysis of
+Section~\ref{s:density}, and produced the first draft of this paper. They also
+performed the pre-announcement literature scan discussed below.
+
+\paragraph{What the author did.}
+The author conceived the project and set its scope; made every decision about
+what to compute, when to stop, and what to claim; provided and operated the
+hardware; and supplied adversarial challenges at each stage, several of which
+caught substantive errors that the automated review had missed. The author takes
+full responsibility for the entire contents of this paper, including the data,
+the references, and the conclusions, irrespective of how any part of it was
+generated.
+
+\paragraph{How the results can be checked.}
+We regard the following apparatus, and not any assurance about the tools used,
+as the basis on which the bounds can be relied upon once the release gates in
+Section~\ref{s:data} are complete.
+\begin{itemize}
+\item \emph{Certificates outside the pipeline.} Each bound is certified by
+\texttt{verify\_claim}, which recomputes the coloring from scratch in time
+$O(p\log p)$ and shares no code with the search engine. A reader who trusts
+nothing about our software can inspect or reimplement this verifier
+(Section~\ref{s:method} reports its measured cost on our hardware: seconds
+to minutes per bound, $O(p)$ memory).
+\item \emph{Dependency-aware redundancy.} The mirror and fused full scans share
+source and arithmetic, so we treat them as redundant paths, not independent
+implementations.  The principal separation comes from the CPU criterion,
+\texttt{verify\_claim}, and the Montgomery-free high-range witness; the exact
+dependency matrix is Table~\ref{tab:dependencies}.  Final verdicts are parsed
+fail-closed and their digests engage the claim identity rather than only a
+max-run profile.
+\item \emph{Preregistration.} The quantitative forecasts of
+Section~\ref{s:density} were committed to the repository before the corresponding
+data existed, and read at four fixed cumulative checkpoints
+(Section~\ref{s:prereg}).  These readings form one correlated trajectory, not
+four replications; their commit hashes are in the repository history.
+\item \emph{Novelty, not just correctness.} Because literature-search errors can
+invalidate novelty claims, we audited priority separately rather than assuming
+it. Our pre-announcement scan located an unpublished
+two-colour computation that had gone further than ours for $r=2$; rather than
+claim those bounds, we verified its primes with our own certificate machinery and
+credit them to their author (Section~\ref{s:bounds}). Every bibliographic
+reference in the release bibliography is restricted to an entry actually cited
+by this paper.  Each locator is checked against a publisher record or the
+primary document, and a machine-readable public qualification report records
+the source used for that check without embedding conversational review notes
+in the bibliography.
+\end{itemize}
+
+\paragraph{Raw traces.}
+The campaign logs, structured claim manifests, source identities, and public
+qualification reports are required components of the immutable release.
+Internal conversational journals and adversarial-review transcripts are not
+scientific evidence and are excluded from the public artifact.  As
+Section~\ref{s:data} records, the archive and its DOI have not yet been frozen;
+the private preparation repository is not represented as the final audit
+package.

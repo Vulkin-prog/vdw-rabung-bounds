@@ -1,0 +1,94 @@
+{
+  "schema": "vdw-bibliography-audit/v1",
+  "checked_at_utc": "2026-08-28T00:00:00Z",
+  "policy": "Every cited key is checked against a publisher record, author-owned immutable source, or versioned primary preprint. No cited web object is redistributed by this file.",
+  "cited_keys": [
+    "FoxHunter2026",
+    "Monroe2026",
+    "MonroePage",
+    "OliveiraSilvaPi",
+    "SorensonWebster2017",
+    "bct2018",
+    "herwig2007",
+    "liang2012",
+    "rabung1979",
+    "rabunglotts2012",
+    "xu2013"
+  ],
+  "entries": [
+    {
+      "key": "rabung1979",
+      "status": "stable_publisher_record",
+      "source_url": "https://www.cambridge.org/core/journals/canadian-mathematical-bulletin/article/some-progressionfree-partitions-constructed-using-folkmans-method/BCD6002C60DB186DFA890540DC7ACD9F",
+      "doi": "10.4153/CMB-1979-012-1"
+    },
+    {
+      "key": "herwig2007",
+      "status": "stable_publisher_record",
+      "source_url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v14i1r6",
+      "doi": "10.37236/925",
+      "note": "The official PDF is 18 pages and the article identifier is R6."
+    },
+    {
+      "key": "rabunglotts2012",
+      "status": "stable_publisher_record",
+      "source_url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v19i2p35",
+      "doi": "10.37236/2363"
+    },
+    {
+      "key": "liang2012",
+      "status": "stable_publisher_record_no_doi_found",
+      "source_url": "https://combinatorialpress.com/jcmcc-articles/volume-083/lower-bounds-on-some-van-der-waerden-numbers-based-on-quadratic-residues/"
+    },
+    {
+      "key": "bct2018",
+      "status": "stable_publisher_record",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S019566981730166X",
+      "doi": "10.1016/j.ejc.2017.10.007"
+    },
+    {
+      "key": "xu2013",
+      "status": "stable_publisher_record",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S0022314X13001601",
+      "doi": "10.1016/j.jnt.2013.05.008",
+      "implementation_check": "The strict-bound recurrence stores R*B, consistent with Xu's published W_4(7) example."
+    },
+    {
+      "key": "Monroe2026",
+      "status": "stable_publisher_record",
+      "source_url": "https://combinatorialpress.com/jcmcc-articles/volume-128/new-lower-bounds-for-van-der-waerden-numbers-using-distributed-computing/",
+      "doi": "10.61091/jcmcc128-19",
+      "note": "Volume year 2026; published online 4 December 2025."
+    },
+    {
+      "key": "FoxHunter2026",
+      "status": "versioned_preprint_recheck_at_release",
+      "source_url": "https://arxiv.org/abs/2606.02541v1",
+      "version": "v1",
+      "doi": "10.48550/arXiv.2606.02541"
+    },
+    {
+      "key": "MonroePage",
+      "status": "mutable_page_with_author_owned_freeze",
+      "live_url": "https://daniel-monroe.github.io/projects.html",
+      "immutable_url": "https://github.com/daniel-monroe/daniel-monroe.github.io/blob/825778cca5e669cbf60140e35170113603010076/projects.html",
+      "immutable_commit": "825778cca5e669cbf60140e35170113603010076",
+      "observed_html_sha256": "9ac30412b14f1e7f9f890fdb0d53cafc9e1ab5591fe10c59b71bcb7f53b5a23c",
+      "redistributed": false
+    },
+    {
+      "key": "SorensonWebster2017",
+      "status": "stable_publisher_record",
+      "source_url": "https://doi.org/10.1090/mcom/3134",
+      "doi": "10.1090/mcom/3134"
+    },
+    {
+      "key": "OliveiraSilvaPi",
+      "status": "mutable_data_with_wayback_freeze",
+      "live_url": "https://sweet.ua.pt/tos/primes/1d09.txt.gz",
+      "immutable_url": "https://web.archive.org/web/20160704031247id_/http://sweet.ua.pt/tos/primes/1d09.txt.gz",
+      "data_sha256": "0b1ee293cbdf18a4e1b0bc9c8e02a00d71cff166811623b7317615c871c89b06",
+      "redistributed": false
+    }
+  ]
+}

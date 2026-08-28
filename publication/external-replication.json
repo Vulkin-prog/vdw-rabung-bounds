@@ -1,0 +1,26 @@
+{
+  "schema": "vdw-external-replication/v1",
+  "status": "pending",
+  "claim_ids": [
+    "w2_k25_p1138900957",
+    "w3_k17_p1961601427",
+    "w2_k27_p3459826103",
+    "w2_k28_p3476732783"
+  ],
+  "required_fields_per_claim": [
+    "claim_id",
+    "candidate_git_commit",
+    "verifier_path",
+    "verifier_sha256",
+    "command_argv",
+    "environment",
+    "stdout_path",
+    "stdout_sha256",
+    "stderr_path",
+    "stderr_sha256",
+    "exit_code",
+    "verdict",
+    "operator_attestation"
+  ],
+  "replications": []
+}

@@ -1,0 +1,1 @@
+[verify p=11] coloriage 5% ; 1s ecoule, ETA 19s

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+build/
+dist/
+paper/build/
+paper/tex/*.aux
+paper/tex/*.bbl
+paper/tex/*.blg
+paper/tex/*.log
+paper/tex/*.out
+paper/tex/*.toc
+paper/tex/*.pdf
+.DS_Store

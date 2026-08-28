@@ -1,0 +1,191 @@
+\section{The GPU campaign}\label{s:campaign}
+
+\subsection{Fused character evaluation}\label{ss:b7}
+
+The scan kernel exploits the fact that the additive order of positions is free:
+we iterate $x=1,2,\dots,p-1$ directly and evaluate the color of $x$ on the fly
+by modular exponentiation, fused with the run-length bookkeeping. Nothing is
+sorted and no per-element value is materialized in memory. A single pass
+evaluates $y=x^{(p-1)/m}$ with $m=\operatorname{lcm}\{\,r\le 9 : r \mid p-1\,\}
+\le 2520$; a table lookup of $y$ among the $m$-th roots of unity gives
+$\operatorname{ind}(x) \bmod m$, hence the color for every modulus $r\le 9$
+simultaneously. Runs are summarized per segment by (prefix, suffix, best
+interior) triples combined with an associative, order-respecting reduction.
+
+A second symmetry halves the work. Since $c(p-x)=c(x)+c(-1)$, the second half
+of the sequence is the reversal of the first half shifted by the constant
+$c(-1)$; it suffices to scan $x=1,\dots,(p-1)/2$ and to splice the two halves
+at the center. We refer to this half-interval variant as the mirror scan.
+
+\subsection{Validation by redundant and independent paths}\label{ss:validation}
+
+Correctness is supported by cross-agreement among redundant paths and by
+separate-source checkers rather than by trust in any single path. On all primes $p<105\,000$ (both residue classes of $p \bmod 4$ and varied
+$m$; the $r$-range of each comparison set is given with it):
+\begin{itemize}
+\item the sort-based GPU pipeline (an earlier design retained precisely as an
+  independent implementation) agrees with the CPU reference on $50\,105$
+  comparisons ($r\in[2,6]$) with zero disagreements;
+\item the fused multi-$r$ kernel agrees with the CPU reference on $27\,508$
+  comparisons ($r\in[2,9]$) with zero disagreements (and the specialized $r=2,3$ variant on a
+  further $9\,068$);
+\item the mirror scan, the fused full scan, the sort-based pipeline, and the
+  CPU reference agree on $33\,327$ comparisons over $10^{4}$ primes with zero
+  disagreements.
+\end{itemize}
+These comparison totals and the performance measurements below are historical
+pre-flight records.  Their exact raw GPU outputs and benchmark logs must still
+be recovered from the campaign PC and bound to the release candidate; the
+portable staging suite exercises the algorithms but does not treat these
+totals as release-qualified evidence.
+For $r=2$ a CPU Jacobi-symbol evaluation provides one further independent
+route. This redundancy is not decorative: during pre-flight testing the
+cross-check caught a genuine bug (a non-commutative run-summary operator fed to
+a reduction that assumes commutativity, producing phantom runs at
+$p\sim 1.8\times 10^{9}$); the repaired, order-respecting reduction is covered
+by a regression test that has run at every commit since.
+
+The word \emph{independent} is reserved below for separations of source and
+arithmetic.  The main paths have the following dependency structure.
+\begin{table}[ht]
+\centering\scriptsize
+\begin{tabular}{P{2.3cm} P{1.7cm} P{2.4cm} P{2.4cm} P{3.0cm}}
+\toprule
+path & language & modular arithmetic & class/run construction & shared components \\
+\midrule
+mirror V2a & CUDA C++ & GPU Montgomery & character, half interval & same source and helpers as full B7 \\
+full B7 & CUDA C++ & GPU Montgomery & character, full interval & same source and helpers as V2a \\
+CPU walk & C++ host & native 64-bit walk & discrete logarithm, sequential & same executable and host primitive-root code \\
+CPU criterion & C++ & separate 128-bit path & separate walk and (B$^*$) & separate source and binary \\
+\texttt{verify\_claim} & C++ & 128-bit exponentiation & roots of unity and full criterion & strongest source/arithmetic separation \\
+high-range witness & C & no Montgomery & full sequential walk & separate arithmetic; tests (a), not (B$^*$) \\
+\bottomrule
+\end{tabular}
+\caption{Dependency matrix for the verification paths.  V2a and B7 are
+redundant paths, not independent implementations.  The principal independent
+checks are the separate CPU criterion, \texttt{verify\_claim}, and, for the
+high-range arithmetic defect, the Montgomery-free witness.}
+\label{tab:dependencies}
+\end{table}
+
+\subsection{Measured throughput}\label{ss:throughput}
+
+On the target hardware (one consumer RTX~5090, CUDA, 32-bit Montgomery
+arithmetic) the mirror multi-$r$ kernel was benchmarked at
+$4.86\times10^{10}$ physical evaluations of $x$ per second at
+$p\approx1.2\times10^9$.  Mirror reconstruction makes this equivalent to
+$9.72\times10^{10}$ positions of the full sequence per second.  The same run
+performed $2.09\times10^{12}$ modular multiplications per second, $61\%$ of the
+measured pure-multiplication plateau ($3.40\times10^{12}$).  Under the
+$431$\,W campaign power cap the observed kernel throughput was
+$4.2$--$4.45\times10^{10}$ physical evaluations, or
+$8.4$--$8.9\times10^{10}$ reconstructed full-sequence positions, per second.
+These are active-kernel rates.  The ten-day campaign duration is wall time and
+also includes sieving, host work, checkpointing, cross-checks, and restarts; we
+do not quote a wall-clock modular-multiplication rate. Several plausible
+optimizations (e.g.\ a 2-adic factorization of the exponentiation) were
+implemented, measured, and rejected as memory-bound regressions.
+
+\subsection{Campaign execution}\label{ss:execution}
+
+The production run scanned every prime in
+$[9.70\times 10^{8},\, 2.0\times 10^{9})$ (each prime tested for every
+$r\le 9$ dividing $p-1$), starting just above the largest
+published prime $969\,347\,371$ of Monroe's distributed scan~\cite{Monroe2026},
+in a single multi-$r$ pass ($r\le 9$). (The narrow interval
+$[969\,347\,371,\,9.70\times10^{8})$ was therefore not scanned; it is immaterial,
+since any valid prime in it would give a bound below every one we report.) The
+range was processed in $515$
+restartable chunks of width $2\times 10^{6}$, each with a fixed walltime cap.
+The checkpoint spans \emph{eight} git revisions and \emph{four}
+scanner-source fingerprints.  Their exact allocation and the scientific
+effect of each transition are generated from the audit registry below.
+\input{generated_scanner_revisions}
+The $(3,17)$ max-run statistic and its target predicate are unchanged across
+all four fingerprints.  The first functional expansion added only
+$(2,26)$--$(2,28)$, whose early online tallies are therefore incomplete; the
+second added congruence counters and reproduced the previous target profiles
+and checksums in an old/new comparison.  This establishes code-path
+comparability for the retained $(3,17)$ counts, although version-stratified
+dispersion diagnostics remain distinct from that code audit.  Each checkpoint
+row records the range, duration, git revision, and deterministic scientific
+checksum.  The revised orchestrator additionally binds a new checkpoint to the
+exact half-open range, chunk width, target set, criterion, and logical output
+directory; completed keys must form a canonical prefix, and smoke tests use a
+separate output directory.  This post-campaign safeguard does not retrofit the
+historical checkpoint, whose immutable release copy remains an audit gate.
+Because the host memory is not
+error-correcting, no result that matters rests on a single execution: every
+$50$ chunks an automatic cross-check re-verified a sample of primes with the
+  redundant scan paths and separate CPU checks (nine such cross-checks completed, all in full
+agreement; a tenth attempt timed out and was not counted --- the claim primes
+themselves were later re-verified separately, see Section~\ref{s:bounds}).
+The registry binds every row to full Git commit and Git-blob identities.  The
+exact raw transition-test outputs and their hashes remain required release
+artifacts; the prose summary in Table~\ref{tab:scanner-revisions} is not a
+substitute for those files.
+
+\paragraph{Exhaustiveness of the prime enumeration.}
+The per-prime computation is validated by the redundancy above; the
+\emph{enumeration} of primes deserves its own audit, since the density claims of
+Section~\ref{s:density} are claims about \emph{all} primes in the window. The
+scanner enumerates primes with a plain in-process sieve per chunk; chunks are
+contiguous by construction ($[\,\mathrm{lo}+2i\cdot10^{6}$,
+$\mathrm{lo}+2(i{+}1)\cdot10^{6}\,)$), and the checkpoint protocol resumes only
+at chunk boundaries, so interruptions can neither skip nor duplicate primes
+within the range. We verified coverage against a separately written segmented
+sieve with no shared code:
+over the $498$ chunks for which per-chunk histograms were logged (the histogram
+feature was added at an early restart, from $p=1.004\times10^{9}$ on), the
+campaign's per-chunk counts of primes in every congruence class $p\equiv1\pmod
+r$, $2\le r\le9$---$3\,984$ counts in all---agree with the independent sieve
+\emph{exactly}, with zero discrepancies ($47\,181\,875$ primes on those
+chunks). For the first $17$ chunks, which predate the histogram feature,
+per-class counts were not logged during the campaign; that range,
+$[9.70\times10^{8},1.004\times10^{9})$, was therefore re-scanned after the
+campaign in one aggregate invocation with the post-campaign audit build
+(commit \texttt{c81383885bd9}; full identities are in the registry).  The eight
+independent counts were committed before that invocation completed
+(commit \texttt{30e8b83df3c0}).  A version-specific,
+fail-closed parser now checks the preserved transcript, whose SHA-256 is
+\texttt{dff4e409\ldots de184};
+it verifies every historical TARGET, candidate, COLQ, HISTO, and TOP row before
+comparing the eight histogram sums with those precommitted counts.
+
+\input{generated_rescan17_table}
+
+The re-scan also lists exactly $405$ run-valid $(3,17)$ candidates, consistently
+with its TARGET row and its $r=3$ histogram.  It was one invocation over the
+whole interval, however, so it supplies aggregate class totals rather than
+$17\times8$ per-chunk cells.  These audits establish exact agreement of the
+counts; counts alone do not establish
+identity of the ordered prime lists.  The audit utility therefore also emits a
+canonical ordered stream for byte comparison and hashing.  Populating its
+per-chunk identity manifest for all $515$ chunks is a release gate, not a
+consequence inferred from the $3\,984$ matching counts.  The four historical
+scanner blobs contain a byte-identical $249$-byte \texttt{sieve\_primes}
+function (SHA-256 recorded in the registry).  That function accepted an
+inclusive upper endpoint, whereas the audit stream is half-open; every campaign
+boundary is an even integer greater than two, hence composite, so the two
+conventions enumerate exactly the same primes on all $515$ chunks.  The current
+scanner makes the half-open convention explicit.  In total the window
+$[9.7\times10^{8},2\times10^{9})$ contains $48\,823\,489$ primes, every one of
+which appears in the independent sieve; the campaign reports the corresponding
+per-class counts for every modulus $r\le9$ dividing $p-1$.  The independent
+sieve counts $1\,448\,736$ primes in
+$[9.7\times10^{8},10^{9})$, hence $47\,374\,753$ in
+$[10^{9},2\times10^{9})$.  This equals the externally published difference
+$\pi(2\times10^{9})-\pi(10^{9})=98\,222\,287-50\,847\,534$ from Oliveira e
+Silva's table~\cite{OliveiraSilvaPi}; it checks the interval difference, not the
+two absolute values independently.
+
+The campaign ran for ten days and survived, without data loss, one disk-full
+incident caused by an unrelated job (clean stop at a chunk boundary, resume
+from checkpoint) and one forced reboot on a hung system process (checkpoint
+intact, resume at the next chunk). No inconsistency was detected by the deterministic chunk checksums, the
+duplicate executions, the periodic cross-checks, the checkpoint audit, and the
+independent coverage comparison; these checks hash summaries, not every byte
+of output, and we claim no more than what they test.
+Candidate direct Rabung champions detected during the scan were frozen and passed to the
+verification protocol of Section~\ref{s:bounds}; no bound was recorded from the
+scanning pass alone.
