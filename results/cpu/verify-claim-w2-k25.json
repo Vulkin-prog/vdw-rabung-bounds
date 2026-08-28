@@ -6,12 +6,12 @@
       "size": 244
     },
     "stderr_base64": {
-      "decoded_sha256": "29ccd126129c5091013f33643ab8aead30fcf0cf1b2779d6df394e4499a45206",
-      "decoded_size": 1355,
+      "decoded_sha256": "a0457169176befbe929361aa53da5c3797699af203707de30abe2d2218371d3a",
+      "decoded_size": 1351,
       "encoding": "base64-rfc4648",
       "path": "results/cpu/verify-claim-w2-k25.stderr.base64",
-      "sha256": "27cb27df95d94e30a2b9ea803743a7bbc90b71dbdfa5651737c793cc501bf066",
-      "size": 1832
+      "sha256": "5b3baca9346deec10162ee3724a481208766d23d6b0d66dbcaf688c176e189ad",
+      "size": 1828
     },
     "stdout": {
       "path": "results/cpu/verify-claim-w2-k25.stdout.txt",
@@ -22,8 +22,8 @@
   "build": {
     "binary": {
       "preserved": false,
-      "sha256": "d59722ca9ccaace94345d9e8e985d2c8c7902d3345b5dec72650fb9a3a8df204",
-      "size": 21696
+      "sha256": "90db4486f14fc308a33279ac37af3f34b340226ddb469e968cc8a7cf19f7c416",
+      "size": 21944
     },
     "command_argv": [
       "g++",
@@ -35,8 +35,8 @@
     ],
     "source": {
       "path": "tools/verify_claim.cpp",
-      "sha256": "c80393d03c66e75522ad167beacf53fc4dd0b0f2d334a47a8f9f5ae1a6b0b53c",
-      "size": 7094
+      "sha256": "072a52fa2391a6f9376b7bb17b26307653e5b0d32385bb1ae504ab556104286c",
+      "size": 8282
     }
   },
   "claim": {
@@ -49,8 +49,7 @@
   "environment": {
     "architecture": "x86_64",
     "kernel": "Linux 6.18.35",
-    "operating_system": "Ubuntu 24.04.3 LTS",
-    "peak_rss_observed_kib": 1115844
+    "operating_system": "Ubuntu 24.04.3 LTS"
   },
   "execution": {
     "command_argv": [
@@ -59,20 +58,20 @@
       "2",
       "25"
     ],
-    "completed_utc": "2026-08-28T11:41:51Z",
+    "completed_utc": "2026-08-28T12:32:08Z",
     "exit_code": 0,
-    "real_seconds": 320.359,
-    "started_utc": "2026-08-28T11:36:30Z",
-    "system_seconds": 6.033,
-    "user_seconds": 227.406,
+    "real_seconds": 224.785,
+    "started_utc": "2026-08-28T12:28:23Z",
     "verdict": "ACCEPT"
   },
   "external_replication_gate_satisfied": false,
   "git": {
-    "head_at_run": "332683ffd5c2ec0a6c84106b713629fc79e3fdd5",
-    "head_source_sha256": "eb1009e8db522c5101c69f7ad13bc7d30b61310b06d33fe373be6e1805be3d53",
-    "source_matches_head": false,
-    "worktree_clean_before_build": false
+    "head_at_run": "a9fd04387c22ec370c6c0df1eb9f7b908a0738b4",
+    "head_source_sha256": "072a52fa2391a6f9376b7bb17b26307653e5b0d32385bb1ae504ab556104286c",
+    "published_equivalent_commit": "521f7f18edc72ff74eb1ea8035e9d6b9ec47b996",
+    "source_matches_head": true,
+    "tree": "34f497e4f1249553f728bc2d54ea5dd4550a73ba",
+    "worktree_clean_before_build": true
   },
   "release_claim_gate_satisfied": false,
   "schema": "vdw-verify-claim-staging-evidence/v1",

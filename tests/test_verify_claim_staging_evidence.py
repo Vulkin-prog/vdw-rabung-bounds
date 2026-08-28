@@ -21,8 +21,8 @@ class VerifyClaimStagingEvidenceTest(unittest.TestCase):
         self.assertEqual(record["status"], "preliminary_staging")
         self.assertFalse(record["release_claim_gate_satisfied"])
         self.assertFalse(record["external_replication_gate_satisfied"])
-        self.assertFalse(record["git"]["worktree_clean_before_build"])
-        self.assertFalse(record["git"]["source_matches_head"])
+        self.assertTrue(record["git"]["worktree_clean_before_build"])
+        self.assertTrue(record["git"]["source_matches_head"])
 
         for name in ("compiler", "stdout", "stderr_base64"):
             identity = record["artifacts"][name]
@@ -43,14 +43,33 @@ class VerifyClaimStagingEvidenceTest(unittest.TestCase):
         self.assertEqual(len(source_bytes), source["size"])
         self.assertEqual(digest(source_bytes), source["sha256"])
 
-        old_source = subprocess.run(
-            ["git", "show", f"{record['git']['head_at_run']}:{source['path']}"],
+        available_commit = None
+        for commit in (
+            record["git"]["head_at_run"],
+            record["git"]["published_equivalent_commit"],
+        ):
+            probe = subprocess.run(
+                ["git", "cat-file", "-e", f"{commit}^{{commit}}"],
+                cwd=ROOT,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            if probe.returncode == 0:
+                available_commit = commit
+                break
+        self.assertIsNotNone(available_commit)
+        committed_tree = subprocess.check_output(
+            ["git", "rev-parse", f"{available_commit}^{{tree}}"], cwd=ROOT, text=True
+        ).strip()
+        self.assertEqual(committed_tree, record["git"]["tree"])
+        committed_source = subprocess.run(
+            ["git", "show", f"{available_commit}:{source['path']}"],
             cwd=ROOT,
             check=True,
             stdout=subprocess.PIPE,
         ).stdout
-        self.assertEqual(digest(old_source), record["git"]["head_source_sha256"])
-        self.assertNotEqual(digest(old_source), source["sha256"])
+        self.assertEqual(digest(committed_source), record["git"]["head_source_sha256"])
+        self.assertEqual(digest(committed_source), source["sha256"])
 
         stdout = (ROOT / record["artifacts"]["stdout"]["path"]).read_text(encoding="utf-8")
         claim = record["claim"]

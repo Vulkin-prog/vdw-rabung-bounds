@@ -6,11 +6,11 @@ the compiler identity are committed beside it and are covered by hashes in the
 record.
 
 This is deliberately **staging evidence**, not the final release-tag gate.  The
-record binds the exact source bytes used, but those bytes were an uncommitted
-correction relative to the recorded `HEAD` and other concurrent repository
-preparation also made the worktree dirty.  The final gate must therefore repeat
-the command from a clean checkout of the release tag and replace or supersede
-this record with tag-bound evidence.
+record binds a clean committed worktree and the exact source and binary bytes
+used.  It also records the tree-identical commit published in the PR history,
+so the source state remains resolvable from a fresh clone.  The final gate must
+nevertheless repeat the command from a clean checkout of the release candidate
+and preserve evidence bound to that final commit.
 
 Replay from the repository root:
 
@@ -25,8 +25,8 @@ criterion/oracle cases, 4,499 accepted by the criterion, and zero mismatches.
 
 The same directory also contains a preliminary execution of the stand-alone
 verifier for `w2_k25_p1138900957`.  It accepted the strict bound
-`W(2,25) > 27333622969` while using about 1.12 GiB.  Its progress stream is
-stored as base64 so carriage-return progress records remain byte-exact.  This
-run was neither made from a clean final commit nor administered by an external
-operator, so it closes neither the claim-manifest gate nor the independent
-replication gate.
+`W(2,25) > 27333622969`.  Its progress stream is stored as base64 so
+carriage-return progress records remain byte-exact.  This clean committed run
+still predates the final release candidate and was not administered by an
+external operator, so it closes neither the claim-manifest gate nor the
+independent-replication gate.

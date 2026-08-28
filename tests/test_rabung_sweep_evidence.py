@@ -20,7 +20,7 @@ class RabungSweepEvidenceTests(unittest.TestCase):
         self.assertEqual(record["schema"], "vdw-rabung-sweep-evidence/v1")
         self.assertEqual(record["status"], "preliminary_staging")
         self.assertFalse(record["release_gate_satisfied"])
-        self.assertFalse(record["git"]["worktree_clean_before_build"])
+        self.assertTrue(record["git"]["worktree_clean_before_build"])
 
         for identity in record["artifacts"].values():
             path = ROOT / identity["path"]
@@ -32,8 +32,27 @@ class RabungSweepEvidenceTests(unittest.TestCase):
         source_path = ROOT / source["path"]
         self.assertEqual(source_path.stat().st_size, source["size"])
         self.assertEqual(sha256(source_path), source["sha256"])
+        available_commit = None
+        for commit in (
+            record["git"]["commit"],
+            record["git"]["published_equivalent_commit"],
+        ):
+            probe = subprocess.run(
+                ["git", "cat-file", "-e", f"{commit}^{{commit}}"],
+                cwd=ROOT,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            if probe.returncode == 0:
+                available_commit = commit
+                break
+        self.assertIsNotNone(available_commit)
+        committed_tree = subprocess.check_output(
+            ["git", "rev-parse", f"{available_commit}^{{tree}}"], cwd=ROOT, text=True
+        ).strip()
+        self.assertEqual(committed_tree, record["git"]["tree"])
         committed_source = subprocess.run(
-            ["git", "show", f"{record['git']['commit']}:{source['path']}"],
+            ["git", "show", f"{available_commit}:{source['path']}"],
             cwd=ROOT,
             check=True,
             stdout=subprocess.PIPE,

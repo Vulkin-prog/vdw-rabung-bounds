@@ -46,16 +46,17 @@
       "rabung_criterion",
       "10000"
     ],
-    "completed_utc": "2026-08-28T11:52:54Z",
-    "elapsed_seconds": 472,
+    "completed_utc": "2026-08-28T12:35:24Z",
+    "elapsed_seconds": 420.378,
     "exit_code": 0,
-    "started_utc": "2026-08-28T11:45:02Z"
+    "started_utc": "2026-08-28T12:28:23Z"
   },
   "git": {
-    "commit": "332683ffd5c2ec0a6c84106b713629fc79e3fdd5",
-    "source_matches_commit": false,
-    "tree": "d982ce9329da13a39396835650d76e6e2f5e98fe",
-    "worktree_clean_before_build": false
+    "commit": "a9fd04387c22ec370c6c0df1eb9f7b908a0738b4",
+    "published_equivalent_commit": "521f7f18edc72ff74eb1ea8035e9d6b9ec47b996",
+    "source_matches_commit": true,
+    "tree": "34f497e4f1249553f728bc2d54ea5dd4550a73ba",
+    "worktree_clean_before_build": true
   },
   "release_gate_satisfied": false,
   "results": {
