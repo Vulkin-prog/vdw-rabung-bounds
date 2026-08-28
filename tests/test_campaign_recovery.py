@@ -462,6 +462,20 @@ class CampaignRecoveryFailClosedTests(unittest.TestCase):
             with self.assertRaises(MODULE.RecoveryError):
                 MODULE.validate_inventory(fixture.inventory)
 
+    def test_authenticated_inventory_rejects_git_path_traversal(self):
+        with tempfile.TemporaryDirectory() as raw:
+            fixture = RecoveryFixture(Path(raw))
+            fixture.make_inventory()
+            untracked_path = fixture.inventory / "git-untracked.z"
+            untracked_path.write_bytes(b"results/campaign/../paper2/private.txt\0")
+            metadata_path = fixture.inventory / "metadata.json"
+            metadata = MODULE.load_json(metadata_path)
+            metadata["untracked_path_count"] = 1
+            write_json(metadata_path, metadata)
+            rewrite_inventory_checksums(fixture.inventory)
+            with self.assertRaises(MODULE.RecoveryError):
+                MODULE.validate_inventory(fixture.inventory)
+
     def test_inventory_checksum_tampering_is_rejected(self):
         with tempfile.TemporaryDirectory() as raw:
             fixture = RecoveryFixture(Path(raw))

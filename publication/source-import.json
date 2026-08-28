@@ -5255,11 +5255,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "fd1033012a5e8b7eaf6be10c409315bea1ae7aa5",
+      "git_blob_sha1": "9d31ae7a1fda04116ce399b91b5929efe9878a6d",
       "path": "tests/test_campaign_recovery.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "2022c5e166fa79df761ba41caa8c4e75fd6e20754970149bbe111e811deb56fe",
-      "size": 31945
+      "sha256": "5a7c95b742988d6a02c8129eb912cb9850e14271978f5861f57e15ce3fcd6b45",
+      "size": 32699
     },
     {
       "classification": "new",
@@ -5504,11 +5504,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "b9130d9741ae02ab46cb76b4ff3ec4fdc6270bc8",
+      "git_blob_sha1": "e81305fafaa4881c2fd839ec8311967addd15652",
       "path": "tools/campaign_recovery.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "38c164bc18ce6b9bbcae9a6461f35b2d3b29924bddbedbaab2cc41ede268b6bb",
-      "size": 74274
+      "sha256": "f2079e664a757e652463631bed278d5f28ca95555934e78060529c4c846db2a0",
+      "size": 74372
     },
     {
       "classification": "new",

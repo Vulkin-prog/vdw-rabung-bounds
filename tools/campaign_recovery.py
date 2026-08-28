@@ -525,9 +525,13 @@ def _validate_nul_bytes(raw: bytes, expected_count: int, label: str) -> list[byt
 
 
 def _require_scoped_git_path(raw: bytes, label: str) -> None:
-    prefix = INVENTORY_SCOPE["path"].encode("utf-8")
-    if not raw.startswith(prefix):
-        fail(f"{label} exposes a path outside the authenticated public campaign scope")
+    try:
+        value = raw.decode("utf-8", errors="strict")
+    except UnicodeDecodeError:
+        fail(f"{label} is not a canonical UTF-8 repository path")
+    if value == INVENTORY_SCOPE["path"]:
+        return
+    canonical_under(value, INVENTORY_SCOPE["path"], label)
 
 
 def _validate_scoped_status(raw: bytes) -> None:
