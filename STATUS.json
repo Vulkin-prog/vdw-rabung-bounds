@@ -61,7 +61,7 @@
       ],
       "expected_count": 13,
       "minimum_recorded_runs": 67,
-      "note": "Requires two GPU verify1 runs, two CPU-criterion runs, and one independent verifier run per claim, plus two high-range witnesses."
+      "note": "Requires two GPU verify1 runs, two CPU-criterion runs, and one stand-alone separate-source verifier run per claim, plus two high-range witnesses."
     },
     {
       "id": "campaign-archive-515",

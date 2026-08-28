@@ -1,0 +1,50 @@
+\section{Retrospective diagnostics for the holdout comparison}
+\label{s:densitydiagnostics}
+
+This appendix records corrections and sensitivity analyses performed after
+the prospectively scheduled reads.  They test the frozen comparison on its
+stated finite window; they do not alter the prospective rule or enlarge the
+scope of the empirical claim.
+
+\begin{remark}[Frozen readout and post hoc diagnostics]\label{r:sigma}
+Three layers must be kept distinct.  First, the frozen inputs were the three
+intensity functions, their numerical parameters, the baseline count, and---
+before the first scheduled read---the reading times.  Second, the live tool
+selected the closest displayed mean and printed Wald-type discrepancies
+$(N-\mu)/\sqrt{N}$ for the bare and constant-floor candidates.  It did not
+compute deviance residuals or exact Poisson tails; two manually noted
+standardizations for the decaying candidate were later found to use the wrong
+denominator.
+
+Third, all deviance, dispersion, autocorrelation, negative-binomial, and block
+calculations are retrospective.  The archival script used chunk midpoints as
+the two endpoints of a cumulative integral.  Table~\ref{tab:milestones}
+corrects that convention by integrating the full observed half-open chunk
+intervals.  This changes no observation and no frozen operational intensity
+function, only the integration limits.  The corrected means are therefore
+post-campaign recalculations of the frozen functions.  Replacing the
+operational $\widetilde\Lambda=p/3^{17}$ by the natural
+$\Lambda=(p-1)/3^{17}$ changes every holdout total by less than
+$9\cdot10^{-7}$ and changes no cell of Table~\ref{tab:milestones} at two
+decimal places.
+\end{remark}
+
+\paragraph{Dispersion and dependence.}
+On the $335$ post-freeze chunks, the frozen decaying model gives Pearson
+statistic $X^2=324.2$ (quasi-Poisson scale $X^2/335=0.968$); an NB2 sensitivity
+fit puts the additional-dispersion parameter at the Poisson boundary, and the
+Poisson deviance is $210.46$.  The Pearson residuals have Ljung--Box
+$Q_{12}=7.17$ (asymptotic conditional reference $p=0.85$), and aggregation into
+blocks of $5,10,20$ chunks gives Pearson scales $0.81,0.96,1.05$.  These checks
+reveal no gross overdispersion or serial correlation for that fixed model, but
+they remain post hoc and have limited power in a sparse, non-stationary tail.
+
+\paragraph{Block sensitivity of the forecast ordering.}
+A moving-block resampling of the per-chunk log-score difference (circular
+blocks of length $10$, $20\,000$ seeded replicates) gives a mean
+decaying-minus-bare advantage of $0.01185$ per chunk, with a $95\%$ percentile interval
+$[-0.00509,0.02957]$ and bootstrap fraction $0.092$ at or below zero.  For
+decaying minus the frozen constant-floor model, the corresponding interval is
+$[0.31298,0.49363]$ and no replicate is non-positive.  Thus the former
+comparison is less decisive than the latter.  We report the forecast ordering,
+not a universal fitted family or a discovery-level $p$-value.

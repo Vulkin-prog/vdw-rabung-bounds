@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "This is a private staging artifact. Cite the immutable archived release once it exists."
-title: "Certified lower bounds for van der Waerden numbers from a GPU scan and recurrence closure"
+title: "Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers"
 type: software
 authors:
   - family-names: "Pouly"

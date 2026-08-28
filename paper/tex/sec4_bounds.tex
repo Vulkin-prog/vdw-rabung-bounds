@@ -1,62 +1,53 @@
-\section{Certified direct claims and closed lower bounds}\label{s:bounds}
+\section{Main results and exact scope}\label{s:bounds}
 
-\subsection{Verification protocol}\label{ss:protocol}
-
-The computational source of truth contains exactly thirteen direct Rabung
-claims: nine three-colour claims for $17\le k\le25$ and four two-colour
-claims for $25\le k\le28$.  For each triple $(p,r,k)$ the release protocol
-requires:
-\begin{enumerate}
-\item two executions of the structured triplet \{mirror scan, full scan,
-  CPU walk\}, with internal profile equality and equality between executions;
-\item two acceptances by the separate full CPU criterion;
-\item acceptance by the stand-alone \texttt{verify\_claim}; and
-\item for the two primes above the historical Montgomery-safety threshold, an
-  additional full-interval witness that uses no Montgomery arithmetic.
-\end{enumerate}
-The parser is fail-closed: it checks the process status, the exact $p,r,k$,
-all profile equalities, (a), (B$^*$), and the final verdict, and rejects any
-output containing \texttt{DIFF}, \texttt{FAIL}, \texttt{ECHEC}, or a negative
-verdict.  Its digest engages the claim identity, profiles, criterion values,
-and final verdict.  The enclosing JSON manifest separately records the source
-and binary hashes, compiler version, exact commands, and hashes of every raw
-output.  A SHA-256 of that manifest therefore binds the computational claim to
-its build and evidence.  The final Markdown and \LaTeX{} claim tables are
-generated only from an exact set of thirteen accepted manifests.
+The computational source of truth registers exactly thirteen direct Rabung
+claims: nine three-colour triples for $17\le k\le25$ and four two-colour
+triples for $25\le k\le28$.  In this private build they retain candidate
+status because the final fail-closed manifests have not yet been populated.
+The release build promotes them to the following numerical theorem only when
+the exact set of thirteen accepted manifests is present.
 
 \IfFileExists{generated_validated_claims.tex}{%
+  \begin{theorem}[Certified Rabung bounds]\label{thm:certified-rabung}
+  For every triple $(p,r,k)$ in Table~\ref{tab:validated-claims},
+  \[
+    W(r,k)>(k-1)p+1.
+  \]
+  In particular, all thirteen direct inequalities registered in
+  \texttt{audit/claims.json} hold.
+  \end{theorem}
+  \begin{proof}
+  The generated table exists only after the fail-closed claim audit has checked
+  the exact registered set.  For each row, the stand-alone verifier establishes
+  primality, $p\equiv1\pmod r$, $p>k$, and conditions
+  $(a)\wedge(B^{*})$.  Proposition~\ref{p:bstar} identifies the operational
+  condition with Rabung's boundary criterion, and Rabung's theorem then gives
+  the displayed inequality.
+  \end{proof}
   \input{generated_validated_claims}%
 }{%
   \begin{center}
   \fbox{\begin{minipage}{0.91\linewidth}\small
   \textbf{Validated-claim table unavailable in this build.}
-  The canonical table appears only when the exact set of thirteen fail-closed
-  claim manifests is available and validated.  The publication contract
-  requires the generated table in a release build.
+  The numerical triples below are the registered release claims, but the
+  canonical theorem and audit table appear only when the exact set of thirteen
+  fail-closed claim manifests is available and validated.  This placeholder is
+  not evidence and cannot close the claim gate.
   \end{minipage}}
   \end{center}
 }
 
-This rule is stricter than the historical campaign transcript.  The latter
-recorded a max-run checksum that did not engage $p$, and some pasted
-\texttt{verify\_claim} outputs were truncated.  Those files are retained as
-historical evidence, not used as the final source of truth.  The thirteen
-claims are documented in \texttt{audit/claims.json}; the expensive final
-point-verification run must populate the complete raw manifests before the
-release is frozen.  The numerical bounds in this section use only the
-thirteen triples, each of which is also re-derived by the separate-source
-checker described in Section~\ref{ss:certificates}.
+\subsection{Three colours: direct and recurrence-closed bounds}\label{ss:r3}
 
-\subsection{Three colours: direct and recurrence-derived bounds}\label{ss:r3}
-
-The historical scan produced nine candidate direct Rabung certificates.  The headline value
+The historical scan produced nine candidate direct Rabung certificates.  The
+headline value
 \[
   W(3,17)>31\,385\,622\,833
 \]
 comes from $p=1\,961\,601\,427$ and improves Monroe's published
-$15\,509\,557\,937$ by a factor $2.02$~\cite{Monroe2026}.  A direct certificate
-is not automatically a general record: published bounds in other colour
-columns may imply a stronger result through a recurrence.
+$15\,509\,557\,937$ by a factor $2.02$~\cite{Monroe2026}.  A direct
+certificate is not automatically a general record: a published bound in
+another colour column may imply a stronger result through a recurrence.
 
 Let $q_k$ denote the largest prime not exceeding $k$.  From
 Blankenship--Cummings--Taranchuk~\cite[Theorem~2.1]{bct2018},
@@ -64,83 +55,85 @@ Blankenship--Cummings--Taranchuk~\cite[Theorem~2.1]{bct2018},
   W(3,k)>q_k\bigl(W(2,k)-1\bigr).
 \]
 If the registered input is the strict integer bound $W(2,k)>B$, then
-$W(2,k)-1\ge B$, so the generated consequence is exactly
+$W(2,k)-1\ge B$, and the generated consequence is exactly
 \begin{equation}\label{eq:bct-r3}
   W(3,k)>q_k B,
 \end{equation}
 with no off-by-one ambiguity.  The baseline program iterates this rule and
-Xu's recurrence to a fixed point, retains a provenance path for every generated
-candidate, and selects the best bound only afterwards.  Its output also embeds
-the source catalogue and SHA-256 hashes of both input registries.
+Xu's recurrence to a fixed point, preserves a provenance path for every
+candidate, and selects the best bound only afterwards.  Its output embeds the
+source catalogue and SHA-256 hashes of both input registries.
 
 \input{generated_bounds_table}
 
-Thus the direct certificates for $17\le k\le21$ remain the strongest bounds
-located in the registered published-and-archived source corpus after recurrence
-closure.  For $22\le k\le25$ the direct rows remain improvements within the
-direct Rabung family but are not best general bounds.  In particular, the
-published two-colour values already dominate the direct rows at $k=22,23,24$.
-For $k=25$, even Monroe's published
-$W(2,25)>23\,003\,662\,489$ would give
-$W(3,25)>529\,084\,237\,247$; the archived input accepted by historical independent checks,
-$W(2,25)>27\,333\,622\,969$ strengthens this to the first line below.
+Thus, conditional on the direct-claim gate, the certificates for
+$17\le k\le21$ give the strongest bounds located in the registered,
+recurrence-closed source corpus.  For $22\le k\le25$ the direct rows improve
+the direct Rabung family but are not best general bounds.  In particular, the
+published two-colour values already dominate the direct rows at
+$k=22,23,24$.
 
-\input{generated_bct_corollaries}
-
-The four displayed inequalities are theorem consequences, not additional GPU
-claims.  Priority for the two-colour primes remains Monroe's; we report the
-candidate re-verification and apply the published recurrence.  The final
-reproducibility claim remains conditional on completion of the raw-manifest
-release protocol above.  Xu's recurrence is included in the automatic closure
-but does not improve any of these three-colour winners.
-
-\subsection{Two colours and archived provenance}\label{ss:r2}
+\subsection{Archived two-colour inputs and recurrence consequences}\label{ss:r2}
 
 After the scan, we located a table from a second, unpublished phase of Monroe's
-BOINC project (2021, two colours only)~\cite{MonroePhase2Archive}.  The author's project page states that
-this phase pushed the checked range from one billion to four
+BOINC project (2021, two colours only)~\cite{MonroePhase2Archive}.  The project
+page states that this phase pushed the checked range from one billion to four
 billion~\cite{MonroePage}; the largest prime actually listed in the recovered
-table is $3\,478\,685\,143$.  We credit the listed primes to Monroe and use our
-checker only to establish that the four triples below satisfy Rabung's
+table is $3\,478\,685\,143$.  We credit the listed primes to Monroe and use
+our checker only to test whether the four displayed triples satisfy Rabung's
 criterion.
 
-\begin{table}[ht]
+\begin{table}[htbp]
 \centering\small
-\begin{tabular}{c r r l}
+\begin{tabular}{@{}c r r P{6.1cm}@{}}
 \toprule
 $k$ & prime $p$ & $W(2,k)>$ & method and provenance \\
 \midrule
-25 & $1\,138\,900\,957$ & $27\,333\,622\,969$ & archive and historical recheck; final manifest pending \\
+25 & $1\,138\,900\,957$ & $27\,333\,622\,969$ & archive and historical separate-source recheck; final manifest pending \\
 26 & $2\,125\,065\,391$ & $53\,126\,634\,776$ & archived Monroe prime; final manifest pending \\
 27 & $3\,459\,826\,103$ & $89\,955\,478\,679$ & historical no-Montgomery recheck; final manifest pending \\
 28 & $3\,476\,732\,783$ & $93\,871\,785\,142$ & historical no-Montgomery recheck; final manifest pending \\
 \bottomrule
 \end{tabular}
 \caption{Two-colour succinct Rabung certificates used as recurrence inputs.
-The method column separates priority for the archived prime from the candidate
-re-verification; final raw manifests are still pending.}
+The method column separates priority for the archived prime from the
+separate-source recheck; final raw manifests remain pending.}
 \label{tab:r2}
 \end{table}
 
-For $k=25$ the historical campaign summaries identify the same last candidate
-valid prime in $[9.7\times10^8,2\times10^9)$ as the archived table; complete
-campaign recovery and ordered-prime identity remain release gates.  For
-$k=26,27,28$ our campaign-range candidates are weaker; the displayed archive
-primes were checked directly in historical runs.
-Those runs supply candidate evidence for the listed triples; final release
-manifests must make the checks independently auditable.  The computation
-does not establish that Monroe's historical phase tested every prime up to
-four billion: that coverage statement is an attributed archival claim, not a
-consequence of the recovered table.
+For $k=25$, even Monroe's published input would give
+\[
+  W(2,25)>23\,003\,662\,489
+  \quad\Longrightarrow\quad
+  W(3,25)>529\,084\,237\,247.
+\]
+The archived input accepted in retained historical checks,
+$W(2,25)>27\,333\,622\,969$, strengthens this to the first line below.
+
+\input{generated_bct_corollaries}
+
+These four inequalities are theorem consequences of the corresponding
+two-colour inputs, not additional GPU discoveries.  Priority for the primes
+remains Monroe's.  Xu's recurrence is included in the automatic closure but
+does not improve any of these three-colour winners.  Final release-level
+reproducibility remains conditional on the manifest protocol of
+Section~\ref{ss:protocol}.
+
+For $k=25$ the campaign summaries identify the same last candidate in
+$[9.7\times10^8,2\times10^9)$ as the archived table; complete campaign
+recovery and ordered-prime identity remain release gates.  For $k=26,27,28$
+our campaign-range candidates are weaker, and the displayed archive primes
+were checked directly in retained historical runs.  None of this establishes
+that Monroe's phase exhaustively tested every prime up to four billion: that is
+an attributed archival statement, not a consequence of the recovered table.
 
 The source is the Internet Archive capture of 28~April~2022 of
-\url{http://vdwnumbers.org/bounds.txt}~\cite{MonroePhase2Archive}; its own header reads ``Last updated:
-18~Aug~2021''.  The release records the immutable capture URL, both dates, the
-source-repository blob identity, and its SHA-256 in
-\texttt{publication/baseline-provenance.json}; it does not redistribute the
-third-party table absent permission.  Once the thirteen fail-closed manifests
-and their raw outputs are populated, the stand-alone verifier will establish a
-separately auditable verification event.  The defensible novelty formulation
-for that release is therefore: an independently reproduced verification
-accompanied by a stand-alone public checker and complete reproducible logs, not
-first discovery of the primes.
+\url{http://vdwnumbers.org/bounds.txt}~\cite{MonroePhase2Archive}; its header
+dates the file to 18~August~2021.  The release records the immutable capture
+URL, both dates, source-repository blob identity, and SHA-256 in
+\path{publication/baseline-provenance.json}.  It does not redistribute the
+third-party table absent permission.  Once the final manifests and external
+execution records are complete, the defensible novelty claim is a
+separately auditable re-verification with a public stand-alone checker and
+complete logs---not first discovery of the primes and not a newly audited claim
+of historical scan coverage.

@@ -5,7 +5,7 @@ The July 2026 re-scan predates the current structured scanner protocol.  This
 parser is deliberately version-specific: it accepts exactly the historical
 combined transcript and checks every TARGET, candidate, COLQ, HISTO, and TOP
 record before comparing the eight aggregate histogram totals with the
-independent counts committed before the re-scan completed.
+separate-source counts committed before the re-scan completed.
 
 It does *not* turn one aggregate run into 17 per-chunk observations, and it
 does not infer prime-list identity from matching counts.
@@ -286,9 +286,9 @@ def audit(registry_path: Path) -> dict:
     )
     registered = registry["preregistered_independent_counts"]
     if parsed["prime_count"] != registered["prime_count"]:
-        raise RescanAuditError("prime total differs from preregistered independent count")
+        raise RescanAuditError("prime total differs from preregistered separate-source count")
     if parsed["class_counts"] != registered["congruence_classes"]:
-        raise RescanAuditError("HISTO totals differ from preregistered independent counts")
+        raise RescanAuditError("HISTO totals differ from preregistered separate-source counts")
     return {
         "schema": "vdw-rescan17-audit/v1",
         "status": "PASS_AGGREGATE_COUNTS",
@@ -312,7 +312,7 @@ def render_markdown(result: dict) -> str:
         "",
         f"Status: **{result['status']}**.",
         "",
-        "| modulus `r` | re-scan `sum(HISTO[r])` | preregistered independent count |",
+        "| modulus `r` | re-scan `sum(HISTO[r])` | preregistered separate-source count |",
         "|---:|---:|---:|",
     ]
     expected = result["preregistered_independent_counts"]["congruence_classes"]
@@ -345,7 +345,7 @@ def render_latex(result: dict) -> str:
         "\\bottomrule",
         "\\end{tabular}",
         "\\caption{Aggregate congruence-class totals from the post-campaign re-scan of",
-        "the first 17 chunks.  All eight equal the independent counts committed before",
+        "the first 17 chunks.  All eight equal the separate-source counts committed before",
         "the re-scan completed.  This is one aggregate comparison, not 17 per-chunk",
         "comparisons and not an ordered-prime identity test.}",
         "\\label{tab:rescan17}",
