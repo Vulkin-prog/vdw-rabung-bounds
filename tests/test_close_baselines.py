@@ -178,7 +178,7 @@ class ClosureTests(unittest.TestCase):
                 ring_parent["lower_bound"] * ordinary_parent["lower_bound"],
                 node["id"],
             )
-            self.assertGreaterEqual(node["parameters"]["t"], 2, node["id"])
+            self.assertGreaterEqual(node["parameters"]["t"], 1, node["id"])
             self.assertEqual(
                 node["parameters"]["least_prime_factor_n"],
                 MODULE.least_prime_factor(node["parameters"]["n"]),
@@ -187,6 +187,28 @@ class ClosureTests(unittest.TestCase):
             self.assertGreater(
                 node["parameters"]["least_prime_factor_n"],
                 node["length"],
+                node["id"],
+            )
+
+    def test_xu_t_one_specializations_are_included_and_dominated(self):
+        t_one = [
+            node for node in self.nodes.values()
+            if node["method"] == "xu2013" and node["parameters"]["t"] == 1
+        ]
+        self.assertTrue(t_one)
+        for node in t_one:
+            ring_parent, ordinary_parent = (
+                self.nodes[parent] for parent in node["parents"]
+            )
+            self.assertEqual(ordinary_parent["colors"], 1, node["id"])
+            self.assertEqual(
+                node["lower_bound"],
+                ring_parent["lower_bound"] * (node["length"] - 1),
+                node["id"],
+            )
+            self.assertGreaterEqual(
+                self.winner(node["colors"], node["length"])["lower_bound"],
+                node["lower_bound"],
                 node["id"],
             )
 

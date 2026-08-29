@@ -49,8 +49,8 @@
       "citation_key": "xu2013",
       "title": "A generalization of sets without long arithmetic progressions based on Szekeres algorithm",
       "doi": "10.1016/j.jnt.2013.05.008",
-      "location": "Theorem 4",
-      "registered_preconditions": "k>=3, s,t>=2, 5<=n<WR(s,k), least_prime_factor(n)>k"
+      "location": "Published concatenation recurrence; prime-witness specialization cross-checked against Monroe's later statement",
+      "registered_preconditions": "k>=3, s>=2, t>=1, 5<=n<WR(s,k), least_prime_factor(n)>k; every registered n is itself prime"
     },
     "berlekamp1968": {
       "citation_key": "Berlekamp1968",

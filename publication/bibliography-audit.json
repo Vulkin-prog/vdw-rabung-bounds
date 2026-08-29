@@ -79,7 +79,7 @@
       "status": "stable_publisher_record",
       "source_url": "https://www.sciencedirect.com/science/article/pii/S0022314X13001601",
       "doi": "10.1016/j.jnt.2013.05.008",
-      "implementation_check": "The closure enforces k >= 3, s,t >= 2, 5 <= n < WR(s,k), and least-prime-factor(n) > k; every registered ring witness used as n is prime and exceeds k. The strict-bound recurrence stores R*B, consistent with Xu's published W_4(7) example."
+      "implementation_check": "The closure implements the prime-witness specialization reproduced in Monroe's later publication: k >= 3, s >= 2, t >= 1, 5 <= n < WR(s,k), and least-prime-factor(n) > k; every registered ring witness used as n is prime and exceeds k. The strict-bound recurrence stores R*B. The publisher record and abstract were checked directly; automated access to the archived full text was blocked during this audit, so the manuscript does not claim a broader Xu closure than this independently reproduced specialization."
     },
     {
       "key": "LandmanRobertson2004",

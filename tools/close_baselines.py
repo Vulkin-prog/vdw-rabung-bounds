@@ -337,7 +337,7 @@ def closure():
 
         winners = {key: best_id(nodes, ids) for key, ids in candidates.items()}
         # Xu's concatenation recurrence in colour-first notation:
-        # if k >= 3, s,t >= 2, 5 <= n < WR(s,k), and the least prime
+        # if k >= 3, s >= 2, t >= 1, 5 <= n < WR(s,k), and the least prime
         # divisor of n exceeds k, then
         # W(st,k) >= n (W(t,k)-1) + 1.
         # From WR(s,k)>R and W(t,k)>B we may take n=R and obtain
@@ -351,7 +351,7 @@ def closure():
                 ring_lpf = least_prime_factor(ring_bound)
                 if ring_bound < 5 or ring_lpf <= length:
                     continue
-                for t in range(2, max_colors + 1):
+                for t in range(1, max_colors + 1):
                     colors = s * t
                     if colors > max_colors:
                         break

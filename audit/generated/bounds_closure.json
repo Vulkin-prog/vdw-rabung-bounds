@@ -1,7 +1,7 @@
 {
   "inputs": {
     "baselines": "audit/baselines.json",
-    "baselines_sha256": "4946d5bdff0b155a9e94611db8d6fad011eb55722927d0e5e7dc18bfbda06783",
+    "baselines_sha256": "742504980239e3ef8f4cac13a1bd5da4bfb67d741677d04fedac1a720dc06079",
     "claims": "audit/claims.json",
     "claims_sha256": "3b3ffc1739b091194e9b54d2f9435bcfbff7ab2ba84d7176330e9dead12d0aeb"
   },
@@ -541,6 +541,26 @@
     },
     {
       "colors": 2,
+      "id": "ordinary-r2-k17-676715a2a209dfdc",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 46397776,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 2899861,
+        "n": 2899861,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k17-94ff06e9a1dcddd3",
+        "ordinary-r1-k17-1b41216454acb268"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
       "id": "ordinary-r2-k17-ef27113db6ee9043",
       "kind": "ordinary",
       "label": "liang_w2_17",
@@ -598,6 +618,26 @@
       },
       "parents": [],
       "source": "cfs2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k18-cc35878578228125",
+      "kind": "ordinary",
+      "label": null,
+      "length": 18,
+      "lower_bound": 91079251,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 5357603,
+        "n": 5357603,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k18-9c084806f1b2268f",
+        "ordinary-r1-k18-df1475d9e8af9912"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 2,
@@ -674,6 +714,26 @@
     },
     {
       "colors": 2,
+      "id": "ordinary-r2-k19-ef1db56fe20b6d7b",
+      "kind": "ordinary",
+      "label": null,
+      "length": 19,
+      "lower_bound": 250546914,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 13919273,
+        "n": 13919273,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k19-66b92cbfeb618e15",
+        "ordinary-r1-k19-cf91bb7a27bbd652"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
       "id": "ordinary-r2-k20-122df499383b63ca",
       "kind": "ordinary",
       "label": "cfs_w2_20",
@@ -703,6 +763,26 @@
         "ordinary-r2-k19-2ca386715c220558"
       ],
       "source": "elementary"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k20-b996eefd7fd3a00c",
+      "kind": "ordinary",
+      "label": null,
+      "length": 20,
+      "lower_bound": 526317461,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 27700919,
+        "n": 27700919,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k20-5c011dbf9870bc85",
+        "ordinary-r1-k20-633bfea4da3cd410"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 2,
@@ -760,6 +840,26 @@
       },
       "parents": [],
       "source": "cfs2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k21-70859e73b0786c89",
+      "kind": "ordinary",
+      "label": null,
+      "length": 21,
+      "lower_bound": 1409670740,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 70483537,
+        "n": 70483537,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k21-61bccdd3040207ca",
+        "ordinary-r1-k21-cbe774b003b37da4"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 2,
@@ -869,6 +969,26 @@
     },
     {
       "colors": 2,
+      "id": "ordinary-r2-k22-9fb92bc02cc1a783",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 2582037633,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 122954173,
+        "n": 122954173,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k22-04503a5a03c3416f",
+        "ordinary-r1-k22-002b3ef31396cb07"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
       "id": "ordinary-r2-k22-ac81dbdc6947a4d4",
       "kind": "ordinary",
       "label": "liang_w2_22",
@@ -954,6 +1074,26 @@
     },
     {
       "colors": 2,
+      "id": "ordinary-r2-k23-f4b15d97b4916a57",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 6206141986,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 282097363,
+        "n": 282097363,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k23-7ed08247b052df81",
+        "ordinary-r1-k23-223ecffdf897c41b"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
       "id": "ordinary-r2-k24-00ac7caf6a1f5c7a",
       "kind": "ordinary",
       "label": "cfs_w2_24",
@@ -1014,6 +1154,26 @@
     },
     {
       "colors": 2,
+      "id": "ordinary-r2-k24-d532926b18be13b3",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 10980093211,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 477395357,
+        "n": 477395357,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k24-e545783b47dff59f",
+        "ordinary-r1-k24-f946f5ee681e435d"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
       "id": "ordinary-r2-k25-01b22f591568ce92",
       "kind": "ordinary",
       "label": null,
@@ -1070,6 +1230,26 @@
     },
     {
       "colors": 2,
+      "id": "ordinary-r2-k25-ce4d79de91d51bec",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 27333622968,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1138900957,
+        "n": 1138900957,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k25-df51defc311786d5",
+        "ordinary-r1-k25-af643a7e28b48398"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
       "id": "ordinary-r2-k25-ee9df81c0b9ecfb3",
       "kind": "ordinary",
       "label": "cfs_w2_25",
@@ -1114,6 +1294,26 @@
       },
       "parents": [],
       "source": "cfs2026"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k26-3f21a1a1f3382181",
+      "kind": "ordinary",
+      "label": null,
+      "length": 26,
+      "lower_bound": 53126634775,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 2125065391,
+        "n": 2125065391,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k26-c1b543666cccccfc",
+        "ordinary-r1-k26-d1269a9b929da21f"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 2,
@@ -1210,6 +1410,26 @@
     },
     {
       "colors": 2,
+      "id": "ordinary-r2-k27-ded1be0fdeb9f7ff",
+      "kind": "ordinary",
+      "label": null,
+      "length": 27,
+      "lower_bound": 89955478678,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 3459826103,
+        "n": 3459826103,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k27-eda2794274dc28d0",
+        "ordinary-r1-k27-2e0a63a17606f797"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
       "id": "ordinary-r2-k28-56efd7c05c736eb0",
       "kind": "ordinary",
       "label": "cfs_w2_28",
@@ -1269,6 +1489,26 @@
         "ordinary-r2-k27-3f088a9a4aea67bf"
       ],
       "source": "elementary"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k28-e5a4b13f466fff25",
+      "kind": "ordinary",
+      "label": null,
+      "length": 28,
+      "lower_bound": 93871785141,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 3476732783,
+        "n": 3476732783,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k28-e6419fe31ce5b8e7",
+        "ordinary-r1-k28-1ec1cafbe224f387"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 3,
@@ -1460,6 +1700,26 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k17-6edf1ac2d00661ce",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 31385622832,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1961601427,
+        "n": 1961601427,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k17-9d1372ff4e6c7347",
+        "ordinary-r1-k17-1b41216454acb268"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k17-875627d14f277486",
       "kind": "ordinary",
       "label": null,
@@ -1517,6 +1777,26 @@
       },
       "parents": [],
       "source": "berlekamp1968"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k18-3d940240810cb8b2",
+      "kind": "ordinary",
+      "label": null,
+      "length": 18,
+      "lower_bound": 33999912467,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1999994851,
+        "n": 1999994851,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k18-50224d53535cd533",
+        "ordinary-r1-k18-df1475d9e8af9912"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 3,
@@ -1636,6 +1916,26 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k19-be132f4974aad119",
+      "kind": "ordinary",
+      "label": null,
+      "length": 19,
+      "lower_bound": 35999998686,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1999999927,
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k19-aef97ef88df38d17",
+        "ordinary-r1-k19-cf91bb7a27bbd652"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k19-d215f9fdcc7371b6",
       "kind": "ordinary",
       "label": "w3_k19_p1999999927",
@@ -1685,6 +1985,26 @@
       "parameters": {},
       "parents": [],
       "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k20-da3e5fe6553a1192",
+      "kind": "ordinary",
+      "label": null,
+      "length": 20,
+      "lower_bound": 37999998613,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1999999927,
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k20-c091c4607703b9ba",
+        "ordinary-r1-k20-633bfea4da3cd410"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 3,
@@ -1776,6 +2096,26 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k21-9ba53884916f2014",
+      "kind": "ordinary",
+      "label": null,
+      "length": 21,
+      "lower_bound": 39999998540,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1999999927,
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k21-e201acd9efde6ce3",
+        "ordinary-r1-k21-cbe774b003b37da4"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k21-bd3e17b95829939d",
       "kind": "ordinary",
       "label": null,
@@ -1789,6 +2129,26 @@
         "ordinary-r3-k20-b99873650be7f87c"
       ],
       "source": "elementary"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k22-4a6771afa54fca02",
+      "kind": "ordinary",
+      "label": null,
+      "length": 22,
+      "lower_bound": 41999998467,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1999999927,
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k22-47dffe06ccab0c76",
+        "ordinary-r1-k22-002b3ef31396cb07"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 3,
@@ -1924,6 +2284,26 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k23-b49c5221ad0a0a01",
+      "kind": "ordinary",
+      "label": null,
+      "length": 23,
+      "lower_bound": 43999998394,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1999999927,
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k23-3c7fd23cd0f57414",
+        "ordinary-r1-k23-223ecffdf897c41b"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k23-cd7679d1d9132110",
       "kind": "ordinary",
       "label": null,
@@ -1981,6 +2361,26 @@
       },
       "parents": [],
       "source": "berlekamp1968"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k24-503890f7771ff518",
+      "kind": "ordinary",
+      "label": null,
+      "length": 24,
+      "lower_bound": 45999998321,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1999999927,
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k24-ad08204c557eeef3",
+        "ordinary-r1-k24-f946f5ee681e435d"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 3,
@@ -2061,6 +2461,26 @@
       "parameters": {},
       "parents": [],
       "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k25-8b964df01fd0f977",
+      "kind": "ordinary",
+      "label": null,
+      "length": 25,
+      "lower_bound": 47999998248,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1999999927,
+        "n": 1999999927,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k25-2341be4a7361f482",
+        "ordinary-r1-k25-af643a7e28b48398"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 3,
@@ -3507,8 +3927,8 @@
     "xu2013": {
       "citation_key": "xu2013",
       "doi": "10.1016/j.jnt.2013.05.008",
-      "location": "Theorem 4",
-      "registered_preconditions": "k>=3, s,t>=2, 5<=n<WR(s,k), least_prime_factor(n)>k",
+      "location": "Published concatenation recurrence; prime-witness specialization cross-checked against Monroe's later statement",
+      "registered_preconditions": "k>=3, s>=2, t>=1, 5<=n<WR(s,k), least_prime_factor(n)>k; every registered n is itself prime",
       "title": "A generalization of sets without long arithmetic progressions based on Szekeres algorithm"
     }
   },
