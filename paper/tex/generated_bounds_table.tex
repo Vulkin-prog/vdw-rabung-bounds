@@ -3,7 +3,7 @@
 \centering\footnotesize
 \begin{tabular}{c r r r l}
 \toprule
-$k$ & direct $p$ & direct bound & best closed bound & method \\
+$k$ & direct $p$ & direct bound & winning admitted bound & method \\
 \midrule
 17 & $1\,961\,601\,427$ & $31\,385\,622\,833$ & $31\,385\,622\,833$ & direct Rabung \\
 18 & $1\,999\,994\,851$ & $33\,999\,912\,468$ & $33\,999\,912\,468$ & direct Rabung \\
@@ -12,19 +12,19 @@ $k$ & direct $p$ & direct bound & best closed bound & method \\
 21 & $1\,999\,999\,927$ & $39\,999\,998\,541$ & $39\,999\,998\,541$ & direct Rabung \\
 22 & $1\,999\,999\,927$ & $41\,999\,998\,468$ & $49\,058\,715\,046$ & BCT, $q=19$ (published $W(2,k)$) \\
 23 & $1\,999\,999\,927$ & $43\,999\,998\,395$ & $142\,741\,265\,701$ & BCT, $q=23$ (published $W(2,k)$) \\
-24 & $1\,999\,999\,927$ & $45\,999\,998\,322$ & $252\,542\,143\,876$ & BCT, $q=23$ (published $W(2,k)$) \\
-25 & $1\,999\,999\,927$ & $47\,999\,998\,249$ & $628\,673\,328\,287$ & BCT, $q=23$ (archived input) \\
+24 & $1\,999\,999\,927$ & $45\,999\,998\,322$ & $1\,082\,646\,556\,499$ & Berlekamp (1968) \\
+25 & $1\,999\,999\,927$ & $47\,999\,998\,249$ & $1\,082\,646\,556\,499$ & Berlekamp + length monotonicity \\
 26 & -- & -- & $1\,221\,912\,599\,848$ & BCT, $q=23$ (archived input) \\
 27 & -- & -- & $2\,068\,976\,009\,617$ & BCT, $q=23$ (archived input) \\
 28 & -- & -- & $2\,159\,051\,058\,266$ & BCT, $q=23$ (archived input) \\
 \bottomrule
 \end{tabular}
-\caption{Direct three-colour Rabung certificates and the best general lower bounds
-obtained after closing the registered baselines under the published
+\caption{Direct three-colour Rabung certificates and the winning lower bounds
+obtained after closing the audited, admitted baselines under length monotonicity and the published
 Blankenship--Cummings--Taranchuk and Xu recurrences.  A dash means that the
 GPU campaign made no direct three-colour claim for that length.  For
 $k=22,23,24,25$ the direct certificates are the strongest direct Rabung bounds
-located in the dated corpus but are not general records. Every entry is generated with a
+located in the audited corpus but do not win the admitted comparison. Every entry is generated with a
 machine-readable provenance path in \texttt{audit/generated/bounds\_closure.json}.}
 \label{tab:r3}
 \end{table}

@@ -2,16 +2,36 @@
   "schema_version": 1,
   "notation": "W(colors,length) > lower_bound",
   "scope": {
+    "closure_length_min": 14,
     "length_min": 17,
     "length_max": 28,
-    "max_colors": 4
+    "max_colors": 4,
+    "literature_cutoff_utc": "2026-08-29T00:00:00Z"
   },
   "sources": {
     "monroe2026": {
       "citation_key": "Monroe2026",
       "title": "New Lower Bounds for van der Waerden Numbers Using Distributed Computing",
       "doi": "10.61091/jcmcc128-19",
-      "location": "Tables 1 and 2"
+      "location": "Journal record and later summary tables"
+    },
+    "monroe2016v1": {
+      "citation_key": "Monroe2016v1",
+      "title": "New lower bounds for van der Waerden numbers using distributed computing",
+      "arxiv": "1603.03301v1",
+      "location": "Table 3; original versioned source for the length-21 through length-23 rows"
+    },
+    "monroe2017v4": {
+      "citation_key": "Monroe2017v4",
+      "title": "New lower bounds for van der Waerden numbers using distributed computing",
+      "arxiv": "1603.03301v4",
+      "location": "Table 3; first versioned source for the length-24 and length-25 rows"
+    },
+    "liang2012": {
+      "citation_key": "liang2012",
+      "title": "Lower Bounds on Some van der Waerden Numbers Based on Quadratic Residues",
+      "location": "Table 2 and Theorem 5.1",
+      "registered_check": "The ordinary strict bounds and their underlying prime ring witnesses are registered separately; values through length 20 predate Monroe's later summary table"
     },
     "monroe_code_tally": {
       "citation_key": "MonroeCodeTally",
@@ -32,6 +52,20 @@
       "location": "Theorem 4",
       "registered_preconditions": "k>=3, s,t>=2, 5<=n<WR(s,k), least_prime_factor(n)>k"
     },
+    "berlekamp1968": {
+      "citation_key": "Berlekamp1968",
+      "title": "A Construction for Partitions Which Avoid Long Arithmetic Progressions",
+      "doi": "10.4153/CMB-1968-047-7",
+      "location": "Theorem 1 specialized to three colours for progression lengths 14 through 28",
+      "registered_check": "For Berlekamp parameter t=length-1, each seed stores the maximum denominator imposed by conditions (4) and (5) and the exact quotient t*(3^t-1)/denominator"
+    },
+    "cfs2026": {
+      "citation_key": "CamposFoxSchildkraut2026",
+      "title": "A new lower bound for two-color van der Waerden numbers",
+      "arxiv": "2608.20824v1",
+      "location": "Lemmas 2 and 4, explicit product construction",
+      "registered_check": "For each reported length k, exhaustive subset enumeration over all distinct primes summing to k-1 verifies both the maximizing decomposition and the exact strict integer (k-1)*product(2^p-1)"
+    },
     "monroe_phase2_archive": {
       "citation_key": "MonroePhase2Archive",
       "title": "Archived BOINC phase-2 table; candidate triples historically rechecked",
@@ -43,15 +77,45 @@
     }
   },
   "ordinary_seeds": [
-    {"id": "monroe_w2_17", "colors": 2, "length": 17, "lower_bound": 46397777, "source": "monroe2026"},
-    {"id": "monroe_w2_18", "colors": 2, "length": 18, "lower_bound": 91079252, "source": "monroe2026"},
-    {"id": "monroe_w2_19", "colors": 2, "length": 19, "lower_bound": 250546915, "source": "monroe2026"},
-    {"id": "monroe_w2_20", "colors": 2, "length": 20, "lower_bound": 526317462, "source": "monroe2026"},
-    {"id": "monroe_w2_21", "colors": 2, "length": 21, "lower_bound": 1409670741, "source": "monroe2026"},
-    {"id": "monroe_w2_22", "colors": 2, "length": 22, "lower_bound": 2582037634, "source": "monroe2026"},
-    {"id": "monroe_w2_23", "colors": 2, "length": 23, "lower_bound": 6206141987, "source": "monroe2026"},
-    {"id": "monroe_w2_24", "colors": 2, "length": 24, "lower_bound": 10980093212, "source": "monroe2026"},
-    {"id": "monroe_w2_25", "colors": 2, "length": 25, "lower_bound": 23003662489, "source": "monroe2026"},
+    {"id": "berlekamp_w3_14", "colors": 3, "length": 14, "lower_bound": 10363093, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 13, "condition_denominator": 2}},
+    {"id": "berlekamp_w3_15", "colors": 3, "length": 15, "lower_bound": 30632, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 14, "condition_denominator": 2186}},
+    {"id": "berlekamp_w3_16", "colors": 3, "length": 16, "lower_bound": 889395, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 15, "condition_denominator": 242}},
+    {"id": "berlekamp_w3_17", "colors": 3, "length": 17, "lower_bound": 104992, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 16, "condition_denominator": 6560}},
+    {"id": "berlekamp_w3_18", "colors": 3, "length": 18, "lower_bound": 1097691377, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 17, "condition_denominator": 2}},
+    {"id": "berlekamp_w3_19", "colors": 3, "length": 19, "lower_bound": 354312, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 18, "condition_denominator": 19682}},
+    {"id": "berlekamp_w3_20", "colors": 3, "length": 20, "lower_bound": 11041483927, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 19, "condition_denominator": 2}},
+    {"id": "berlekamp_w3_21", "colors": 3, "length": 21, "lower_bound": 1181000, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 20, "condition_denominator": 59048}},
+    {"id": "berlekamp_w3_22", "colors": 3, "length": 22, "lower_bound": 100488297, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 21, "condition_denominator": 2186}},
+    {"id": "berlekamp_w3_23", "colors": 3, "length": 23, "lower_bound": 3897256, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 22, "condition_denominator": 177146}},
+    {"id": "berlekamp_w3_24", "colors": 3, "length": 24, "lower_bound": 1082646556499, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 23, "condition_denominator": 2}},
+    {"id": "berlekamp_w3_25", "colors": 3, "length": 25, "lower_bound": 12754608, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 24, "condition_denominator": 531440}},
+    {"id": "berlekamp_w3_26", "colors": 3, "length": 26, "lower_bound": 87529815025, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 25, "condition_denominator": 242}},
+    {"id": "berlekamp_w3_27", "colors": 3, "length": 27, "lower_bound": 41452424, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 26, "condition_denominator": 1594322}},
+    {"id": "berlekamp_w3_28", "colors": 3, "length": 28, "lower_bound": 10460884671, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 27, "condition_denominator": 19682}},
+    {"id": "cfs_w2_17", "colors": 2, "length": 17, "lower_bound": 1015312, "source": "cfs2026", "parameters": {"distinct_primes": [5, 11]}},
+    {"id": "cfs_w2_18", "colors": 2, "length": 18, "lower_bound": 2228207, "source": "cfs2026", "parameters": {"distinct_primes": [17]}},
+    {"id": "cfs_w2_19", "colors": 2, "length": 19, "lower_bound": 4679442, "source": "cfs2026", "parameters": {"distinct_primes": [7, 11]}},
+    {"id": "cfs_w2_20", "colors": 2, "length": 20, "lower_bound": 9961453, "source": "cfs2026", "parameters": {"distinct_primes": [19]}},
+    {"id": "cfs_w2_21", "colors": 2, "length": 21, "lower_bound": 20805140, "source": "cfs2026", "parameters": {"distinct_primes": [7, 13]}},
+    {"id": "cfs_w2_22", "colors": 2, "length": 22, "lower_bound": 38215443, "source": "cfs2026", "parameters": {"distinct_primes": [3, 7, 11]}},
+    {"id": "cfs_w2_23", "colors": 2, "length": 23, "lower_bound": 89390422, "source": "cfs2026", "parameters": {"distinct_primes": [5, 17]}},
+    {"id": "cfs_w2_24", "colors": 2, "length": 24, "lower_bound": 192937961, "source": "cfs2026", "parameters": {"distinct_primes": [23]}},
+    {"id": "cfs_w2_25", "colors": 2, "length": 25, "lower_bound": 402407448, "source": "cfs2026", "parameters": {"distinct_primes": [11, 13]}},
+    {"id": "cfs_w2_26", "colors": 2, "length": 26, "lower_bound": 806199175, "source": "cfs2026", "parameters": {"distinct_primes": [5, 7, 13]}},
+    {"id": "cfs_w2_27", "colors": 2, "length": 27, "lower_bound": 1731195674, "source": "cfs2026", "parameters": {"distinct_primes": [7, 19]}},
+    {"id": "cfs_w2_28", "colors": 2, "length": 28, "lower_bound": 3168958653, "source": "cfs2026", "parameters": {"distinct_primes": [3, 11, 13]}},
+    {"id": "liang_w2_17", "colors": 2, "length": 17, "lower_bound": 46397777, "source": "liang2012"},
+    {"id": "liang_w2_18", "colors": 2, "length": 18, "lower_bound": 91079252, "source": "liang2012"},
+    {"id": "liang_w2_19", "colors": 2, "length": 19, "lower_bound": 250546915, "source": "liang2012"},
+    {"id": "liang_w2_20", "colors": 2, "length": 20, "lower_bound": 526317462, "source": "liang2012"},
+    {"id": "liang_w2_21", "colors": 2, "length": 21, "lower_bound": 1100698421, "source": "liang2012"},
+    {"id": "liang_w2_22", "colors": 2, "length": 22, "lower_bound": 2064531190, "source": "liang2012"},
+    {"id": "liang_w2_23", "colors": 2, "length": 23, "lower_bound": 4372478199, "source": "liang2012"},
+    {"id": "monroe_w2_21", "colors": 2, "length": 21, "lower_bound": 1409670741, "source": "monroe2016v1"},
+    {"id": "monroe_w2_22", "colors": 2, "length": 22, "lower_bound": 2582037634, "source": "monroe2016v1"},
+    {"id": "monroe_w2_23", "colors": 2, "length": 23, "lower_bound": 6206141987, "source": "monroe2016v1"},
+    {"id": "monroe_w2_24", "colors": 2, "length": 24, "lower_bound": 10980093212, "source": "monroe2017v4"},
+    {"id": "monroe_w2_25", "colors": 2, "length": 25, "lower_bound": 23003662489, "source": "monroe2017v4"},
     {"id": "monroe_tally_w3_17", "colors": 3, "length": 17, "lower_bound": 15509557937, "source": "monroe_code_tally"},
     {"id": "monroe_tally_w3_18", "colors": 3, "length": 18, "lower_bound": 16479723552, "source": "monroe_code_tally"},
     {"id": "monroe_tally_w3_19", "colors": 3, "length": 19, "lower_bound": 17449137523, "source": "monroe_code_tally"},
@@ -76,15 +140,18 @@
     {"claim_id": "w3_k25_p1999999927"}
   ],
   "ring_seeds": [
-    {"id": "monroe_wr2_17", "colors": 2, "length": 17, "lower_bound": 2899861, "source": "monroe2026"},
-    {"id": "monroe_wr2_18", "colors": 2, "length": 18, "lower_bound": 5357603, "source": "monroe2026"},
-    {"id": "monroe_wr2_19", "colors": 2, "length": 19, "lower_bound": 13919273, "source": "monroe2026"},
-    {"id": "monroe_wr2_20", "colors": 2, "length": 20, "lower_bound": 27700919, "source": "monroe2026"},
-    {"id": "monroe_wr2_21", "colors": 2, "length": 21, "lower_bound": 70483537, "source": "monroe2026"},
-    {"id": "monroe_wr2_22", "colors": 2, "length": 22, "lower_bound": 122954173, "source": "monroe2026"},
-    {"id": "monroe_wr2_23", "colors": 2, "length": 23, "lower_bound": 282097363, "source": "monroe2026"},
-    {"id": "monroe_wr2_24", "colors": 2, "length": 24, "lower_bound": 477395357, "source": "monroe2026"},
-    {"id": "monroe_wr2_25", "colors": 2, "length": 25, "lower_bound": 958485937, "source": "monroe2026"},
+    {"id": "liang_wr2_17", "colors": 2, "length": 17, "lower_bound": 2899861, "source": "liang2012"},
+    {"id": "liang_wr2_18", "colors": 2, "length": 18, "lower_bound": 5357603, "source": "liang2012"},
+    {"id": "liang_wr2_19", "colors": 2, "length": 19, "lower_bound": 13919273, "source": "liang2012"},
+    {"id": "liang_wr2_20", "colors": 2, "length": 20, "lower_bound": 27700919, "source": "liang2012"},
+    {"id": "liang_wr2_21", "colors": 2, "length": 21, "lower_bound": 55034921, "source": "liang2012"},
+    {"id": "liang_wr2_22", "colors": 2, "length": 22, "lower_bound": 98311009, "source": "liang2012"},
+    {"id": "liang_wr2_23", "colors": 2, "length": 23, "lower_bound": 198749009, "source": "liang2012"},
+    {"id": "monroe_wr2_21", "colors": 2, "length": 21, "lower_bound": 70483537, "source": "monroe2016v1"},
+    {"id": "monroe_wr2_22", "colors": 2, "length": 22, "lower_bound": 122954173, "source": "monroe2016v1"},
+    {"id": "monroe_wr2_23", "colors": 2, "length": 23, "lower_bound": 282097363, "source": "monroe2016v1"},
+    {"id": "monroe_wr2_24", "colors": 2, "length": 24, "lower_bound": 477395357, "source": "monroe2017v4"},
+    {"id": "monroe_wr2_25", "colors": 2, "length": 25, "lower_bound": 958485937, "source": "monroe2017v4"},
     {"claim_id": "w2_k25_p1138900957"},
     {"claim_id": "w2_k26_p2125065391"},
     {"claim_id": "w2_k27_p3459826103"},

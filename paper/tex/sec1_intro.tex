@@ -7,8 +7,8 @@ A GPU scan can discover useful primes quickly; the durable mathematical object
 is instead the succinct triple $(p,r,k)$, whose finite Rabung hypotheses can be
 re-established from scratch by a separate-source CPU verifier.  Only after
 that pointwise certification do we use recurrence closure to decide whether a
-direct-method improvement is also the strongest general bound in a dated
-source corpus.
+direct-method improvement also wins a finite comparison in a dated,
+primary-source-audited corpus.
 
 For integers $r\ge2$ (colours) and $k\ge3$, the van der Waerden number
 $W(r,k)$ is the least $N$ such that every $r$-colouring of $\{1,\dots,N\}$
@@ -26,13 +26,16 @@ The fail-closed audit accepts all thirteen registered claim manifests, and
 recurrence closure leaves the direct bounds as
 the strongest values located in the registered corpus for $17\le k\le21$.
 For $22\le k\le25$ they remain improvements within the direct Rabung family
-but are dominated as general bounds. This distinction between the strongest
-direct Rabung bound located in the dated corpus and its strongest general
-consequence is part of the claim, not a bibliographic
+but do not win the admitted comparison. Berlekamp's 1968 construction supplies
+the winning value $W(3,24)>1\,082\,646\,556\,499$ and, by length monotonicity,
+the same winning strict bound at $k=25$~\cite{Berlekamp1968}. This distinction
+between a direct Rabung certificate and the strongest verified consequence in
+the audited corpus is part of the claim, not a bibliographic
 afterthought.
 
-Two mechanisms make that distinction necessary.  Rabung's power-residue
-construction~\cite{rabung1979} turns a suitable prime $p$ into the direct bound
+Three mechanisms make that distinction necessary.  The Folkman--Rabung
+power-residue construction, in Rabung's published criterion~\cite{rabung1979},
+turns a suitable prime $p$ into the direct bound
 \[
   W(r,k)>(k-1)p+1.
 \]
@@ -41,19 +44,26 @@ prove the finite constructive recurrence
 \begin{equation}\label{eq:bct-intro}
  W(r,k)>q\left(W\!\left(r-\left\lceil r/q\right\rceil,k\right)-1\right),
 \end{equation}
-where $q$ is the largest prime not exceeding $k$.  In particular, a documented
-strict bound $W(2,k)>B$ implies $W(3,k)>qB$.  Xu's concatenation
-recurrence~\cite{xu2013} supplies another closure operation.  We therefore
+for any prime $q\le k$. In the three-colour closure we take $q=q_k$, the
+largest such prime; a documented strict bound $W(2,k)>B$ then implies
+$W(3,k)>q_kB$. Xu's concatenation
+recurrence~\cite[Theorem~4]{xu2013} supplies another closure operation, while
+$W(r,k)>B$ implies $W(r,k+1)>B$ by elementary length monotonicity.  We therefore
 compare bounds only after a machine-readable registry of published, archived,
-and current inputs has been closed under both recurrences.
+and current inputs has been closed under all three operations.
 Section~\ref{s:bounds}
 states Xu's formula, the strict-integer convention and the finite corpus
 policy explicitly.  The recent superexponential three-colour result of Fox and
 Hunter~\cite{FoxHunter2026} and the asymptotic two-colour bound
 $w(k)\ge(1-o(1))k2^{k-1}$ of Campos, Fox and
 Schildkraut~\cite{CamposFoxSchildkraut2026} are separate asymptotic
-developments; neither supplies a replacement numerical entry for the finite
-range compared here.
+developments. In the version-pinned sources audited here, neither supplies a
+stronger explicit finite entry for the range compared below.
+Gasarch and Haeupler's constructive review~\cite{GasarchHaeupler2011} provides
+useful methodological context for separating existence, an efficient search,
+and a checkable construction. Hunter's 2025 exponential improvement begins at
+five colours~\cite{Hunter2025} and therefore does not alter the three-colour
+finite table.
 
 The historical campaign was configured to scan every prime in
 $[9.7\times10^8,2\times10^9)$ and to compute the active profiles with $r\le9$.
@@ -67,25 +77,32 @@ support coverage of the window and the empirical event list; they are
 logically separate from pointwise verification of any particular triple.
 
 Four additional registered triples are two-colour primes listed in an archived
-phase of Monroe's project~\cite{MonroePhase2Archive}.  Their four final
+phase of Monroe's Vdwnumbers.org BOINC project~\cite{MonroePhase2Archive}.
+The earliest public evidence located in our audit attributes the values to that
+project and its volunteer contributors. Their four final
 manifests are accepted by the same local audit, which includes separate-source
-CPU rechecks.  Priority for the primes is Monroe's.  Applying
+CPU rechecks. We therefore claim re-verification, not their first discovery.
+Applying
 \eqref{eq:bct-intro} to these inputs gives the three-colour consequences for
-$25\le k\le28$ displayed in Section~\ref{s:bounds}.  The archive states that
-the historical phase tested primes to four billion~\cite{MonroePage}; our
-checker establishes the validity of the listed triples, not the exhaustiveness
-of that historical scan.
+$25\le k\le28$ displayed in Section~\ref{s:bounds}. A later author page
+describes a scan to four billion~\cite{MonroePage}; our checker establishes the
+validity of the listed triples, not gap-free coverage of that historical scan.
 
 Computational power-residue lower bounds and cyclic-zipper extensions have
 previously been pursued by Herwig, Heule, van Lambalgen and van
 Maaren~\cite{herwig2007}, Rabung and Lotts~\cite{rabunglotts2012}, Liang, Xu,
-Shao and Xiu~\cite{liang2012}, and Monroe~\cite{Monroe2026}.  Relative to that
-lineage, our contribution is the combination of new direct three-colour
-triples, a recurrence-closed and provenance-bearing comparison, and a
+Shao and Xiu~\cite{liang2012}, and
+Monroe~\cite{Monroe2016v1,Monroe2017v4,Monroe2026}.
+The priority review also traced Berlekamp's finite-field construction and a
+stronger Landman--Robertson textbook statement whose proof status requires
+separate treatment~\cite{Berlekamp1968,LandmanRobertson2004,LandmanRobertson2014,Johannson2007}.
+Relative to that lineage, our contribution is the combination of direct
+three-colour triples new to the audited corpus, a recurrence-closed and
+provenance-bearing comparison, and a
 stand-alone verification path whose arithmetic and source are separate from
 the GPU engine.  We do not claim global optimality, exhaustive coverage beyond
-the stated window, first discovery of Monroe's archived primes, or a universal
-density law.
+the stated window, unqualified global priority for the direct triples, first
+discovery of Monroe's archived primes, or a universal density law.
 
 Section~\ref{s:bounds} states the registered numerical results, the recurrence
 closure and their exact scope before the technical inventory.

@@ -81,7 +81,8 @@ with no off-by-one ambiguity.
 For completeness, write $WR(s,k)$ for Xu's ring van der Waerden number: the
 least $N$ such that, for every $n\ge N$, every $s$-colouring of
 $\mathbb Z/n\mathbb Z$ has a monochromatic $k$-term arithmetic progression.
-Xu's concatenation theorem states that, for $k\ge3$, $s,t\ge2$, and
+Xu's concatenation theorem~\cite[Theorem~4]{xu2013} states that, for $k\ge3$,
+$s,t\ge2$, and
 $5\le n<WR(s,k)$ whose least prime divisor exceeds $k$,
 \begin{equation}\label{eq:xu}
   W(st,k)\ge n\bigl(W(t,k)-1\bigr)+1.
@@ -91,38 +92,85 @@ has least prime divisor greater than $k$, a precondition checked by the closure
 tests. Hence inputs $WR(s,k)>R$ and $W(t,k)>B$ permit $n=R$ and give exactly
 $W(st,k)>RB$, with no rounding or off-by-one convention left implicit.
 
-The baseline program iterates the registered BCT specialization and
-\eqref{eq:xu} to a fixed point. Its finite scope is $17\le k\le28$ and at most
-four colours. At each step it retains exact integer bounds and a full
-provenance path. Candidates are compared first by bound; numerical ties use
-the deterministic order direct Rabung, published or archived seed, BCT, Xu,
-one-colour exact, and finally the hash-derived node identifier. These
-tie-breaks affect provenance only. Since both operators are monotone in their
-input bounds, a dominated parent cannot improve a descendant. Iteration stops
-when no winning node changes.
+The baseline program iterates elementary length monotonicity, the registered
+BCT specialization and \eqref{eq:xu} to a fixed point. Its finite scope is
+$17\le k\le28$ and at most four colours; Berlekamp seeds are loaded from
+$k=14$ so earlier monotone consequences are not truncated. At each step it retains exact integer
+bounds and a full provenance path. Candidates are compared first by bound;
+numerical ties use the deterministic order direct Rabung, published or archived
+seed, length monotonicity, BCT, Xu, one-colour exact, and finally the
+hash-derived node identifier. These tie-breaks affect provenance only. Since
+all three operators are monotone in their input bounds, a dominated parent
+cannot improve a descendant. Iteration stops when no winning node changes.
 
-The comparison corpus was frozen on 28~August~2026 and consists exactly of the
-seeds listed in \texttt{audit/baselines.json}: Monroe's published ordinary and
-ring tables, the immutable direct tally distributed with his code, the four
-archived phase-2 rows credited to Monroe, and the thirteen claims of this work.
-Published entries require a stable primary locator. An unpublished or archived
-entry is included only with an immutable source identity and explicit priority
-attribution; a merely announced value is not silently promoted to a seed.
-The generated output embeds this catalogue, SHA-256 hashes of both registries,
-and the winning provenance paths. Accordingly, ``strongest'' below always
-means strongest consequence of these explicitly listed inputs, not global
+The comparison corpus was frozen on 29~August~2026 and consists exactly of the
+seeds listed in \texttt{audit/baselines.json}: all fifteen finite three-colour
+specializations of Berlekamp's Theorem~1 from length 14 through 28, Liang et
+al.'s ordinary and ring rows through length 23, Monroe's version-pinned rows,
+the immutable direct tally distributed with his code, the twelve
+version-pinned explicit finite products of Campos, Fox and Schildkraut, four
+archived phase-2 rows, and the thirteen claims of this work. The exact rows at
+lengths 17 through 20 that Monroe's summary credits to Liang et al. are sourced
+to that earlier 2012 paper~\cite{liang2012}, not reassigned to the later table.
+Monroe's rows at lengths 21 through 23 are pinned to arXiv v1 of
+9~March~2016, while the rows at lengths 24 and 25 first appear in v4 of
+6~November~2017~\cite{Monroe2016v1,Monroe2017v4}.
+Published entries require a stable primary locator. An unpublished or
+archived entry is included only with an immutable source identity and dated
+attribution; a merely announced value is not silently promoted to a seed. The
+generated output embeds this catalogue, SHA-256 hashes of both registries, and
+the winning provenance paths. Accordingly, ``strongest'' below always means
+strongest verified consequence of these explicitly admitted inputs, not global
 optimality over an unspecified literature corpus.
+
+\paragraph{Literature and priority audit.}
+Berlekamp writes $W(K,t)$ for $K$ colours and progressions of length $t+1$.
+Specializing his Theorem~1 to $K=3,t=23$ gives
+\begin{equation}\label{eq:berlekamp-24}
+  W(3,24)>\frac{23(3^{23}-1)}{2}
+           =1\,082\,646\,556\,499,
+\end{equation}
+after checking the theorem's divisor conditions~\cite{Berlekamp1968}. Length
+monotonicity gives the same strict bound for $W(3,25)$. The registry also
+contains the fourteen directly dominated specializations, so this winning case is not an
+isolated post hoc insertion.
+
+Landman and Robertson state, without an accompanying proof, that for primes
+$p\ge5$ and $q$,
+\[
+  w(p+1;q)\ge p(q^p-1)+1
+\]
+in their first and second editions~\cite[Theorem~2.19, p.~38]{LandmanRobertson2004}
+\cite[Theorem~2.21, p.~43]{LandmanRobertson2014}.
+At $p=23,q=3$ this would imply the strict bound
+$W(3,24)>2\,165\,293\,112\,998$ and, by monotonicity, dominate the displayed
+comparison through $k=28$. We do not admit it. Berlekamp's primary construction
+proves the general factor $1/(q-1)$, with its stronger extension confined to
+$q=2$, and Johannson's detailed reconstruction explicitly reports that the
+proposed general adaptation could not be confirmed~\cite[pp.~88--90]{Johannson2007}.
+This does not disprove the textbook statement; absent a proof, explicit
+colouring, or machine-checkable certificate, it is recorded as a published but
+unverified bibliographic anomaly and excluded from the numerical registry.
+
+The arXiv version history dates Monroe's earlier
+$W(3,17)>15\,509\,557\,937$ and prime $969\,347\,371$ to version~4 of
+6~November~2017; versions~1--3 do not contain them~\cite{Monroe2017v4}.
+Exact-number, prime, publisher, preprint, citation-chain, repository and web
+archive searches were performed. No earlier public source was located for the
+three primitive direct triples used here at $k=17,18,19$. This bounded search result does not establish global priority. We therefore describe those certificates as new to
+the audited corpus rather than assert an unqualified first discovery. The
+search methods, version pins, admitted and excluded findings, and exact cutoff
+are machine-readable in \texttt{publication/bibliography-audit.json}.
 
 \input{generated_bounds_table}
 
 \IfFileExists{generated_validated_claims.tex}{%
 \begin{corollary}[Recurrence-closed consequences]\label{cor:closed-bounds}
 Within the frozen seed set and finite scope just specified, closing under the
-Blankenship--Cummings--Taranchuk and Xu recurrences gives the winning strict
-bounds in Table~\ref{tab:r3}. In particular, the certified direct rows are the
-strongest closed consequences for $17\le k\le21$, while for
-$22\le k\le25$ the direct rows are dominated by the displayed recurrence
-consequences.
+length-monotonicity, Blankenship--Cummings--Taranchuk and Xu operations gives
+the winning strict bounds in Table~\ref{tab:r3}. In particular, the certified
+direct rows win for $17\le k\le21$, while for $22\le k\le25$ they are dominated
+by the displayed admitted consequences.
 \end{corollary}
 }{%
 % A non-validated qualification build cannot state the release corollary.
@@ -130,21 +178,22 @@ consequences.
 
 Thus the certified rows for $17\le k\le21$ give the strongest bounds located
 in the registered, recurrence-closed source corpus. For $22\le k\le25$ the
-direct rows improve the direct Rabung family but are not the strongest general
-bounds in that corpus. In particular, the published two-colour values already
-dominate the direct rows at $k=22,23,24$. No winning three-colour row in this
-finite scope uses Xu's recurrence; it is retained because the comparison claim
-is closure under both registered operations.
+direct rows improve the direct Rabung family but do not win the admitted
+comparison. BCT consequences of published two-colour values win at $k=22,23$;
+Berlekamp wins at $k=24,25$. No winning three-colour row in this finite scope
+uses Xu's recurrence; it is retained because the comparison claim includes all
+registered operations.
 
 \subsection{Archived two-colour inputs and recurrence consequences}\label{ss:r2}
 
-After the scan, we located a table from a second, unpublished phase of Monroe's
-BOINC project (2021, two colours only)~\cite{MonroePhase2Archive}.  The project
-page states that this phase pushed the checked range from one billion to four
-billion~\cite{MonroePage}; the largest prime actually listed in the recovered
-table is $3\,478\,685\,143$.  We credit the listed primes to Monroe and use
-our checker only to test whether the four displayed triples satisfy Rabung's
-criterion.
+After the scan, we located a table from a second, unpublished phase of Daniel
+Monroe's Vdwnumbers.org BOINC project (2021, two colours only)~\cite{MonroePhase2Archive}.
+The earliest public evidence located in our audit attributes the four values
+to that project and its volunteer contributors. A later author-owned project
+page reports retrospectively that this phase pushed the checked range from one
+billion to four billion~\cite{MonroePage}; the largest prime actually listed
+in the recovered table is $3\,478\,685\,143$. We use our checker only to test
+whether the four displayed triples satisfy Rabung's criterion.
 
 \begin{table}[htbp]
 \centering\small
@@ -152,15 +201,15 @@ criterion.
 \toprule
 $k$ & prime $p$ & $W(2,k)>$ & method and provenance \\
 \midrule
-25 & $1\,138\,900\,957$ & $27\,333\,622\,969$ & archived Monroe prime; accepted final manifest \\
-26 & $2\,125\,065\,391$ & $53\,126\,634\,776$ & archived Monroe prime; accepted final manifest \\
-27 & $3\,459\,826\,103$ & $89\,955\,478\,679$ & archived Monroe prime; accepted manifest and no-Montgomery witness \\
-28 & $3\,476\,732\,783$ & $93\,871\,785\,142$ & archived Monroe prime; accepted manifest and no-Montgomery witness \\
+25 & $1\,138\,900\,957$ & $27\,333\,622\,969$ & phase-2 table; accepted final manifest \\
+26 & $2\,125\,065\,391$ & $53\,126\,634\,776$ & phase-2 table; accepted final manifest \\
+27 & $3\,459\,826\,103$ & $89\,955\,478\,679$ & phase-2 table; accepted manifest and no-Montgomery witness \\
+28 & $3\,476\,732\,783$ & $93\,871\,785\,142$ & phase-2 table; accepted manifest and no-Montgomery witness \\
 \bottomrule
 \end{tabular}
 \caption{Two-colour succinct Rabung certificates used as recurrence inputs.
-The method column separates priority for the archived prime from the
-separate-source recheck recorded in the accepted final manifests.}
+The method column separates dated phase-2 attribution from the separate-source
+recheck recorded in the accepted final manifests.}
 \label{tab:r2}
 \end{table}
 
@@ -171,15 +220,17 @@ For $k=25$, even Monroe's published input would give
   W(3,25)>529\,084\,237\,247.
 \]
 The archived input accepted in the final manifest audit,
-$W(2,25)>27\,333\,622\,969$, strengthens this to the first line below.
+$W(2,25)>27\,333\,622\,969$, strengthens that BCT consequence to
+$W(3,25)>628\,673\,328\,287$, but Berlekamp's monotone consequence is stronger.
+The winning admitted bounds for this four-length block are therefore
 
 \input{generated_bct_corollaries}
 
-These four inequalities are theorem consequences of the corresponding
-two-colour inputs, not additional GPU discoveries.  Priority for the primes
-remains Monroe's.  Xu's recurrence is included in the automatic closure but
-does not improve any of these three-colour winners.  Release readiness remains
-conditional on the open gates described in Section~\ref{s:data}.
+The first line comes from Berlekamp and length monotonicity; the last three are
+BCT consequences of the corresponding phase-2 two-colour inputs. They are not
+additional GPU discoveries. Xu's recurrence is included in the automatic
+closure but does not improve any winner. Release readiness remains conditional
+on the open gates described in Section~\ref{s:data}.
 
 For $k=25$ the authenticated campaign record identifies the same last
 candidate in $[9.7\times10^8,2\times10^9)$ as the archived table, and the
@@ -189,12 +240,14 @@ are accepted directly by the final manifests.  None of this establishes
 that Monroe's phase exhaustively tested every prime up to four billion: that is
 an attributed archival statement, not a consequence of the recovered table.
 
-The source is the Internet Archive capture of 28~April~2022 of
-\url{http://vdwnumbers.org/bounds.txt}~\cite{MonroePhase2Archive}; its header
-dates the file to 18~August~2021.  The release records the immutable capture
-URL, both dates, source-repository blob identity, and SHA-256 in
-\path{publication/baseline-provenance.json}.  It does not redistribute the
-third-party table absent permission.  With the final manifests complete, the
-defensible novelty claim remains a separately auditable re-verification with a
-public stand-alone checker and complete logs---not first discovery of the
-primes and not a newly audited claim of historical scan coverage.
+The final source file is internally dated 18~August~2021, whereas the first
+surviving Internet Archive capture containing the exact final $k=27,28$ values
+is dated 28~April~2022~\cite{MonroePhase2Archive}. Earlier surviving captures
+establish the final $k=25$ value by 4~March~2021 and the final $k=26$ value by
+5~May~2021. We report source-internal and independently preserved dates
+separately. The release records all five capture URLs, hashes, and contents in
+\path{publication/baseline-provenance.json}; it does not redistribute the
+third-party table absent permission. The defensible claim is a separately
+auditable re-verification with a public stand-alone checker and complete
+logs---not first discovery of the primes and not a gap-free audit of the
+historical scan.

@@ -2049,7 +2049,8 @@ def validate_passed_gate_evidence(root: Path, gates: dict[str, dict], findings: 
         } if isinstance(entries, list) else set()
         complete = (
             isinstance(audit, dict)
-            and audit.get("schema") == "vdw-bibliography-audit/v1"
+            and audit.get("schema") == "vdw-bibliography-audit/v2"
+            and isinstance(audit.get("priority_audit"), dict)
             and isinstance(cited, list) and bool(cited)
             and len(cited) == len(set(cited))
             and set(cited) == entry_keys
@@ -2099,7 +2100,14 @@ def _strip_tex_comments(text: str) -> str:
 def validate_bibliography_bindings(root: Path, audit: dict, findings: Findings) -> None:
     """Bind the completed ledger to both actual TeX citations and BibTeX keys."""
 
-    expected_top = {"checked_at_utc", "cited_keys", "entries", "policy", "schema"}
+    expected_top = {
+        "checked_at_utc",
+        "cited_keys",
+        "entries",
+        "policy",
+        "priority_audit",
+        "schema",
+    }
     if set(audit) != expected_top:
         findings.error(
             "bibliography.shape",
@@ -2162,6 +2170,70 @@ def validate_bibliography_bindings(root: Path, audit: dict, findings: Findings) 
             findings.error(
                 "bibliography.source_url",
                 f"bibliography entry {index} ({row.get('key')!r}) lacks a source URL",
+            )
+
+    priority = audit.get("priority_audit")
+    expected_priority = {
+        "admission_rule",
+        "claim_language",
+        "cutoff_utc",
+        "findings",
+        "scope",
+        "search_methods",
+    }
+    if not isinstance(priority, dict) or set(priority) != expected_priority:
+        findings.error(
+            "bibliography.priority_shape",
+            f"priority audit must contain exactly {sorted(expected_priority)}",
+        )
+        return
+    if not all(
+        isinstance(priority.get(field), str) and priority[field].strip()
+        for field in ("admission_rule", "claim_language", "cutoff_utc", "scope")
+    ):
+        findings.error("bibliography.priority_text", "priority audit text fields must be non-empty strings")
+    methods = priority.get("search_methods")
+    if not isinstance(methods, list) or len(methods) < 3 or not all(
+        isinstance(method, str) and method.strip() for method in methods
+    ):
+        findings.error("bibliography.priority_methods", "priority audit must record at least three search methods")
+    rows = priority.get("findings")
+    if not isinstance(rows, list) or not rows:
+        findings.error("bibliography.priority_findings", "priority audit must contain findings")
+        return
+    row_ids = [row.get("id") for row in rows if isinstance(row, dict)]
+    if len(row_ids) != len(rows) or len(row_ids) != len(set(row_ids)) or not all(
+        isinstance(row_id, str) and row_id for row_id in row_ids
+    ):
+        findings.error("bibliography.priority_ids", "priority findings must have unique non-empty IDs")
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            continue
+        if not isinstance(row.get("status"), str) or not row["status"]:
+            findings.error("bibliography.priority_status", f"priority finding {index} lacks a status")
+        if not isinstance(row.get("claim"), str) or not row["claim"]:
+            findings.error("bibliography.priority_claim", f"priority finding {index} lacks a claim")
+        source_keys = row.get("source_keys")
+        if not isinstance(source_keys, list) or not source_keys or not all(
+            isinstance(key, str) and key in ledger_set for key in source_keys
+        ):
+            findings.error(
+                "bibliography.priority_sources",
+                f"priority finding {index} has missing or unregistered source keys",
+            )
+    required_findings = {
+        "berlekamp1968_w3_24": "admitted_verified_seed",
+        "landman_robertson_stronger_formula": "excluded_unverified_statement",
+        "current_direct_three_colour_triples": "no_earlier_source_found_not_global_priority",
+    }
+    observed = {
+        row.get("id"): row.get("status") for row in rows if isinstance(row, dict)
+    }
+    for finding_id, expected_status in required_findings.items():
+        if observed.get(finding_id) != expected_status:
+            findings.error(
+                "bibliography.priority_required",
+                f"priority finding {finding_id!r} must have status {expected_status!r}",
             )
 
 

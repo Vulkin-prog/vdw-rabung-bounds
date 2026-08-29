@@ -68,8 +68,16 @@ class ManuscriptClaimRegressionTest(unittest.TestCase):
     def test_corrected_recurrence_bounds_are_present(self):
         table = (TEX / "generated_bounds_table.tex").read_text(encoding="utf-8")
         self.assertIn(r"22 & $1\,999\,999\,927$ & $41\,999\,998\,468$ & $49\,058\,715\,046$", table)
-        self.assertIn(r"25 & $1\,999\,999\,927$ & $47\,999\,998\,249$ & $628\,673\,328\,287$", table)
+        self.assertIn(r"24 & $1\,999\,999\,927$ & $45\,999\,998\,322$ & $1\,082\,646\,556\,499$", table)
+        self.assertIn(r"25 & $1\,999\,999\,927$ & $47\,999\,998\,249$ & $1\,082\,646\,556\,499$", table)
         self.assertIn(r"W(3,28) &> 2\,159\,051\,058\,266", self.sources)
+
+    def test_priority_audit_language_is_conservative(self):
+        lowered = self.sources.lower()
+        self.assertIn("no earlier public source was located", lowered)
+        self.assertIn("does not establish global priority", lowered)
+        self.assertIn("excluded from the numerical registry", lowered)
+        self.assertNotIn("priority remains monroe's", lowered)
 
     def test_bounds_table_is_generated_not_retyped(self):
         bounds = (TEX / "sec4_bounds.tex").read_text(encoding="utf-8")

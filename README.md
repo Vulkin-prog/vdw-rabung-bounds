@@ -83,7 +83,7 @@ completed read-only recovery record, and the remaining release procedure.
 
 ## Scope
 
-This package covers the Rabung/GPU records paper only. The cyclic \(W_c\)
+This package covers the Rabung/GPU computational-evidence paper only. The cyclic \(W_c\)
 pilot, the second and third papers, companion projects, exploratory Chowla and
 Liouville work, internal review transcripts, and conversational journals are
 outside this repository. The enforced scope is in

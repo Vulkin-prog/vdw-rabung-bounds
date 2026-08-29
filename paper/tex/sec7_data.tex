@@ -28,11 +28,14 @@ with separate-source CPU rechecks; none is an independently administered
 replication.  External rechecks remain an optional avenue for corroboration.
 
 \paragraph{Derived tables and the holdout analysis.}
-The separate registry \texttt{audit/baselines.json} records published,
-archived, and current strict lower bounds with source locators.
-\path{tools/close_baselines.py} closes those inputs under the registered
-recurrences, preserves a provenance path for each output, and generates the
-tables used in Section~\ref{s:bounds}.  The survivor list, reconstructed
+The separate registry \texttt{audit/baselines.json} records admitted published,
+archived, and current strict lower bounds with source locators, while
+\texttt{publication/bibliography-audit.json} records the search methods,
+version pins, priority boundaries, and the published statement excluded for
+lack of a verifiable proof. \path{tools/close_baselines.py} closes the admitted
+inputs under length monotonicity and the registered recurrences, preserves a
+provenance path for each output, and generates the tables used in
+Section~\ref{s:bounds}. The survivor list, reconstructed
 holdout ledger, and generated audit reproduce the disjoint counts and model
 means reported in Appendices~\ref{s:prereg} and~\ref{s:density}, conditional on
 the retained event list.  These artifacts reproduce the reported derivations;
@@ -53,7 +56,7 @@ stated count role, while ordered-prime identity supplies the stronger
 enumeration check; no complete GPU campaign rerun is required.
 
 The cyclic $W_c$ pilot and its proof artifacts are outside the scientific
-scope of this records paper and are intentionally absent from this repository.
+scope of this computational-evidence paper and are intentionally absent from this repository.
 The archived two-colour phase-2 source is credited and located, but a verbatim
 third-party web capture is not redistributed unless its rights status is
 resolved.  Outbound licences for code, paper, and data also remain an explicit

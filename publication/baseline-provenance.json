@@ -15,7 +15,36 @@
       "title": "New Lower Bounds for van der Waerden Numbers Using Distributed Computing",
       "doi": "10.61091/jcmcc128-19",
       "location": "Tables 1 and 2",
-      "role": "Published ordinary and ring baseline values"
+      "role": "Journal publication record and later summary; numerical priority is assigned to the versioned preprints and to Liang et al. below"
+    },
+    "monroe2016v1": {
+      "author": "Daniel Monroe",
+      "title": "New lower bounds for van der Waerden numbers using distributed computing",
+      "arxiv": "1603.03301v1",
+      "submitted_utc": "2016-03-09T17:03:48Z",
+      "public_locator": "https://arxiv.org/abs/1603.03301v1",
+      "location": "Table 3",
+      "role": "First versioned public source located for Monroe's ordinary and ring rows at lengths 21 through 23; its new-value marks on lengths 17 through 20 are superseded by the exact earlier Liang et al. source",
+      "redistributed": false
+    },
+    "monroe2017v4": {
+      "author": "Daniel Monroe",
+      "title": "New lower bounds for van der Waerden numbers using distributed computing",
+      "arxiv": "1603.03301v4",
+      "submitted_utc": "2017-11-06T16:24:39Z",
+      "public_locator": "https://arxiv.org/abs/1603.03301v4",
+      "location": "Tables 2 and 3",
+      "role": "First versioned public source located for Monroe's ordinary and ring rows at lengths 24 and 25 and for the cited three-colour tally; this version explicitly credits Liang et al. at lengths 17 through 20",
+      "redistributed": false
+    },
+    "liang2012": {
+      "authors": "Meilian Liang, Xiaodong Xu, Zehui Shao, and Baoxin Xiu",
+      "title": "Lower Bounds on Some van der Waerden Numbers Based on Quadratic Residues",
+      "journal": "Journal of Combinatorial Mathematics and Combinatorial Computing 83 (2012), 23--31",
+      "public_locator": "https://combinatorialpress.com/article/jcmcc/Volume%20083/vol-083-paper%203.pdf",
+      "location": "Table 2 and Theorem 5.1",
+      "role": "Original published source for ordinary strict bounds and ring witnesses at lengths 17 through 20; dominated length-21 through length-23 rows are also retained",
+      "redistributed": false
     },
     "monroe_code_tally": {
       "author": "Daniel Monroe",
@@ -23,8 +52,9 @@
       "role": "Historical three-colour baseline values for lengths 17 through 25",
       "public_locator": {
         "repository": "hmonroe/vdw",
-        "commit": "f1223097f4adc0a41ccb92ace51ebafd2b996fb1",
-        "url": "https://github.com/hmonroe/vdw/blob/f1223097f4adc0a41ccb92ace51ebafd2b996fb1/output.txt",
+        "commit": "7000ad7d99cb779ae82b495d709f4a4e23fa7eef",
+        "commit_utc": "2019-03-06T19:13:54Z",
+        "url": "https://github.com/hmonroe/vdw/blob/7000ad7d99cb779ae82b495d709f4a4e23fa7eef/output.txt",
         "path": "output.txt",
         "git_blob_sha1": "bd92cc736774584fd25e73cf7f6bd62a67d2431f",
         "sha256": "bd88e781acdceead847e0b736ca788cbc510aac744d025c2efbde4b152725774",
@@ -32,14 +62,100 @@
       },
       "redistributed": false
     },
+    "berlekamp1968": {
+      "author": "E. R. Berlekamp",
+      "title": "A Construction for Partitions Which Avoid Long Arithmetic Progressions",
+      "doi": "10.4153/CMB-1968-047-7",
+      "location": "Theorem 1",
+      "role": "Verified finite three-colour baselines at progression lengths 14 through 28",
+      "specializations": {
+        "registry_location": "audit/baselines.json#/ordinary_seeds",
+        "winning_case": "At length 24, t=23 and denominator 2 give 23*(3^23-1)/2=1082646556499; length monotonicity carries this bound to length 25.",
+        "condition_check": "Each registered seed stores the maximum denominator required by Berlekamp's conditions (4) and (5), and its exact quotient is covered by the closure tests. Exhaustive evaluation for progression lengths 3 through 13 proves that their largest value, 974303 at length 12, is below the registered length-14 value 10363093, so starting the closure at length 14 cannot omit a stronger monotone predecessor."
+      }
+    },
+    "cfs2026": {
+      "author": "Marcelo Campos, Jacob Fox, and Carl Schildkraut",
+      "title": "A new lower bound for two-color van der Waerden numbers",
+      "arxiv": "2608.20824v1",
+      "public_locator": "https://arxiv.org/abs/2608.20824v1",
+      "location": "Lemmas 2 and 4",
+      "role": "Version-pinned explicit finite two-colour product seeds for lengths 17 through 28; all are dominated in the audited comparison",
+      "specializations": "audit/baselines.json#/ordinary_seeds",
+      "condition_check": "For each registered length, the closure tests exhaustively enumerate all subsets of distinct primes summing to k-1, verify that the stored decomposition maximizes the explicit product, and recompute its exact strict integer."
+    },
     "monroe_phase2_archive": {
       "author": "Daniel Monroe",
       "title": "BOINC phase-2 bounds table",
-      "role": "Priority provenance for archived two-colour primes; not evidence of the present verification event",
+      "role": "Dated public provenance for archived two-colour primes; not evidence of the present verification event and not a global first-discovery proof",
       "original_url": "http://vdwnumbers.org/bounds.txt",
       "internet_archive_capture": "https://web.archive.org/web/20220428101631id_/http://vdwnumbers.org/bounds.txt",
       "capture_utc": "2022-04-28T10:16:31Z",
       "source_internal_date": "2021-08-18",
+      "phase2_launch": {
+        "announced_utc": "2021-02-02T16:51:49Z",
+        "archived_url": "https://web.archive.org/web/20210616231521id_/https://boinc.berkeley.edu/forum_thread.php?id=14154",
+        "sha256": "acb197c60e4ea6e69e55ae389502414fcad505c3b9881f8ff35f818e3ce029f8",
+        "supported_statement": "Daniel Monroe publicly relaunched the BOINC project for a two-colour phase."
+      },
+      "historical_snapshots": [
+        {
+          "capture_utc": "2021-03-04T05:28:57Z",
+          "source_internal_date": "2021-02-22",
+          "url": "https://web.archive.org/web/20210304052857id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "e6fc1dcb7926196c1c523ae47a3568b8c1a7bbdf1628a02e114be3fb19bdce8c",
+          "final_values_present_for_lengths": [25]
+        },
+        {
+          "capture_utc": "2021-04-17T07:30:48Z",
+          "source_internal_date": "2021-03-24",
+          "url": "https://web.archive.org/web/20210417073048id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "7b1dcf718dba89bede13adc9c57913dc3730ed0d232553286ca52adffbc6e470",
+          "final_values_present_for_lengths": [25]
+        },
+        {
+          "capture_utc": "2021-05-05T20:52:49Z",
+          "source_internal_date": "2021-05-01",
+          "url": "https://web.archive.org/web/20210505205249id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "5553e7b68a77d33587a63c24f65e879719b3eb2d456fea09c78f21df35339400",
+          "final_values_present_for_lengths": [25, 26]
+        },
+        {
+          "capture_utc": "2021-06-21T18:30:38Z",
+          "source_internal_date": "2021-05-19",
+          "url": "https://web.archive.org/web/20210621183038id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "71bbaffd76342508a6d46004afc07074cfc074075a09c0ea202c1d88be0c7c3b",
+          "final_values_present_for_lengths": [25, 26]
+        },
+        {
+          "capture_utc": "2022-04-28T10:16:31Z",
+          "source_internal_date": "2021-08-18",
+          "url": "https://web.archive.org/web/20220428101631id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "0e8f79232e3855cbc64026a4c2f3a82433c0508456e0c23f76eb1a400efeb556",
+          "final_values_present_for_lengths": [25, 26, 27, 28]
+        }
+      ],
+      "p26_announcement": {
+        "announced_utc": "2021-06-02T22:03:18Z",
+        "archived_url": "https://web.archive.org/web/20210602221124id_/http://www.vdwnumbers.org/forum_thread.php?id=86",
+        "sha256": "a17fc41f50d10d14e7679fe68763b32f36561bd3c349d215510996398b16b1e8",
+        "supported_statement": "The project publicly announced prime 2125065391 as a new bound."
+      },
+      "progress_counter_snapshots": [
+        {
+          "capture_utc": "2021-08-03T05:20:06Z",
+          "value": 3288371829,
+          "url": "https://web.archive.org/web/20210803052006id_/http://vdwnumbers.org/lastprime.txt",
+          "sha256": "77b1c84ca270fb4355154561e615cb4255c51967adc1280c48b7cd1a55323dcd"
+        },
+        {
+          "capture_utc": "2021-09-26T10:51:22Z",
+          "value": 4062492631,
+          "url": "https://web.archive.org/web/20210926105122id_/http://vdwnumbers.org/lastprime.txt",
+          "sha256": "72ec8b56587e6fa8e0b07cad22345461357314db4a6b2abe1a215694dc50c912"
+        }
+      ],
+      "disclosure_boundary": "Public table evolution establishes disclosure windows for listed values; it does not establish exhaustive or gap-free scan coverage.",
       "upstream_locator": {
         "repository": "Vulkin-prog/vdw-gpu-starter",
         "commit": "02796ae9e08da5b051a94b2d9001763908375f6e",
@@ -55,7 +171,9 @@
         "git_blob_sha1": "4c76bd2d50e3dbd7283df7152f14e4ccf122df91",
         "sha256": "9ac30412b14f1e7f9f890fdb0d53cafc9e1ab5591fe10c59b71bcb7f53b5a23c",
         "bytes": 8860,
-        "supported_statement": "The author reports that the two-colour phase pushed the checked-prime upper limit from one billion to four billion."
+        "first_public_commit": "fcc6844364a71442e1943413a6d4da140b82a9c5",
+        "first_public_commit_utc": "2025-07-08T04:48:34Z",
+        "supported_statement": "The author reports retrospectively that the two-colour phase pushed the checked-prime upper limit from one billion to four billion; this is not contemporaneous proof of gap-free 2021 coverage."
       },
       "redistributed": false
     },

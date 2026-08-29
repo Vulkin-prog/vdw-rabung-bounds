@@ -39,21 +39,22 @@ non-citable until every release gate has passed.
 \begin{abstract}
 The registered numerical result comprises nine direct Rabung bounds for
 $W(3,k)$, $17\le k\le25$, headed by
-$W(3,17)>31\,385\,622\,833$. Five of these are the strongest bounds obtained
-for $17\le k\le21$ from an explicitly listed, dated corpus closed under the
-Blankenship--Cummings--Taranchuk and Xu recurrences; the other four improve the
-direct Rabung values for $22\le k\le25$ but not the best general bounds in that
-corpus. Four archived two-colour primes due to Monroe also yield, in
-particular,
-$W(3,25)>628\,673\,328\,287$ and
-$W(3,28)>2\,159\,051\,058\,266$. The GPU campaign only discovered candidate
-triples. For each triple $(p,r,k)$, a stand-alone, separate-source CPU verifier
-reconstructs the finite hypotheses of Rabung's theorem. A fail-closed audit of
-thirteen manifests binds the code, commands and raw outputs and accepts all
-$67$ registered local executions. All qualification runs and rechecks were
-performed on one author-controlled PC; no independently administered external
-replication has been performed. A secondary, model-conditional holdout
-comparison is reported separately in an appendix.
+$W(3,17)>31\,385\,622\,833$. Five direct bounds win for
+$17\le k\le21$ in an explicitly listed source corpus audited through
+29~August~2026. A primary-source review adds Berlekamp's 1968 bound
+$W(3,24)>1\,082\,646\,556\,499$, which also wins at $k=25$ by length
+monotonicity. Blankenship--Cummings--Taranchuk consequences win at
+$k=22,23,26,27,28$, including
+$W(3,28)>2\,159\,051\,058\,266$. A stronger textbook statement for $k=24$
+is documented but excluded because no proof or verifiable derivation was
+located. The GPU campaign only discovered candidate triples. For each triple
+$(p,r,k)$, a stand-alone, separate-source CPU verifier reconstructs the finite
+hypotheses of Rabung's theorem. A fail-closed audit of thirteen manifests binds
+the code, commands and raw outputs and accepts all $67$ registered local
+executions. All qualification runs and rechecks were performed on one
+author-controlled PC; no independently administered external replication has
+been performed. A secondary, model-conditional holdout comparison is reported
+separately in an appendix.
 \end{abstract}
 % ============ STRUCTURE ============
 \input{sec1_intro}
