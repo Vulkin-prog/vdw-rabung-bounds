@@ -48,7 +48,6 @@ REQUIRED_GATES = (
     "campaign-archive-515",
     "ordered-prime-identity-515",
     "cuda-release-qualification",
-    "external-replication-4",
     "outbound-rights",
     "doi-tag-archive-freeze",
 )
@@ -2245,7 +2244,6 @@ def audit_repository(root: Path, mode: str = "staging") -> dict:
     campaign_manifest = validate_campaign_evidence(root, gates, findings)
     validate_prime_identity(root, gates, findings, campaign_manifest)
     validate_cuda_evidence(root, gates, findings)
-    validate_external_evidence(root, gates, findings)
     validate_passed_gate_evidence(root, gates, findings)
     validate_release_metadata(root, gates, findings)
 

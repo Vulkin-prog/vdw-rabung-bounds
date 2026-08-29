@@ -65,16 +65,6 @@ def minimal_status(overrides=None):
 def make_minimal_repository(root: Path, status=None) -> None:
     write_json(root / "STATUS.json", status or minimal_status())
     write_json(root / "publication" / "scope.json", minimal_scope())
-    write_json(
-        root / "publication" / "external-replication.json",
-        {
-            "schema": "vdw-external-replication/v1",
-            "status": "pending",
-            "claim_ids": list(MODULE.EXPECTED_EXTERNAL_CLAIM_ORDER),
-            "required_fields_per_claim": ["claim_id"],
-            "replications": [],
-        },
-    )
     (root / "release").mkdir(parents=True, exist_ok=True)
     (root / "release" / "zenodo-metadata.json.in").write_text(
         '{"version": "@@VERSION@@"}\n', encoding="utf-8"
@@ -328,7 +318,9 @@ class PublicationContractTest(unittest.TestCase):
         ):
             self.assertEqual(report["gate_statuses"][gate_id], "passed")
             self.assertNotIn(f"gate.{gate_id}", codes)
-        self.assertIn("gate.external-replication-4", codes)
+        self.assertNotIn("external-replication-4", report["gate_statuses"])
+        self.assertNotIn("gate.external-replication-4", codes)
+        self.assertNotIn("external.replication_count", codes)
 
     def test_staging_and_report_accept_incompleteness_but_release_fails(self):
         with tempfile.TemporaryDirectory() as raw:

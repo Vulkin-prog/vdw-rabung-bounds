@@ -14,7 +14,7 @@ Run from the repository root:
 
 The CPU suite runs unit tests; checks every committed generated audit artifact;
 compiles and exercises the reference oracle, Rabung criterion, stand-alone
-claim verifier, high-range witness, and independent prime enumerator; and
+claim verifier, high-range witness, and separate-source prime enumerator; and
 validates the staging publication contract. It neither launches the full GPU
 campaign nor claims to reproduce the 13 large certificates.
 
@@ -77,31 +77,38 @@ The targeted PC evidence package then records:
 3. two `scan_gpu --verify1` runs, two `rabung_criterion -q` runs, and
    one `verify_claim` run for each of 13 claims;
 4. a Montgomery-free `highp_witness` run for each of the
-   two claims that requires one;
+   two claims that require one;
 5. a fail-closed validation of exactly 13 manifests and 67 required executions;
-6. byte-for-byte agreement of the ordered scanner and independent CPU prime
+6. byte-for-byte agreement of the ordered scanner and separate-source CPU prime
    streams on all 515 campaign chunks, totaling 48,823,489 primes.
 
 The CUDA qualification is `PASS` for the complete SM120 suite.  The exact Git
 commit existed before these runs because it is part of every manifest.  The
 authenticated recovery and ordered-prime audit revealed no material gap, so a
 full campaign rerun is not required.  These completed PC calculations do not
-replace the still-open clean final CPU/PDF replays or external replication.
+replace the still-open clean final CPU/PDF replays.
 
-## 4. Independent replication and archival freeze
+## 4. Optional external replication and archival freeze
 
-An independently administered machine must recheck the four fixed claim IDs in
-`publication/external-replication.json`, preserving commit and verifier hashes,
-commands, environment, stdout, stderr, exit codes, and verdicts. CPU-only use of
-the stand-alone verifier is acceptable if the final protocol and resource
-record show that this is the independent path being claimed.
+No independently administered external replication has been performed.  The
+accepted local evidence combines GPU verification runs with CPU rechecks whose
+source and arithmetic paths are separated from the GPU scanner.  All runs were
+performed on one author-controlled PC; none is an independent replication.
+This absence is disclosed and does not block publication.
+
+The repository nevertheless retains an optional protocol for external
+corroboration of the four fixed claim IDs in
+`publication/external-replication.json`.  A future operator can preserve commit
+and verifier hashes, commands, environment, stdout, stderr, exit codes, and
+verdicts. CPU-only use of the stand-alone verifier is suitable for that
+optional path.
 
 The ready-to-send CPU-only operator procedure is in
-`replication/README.md`. Each of four distinct operators receives one frozen
-claim. The runner requires a clean committed checkout, a persistent operator
-ID, and an explicit attestation; it builds and self-tests the verifier source
-extracted from that commit, executes exactly the assigned claim, and emits a
-self-verifying bundle without changing the canonical ledger or gate:
+`replication/README.md`. It can assign one frozen claim to each of four distinct
+operators. The runner requires a clean committed checkout, a persistent
+operator ID, and an explicit attestation; it builds and self-tests the verifier
+source extracted from that commit, executes exactly the assigned claim, and
+emits a self-verifying bundle without changing the optional ledger:
 
 ```bash
 python3 tools/external_replication.py run \
@@ -119,8 +126,8 @@ The archival freeze has two layers and one deliberately narrow transactional
 meaning for the final status change:
 
 1. First complete the scientific, campaign-recovery, ordered-prime,
-   independent-replication, bibliography, and rights gates that do not depend
-   on final DOI metadata or a final tag. Reserving a draft archive DOI comes
+   bibliography, and rights gates that do not depend on final DOI metadata or
+   a final tag. Reserving a draft archive DOI comes
    **after those pre-freeze gates**, not after the DOI/tag gate itself.
 2. Insert the reserved DOI, version, and release metadata, replace the
    preparation-only manuscript wording, and rerun the CPU and PDF checks on the
@@ -156,9 +163,9 @@ meaning for the final status change:
 5. Produce a deterministic archive from that checked local tag. This archive is the
    **outer layer**. Its own SHA-256 cannot be stored inside the archive without
    a hash cycle, so record the archive filename, byte length, SHA-256, draft
-   deposit identifiers, and byte-for-byte upload comparison in an external
-   deposit receipt or release record. The implemented builder and byte-identity
-   check are run with destinations outside the repository:
+   deposit identifiers, and byte-for-byte upload comparison in an
+   out-of-repository deposit receipt or release record. The implemented builder
+   and byte-identity check are run with destinations outside the repository:
 
    ```bash
    python3 tools/build_release_archive.py build /absolute/path/vdw-rabung-bounds-vX.Y.Z.tar.gz
@@ -166,7 +173,7 @@ meaning for the final status change:
    ```
 
    After uploading the draft, download it to a distinct external file and
-   create, then recheck, the external receipt:
+   create, then recheck, the deposit receipt:
 
    ```bash
    python3 tools/deposit_receipt.py create \

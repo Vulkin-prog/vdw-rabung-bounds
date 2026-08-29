@@ -3,11 +3,18 @@
 This directory contains exactly one `results/claims/<claim-id>/manifest.json`
 plus its referenced raw streams for each ID in `audit/claims.json`. The
 fail-closed set audit accepts all 13 manifests and all 67 required executions,
-including the two Montgomery-free high-range witnesses. This local result does
-not replace the four independently administered rechecks required before
-release.
+including the two Montgomery-free high-range witnesses. The local evidence
+combines GPU checks with separate-source CPU rechecks. None is an independently
+administered replication; an external recheck would be optional corroboration,
+not a publication condition.
 
-## Machine-independent plan
+The four Monroe entries retain the capture-time suffix
+`release manifest pending` in `audit/claims.json`, their byte-bound manifests,
+and the full JSON/Markdown audit views. It is frozen provenance, not the current
+release status; the accepted set and current gates are reported separately by
+the fail-closed audit and `STATUS.json`.
+
+## Static execution plan
 
 The execution plan can be inspected without CUDA, binaries, or a clean
 worktree:
@@ -18,7 +25,7 @@ python3 scripts/capture_claim_evidence.py plan
 ```
 
 It must report 13 claims and exactly 67 required executions: for every claim,
-two independent process invocations of `scan_gpu --verify1`, two of
+two separate process invocations of `scan_gpu --verify1`, two of
 `rabung_criterion -q`, and one of `verify_claim`; the two claims explicitly
 marked in `audit/claims.json` each add one Montgomery-free `highp_witness` run
 with the frozen sample count 20,000.

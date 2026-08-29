@@ -9,7 +9,8 @@ the immutable source commit
 revision it remains a private preparation repository, not a citable release.
 Its machine-readable status ledger records the local claim, campaign-recovery,
 ordered-prime, and CUDA evidence as passed, while clean final CPU/document
-replays, external replication, rights, and DOI/tag freeze remain open.  The
+replays, rights, and DOI/tag freeze remain open.  The absence of external
+replication is disclosed but is not a publication gate.  The
 step-by-step operator and archival procedures are maintained in
 \texttt{REPRODUCIBILITY.md}; here we distinguish the three levels of evidence
 needed to interpret the paper.
@@ -22,8 +23,9 @@ primality, the congruence and size preconditions, and conditions
 $(a)\wedge(B^*)$.  The current exact set of thirteen fail-closed manifests
 binds every verdict to the source, binary, command, environment, and raw
 output.  Its audit accepts all $67$ required executions, including the two
-Montgomery-free high-range witnesses.  Four fixed triples must still be
-rechecked on hardware administered by four distinct external operators.
+Montgomery-free high-range witnesses.  This local evidence combines GPU checks
+with separate-source CPU rechecks; none is an independently administered
+replication.  External rechecks remain an optional avenue for corroboration.
 
 \paragraph{Derived tables and the holdout analysis.}
 The separate registry \texttt{audit/baselines.json} records published,
@@ -59,8 +61,9 @@ author decision.  These rights and provenance records support redistribution
 and priority attribution; they do not convert an archival coverage statement
 into a newly audited fact.
 
-After the scientific, campaign, replication, and rights gates pass, the final
-metadata and DOI will be inserted into the exact release candidate.  A checked,
+After the scientific, campaign, and rights gates pass, the final metadata and
+DOI will be inserted into the exact release candidate.  A checked,
 immutable tagged archive---not a moving branch---will then be deposited and
-cited.  Until that archive and its external receipt exist, this private
-repository and manuscript are not represented as a complete citable release.
+cited.  Until that archive and its post-upload byte-identity deposit receipt
+exist, this private repository and manuscript are not represented as a complete
+citable release.

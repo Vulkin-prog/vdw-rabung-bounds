@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Compare scanner and independent ordered-prime streams, chunk by chunk.
+"""Compare scanner and separate-source CPU ordered-prime streams by chunk.
 
 Both executables must implement ``--dump-primes LO HI`` and emit the canonical
 ``VDW-PRIMES-v1`` byte stream.  A v2 manifest binds the recovered campaign
 manifest, the two exact sources, distinct installed executables, every frozen
 argv, and the byte size/hash/exit status of both streams.  Failed or noisy runs
 never produce a manifest.
+
+Here ``independent`` is the historical schema role for a separately written
+CPU implementation.  It does not mean independently administered external
+replication; all recorded runs were performed in the author-controlled project
+environment.
 """
 
 from __future__ import annotations

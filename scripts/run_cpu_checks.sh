@@ -65,16 +65,16 @@ printf '[cpu] native builds\n'
   tools/highp_witness.c -o "$CPU_BUILD_DIR/highp_witness"
 
 run_logged reference-oracle "$CPU_BUILD_DIR/vdw_reference"
-run_logged independent-verifier "$CPU_BUILD_DIR/verify_claim" --selftest
+run_logged separate-source-verifier "$CPU_BUILD_DIR/verify_claim" --selftest
 run_logged rabung-criterion "$CPU_BUILD_DIR/rabung_criterion" 1000
 run_logged ordered-reduction "$CPU_BUILD_DIR/test_ordered_reduce"
 run_logged high-range-witness-smoke "$CPU_BUILD_DIR/highp_witness" 1000003 1000
 
-printf '[cpu] independent prime-stream smoke test\n'
+printf '[cpu] separate-source prime-stream smoke test\n'
 PRIME_STREAM_ACTUAL=$("$CPU_BUILD_DIR/prime_coverage" --dump-primes 2 30)
 PRIME_STREAM_EXPECTED=$'VDW-PRIMES-v1\n2\n30\n2\n3\n5\n7\n11\n13\n17\n19\n23\n29'
 if [[ "$PRIME_STREAM_ACTUAL" != "$PRIME_STREAM_EXPECTED" ]]; then
-  printf 'ERROR: independent prime stream differs from its canonical fixture.\n' >&2
+  printf 'ERROR: separate-source prime stream differs from its canonical fixture.\n' >&2
   printf '%s\n' "$PRIME_STREAM_ACTUAL" >&2
   exit 1
 fi

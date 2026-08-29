@@ -1,9 +1,10 @@
 # Oracle de référence
 
-`vdw_reference.cpp` est l'ancre indépendante utilisée pour valider les
-constructions et détecter les divergences du scanner. Il doit rester simple et
-être traité comme gelé : une optimisation du GPU ne doit pas être recopiée dans
-l'oracle.
+`vdw_reference.cpp` est l'implémentation de référence écrite séparément pour
+valider les constructions et détecter les divergences du scanner. Cette
+séparation du code ne désigne pas une réplication administrée sur une machine
+externe. L'oracle doit rester simple et être traité comme gelé : une
+optimisation du GPU ne doit pas y être recopiée.
 
 Depuis la racine :
 

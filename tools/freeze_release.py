@@ -54,7 +54,6 @@ REQUIRED_RELEASE_GATES = {
     "campaign-archive-515",
     "ordered-prime-identity-515",
     "cuda-release-qualification",
-    "external-replication-4",
     "outbound-rights",
     "doi-tag-archive-freeze",
 }

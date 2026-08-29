@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Capture and verify the four frozen CPU-only external replications.
+"""Capture and verify an optional set of four CPU-only external replications.
 
-The runner is intentionally separate from the publication gate.  It creates a
-self-contained evidence package, but it never edits STATUS.json or the
-canonical external-replication ledger.
+The runner is intentionally separate from the publication contract.  It
+creates a self-contained evidence package, but it never edits STATUS.json or
+the optional external-replication ledger.
 """
 
 from __future__ import annotations

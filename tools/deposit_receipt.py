@@ -517,7 +517,7 @@ def create_receipt(
     final_url: str | None = None,
     final_published_utc: str | None = None,
 ) -> dict:
-    """Compare both layers and atomically publish a new external receipt."""
+    """Compare both layers and atomically publish an out-of-repository receipt."""
 
     root = _repository_root(root)
     output = _external_new_path(root, output)

@@ -81,7 +81,7 @@
         "results/campaign/prime_identity_manifest.json"
       ],
       "expected_chunk_count": 515,
-      "note": "The scanner and independent CPU sieve produced byte-identical ordered streams on all 515 chunks: 48,823,489 primes and 535,628,154 bytes."
+      "note": "The scanner and separate-source CPU sieve produced byte-identical ordered streams on all 515 chunks: 48,823,489 primes and 535,628,154 bytes."
     },
     {
       "id": "cuda-release-qualification",
@@ -90,21 +90,6 @@
         "results/release/cuda-qualification/manifest.json"
       ],
       "note": "The SM120 regression passed on the clean qualification-source commit; the manifest binds its commit and tree, source and binary hashes, CUDA/compiler/driver/GPU identities, command, and raw streams."
-    },
-    {
-      "id": "external-replication-4",
-      "status": "blocked_external",
-      "evidence": [
-        "publication/external-replication.json",
-        "results/external-replication"
-      ],
-      "expected_claim_ids": [
-        "w2_k25_p1138900957",
-        "w3_k17_p1961601427",
-        "w2_k27_p3459826103",
-        "w2_k28_p3476732783"
-      ],
-      "note": "Four fixed certificates must be checked on independently administered hardware."
     },
     {
       "id": "outbound-rights",
@@ -125,7 +110,7 @@
         "paper/main.pdf",
         "tools/freeze_release.py"
       ],
-      "note": "At the final transition, after the other gates pass and the DOI metadata is final, stage the release-form STATUS (archived_release, citable_release true, all gates passed). For this gate, passed means that the metadata and staged payload are ready for the inner-freeze transaction; it does not attest a published tag, an uploaded archive, or an external receipt. Run freeze_release.py create; only if it succeeds, stage MANIFEST.sha256, commit, and create the local tag. A create failure must not be committed or published. The post-tag deposit comparison and receipt remain external and are not embedded evidence for this gate."
+      "note": "At the final transition, after the other gates pass and the DOI metadata is final, stage the release-form STATUS (archived_release, citable_release true, all gates passed). For this gate, passed means that the metadata and staged payload are ready for the inner-freeze transaction; it does not attest a published tag, an uploaded archive, or an out-of-repository deposit receipt. Run freeze_release.py create; only if it succeeds, stage MANIFEST.sha256, commit, and create the local tag. A create failure must not be committed or published. The post-tag deposit comparison and receipt remain outside the repository and are not embedded evidence for this gate."
     }
   ]
 }

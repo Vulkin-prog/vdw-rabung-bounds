@@ -13,8 +13,8 @@ The current repository is deliberately private and is not a scientific release.
 The local PC package now contains the accepted 13-manifest claim set, the
 authenticated 515-chunk campaign archive, the 515-of-515 ordered-prime identity
 audit, and the passing SM120 CUDA qualification. Open gates include clean final
-CPU and document replays, external certificate rechecks, licensing decisions,
-and the DOI/tag freeze. The machine-readable state is
+CPU and document replays, licensing decisions, and the DOI/tag freeze. The
+machine-readable state is
 [`STATUS.json`](STATUS.json).
 
 ## What is already here
@@ -40,6 +40,12 @@ Search and certification are separate. `src/scan_gpu.cu` finds candidates;
 `tools/highp_witness.c` re-establish the relevant certificate properties by
 different paths. A candidate from the scanner is not publication evidence by
 itself.
+
+No independently administered external replication has been performed. The
+accepted local certificate rechecks use separately written source and distinct
+arithmetic paths, but they were run within the author-controlled project
+environment and are not independent replications. External replication would
+be useful additional corroboration; it is not a condition of publication.
 
 ## Checks available without the campaign PC
 
