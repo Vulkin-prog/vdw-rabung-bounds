@@ -32,7 +32,7 @@
       "status": "stable_publisher_record",
       "source_url": "https://www.cambridge.org/core/journals/canadian-mathematical-bulletin/article/construction-for-partitions-which-avoid-long-arithmetic-progressions/F8101060236B2BDF91A28BF30CC2162E",
       "doi": "10.4153/CMB-1968-047-7",
-      "supported_statement": "Theorem 1 is specialized and checked for field order 3 and progression lengths 14 through 28. At t=23 in Berlekamp's notation it gives the strict bound W(3,24)>23(3^23-1)/2=1082646556499. Exhaustive evaluation at all earlier relevant lengths proves that none supplies a stronger monotone predecessor."
+      "supported_statement": "Theorem 1 is specialized and checked for field order 3 and progression lengths 12 through 28. At t=23 in Berlekamp's notation it gives the strict bound W(3,24)>23(3^23-1)/2=1082646556499. Exhaustive evaluation at lengths 3 through 11 proves that none supplies a stronger monotone predecessor than the registered length-12 seed."
     },
     {
       "key": "rabung1979",
@@ -53,19 +53,20 @@
       "status": "stable_publisher_record",
       "source_url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v18i1p64",
       "doi": "10.37236/551",
-      "supported_statement": "The article distinguishes randomized-constructive, deterministic-constructive, and nonconstructive lower-bound proofs; it supplies methodological context rather than a competing finite seed in this audit."
+      "supported_statement": "The article distinguishes randomized-constructive, deterministic-constructive, and nonconstructive lower-bound proofs. In its length-first notation, Note 1.7(2) gives W(k,c) >= c^(k-1)/(e*k); after translation to this paper's colour-first notation, the strict integers floor(3^(k-1)/(e*k)) are registered for W(3,k) at every length 17 through 28 and are dominated throughout."
     },
     {
       "key": "rabunglotts2012",
       "status": "stable_publisher_record",
       "source_url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v19i2p35",
-      "doi": "10.37236/2363"
+      "doi": "10.37236/2363",
+      "supported_statement": "Table 1 is the original published source located for prime 7194013 and W(3,12)>79134144. This direct seed and its prime ring witness are admitted so that the monotone closure into the target range does not begin after a relevant three-colour predecessor."
     },
     {
       "key": "liang2012",
       "status": "stable_publisher_record_no_doi_found",
       "source_url": "https://combinatorialpress.com/jcmcc-articles/volume-083/lower-bounds-on-some-van-der-waerden-numbers-based-on-quadratic-residues/",
-      "supported_statement": "Table 2 and Theorem 5.1 report the ring witnesses and finite two-colour lower bounds W(2,k) through length 23. The exact rows at lengths 17 through 20 are the original published source for values later reproduced and credited to Liang et al. in Monroe's summary; the dominated rows at lengths 21 through 23 are also retained. The primary abstract reports exhaustive checking to 60000000, not 27000000."
+      "supported_statement": "Table 2 and Theorem 5.1 report the ring witnesses and finite two-colour lower bounds W(2,k) through length 23. Ordinary rows from length 12 and prime ring rows from length 13 are registered; the zipped length-12 composite is excluded as a Xu input because its least prime factor fails Xu's hypothesis. The exact rows at lengths 17 through 20 are the original published source for values later reproduced and credited to Liang et al. in Monroe's summary; the dominated rows at lengths 21 through 23 are also retained. The primary abstract reports exhaustive checking to 60000000, not 27000000."
     },
     {
       "key": "bct2018",
@@ -112,7 +113,7 @@
       "version": "v1",
       "submitted_utc": "2016-03-09T17:03:48Z",
       "doi": "10.48550/arXiv.1603.03301",
-      "supported_statement": "Version 1 is the first versioned public source located for Monroe's exact two-colour ordinary and ring rows at lengths 21 through 23. It marked the length-17 through length-20 rows as new even though the identical values and witnesses had appeared in Liang et al. (2012); version 4 later credits that earlier source."
+      "supported_statement": "Version 1 is the first versioned public source located for Monroe's three-colour direct rows at lengths 13 through 15 and its then-best length-16 row, as well as the exact two-colour ordinary and ring rows at lengths 21 through 23. It marked the two-colour length-17 through length-20 rows as new even though the identical values and witnesses had appeared in Liang et al. (2012); version 4 later credits that earlier source."
     },
     {
       "key": "Monroe2017v4",
@@ -121,7 +122,7 @@
       "version": "v4",
       "submitted_utc": "2017-11-06T16:24:39Z",
       "doi": "10.48550/arXiv.1603.03301",
-      "supported_statement": "Version 4 is the first arXiv version containing prime 969347371 and the bound W(3,17)>15509557937; versions 1 through 3 do not contain those numbers."
+      "supported_statement": "Version 4 is the first arXiv version containing the improved length-16 prime 612400081 and W(3,16)>9186001216, as well as prime 969347371 and W(3,17)>15509557937; versions 1 through 3 contain neither improved row."
     },
     {
       "key": "Monroe2026",
@@ -130,7 +131,7 @@
       "doi": "10.61091/jcmcc128-19",
       "arxiv_first_relevant_version": "v4",
       "arxiv_first_relevant_submitted_utc": "2017-11-06T16:24:39Z",
-      "note": "Volume year 2026; published online 4 December 2025. The four phase-2 values are absent from the article."
+      "note": "Volume year 2026; published online 4 December 2025. Its Tables 1 and 2 preserve the pre-window three-colour rows, but numerical priority is assigned to the versioned preprints and Rabung--Lotts. The four phase-2 values are absent from the article."
     },
     {
       "key": "Hunter2025",
@@ -225,8 +226,15 @@
         "id": "berlekamp1968_w3_24",
         "status": "admitted_verified_seed",
         "source_keys": ["Berlekamp1968", "Johannson2007"],
-        "claim": "Berlekamp's 1968 theorem is evaluated for three colours from length 14, so earlier monotone consequences are retained; it gives W(3,24)>1082646556499, and elementary length monotonicity carries the same strict bound to W(3,25).",
+        "claim": "Berlekamp's 1968 theorem is evaluated for three colours from length 12, with every smaller relevant specialization checked; it gives W(3,24)>1082646556499, and elementary length monotonicity carries the same strict bound to W(3,25).",
         "effect": "Replaces the previously displayed winners at lengths 24 and 25."
+      },
+      {
+        "id": "prewindow_three_colour_lineage",
+        "status": "admitted_dominated_priority_seeds",
+        "source_keys": ["rabunglotts2012", "Monroe2016v1", "Monroe2017v4", "Monroe2026"],
+        "claim": "Rabung--Lotts (2012) supplies W(3,12)>79134144. Monroe arXiv v1 first supplies the registered rows at lengths 13 through 15 and a then-best length-16 row; v4 first improves the length-16 value to W(3,16)>9186001216. These exact seeds are closed monotonically into the comparison window and remain dominated at length 17.",
+        "boundary": "The journal table is retained as a stable later record but does not overwrite the versioned or earlier published priority sources."
       },
       {
         "id": "landman_robertson_stronger_formula",
@@ -246,7 +254,7 @@
         "id": "monroe_three_colour_public_chronology",
         "status": "dated_prior_public_evidence",
         "source_keys": ["Monroe2016v1", "Monroe2017v4", "MonroeCodeTally", "Monroe2026"],
-        "claim": "Monroe's prime 969347371 and W(3,17)>15509557937 first appear in the arXiv version history at v4 on 6 November 2017; the immutable code tally was added on 6 March 2019 and the journal article was published online on 4 December 2025.",
+        "claim": "Monroe's length-13 through length-15 three-colour rows and a then-best length-16 row appear in arXiv v1 on 9 March 2016. The improved length-16 prime 612400081, prime 969347371, and W(3,17)>15509557937 first appear in v4 on 6 November 2017; the immutable code tally was added on 6 March 2019 and the journal article was published online on 4 December 2025.",
         "boundary": "This chronology attributes Monroe's earlier numerical result; it does not assign global priority to the different primes found in the present work."
       },
       {
@@ -267,13 +275,13 @@
         "id": "constructive_and_asymptotic_context",
         "status": "context_no_finite_table_effect",
         "source_keys": ["GasarchHaeupler2011", "Hunter2025"],
-        "claim": "Gasarch--Haeupler supplies the constructive/nonconstructive methodological context, while Hunter's 2025 exponential improvement begins at five colours; neither changes the finite W(3,k) comparison audited here.",
-        "boundary": "These sources are cited for the broader literature review, not admitted as numerical seeds."
+        "claim": "Gasarch--Haeupler supplies both constructive/nonconstructive methodological context and, after translating its length-first notation, the explicit finite family W(3,k) >= 3^(k-1)/(e*k), whose exact strict integers are retained but dominated throughout lengths 17 through 28. Hunter's 2025 exponential improvement begins at five colours and does not affect the three-colour table.",
+        "boundary": "Gasarch--Haeupler is admitted as a dominated numerical family; Hunter is cited only for broader asymptotic context."
       },
       {
         "id": "finite_competitor_scan",
         "status": "completed_to_cutoff_with_version_pins",
-        "source_keys": ["Berlekamp1968", "bct2018", "xu2013", "FoxHunter2026", "CamposFoxSchildkraut2026"],
+        "source_keys": ["Berlekamp1968", "rabunglotts2012", "Monroe2016v1", "Monroe2017v4", "bct2018", "xu2013", "FoxHunter2026", "CamposFoxSchildkraut2026"],
         "claim": "After admitting Berlekamp and closing the audited seeds under length monotonicity, BCT, and Xu, the direct certificates win at lengths 17 through 21, BCT consequences win at 22, 23, and 26 through 28, and Berlekamp wins at 24 and 25.",
         "boundary": "The two 2026 preprints are pinned to v1. The explicit Campos--Fox--Schildkraut finite products are retained as dominated seeds; Fox--Hunter supplies no effective finite threshold in this range. Both preprints must be rechecked at release."
       }

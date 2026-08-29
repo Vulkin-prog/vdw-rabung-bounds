@@ -71,7 +71,7 @@ class ClosureTests(unittest.TestCase):
             seed for seed in baselines["ordinary_seeds"]
             if seed.get("source") == "berlekamp1968"
         ]
-        self.assertEqual([seed["length"] for seed in seeds], list(range(14, 29)))
+        self.assertEqual([seed["length"] for seed in seeds], list(range(12, 29)))
         for seed in seeds:
             parameters = seed["parameters"]
             t = parameters["berlekamp_t"]
@@ -88,22 +88,57 @@ class ClosureTests(unittest.TestCase):
                 seed["id"],
             )
 
-    def test_pre_range_berlekamp_bound_propagates_into_report_range(self):
+    def test_pre_range_berlekamp_bound_is_not_truncated(self):
         earlier = [
             (MODULE.berlekamp_strict_bound(t, 3), t)
-            for t in range(2, 13)
+            for t in range(2, 11)
         ]
-        self.assertEqual(max(earlier), (974_303, 11))
-        self.assertLess(max(earlier)[0], 10_363_093)
-        propagated = [
+        self.assertEqual(max(earlier), (7_651, 7))
+        self.assertLess(max(earlier)[0], 974_303)
+        at_12 = [
             node for node in self.nodes.values()
             if node["kind"] == "ordinary"
             and node["colors"] == 3
-            and node["length"] == 17
-            and node["lower_bound"] == 10_363_093
+            and node["length"] == 12
+            and node["source"] == "berlekamp1968"
         ]
-        self.assertTrue(propagated)
-        self.assertTrue(any(node["method"] == "length_monotonicity" for node in propagated))
+        self.assertEqual(len(at_12), 1)
+        self.assertEqual(at_12[0]["lower_bound"], 974_303)
+
+    def test_prewindow_three_color_priority_seeds_are_exact_and_dominated(self):
+        expected = {
+            "rabung_lotts_w3_12": (12, 7_194_013, 79_134_144),
+            "monroe_v1_w3_13": (13, 20_940_193, 251_282_317),
+            "monroe_v1_w3_14": (14, 51_481_237, 669_256_082),
+            "monroe_v1_w3_15": (15, 160_782_877, 2_250_960_279),
+            "monroe_v1_w3_16": (16, 478_698_307, 7_180_474_606),
+            "monroe_v4_w3_16": (16, 612_400_081, 9_186_001_216),
+        }
+        baselines = MODULE.load_json(MODULE.BASELINES_PATH)
+        by_id = {
+            seed["id"]: seed
+            for seed in baselines["ordinary_seeds"]
+            if seed.get("id") in expected
+        }
+        self.assertEqual(set(by_id), set(expected))
+        for seed_id, (length, prime, bound) in expected.items():
+            seed = by_id[seed_id]
+            self.assertEqual(seed["parameters"]["rabung_prime"], prime)
+            self.assertEqual(seed["lower_bound"], (length - 1) * prime + 1)
+            self.assertEqual(seed["lower_bound"], bound)
+            self.assertEqual(MODULE.least_prime_factor(prime), prime)
+
+        for length, bound, source in (
+            (12, 79_134_144, "rabunglotts2012"),
+            (13, 251_282_317, "monroe2016v1"),
+            (14, 669_256_082, "monroe2016v1"),
+            (15, 2_250_960_279, "monroe2016v1"),
+            (16, 9_186_001_216, "monroe2017v4"),
+        ):
+            winner = self.winner(3, length)
+            self.assertEqual(winner["lower_bound"], bound)
+            self.assertEqual(winner["source"], source)
+        self.assertGreater(self.winner(3, 17)["lower_bound"], 9_186_001_216)
 
     def test_registered_cfs_specializations_are_exact_and_dominated(self):
         baselines = MODULE.load_json(MODULE.BASELINES_PATH)
@@ -131,6 +166,25 @@ class ClosureTests(unittest.TestCase):
                 seed["lower_bound"],
             )
 
+    def test_registered_gasarch_haeupler_family_is_exact_and_dominated(self):
+        baselines = MODULE.load_json(MODULE.BASELINES_PATH)
+        seeds = [
+            seed for seed in baselines["ordinary_seeds"]
+            if seed.get("source") == "gasarch2011"
+        ]
+        self.assertEqual([seed["length"] for seed in seeds], list(range(17, 29)))
+        for seed in seeds:
+            self.assertEqual(
+                seed["lower_bound"],
+                MODULE.gasarch_haeupler_strict_bound(seed["length"], 3),
+                seed["id"],
+            )
+            self.assertGreater(
+                self.winner(3, seed["length"])["lower_bound"],
+                seed["lower_bound"],
+                seed["id"],
+            )
+
     def test_liang_rows_keep_original_priority_provenance(self):
         baselines = MODULE.load_json(MODULE.BASELINES_PATH)
         for key in ("ordinary_seeds", "ring_seeds"):
@@ -138,7 +192,12 @@ class ClosureTests(unittest.TestCase):
                 seed for seed in baselines[key]
                 if seed.get("source") == "liang2012"
             ]
-            self.assertEqual([seed["length"] for seed in liang], list(range(17, 24)))
+            expected_lengths = (
+                list(range(12, 24))
+                if key == "ordinary_seeds"
+                else list(range(13, 24))
+            )
+            self.assertEqual([seed["length"] for seed in liang], expected_lengths)
             monroe = [
                 seed for seed in baselines[key]
                 if seed.get("colors") == 2
@@ -150,6 +209,22 @@ class ClosureTests(unittest.TestCase):
                 self.assertEqual(by_length[length], "monroe2016v1")
             for length in range(24, 26):
                 self.assertEqual(by_length[length], "monroe2017v4")
+
+        ordinary = {
+            seed["length"]: seed["lower_bound"]
+            for seed in baselines["ordinary_seeds"]
+            if seed.get("source") == "liang2012"
+        }
+        ring = {
+            seed["length"]: seed["lower_bound"]
+            for seed in baselines["ring_seeds"]
+            if seed.get("source") == "liang2012"
+        }
+        self.assertEqual(set(ordinary), set(range(12, 24)))
+        self.assertEqual(set(ring), set(range(13, 24)))
+        self.assertEqual(ordinary[12], 2 * (12 - 1) * 29_033 + 1)
+        for length in ring:
+            self.assertEqual(ordinary[length], (length - 1) * ring[length] + 1)
 
     def test_unverified_landman_statement_is_not_a_seed(self):
         baselines = MODULE.load_json(MODULE.BASELINES_PATH)

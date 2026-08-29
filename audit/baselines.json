@@ -2,7 +2,7 @@
   "schema_version": 1,
   "notation": "W(colors,length) > lower_bound",
   "scope": {
-    "closure_length_min": 14,
+    "closure_length_min": 12,
     "length_min": 17,
     "length_max": 28,
     "max_colors": 4,
@@ -19,19 +19,25 @@
       "citation_key": "Monroe2016v1",
       "title": "New lower bounds for van der Waerden numbers using distributed computing",
       "arxiv": "1603.03301v1",
-      "location": "Table 3; original versioned source for the length-21 through length-23 rows"
+      "location": "Tables 1--3; first versioned source for the three-colour length-13 through length-15 rows and the then-best length-16 row, and for the two-colour length-21 through length-23 rows"
     },
     "monroe2017v4": {
       "citation_key": "Monroe2017v4",
       "title": "New lower bounds for van der Waerden numbers using distributed computing",
       "arxiv": "1603.03301v4",
-      "location": "Table 3; first versioned source for the length-24 and length-25 rows"
+      "location": "Tables 1--3; first versioned source for the improved three-colour length-16 row and the length-17 row, and for the two-colour length-24 and length-25 rows"
     },
     "liang2012": {
       "citation_key": "liang2012",
       "title": "Lower Bounds on Some van der Waerden Numbers Based on Quadratic Residues",
       "location": "Table 2 and Theorem 5.1",
-      "registered_check": "The ordinary strict bounds and their underlying prime ring witnesses are registered separately; values through length 20 predate Monroe's later summary table"
+      "registered_check": "The ordinary strict bounds are registered from length 12 through length 23. Prime ring witnesses are registered from length 13 through length 23; the zipped composite behind the length-12 ordinary row is not admitted as a Xu input because its least prime factor fails Xu's hypothesis. Values through length 20 predate Monroe's later summary table"
+    },
+    "rabunglotts2012": {
+      "citation_key": "rabunglotts2012",
+      "title": "Improving the Use of Cyclic Zippers in Finding Lower Bounds for van der Waerden Numbers",
+      "doi": "10.37236/2363",
+      "location": "Table 1; original published source for prime 7194013 and W(3,12)>79134144"
     },
     "monroe_code_tally": {
       "citation_key": "MonroeCodeTally",
@@ -56,7 +62,7 @@
       "citation_key": "Berlekamp1968",
       "title": "A Construction for Partitions Which Avoid Long Arithmetic Progressions",
       "doi": "10.4153/CMB-1968-047-7",
-      "location": "Theorem 1 specialized to three colours for progression lengths 14 through 28",
+      "location": "Theorem 1 specialized to three colours for progression lengths 12 through 28",
       "registered_check": "For Berlekamp parameter t=length-1, each seed stores the maximum denominator imposed by conditions (4) and (5) and the exact quotient t*(3^t-1)/denominator"
     },
     "cfs2026": {
@@ -65,6 +71,13 @@
       "arxiv": "2608.20824v1",
       "location": "Lemmas 2 and 4, explicit product construction",
       "registered_check": "For each reported length k, exhaustive subset enumeration over all distinct primes summing to k-1 verifies both the maximizing decomposition and the exact strict integer (k-1)*product(2^p-1)"
+    },
+    "gasarch2011": {
+      "citation_key": "GasarchHaeupler2011",
+      "title": "Lower Bounds on van der Waerden Numbers: Randomized- and Deterministic-Constructive",
+      "doi": "10.37236/551",
+      "location": "Note 1.7(2), finite consequence of the deterministic construction",
+      "registered_check": "For colours c=3 and every reported length k, exact rational lower and upper bounds on e certify floor(3^(k-1)/(e*k)) without floating-point evidence"
     },
     "monroe_phase2_archive": {
       "citation_key": "MonroePhase2Archive",
@@ -77,6 +90,8 @@
     }
   },
   "ordinary_seeds": [
+    {"id": "berlekamp_w3_12", "colors": 3, "length": 12, "lower_bound": 974303, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 11, "condition_denominator": 2}},
+    {"id": "berlekamp_w3_13", "colors": 3, "length": 13, "lower_bound": 8760, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 12, "condition_denominator": 728}},
     {"id": "berlekamp_w3_14", "colors": 3, "length": 14, "lower_bound": 10363093, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 13, "condition_denominator": 2}},
     {"id": "berlekamp_w3_15", "colors": 3, "length": 15, "lower_bound": 30632, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 14, "condition_denominator": 2186}},
     {"id": "berlekamp_w3_16", "colors": 3, "length": 16, "lower_bound": 889395, "source": "berlekamp1968", "parameters": {"field_order": 3, "berlekamp_t": 15, "condition_denominator": 242}},
@@ -104,6 +119,23 @@
     {"id": "cfs_w2_26", "colors": 2, "length": 26, "lower_bound": 806199175, "source": "cfs2026", "parameters": {"distinct_primes": [5, 7, 13]}},
     {"id": "cfs_w2_27", "colors": 2, "length": 27, "lower_bound": 1731195674, "source": "cfs2026", "parameters": {"distinct_primes": [7, 19]}},
     {"id": "cfs_w2_28", "colors": 2, "length": 28, "lower_bound": 3168958653, "source": "cfs2026", "parameters": {"distinct_primes": [3, 11, 13]}},
+    {"id": "gasarch_haeupler_w3_17", "colors": 3, "length": 17, "lower_bound": 931529, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_18", "colors": 3, "length": 18, "lower_bound": 2639333, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_19", "colors": 3, "length": 19, "lower_bound": 7501264, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_20", "colors": 3, "length": 20, "lower_bound": 21378604, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_21", "colors": 3, "length": 21, "lower_bound": 61081728, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_22", "colors": 3, "length": 22, "lower_bound": 174915858, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_23", "colors": 3, "length": 23, "lower_bound": 501932464, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_24", "colors": 3, "length": 24, "lower_bound": 1443055834, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_25", "colors": 3, "length": 25, "lower_bound": 4156000802, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_26", "colors": 3, "length": 26, "lower_bound": 11988463852, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_27", "colors": 3, "length": 27, "lower_bound": 34633340016, "source": "gasarch2011"},
+    {"id": "gasarch_haeupler_w3_28", "colors": 3, "length": 28, "lower_bound": 100189305049, "source": "gasarch2011"},
+    {"id": "liang_w2_12", "colors": 2, "length": 12, "lower_bound": 638727, "source": "liang2012"},
+    {"id": "liang_w2_13", "colors": 2, "length": 13, "lower_bound": 1642309, "source": "liang2012"},
+    {"id": "liang_w2_14", "colors": 2, "length": 14, "lower_bound": 3118350, "source": "liang2012"},
+    {"id": "liang_w2_15", "colors": 2, "length": 15, "lower_bound": 8523047, "source": "liang2012"},
+    {"id": "liang_w2_16", "colors": 2, "length": 16, "lower_bound": 16370086, "source": "liang2012"},
     {"id": "liang_w2_17", "colors": 2, "length": 17, "lower_bound": 46397777, "source": "liang2012"},
     {"id": "liang_w2_18", "colors": 2, "length": 18, "lower_bound": 91079252, "source": "liang2012"},
     {"id": "liang_w2_19", "colors": 2, "length": 19, "lower_bound": 250546915, "source": "liang2012"},
@@ -116,6 +148,12 @@
     {"id": "monroe_w2_23", "colors": 2, "length": 23, "lower_bound": 6206141987, "source": "monroe2016v1"},
     {"id": "monroe_w2_24", "colors": 2, "length": 24, "lower_bound": 10980093212, "source": "monroe2017v4"},
     {"id": "monroe_w2_25", "colors": 2, "length": 25, "lower_bound": 23003662489, "source": "monroe2017v4"},
+    {"id": "rabung_lotts_w3_12", "colors": 3, "length": 12, "lower_bound": 79134144, "source": "rabunglotts2012", "parameters": {"rabung_prime": 7194013}},
+    {"id": "monroe_v1_w3_13", "colors": 3, "length": 13, "lower_bound": 251282317, "source": "monroe2016v1", "parameters": {"rabung_prime": 20940193}},
+    {"id": "monroe_v1_w3_14", "colors": 3, "length": 14, "lower_bound": 669256082, "source": "monroe2016v1", "parameters": {"rabung_prime": 51481237}},
+    {"id": "monroe_v1_w3_15", "colors": 3, "length": 15, "lower_bound": 2250960279, "source": "monroe2016v1", "parameters": {"rabung_prime": 160782877}},
+    {"id": "monroe_v1_w3_16", "colors": 3, "length": 16, "lower_bound": 7180474606, "source": "monroe2016v1", "parameters": {"rabung_prime": 478698307}},
+    {"id": "monroe_v4_w3_16", "colors": 3, "length": 16, "lower_bound": 9186001216, "source": "monroe2017v4", "parameters": {"rabung_prime": 612400081}},
     {"id": "monroe_tally_w3_17", "colors": 3, "length": 17, "lower_bound": 15509557937, "source": "monroe_code_tally"},
     {"id": "monroe_tally_w3_18", "colors": 3, "length": 18, "lower_bound": 16479723552, "source": "monroe_code_tally"},
     {"id": "monroe_tally_w3_19", "colors": 3, "length": 19, "lower_bound": 17449137523, "source": "monroe_code_tally"},
@@ -140,6 +178,10 @@
     {"claim_id": "w3_k25_p1999999927"}
   ],
   "ring_seeds": [
+    {"id": "liang_wr2_13", "colors": 2, "length": 13, "lower_bound": 136859, "source": "liang2012"},
+    {"id": "liang_wr2_14", "colors": 2, "length": 14, "lower_bound": 239873, "source": "liang2012"},
+    {"id": "liang_wr2_15", "colors": 2, "length": 15, "lower_bound": 608789, "source": "liang2012"},
+    {"id": "liang_wr2_16", "colors": 2, "length": 16, "lower_bound": 1091339, "source": "liang2012"},
     {"id": "liang_wr2_17", "colors": 2, "length": 17, "lower_bound": 2899861, "source": "liang2012"},
     {"id": "liang_wr2_18", "colors": 2, "length": 18, "lower_bound": 5357603, "source": "liang2012"},
     {"id": "liang_wr2_19", "colors": 2, "length": 19, "lower_bound": 13919273, "source": "liang2012"},
@@ -152,6 +194,12 @@
     {"id": "monroe_wr2_23", "colors": 2, "length": 23, "lower_bound": 282097363, "source": "monroe2016v1"},
     {"id": "monroe_wr2_24", "colors": 2, "length": 24, "lower_bound": 477395357, "source": "monroe2017v4"},
     {"id": "monroe_wr2_25", "colors": 2, "length": 25, "lower_bound": 958485937, "source": "monroe2017v4"},
+    {"id": "rabung_lotts_wr3_12", "colors": 3, "length": 12, "lower_bound": 7194013, "source": "rabunglotts2012", "parameters": {"rabung_prime": 7194013}},
+    {"id": "monroe_v1_wr3_13", "colors": 3, "length": 13, "lower_bound": 20940193, "source": "monroe2016v1", "parameters": {"rabung_prime": 20940193}},
+    {"id": "monroe_v1_wr3_14", "colors": 3, "length": 14, "lower_bound": 51481237, "source": "monroe2016v1", "parameters": {"rabung_prime": 51481237}},
+    {"id": "monroe_v1_wr3_15", "colors": 3, "length": 15, "lower_bound": 160782877, "source": "monroe2016v1", "parameters": {"rabung_prime": 160782877}},
+    {"id": "monroe_v1_wr3_16", "colors": 3, "length": 16, "lower_bound": 478698307, "source": "monroe2016v1", "parameters": {"rabung_prime": 478698307}},
+    {"id": "monroe_v4_wr3_16", "colors": 3, "length": 16, "lower_bound": 612400081, "source": "monroe2017v4", "parameters": {"rabung_prime": 612400081}},
     {"claim_id": "w2_k25_p1138900957"},
     {"claim_id": "w2_k26_p2125065391"},
     {"claim_id": "w2_k27_p3459826103"},

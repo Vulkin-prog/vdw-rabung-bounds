@@ -94,9 +94,10 @@ tests. Hence inputs $WR(s,k)>R$ and $W(t,k)>B$ permit $n=R$ and give exactly
 $W(st,k)>RB$, with no rounding or off-by-one convention left implicit.
 
 The baseline program iterates elementary length monotonicity, the registered
-BCT specialization and \eqref{eq:xu} to a fixed point. Its finite scope is
-$17\le k\le28$ and at most four colours; Berlekamp seeds are loaded from
-$k=14$ so earlier monotone consequences are not truncated. At each step it retains exact integer
+BCT specialization and \eqref{eq:xu} to a fixed point. Its closure state covers
+$12\le k\le28$ and at most four colours; the reported comparison window remains
+$17\le k\le28$. Published direct and Berlekamp seeds are loaded from $k=12$
+so earlier monotone consequences are not truncated. At each step it retains exact integer
 bounds and a full provenance path. Candidates are compared first by bound;
 numerical ties use the deterministic order direct Rabung, published or archived
 seed, length monotonicity, BCT, Xu, one-colour exact, and finally the
@@ -105,11 +106,14 @@ all three operators are monotone in their input bounds, a dominated parent
 cannot improve a descendant. Iteration stops when no winning node changes.
 
 The comparison corpus was frozen on 29~August~2026 and consists exactly of the
-seeds listed in \texttt{audit/baselines.json}: all fifteen finite three-colour
-specializations of Berlekamp's Theorem~1 from length 14 through 28, Liang et
-al.'s ordinary and ring rows through length 23, Monroe's version-pinned rows,
-the immutable direct tally distributed with his code, the twelve
-version-pinned explicit finite products of Campos, Fox and Schildkraut, four
+seeds listed in \texttt{audit/baselines.json}: all seventeen finite three-colour
+specializations of Berlekamp's Theorem~1 from length 12 through 28,
+Rabung--Lotts' direct and prime-ring length-12 row, Liang et al.'s ordinary rows
+from length 12 through 23 and Xu-admissible prime ring rows from lengths 13 through 23,
+Monroe's version-pinned pre-window three-colour and later two-colour rows, the
+immutable direct tally distributed with his code, the twelve
+version-pinned explicit finite products of Campos, Fox and Schildkraut, the
+twelve explicit three-colour specializations of Gasarch and Haeupler, four
 archived phase-2 rows, and the thirteen claims of this work. The exact rows at
 lengths 17 through 20 that Monroe's summary credits to Liang et al. are sourced
 to that earlier 2012 paper~\cite{liang2012}, not reassigned to the later table.
@@ -125,6 +129,19 @@ strongest verified consequence of these explicitly admitted inputs, not global
 optimality over an unspecified literature corpus.
 
 \paragraph{Literature and priority audit.}
+Beginning the closure at length 12 is deliberate. Rabung and Lotts' Table~1
+gives prime $7\,194\,013$ and
+$W(3,12)>79\,134\,144$~\cite{rabunglotts2012}. Monroe's arXiv v1 is the first
+versioned public source located for the registered direct rows at lengths 13
+through 15 and a then-best length-16 row; v4 first replaces the latter by
+prime $612\,400\,081$ and
+$W(3,16)>9\,186\,001\,216$~\cite{Monroe2016v1,Monroe2017v4}. The registry
+retains the superseded v1 length-16 row as well. Every corresponding prime and
+strict-bound identity is recomputed; their strongest monotone consequence at
+length 17 remains below the direct certificate of this work. Thus the target
+window is not insulated from an unexamined earlier winner, while the later
+journal table is used as a stable record rather than as the source of priority.
+
 Berlekamp writes $W(K,t)$ for $K$ colours and progressions of length $t+1$.
 Specializing his Theorem~1 to $K=3,t=23$ gives
 \begin{equation}\label{eq:berlekamp-24}
@@ -133,7 +150,7 @@ Specializing his Theorem~1 to $K=3,t=23$ gives
 \end{equation}
 after checking the theorem's divisor conditions~\cite{Berlekamp1968}. Length
 monotonicity gives the same strict bound for $W(3,25)$. The registry also
-contains the fourteen directly dominated specializations, so this winning case is not an
+contains the sixteen directly dominated specializations, so this winning case is not an
 isolated post hoc insertion.
 
 Landman and Robertson state, without an accompanying proof, that for primes

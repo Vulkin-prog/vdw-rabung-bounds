@@ -13,6 +13,7 @@ import argparse
 import hashlib
 import json
 import math
+from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -130,6 +131,30 @@ def cfs_max_product_specialization(length: int):
     return best
 
 
+def gasarch_haeupler_strict_bound(length: int, colors: int) -> int:
+    """Certify floor(colors**(length-1)/(e*length)) using rational bounds.
+
+    The lower bound is the exponential series through 1/40!, and the upper
+    bound adds the standard tail estimate 1/(40*40!).  Exact Fraction
+    comparisons then prove the floor without treating a binary approximation
+    to ``e`` as mathematical evidence.
+    """
+    terms = 40
+    e_lower = sum(
+        (Fraction(1, math.factorial(index)) for index in range(terms + 1)),
+        Fraction(0),
+    )
+    e_upper = e_lower + Fraction(1, terms * math.factorial(terms))
+    numerator = colors ** (length - 1)
+    quotient_below = Fraction(numerator, length) / e_upper
+    candidate = quotient_below.numerator // quotient_below.denominator
+    if candidate * length * e_upper > numerator:
+        raise ValueError("invalid lower enclosure for the Gasarch--Haeupler floor")
+    if (candidate + 1) * length * e_lower <= numerator:
+        raise ValueError("rational bounds on e do not determine the required floor")
+    return candidate
+
+
 def add_node(nodes, candidates, *, kind, colors, length, bound, method,
              source=None, parents=None, parameters=None, label=None):
     payload = {
@@ -222,8 +247,22 @@ def closure():
             method = "direct_rabung"
             source = claim["origin"]
             return claim["colors"], claim["length"], bound, method, source, claim["id"]
+        parameters = seed.get("parameters", {})
+        if "rabung_prime" in parameters:
+            prime = int(parameters["rabung_prime"])
+            if least_prime_factor(prime) != prime:
+                raise ValueError(f"{seed['id']}: Rabung witness is not prime")
+            expected_bound = (
+                (seed["length"] - 1) * prime + 1
+                if kind == "ordinary"
+                else prime
+            )
+            if seed["lower_bound"] != expected_bound:
+                raise ValueError(
+                    f"{seed['id']}: Rabung bound {seed['lower_bound']} "
+                    f"!= {expected_bound}"
+                )
         if seed.get("source") == "berlekamp1968":
-            parameters = seed.get("parameters", {})
             t = parameters.get("berlekamp_t")
             field_order = parameters.get("field_order")
             denominator = parameters.get("condition_denominator")
@@ -266,6 +305,15 @@ def closure():
                     f"{seed['id']}: CFS bound {seed['lower_bound']} is not "
                     f"the exhaustive maximum {maximal_bound} from "
                     f"{list(maximal_factors)}"
+                )
+        if seed.get("source") == "gasarch2011":
+            expected_bound = gasarch_haeupler_strict_bound(
+                seed["length"], seed["colors"]
+            )
+            if seed["lower_bound"] != expected_bound:
+                raise ValueError(
+                    f"{seed['id']}: Gasarch--Haeupler bound "
+                    f"{seed['lower_bound']} != {expected_bound}"
                 )
         return (
             seed["colors"], seed["length"], seed["lower_bound"],

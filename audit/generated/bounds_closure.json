@@ -1,11 +1,67 @@
 {
   "inputs": {
     "baselines": "audit/baselines.json",
-    "baselines_sha256": "742504980239e3ef8f4cac13a1bd5da4bfb67d741677d04fedac1a720dc06079",
+    "baselines_sha256": "13144df63880e4eaead1e03bc278cf759e608a60ee36820d65f15a96d124b481",
     "claims": "audit/claims.json",
     "claims_sha256": "3b3ffc1739b091194e9b54d2f9435bcfbff7ab2ba84d7176330e9dead12d0aeb"
   },
   "nodes": [
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k12-f8136505976fe684",
+      "kind": "ordinary",
+      "label": "W(1,12)=12",
+      "length": 12,
+      "lower_bound": 11,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k13-148638fcda1e82ff",
+      "kind": "ordinary",
+      "label": "W(1,13)=13",
+      "length": 13,
+      "lower_bound": 12,
+      "method": "one_color_exact",
+      "parameters": {},
+      "parents": [],
+      "source": "exact"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k13-1c873cdee4d72844",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 11,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 12
+      },
+      "parents": [
+        "ordinary-r1-k12-f8136505976fe684"
+      ],
+      "source": "elementary"
+    },
+    {
+      "colors": 1,
+      "id": "ordinary-r1-k14-a14dcfcdd00c7ab0",
+      "kind": "ordinary",
+      "label": null,
+      "length": 14,
+      "lower_bound": 12,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 13
+      },
+      "parents": [
+        "ordinary-r1-k13-148638fcda1e82ff"
+      ],
+      "source": "elementary"
+    },
     {
       "colors": 1,
       "id": "ordinary-r1-k14-c0958c4f8675f6ec",
@@ -412,6 +468,146 @@
     },
     {
       "colors": 2,
+      "id": "ordinary-r2-k12-381c4b2e1e996139",
+      "kind": "ordinary",
+      "label": null,
+      "length": 12,
+      "lower_bound": 121,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 11
+      },
+      "parents": [
+        "ordinary-r1-k12-f8136505976fe684"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k12-e4c7bcb1ad7c7116",
+      "kind": "ordinary",
+      "label": "liang_w2_12",
+      "length": 12,
+      "lower_bound": 638727,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k13-5e513dcdadd4264d",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 638727,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 12
+      },
+      "parents": [
+        "ordinary-r2-k12-e4c7bcb1ad7c7116"
+      ],
+      "source": "elementary"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k13-5e9e28ab8f710187",
+      "kind": "ordinary",
+      "label": "liang_w2_13",
+      "length": 13,
+      "lower_bound": 1642309,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k13-9c479374f52c8b19",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 156,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 13
+      },
+      "parents": [
+        "ordinary-r1-k13-148638fcda1e82ff"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k13-b7e9458f9bd30e39",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 1642308,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 136859,
+        "n": 136859,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k13-8dfa3b98b8200689",
+        "ordinary-r1-k13-148638fcda1e82ff"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k14-09f8e7c05a862de5",
+      "kind": "ordinary",
+      "label": null,
+      "length": 14,
+      "lower_bound": 3118349,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 239873,
+        "n": 239873,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k14-97423766ed24f9bf",
+        "ordinary-r1-k14-c0958c4f8675f6ec"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k14-5369df73ea34c786",
+      "kind": "ordinary",
+      "label": "liang_w2_14",
+      "length": 14,
+      "lower_bound": 3118350,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k14-b97d232e29efc02b",
+      "kind": "ordinary",
+      "label": null,
+      "length": 14,
+      "lower_bound": 1642309,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 13
+      },
+      "parents": [
+        "ordinary-r2-k13-5e9e28ab8f710187"
+      ],
+      "source": "elementary"
+    },
+    {
+      "colors": 2,
       "id": "ordinary-r2-k14-bc1c1a4327b4d0da",
       "kind": "ordinary",
       "label": null,
@@ -428,19 +624,51 @@
     },
     {
       "colors": 2,
-      "id": "ordinary-r2-k15-50af236b41b1a725",
+      "id": "ordinary-r2-k15-15d326096810cb4a",
+      "kind": "ordinary",
+      "label": "liang_w2_15",
+      "length": 15,
+      "lower_bound": 8523047,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k15-3717f5b2abddaf55",
       "kind": "ordinary",
       "label": null,
       "length": 15,
-      "lower_bound": 169,
+      "lower_bound": 3118350,
       "method": "length_monotonicity",
       "parameters": {
         "from_length": 14
       },
       "parents": [
-        "ordinary-r2-k14-bc1c1a4327b4d0da"
+        "ordinary-r2-k14-5369df73ea34c786"
       ],
       "source": "elementary"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k15-974a1fca79aa6dd7",
+      "kind": "ordinary",
+      "label": null,
+      "length": 15,
+      "lower_bound": 8523046,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 608789,
+        "n": 608789,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k15-0bfb0e7dba5264a4",
+        "ordinary-r1-k15-48d6a1e0f90dfe22"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 2,
@@ -460,19 +688,51 @@
     },
     {
       "colors": 2,
-      "id": "ordinary-r2-k16-2ec2158b316e2456",
+      "id": "ordinary-r2-k16-50872095486de068",
       "kind": "ordinary",
       "label": null,
       "length": 16,
-      "lower_bound": 182,
+      "lower_bound": 8523047,
       "method": "length_monotonicity",
       "parameters": {
         "from_length": 15
       },
       "parents": [
-        "ordinary-r2-k15-df6e8a11e4a3e497"
+        "ordinary-r2-k15-15d326096810cb4a"
       ],
       "source": "elementary"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k16-99a93ba56be1bdb7",
+      "kind": "ordinary",
+      "label": "liang_w2_16",
+      "length": 16,
+      "lower_bound": 16370086,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k16-9cfd62f9737c9d71",
+      "kind": "ordinary",
+      "label": null,
+      "length": 16,
+      "lower_bound": 16370085,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 1091339,
+        "n": 1091339,
+        "s": 2,
+        "t": 1
+      },
+      "parents": [
+        "ring-r2-k16-f3b1bc2ebf39bfc3",
+        "ordinary-r1-k16-bcc2de3491085194"
+      ],
+      "source": "xu2013"
     },
     {
       "colors": 2,
@@ -525,22 +785,6 @@
     },
     {
       "colors": 2,
-      "id": "ordinary-r2-k17-48aabc67c6b1eb0d",
-      "kind": "ordinary",
-      "label": null,
-      "length": 17,
-      "lower_bound": 195,
-      "method": "length_monotonicity",
-      "parameters": {
-        "from_length": 16
-      },
-      "parents": [
-        "ordinary-r2-k16-ee47e39136948c1f"
-      ],
-      "source": "elementary"
-    },
-    {
-      "colors": 2,
       "id": "ordinary-r2-k17-676715a2a209dfdc",
       "kind": "ordinary",
       "label": null,
@@ -558,6 +802,22 @@
         "ordinary-r1-k17-1b41216454acb268"
       ],
       "source": "xu2013"
+    },
+    {
+      "colors": 2,
+      "id": "ordinary-r2-k17-6d6653c0b4bb0d11",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 16370086,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 16
+      },
+      "parents": [
+        "ordinary-r2-k16-99a93ba56be1bdb7"
+      ],
+      "source": "elementary"
     },
     {
       "colors": 2,
@@ -1512,19 +1772,217 @@
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k14-6e607ed9dcccce82",
+      "id": "ordinary-r3-k12-056db68dd467c4f4",
+      "kind": "ordinary",
+      "label": "berlekamp_w3_12",
+      "length": 12,
+      "lower_bound": 974303,
+      "method": "published_seed",
+      "parameters": {
+        "berlekamp_t": 11,
+        "condition_denominator": 2,
+        "field_order": 3
+      },
+      "parents": [],
+      "source": "berlekamp1968"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k12-224528453ebc5daf",
       "kind": "ordinary",
       "label": null,
-      "length": 14,
-      "lower_bound": 2197,
+      "length": 12,
+      "lower_bound": 7025997,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 11
+      },
+      "parents": [
+        "ordinary-r2-k12-e4c7bcb1ad7c7116"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k12-a9228eba7b8b2a09",
+      "kind": "ordinary",
+      "label": "rabung_lotts_w3_12",
+      "length": 12,
+      "lower_bound": 79134144,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 7194013
+      },
+      "parents": [],
+      "source": "rabunglotts2012"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k12-faf6e28de4413697",
+      "kind": "ordinary",
+      "label": null,
+      "length": 12,
+      "lower_bound": 79134143,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 7194013,
+        "n": 7194013,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k12-5dd672d531d2f2fa",
+        "ordinary-r1-k12-f8136505976fe684"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k13-003c0afef79a331d",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 21350017,
       "method": "bct2018",
       "parameters": {
         "prime_q": 13
       },
       "parents": [
-        "ordinary-r2-k14-bc1c1a4327b4d0da"
+        "ordinary-r2-k13-5e9e28ab8f710187"
       ],
       "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k13-96563b9af0cdb6e2",
+      "kind": "ordinary",
+      "label": "monroe_v1_w3_13",
+      "length": 13,
+      "lower_bound": 251282317,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 20940193
+      },
+      "parents": [],
+      "source": "monroe2016v1"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k13-daf81817f81cab1d",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 251282316,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 20940193,
+        "n": 20940193,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k13-ecde6e2b4a0006fb",
+        "ordinary-r1-k13-148638fcda1e82ff"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k13-ee6c33436890ff3b",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 79134144,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 12
+      },
+      "parents": [
+        "ordinary-r3-k12-a9228eba7b8b2a09"
+      ],
+      "source": "elementary"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k13-fe3656fed95be8fb",
+      "kind": "ordinary",
+      "label": "berlekamp_w3_13",
+      "length": 13,
+      "lower_bound": 8760,
+      "method": "published_seed",
+      "parameters": {
+        "berlekamp_t": 12,
+        "condition_denominator": 728,
+        "field_order": 3
+      },
+      "parents": [],
+      "source": "berlekamp1968"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k14-3680b71205eec0a4",
+      "kind": "ordinary",
+      "label": null,
+      "length": 14,
+      "lower_bound": 251282317,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 13
+      },
+      "parents": [
+        "ordinary-r3-k13-96563b9af0cdb6e2"
+      ],
+      "source": "elementary"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k14-802ebd2e47349f32",
+      "kind": "ordinary",
+      "label": null,
+      "length": 14,
+      "lower_bound": 40538550,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 13
+      },
+      "parents": [
+        "ordinary-r2-k14-5369df73ea34c786"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k14-9dc5a63cbb4d2865",
+      "kind": "ordinary",
+      "label": null,
+      "length": 14,
+      "lower_bound": 669256081,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 51481237,
+        "n": 51481237,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k14-4fb150dbe6e9bb94",
+        "ordinary-r1-k14-c0958c4f8675f6ec"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k14-a8de829cb185f767",
+      "kind": "ordinary",
+      "label": "monroe_v1_w3_14",
+      "length": 14,
+      "lower_bound": 669256082,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 51481237
+      },
+      "parents": [],
+      "source": "monroe2016v1"
     },
     {
       "colors": 3,
@@ -1544,17 +2002,37 @@
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k15-163dba02f8fbe2f0",
+      "id": "ordinary-r3-k15-375d4e0b9c9cd35b",
       "kind": "ordinary",
       "label": null,
       "length": 15,
-      "lower_bound": 2366,
+      "lower_bound": 2250960278,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 160782877,
+        "n": 160782877,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k15-0f44b48816f35637",
+        "ordinary-r1-k15-48d6a1e0f90dfe22"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k15-4beef64937404115",
+      "kind": "ordinary",
+      "label": null,
+      "length": 15,
+      "lower_bound": 110799611,
       "method": "bct2018",
       "parameters": {
         "prime_q": 13
       },
       "parents": [
-        "ordinary-r2-k15-df6e8a11e4a3e497"
+        "ordinary-r2-k15-15d326096810cb4a"
       ],
       "source": "bct2018"
     },
@@ -1576,35 +2054,33 @@
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k15-d9a648ebf10a25c3",
+      "id": "ordinary-r3-k15-cf4683fbcb391c18",
       "kind": "ordinary",
       "label": null,
       "length": 15,
-      "lower_bound": 10363093,
+      "lower_bound": 669256082,
       "method": "length_monotonicity",
       "parameters": {
         "from_length": 14
       },
       "parents": [
-        "ordinary-r3-k14-b86526931e1cc6cd"
+        "ordinary-r3-k14-a8de829cb185f767"
       ],
       "source": "elementary"
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k16-12e966f65e90c285",
+      "id": "ordinary-r3-k15-d7f7c47dd3cca2be",
       "kind": "ordinary",
-      "label": null,
-      "length": 16,
-      "lower_bound": 30632,
-      "method": "length_monotonicity",
+      "label": "monroe_v1_w3_15",
+      "length": 15,
+      "lower_bound": 2250960279,
+      "method": "published_seed",
       "parameters": {
-        "from_length": 15
+        "rabung_prime": 160782877
       },
-      "parents": [
-        "ordinary-r3-k15-a9a1f2a033d3f5a1"
-      ],
-      "source": "elementary"
+      "parents": [],
+      "source": "monroe2016v1"
     },
     {
       "colors": 3,
@@ -1624,35 +2100,83 @@
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k16-4e5d19a666860486",
+      "id": "ordinary-r3-k16-49e5104f421a3f7f",
       "kind": "ordinary",
-      "label": null,
+      "label": "monroe_v4_w3_16",
       "length": 16,
-      "lower_bound": 2535,
-      "method": "bct2018",
+      "lower_bound": 9186001216,
+      "method": "published_seed",
       "parameters": {
-        "prime_q": 13
+        "rabung_prime": 612400081
       },
-      "parents": [
-        "ordinary-r2-k16-ee47e39136948c1f"
-      ],
-      "source": "bct2018"
+      "parents": [],
+      "source": "monroe2017v4"
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k16-e2193bbe646f60cc",
+      "id": "ordinary-r3-k16-a4998d36b9995105",
       "kind": "ordinary",
       "label": null,
       "length": 16,
-      "lower_bound": 10363093,
+      "lower_bound": 9186001215,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 612400081,
+        "n": 612400081,
+        "s": 3,
+        "t": 1
+      },
+      "parents": [
+        "ring-r3-k16-956e4acaba7d6110",
+        "ordinary-r1-k16-bcc2de3491085194"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k16-c8957ee1203fbf24",
+      "kind": "ordinary",
+      "label": "monroe_v1_w3_16",
+      "length": 16,
+      "lower_bound": 7180474606,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 478698307
+      },
+      "parents": [],
+      "source": "monroe2016v1"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k16-dc55e772bda532f9",
+      "kind": "ordinary",
+      "label": null,
+      "length": 16,
+      "lower_bound": 2250960279,
       "method": "length_monotonicity",
       "parameters": {
         "from_length": 15
       },
       "parents": [
-        "ordinary-r3-k15-d9a648ebf10a25c3"
+        "ordinary-r3-k15-d7f7c47dd3cca2be"
       ],
       "source": "elementary"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k16-f73d0c0629705a2c",
+      "kind": "ordinary",
+      "label": null,
+      "length": 16,
+      "lower_bound": 212811118,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 13
+      },
+      "parents": [
+        "ordinary-r2-k16-99a93ba56be1bdb7"
+      ],
+      "source": "bct2018"
     },
     {
       "colors": 3,
@@ -1684,22 +2208,6 @@
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k17-569a097550ccfa41",
-      "kind": "ordinary",
-      "label": null,
-      "length": 17,
-      "lower_bound": 10363093,
-      "method": "length_monotonicity",
-      "parameters": {
-        "from_length": 16
-      },
-      "parents": [
-        "ordinary-r3-k16-e2193bbe646f60cc"
-      ],
-      "source": "elementary"
-    },
-    {
-      "colors": 3,
       "id": "ordinary-r3-k17-6edf1ac2d00661ce",
       "kind": "ordinary",
       "label": null,
@@ -1720,6 +2228,22 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k17-7460db0a866d5267",
+      "kind": "ordinary",
+      "label": null,
+      "length": 17,
+      "lower_bound": 9186001216,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 16
+      },
+      "parents": [
+        "ordinary-r3-k16-49e5104f421a3f7f"
+      ],
+      "source": "elementary"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k17-875627d14f277486",
       "kind": "ordinary",
       "label": null,
@@ -1736,19 +2260,15 @@
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k17-bbf6fa1ab3a0056e",
+      "id": "ordinary-r3-k17-bb34a62cb5f5e61a",
       "kind": "ordinary",
-      "label": null,
+      "label": "gasarch_haeupler_w3_17",
       "length": 17,
-      "lower_bound": 889395,
-      "method": "length_monotonicity",
-      "parameters": {
-        "from_length": 16
-      },
-      "parents": [
-        "ordinary-r3-k16-4982b0d7a6348f1b"
-      ],
-      "source": "elementary"
+      "lower_bound": 931529,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
     },
     {
       "colors": 3,
@@ -1856,6 +2376,18 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k18-f0cc1d3107266b4a",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_18",
+      "length": 18,
+      "lower_bound": 2639333,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k19-25f447e8bb8554c3",
       "kind": "ordinary",
       "label": null,
@@ -1945,6 +2477,30 @@
       "parameters": {},
       "parents": [],
       "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k19-e57b7fcf461b7ebd",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_19",
+      "length": 19,
+      "lower_bound": 7501264,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k20-58377e32bdc99b37",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_20",
+      "length": 20,
+      "lower_bound": 21378604,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
     },
     {
       "colors": 3,
@@ -2116,6 +2672,18 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k21-ac5191542a86822a",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_21",
+      "length": 21,
+      "lower_bound": 61081728,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k21-bd3e17b95829939d",
       "kind": "ordinary",
       "label": null,
@@ -2177,6 +2745,18 @@
       "parameters": {},
       "parents": [],
       "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k22-76010832e777e0b6",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_22",
+      "length": 22,
+      "lower_bound": 174915858,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
     },
     {
       "colors": 3,
@@ -2249,6 +2829,18 @@
       "parameters": {},
       "parents": [],
       "source": "monroe_code_tally"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k23-6d2eaa10a1c6be95",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_23",
+      "length": 23,
+      "lower_bound": 501932464,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
     },
     {
       "colors": 3,
@@ -2329,6 +2921,18 @@
       "parameters": {},
       "parents": [],
       "source": "this_scan"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k24-207c1551e3afa3c5",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_24",
+      "length": 24,
+      "lower_bound": 1443055834,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
     },
     {
       "colors": 3,
@@ -2452,6 +3056,18 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k25-4470de1036bb207b",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_25",
+      "length": 25,
+      "lower_bound": 4156000802,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k25-676b88f37d202c7f",
       "kind": "ordinary",
       "label": "monroe_tally_w3_25",
@@ -2548,6 +3164,18 @@
     },
     {
       "colors": 3,
+      "id": "ordinary-r3-k26-408f3e260f84cf9a",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_26",
+      "length": 26,
+      "lower_bound": 11988463852,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
+    },
+    {
+      "colors": 3,
       "id": "ordinary-r3-k26-787509abe64b7bb4",
       "kind": "ordinary",
       "label": null,
@@ -2593,6 +3221,18 @@
       },
       "parents": [],
       "source": "berlekamp1968"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k27-0de7f8e21fc30784",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_27",
+      "length": 27,
+      "lower_bound": 34633340016,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
     },
     {
       "colors": 3,
@@ -2692,19 +3332,31 @@
     },
     {
       "colors": 3,
-      "id": "ordinary-r3-k28-bdc2f9e29f8b7a08",
+      "id": "ordinary-r3-k28-932ac66ec444d58d",
       "kind": "ordinary",
       "label": null,
       "length": 28,
-      "lower_bound": 41452424,
+      "lower_bound": 34633340016,
       "method": "length_monotonicity",
       "parameters": {
         "from_length": 27
       },
       "parents": [
-        "ordinary-r3-k27-c1e80236f2e103d9"
+        "ordinary-r3-k27-0de7f8e21fc30784"
       ],
       "source": "elementary"
+    },
+    {
+      "colors": 3,
+      "id": "ordinary-r3-k28-dad8d3a897b6eb68",
+      "kind": "ordinary",
+      "label": "gasarch_haeupler_w3_28",
+      "length": 28,
+      "lower_bound": 100189305049,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "gasarch2011"
     },
     {
       "colors": 3,
@@ -2724,113 +3376,225 @@
     },
     {
       "colors": 4,
-      "id": "ordinary-r4-k14-69bca0ee0424030d",
+      "id": "ordinary-r4-k12-542c9a44818affb1",
+      "kind": "ordinary",
+      "label": null,
+      "length": 12,
+      "lower_bound": 870475584,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 11
+      },
+      "parents": [
+        "ordinary-r3-k12-a9228eba7b8b2a09"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k13-23481f5e29f99a1f",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 3266670121,
+      "method": "bct2018",
+      "parameters": {
+        "prime_q": 13
+      },
+      "parents": [
+        "ordinary-r3-k13-96563b9af0cdb6e2"
+      ],
+      "source": "bct2018"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k13-cf6765371a2279af",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 224764767431,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 136859,
+        "n": 136859,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k13-8dfa3b98b8200689",
+        "ordinary-r2-k13-5e9e28ab8f710187"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k13-e729b4a4b7572bee",
+      "kind": "ordinary",
+      "label": null,
+      "length": 13,
+      "lower_bound": 870475584,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 12
+      },
+      "parents": [
+        "ordinary-r4-k12-542c9a44818affb1"
+      ],
+      "source": "elementary"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k14-289ac307e42c5d8d",
       "kind": "ordinary",
       "label": null,
       "length": 14,
-      "lower_bound": 134720209,
+      "lower_bound": 748007969550,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 239873,
+        "n": 239873,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k14-97423766ed24f9bf",
+        "ordinary-r2-k14-5369df73ea34c786"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k14-c4ba163aa1e1c11e",
+      "kind": "ordinary",
+      "label": null,
+      "length": 14,
+      "lower_bound": 8700329066,
       "method": "bct2018",
       "parameters": {
         "prime_q": 13
       },
       "parents": [
-        "ordinary-r3-k14-b86526931e1cc6cd"
+        "ordinary-r3-k14-a8de829cb185f767"
       ],
       "source": "bct2018"
     },
     {
       "colors": 4,
-      "id": "ordinary-r4-k15-2be583e410eed90d",
+      "id": "ordinary-r4-k14-cbab8b89137cc7cc",
+      "kind": "ordinary",
+      "label": null,
+      "length": 14,
+      "lower_bound": 224764767431,
+      "method": "length_monotonicity",
+      "parameters": {
+        "from_length": 13
+      },
+      "parents": [
+        "ordinary-r4-k13-cf6765371a2279af"
+      ],
+      "source": "elementary"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k15-20ce80173a0878cf",
       "kind": "ordinary",
       "label": null,
       "length": 15,
-      "lower_bound": 134720209,
+      "lower_bound": 5188737260083,
+      "method": "xu2013",
+      "parameters": {
+        "least_prime_factor_n": 608789,
+        "n": 608789,
+        "s": 2,
+        "t": 2
+      },
+      "parents": [
+        "ring-r2-k15-0bfb0e7dba5264a4",
+        "ordinary-r2-k15-15d326096810cb4a"
+      ],
+      "source": "xu2013"
+    },
+    {
+      "colors": 4,
+      "id": "ordinary-r4-k15-81147928b5c48d67",
+      "kind": "ordinary",
+      "label": null,
+      "length": 15,
+      "lower_bound": 29262483627,
       "method": "bct2018",
       "parameters": {
         "prime_q": 13
       },
       "parents": [
-        "ordinary-r3-k15-d9a648ebf10a25c3"
+        "ordinary-r3-k15-d7f7c47dd3cca2be"
       ],
       "source": "bct2018"
     },
     {
       "colors": 4,
-      "id": "ordinary-r4-k15-a5d037ee9b40ab0c",
+      "id": "ordinary-r4-k15-a2f0967df73131cf",
       "kind": "ordinary",
       "label": null,
       "length": 15,
-      "lower_bound": 134720209,
+      "lower_bound": 748007969550,
       "method": "length_monotonicity",
       "parameters": {
         "from_length": 14
       },
       "parents": [
-        "ordinary-r4-k14-69bca0ee0424030d"
+        "ordinary-r4-k14-289ac307e42c5d8d"
       ],
       "source": "elementary"
     },
     {
       "colors": 4,
-      "id": "ordinary-r4-k16-097a4260e57bd004",
+      "id": "ordinary-r4-k16-6bc1d32e0a6c7556",
       "kind": "ordinary",
       "label": null,
       "length": 16,
-      "lower_bound": 134720209,
-      "method": "length_monotonicity",
-      "parameters": {
-        "from_length": 15
-      },
-      "parents": [
-        "ordinary-r4-k15-a5d037ee9b40ab0c"
-      ],
-      "source": "elementary"
-    },
-    {
-      "colors": 4,
-      "id": "ordinary-r4-k16-175b8ba6eec7f94a",
-      "kind": "ordinary",
-      "label": null,
-      "length": 16,
-      "lower_bound": 11562135,
+      "lower_bound": 119418015808,
       "method": "bct2018",
       "parameters": {
         "prime_q": 13
       },
       "parents": [
-        "ordinary-r3-k16-4982b0d7a6348f1b"
+        "ordinary-r3-k16-49e5104f421a3f7f"
       ],
       "source": "bct2018"
     },
     {
       "colors": 4,
-      "id": "ordinary-r4-k16-4a2d5f5883592131",
+      "id": "ordinary-r4-k16-9a9288c3c1acb6ca",
       "kind": "ordinary",
       "label": null,
       "length": 16,
-      "lower_bound": 134720209,
-      "method": "bct2018",
+      "lower_bound": 17865313285154,
+      "method": "xu2013",
       "parameters": {
-        "prime_q": 13
+        "least_prime_factor_n": 1091339,
+        "n": 1091339,
+        "s": 2,
+        "t": 2
       },
       "parents": [
-        "ordinary-r3-k16-e2193bbe646f60cc"
+        "ring-r2-k16-f3b1bc2ebf39bfc3",
+        "ordinary-r2-k16-99a93ba56be1bdb7"
       ],
-      "source": "bct2018"
+      "source": "xu2013"
     },
     {
       "colors": 4,
-      "id": "ordinary-r4-k16-c6b0cda85ff1c2c1",
+      "id": "ordinary-r4-k16-f1e810f0b29a078d",
       "kind": "ordinary",
       "label": null,
       "length": 16,
-      "lower_bound": 134720209,
+      "lower_bound": 5188737260083,
       "method": "length_monotonicity",
       "parameters": {
         "from_length": 15
       },
       "parents": [
-        "ordinary-r4-k15-2be583e410eed90d"
+        "ordinary-r4-k15-20ce80173a0878cf"
       ],
       "source": "elementary"
     },
@@ -2852,17 +3616,17 @@
     },
     {
       "colors": 4,
-      "id": "ordinary-r4-k17-6aa01d3096b88343",
+      "id": "ordinary-r4-k17-b6f3914d075e430b",
       "kind": "ordinary",
       "label": null,
       "length": 17,
-      "lower_bound": 11562135,
+      "lower_bound": 17865313285154,
       "method": "length_monotonicity",
       "parameters": {
         "from_length": 16
       },
       "parents": [
-        "ordinary-r4-k16-175b8ba6eec7f94a"
+        "ordinary-r4-k16-9a9288c3c1acb6ca"
       ],
       "source": "elementary"
     },
@@ -2885,22 +3649,6 @@
         "ordinary-r2-k17-ef27113db6ee9043"
       ],
       "source": "xu2013"
-    },
-    {
-      "colors": 4,
-      "id": "ordinary-r4-k17-f525cc9c6d1b093b",
-      "kind": "ordinary",
-      "label": null,
-      "length": 17,
-      "lower_bound": 134720209,
-      "method": "length_monotonicity",
-      "parameters": {
-        "from_length": 16
-      },
-      "parents": [
-        "ordinary-r4-k16-c6b0cda85ff1c2c1"
-      ],
-      "source": "elementary"
     },
     {
       "colors": 4,
@@ -3540,19 +4288,67 @@
     },
     {
       "colors": 4,
-      "id": "ordinary-r4-k28-7cec3e7a14b4ba1a",
+      "id": "ordinary-r4-k28-b48a9acf50c5480e",
       "kind": "ordinary",
       "label": null,
       "length": 28,
-      "lower_bound": 240600347433,
+      "lower_bound": 2304354016127,
       "method": "bct2018",
       "parameters": {
         "prime_q": 23
       },
       "parents": [
-        "ordinary-r3-k28-e0002b0d6aa52939"
+        "ordinary-r3-k28-dad8d3a897b6eb68"
       ],
       "source": "bct2018"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k13-8dfa3b98b8200689",
+      "kind": "ring",
+      "label": "liang_wr2_13",
+      "length": 13,
+      "lower_bound": 136859,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k14-97423766ed24f9bf",
+      "kind": "ring",
+      "label": "liang_wr2_14",
+      "length": 14,
+      "lower_bound": 239873,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k15-0bfb0e7dba5264a4",
+      "kind": "ring",
+      "label": "liang_wr2_15",
+      "length": 15,
+      "lower_bound": 608789,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
+    },
+    {
+      "colors": 2,
+      "id": "ring-r2-k16-f3b1bc2ebf39bfc3",
+      "kind": "ring",
+      "label": "liang_wr2_16",
+      "length": 16,
+      "lower_bound": 1091339,
+      "method": "published_seed",
+      "parameters": {},
+      "parents": [],
+      "source": "liang2012"
     },
     {
       "colors": 2,
@@ -3748,6 +4544,90 @@
     },
     {
       "colors": 3,
+      "id": "ring-r3-k12-5dd672d531d2f2fa",
+      "kind": "ring",
+      "label": "rabung_lotts_wr3_12",
+      "length": 12,
+      "lower_bound": 7194013,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 7194013
+      },
+      "parents": [],
+      "source": "rabunglotts2012"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k13-ecde6e2b4a0006fb",
+      "kind": "ring",
+      "label": "monroe_v1_wr3_13",
+      "length": 13,
+      "lower_bound": 20940193,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 20940193
+      },
+      "parents": [],
+      "source": "monroe2016v1"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k14-4fb150dbe6e9bb94",
+      "kind": "ring",
+      "label": "monroe_v1_wr3_14",
+      "length": 14,
+      "lower_bound": 51481237,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 51481237
+      },
+      "parents": [],
+      "source": "monroe2016v1"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k15-0f44b48816f35637",
+      "kind": "ring",
+      "label": "monroe_v1_wr3_15",
+      "length": 15,
+      "lower_bound": 160782877,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 160782877
+      },
+      "parents": [],
+      "source": "monroe2016v1"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k16-10704bd28a03ba21",
+      "kind": "ring",
+      "label": "monroe_v1_wr3_16",
+      "length": 16,
+      "lower_bound": 478698307,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 478698307
+      },
+      "parents": [],
+      "source": "monroe2016v1"
+    },
+    {
+      "colors": 3,
+      "id": "ring-r3-k16-956e4acaba7d6110",
+      "kind": "ring",
+      "label": "monroe_v4_wr3_16",
+      "length": 16,
+      "lower_bound": 612400081,
+      "method": "published_seed",
+      "parameters": {
+        "rabung_prime": 612400081
+      },
+      "parents": [],
+      "source": "monroe2017v4"
+    },
+    {
+      "colors": 3,
       "id": "ring-r3-k17-9d1372ff4e6c7347",
       "kind": "ring",
       "label": "w3_k17_p1961601427",
@@ -3858,7 +4738,7 @@
   "notation": "W(colors,length) > lower_bound",
   "schema_version": 1,
   "scope": {
-    "closure_length_min": 14,
+    "closure_length_min": 12,
     "length_max": 28,
     "length_min": 17,
     "literature_cutoff_utc": "2026-08-29T00:00:00Z",
@@ -3875,7 +4755,7 @@
     "berlekamp1968": {
       "citation_key": "Berlekamp1968",
       "doi": "10.4153/CMB-1968-047-7",
-      "location": "Theorem 1 specialized to three colours for progression lengths 14 through 28",
+      "location": "Theorem 1 specialized to three colours for progression lengths 12 through 28",
       "registered_check": "For Berlekamp parameter t=length-1, each seed stores the maximum denominator imposed by conditions (4) and (5) and the exact quotient t*(3^t-1)/denominator",
       "title": "A Construction for Partitions Which Avoid Long Arithmetic Progressions"
     },
@@ -3886,22 +4766,29 @@
       "registered_check": "For each reported length k, exhaustive subset enumeration over all distinct primes summing to k-1 verifies both the maximizing decomposition and the exact strict integer (k-1)*product(2^p-1)",
       "title": "A new lower bound for two-color van der Waerden numbers"
     },
+    "gasarch2011": {
+      "citation_key": "GasarchHaeupler2011",
+      "doi": "10.37236/551",
+      "location": "Note 1.7(2), finite consequence of the deterministic construction",
+      "registered_check": "For colours c=3 and every reported length k, exact rational lower and upper bounds on e certify floor(3^(k-1)/(e*k)) without floating-point evidence",
+      "title": "Lower Bounds on van der Waerden Numbers: Randomized- and Deterministic-Constructive"
+    },
     "liang2012": {
       "citation_key": "liang2012",
       "location": "Table 2 and Theorem 5.1",
-      "registered_check": "The ordinary strict bounds and their underlying prime ring witnesses are registered separately; values through length 20 predate Monroe's later summary table",
+      "registered_check": "The ordinary strict bounds are registered from length 12 through length 23. Prime ring witnesses are registered from length 13 through length 23; the zipped composite behind the length-12 ordinary row is not admitted as a Xu input because its least prime factor fails Xu's hypothesis. Values through length 20 predate Monroe's later summary table",
       "title": "Lower Bounds on Some van der Waerden Numbers Based on Quadratic Residues"
     },
     "monroe2016v1": {
       "arxiv": "1603.03301v1",
       "citation_key": "Monroe2016v1",
-      "location": "Table 3; original versioned source for the length-21 through length-23 rows",
+      "location": "Tables 1--3; first versioned source for the three-colour length-13 through length-15 rows and the then-best length-16 row, and for the two-colour length-21 through length-23 rows",
       "title": "New lower bounds for van der Waerden numbers using distributed computing"
     },
     "monroe2017v4": {
       "arxiv": "1603.03301v4",
       "citation_key": "Monroe2017v4",
-      "location": "Table 3; first versioned source for the length-24 and length-25 rows",
+      "location": "Tables 1--3; first versioned source for the improved three-colour length-16 row and the length-17 row, and for the two-colour length-24 and length-25 rows",
       "title": "New lower bounds for van der Waerden numbers using distributed computing"
     },
     "monroe2026": {
@@ -3919,6 +4806,12 @@
       "citation_key": "MonroePhase2Archive",
       "provenance": "publication/baseline-provenance.json#/sources/monroe_phase2_archive",
       "title": "Archived BOINC phase-2 table; candidate triples historically rechecked"
+    },
+    "rabunglotts2012": {
+      "citation_key": "rabunglotts2012",
+      "doi": "10.37236/2363",
+      "location": "Table 1; original published source for prime 7194013 and W(3,12)>79134144",
+      "title": "Improving the Use of Cyclic Zippers in Finding Lower Bounds for van der Waerden Numbers"
     },
     "this_work": {
       "location": "audit/claims.json",
