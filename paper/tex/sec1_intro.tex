@@ -16,18 +16,19 @@ contains a monochromatic arithmetic progression of length $k$.  We put the
 number of colours first.  Monroe~\cite{Monroe2026} uses the reverse convention
 $W(k,r)$, while Fox and Hunter~\cite{FoxHunter2026} write $w(k;r)$.
 
-The registered release claim contains nine direct three-colour Rabung
-certificates, for $17\le k\le25$.  The headline candidate is
+The registered numerical claim contains nine direct three-colour Rabung
+certificates, for $17\le k\le25$.  The headline certificate is
 \[
   W(3,17)>31\,385\,622\,833,
 \]
 from $p=1\,961\,601\,427$, a factor $2.02$ over Monroe's published bound.
-Conditional on final acceptance of the thirteen claim manifests, recurrence
-closure leaves the direct bounds as
+The fail-closed audit accepts all thirteen registered claim manifests, and
+recurrence closure leaves the direct bounds as
 the strongest values located in the registered corpus for $17\le k\le21$.
 For $22\le k\le25$ they remain improvements within the direct Rabung family
-but are dominated as general bounds.  This distinction between a direct
-champion and a general record is part of the claim, not a bibliographic
+but are dominated as general bounds. This distinction between the strongest
+direct Rabung bound located in the dated corpus and its strongest general
+consequence is part of the claim, not a bibliographic
 afterthought.
 
 Two mechanisms make that distinction necessary.  Rabung's power-residue
@@ -44,24 +45,32 @@ where $q$ is the largest prime not exceeding $k$.  In particular, a documented
 strict bound $W(2,k)>B$ implies $W(3,k)>qB$.  Xu's concatenation
 recurrence~\cite{xu2013} supplies another closure operation.  We therefore
 compare bounds only after a machine-readable registry of published, archived,
-and current inputs has been closed under both recurrences.  The recent
-superexponential three-colour result of Fox and Hunter~\cite{FoxHunter2026} is
-a separate asymptotic development.
+and current inputs has been closed under both recurrences.
+Section~\ref{s:bounds}
+states Xu's formula, the strict-integer convention and the finite corpus
+policy explicitly.  The recent superexponential three-colour result of Fox and
+Hunter~\cite{FoxHunter2026} and the asymptotic two-colour bound
+$w(k)\ge(1-o(1))k2^{k-1}$ of Campos, Fox and
+Schildkraut~\cite{CamposFoxSchildkraut2026} are separate asymptotic
+developments; neither supplies a replacement numerical entry for the finite
+range compared here.
 
 The historical campaign was configured to scan every prime in
 $[9.7\times10^8,2\times10^9)$ and to compute the active profiles with $r\le9$.
 Monroe's article describes a systematic scan limit of $9.5\times10^8$, while
 its accompanying table lists the larger valid prime $969\,347\,371$; we use
-the tabled value as the numerical hand-off.  Recovery of the complete
-checkpoint and ordered-prime evidence remains a release gate.  That recovery
-supports claims about exhaustive coverage of the window and the empirical
-event list; it is logically separate from pointwise verification of any
-particular triple.
+the tabled value as the numerical hand-off.  Authenticated recovery now
+accounts for all $515$ chunks: $514$ have matching journal and checkpoint
+records, while chunk~7 is preserved by the checkpoint alone.  A separate
+ordered-stream audit agrees byte for byte on every chunk.  These records
+support coverage of the window and the empirical event list; they are
+logically separate from pointwise verification of any particular triple.
 
 Four additional registered triples are two-colour primes listed in an archived
-phase of Monroe's project~\cite{MonroePhase2Archive}.  Retained historical runs
-report their acceptance by a separate-source checker, and the final raw
-manifests remain open.  Priority for the primes is Monroe's.  Applying
+phase of Monroe's project~\cite{MonroePhase2Archive}.  Their four final
+manifests are accepted by the same separate-source audit; independently
+administered release rechecks remain open.  Priority for the primes is
+Monroe's.  Applying
 \eqref{eq:bct-intro} to these inputs gives the three-colour consequences for
 $25\le k\le28$ displayed in Section~\ref{s:bounds}.  The archive states that
 the historical phase tested primes to four billion~\cite{MonroePage}; our
@@ -79,11 +88,11 @@ the GPU engine.  We do not claim global optimality, exhaustive coverage beyond
 the stated window, first discovery of Monroe's archived primes, or a universal
 density law.
 
-Section~\ref{s:bounds} states the registered numerical results and their exact
-scope before the technical inventory.  Section~\ref{s:method} explains why a
-triple is a succinct certificate and how it is checked;
-Section~\ref{s:campaign} describes how candidates were found and how campaign
-coverage is audited.  Sections~\ref{s:prereg} and~\ref{s:density} isolate the
-secondary prospective holdout analysis from the proved bounds.  We conclude
-with the scientific boundary of the computation, then record the release and
-provenance contract separately.
+Section~\ref{s:bounds} states the registered numerical results, the recurrence
+closure and their exact scope before the technical inventory.
+Section~\ref{s:method} gives the Rabung criterion, proves the operational form
+and explains the stand-alone certificate check.  Section~\ref{s:campaign}
+describes discovery and the evidence needed for campaign coverage.  We conclude
+with the scientific boundary and release contract.  The reconstructed holdout
+record and its model-conditional analysis are separated into
+Appendices~\ref{s:prereg}--\ref{s:densitydiagnostics}.

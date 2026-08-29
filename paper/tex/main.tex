@@ -4,7 +4,7 @@
 \usepackage{microtype}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage[margin=1.1in]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{graphicx,booktabs,longtable,array}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[colorlinks]{hyperref}
@@ -12,9 +12,10 @@
   pdfauthor={Brice Pouly},
   pdfsubject={van der Waerden numbers},
   pdfkeywords={van der Waerden numbers, lower bounds, power residues, Rabung, GPU, certificates}}
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
 \theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\newtheorem{remark}[theorem]{Remark}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \title{Succinct Rabung certificates and recurrence-closed\\
@@ -26,45 +27,42 @@ lower bounds for van der Waerden numbers}
 \fbox{\begin{minipage}{0.90\linewidth}\small
 \textbf{Qualification status (28 August 2026).}
 This is a private prepublication draft, not the citable release.  Open gates
-include the final 13 claim manifests, 515-chunk campaign recovery,
-ordered-prime audit, CUDA qualification, four external certificate rechecks, outbound
-licences, and DOI/tag freeze, as recorded in \texttt{STATUS.json}.  Numerical
-statements below report the current computation; release-level reproducibility
-claims remain conditional on the full ledger.
+include clean final CPU and document replays, four external certificate
+rechecks, outbound licences, and DOI/tag freeze, as recorded in
+\texttt{STATUS.json}.  The local PC evidence now includes the fail-closed
+13-manifest claim audit, authenticated 515-chunk campaign recovery,
+515-of-515 ordered-prime identity, and SM120 CUDA qualification.  Numerical
+statements below report the current computation; the repository remains
+non-citable until every release gate has passed.
 \end{minipage}}
 \end{center}
 \begin{abstract}
-A historical single-GPU campaign was configured to scan every prime in
-$[9.7\times10^{8},\,2\times10^{9})$ for power-residue colourings.  Its retained
-summaries identify nine candidate direct Rabung certificates for $W(3,k)$,
-$17\le k\le25$, headed by $W(3,17)>31\,385\,622\,833$.  The GPU discovers the
-triples; it is not the source of the proof.  For each triple $(p,r,k)$, a
-stand-alone, separate-source CPU verifier can re-establish the finite
-hypotheses of Rabung's theorem from scratch.  Conditional on acceptance of the
-registered claim manifests, closing a dated corpus
-of published, archived, and current baselines under the recurrences of
-Blankenship--Cummings--Taranchuk and Xu leaves the direct values as the
-strongest bounds located there for $17\le k\le21$.  The rows
-$22\le k\le25$ improve the direct Rabung family but are not general van der
-Waerden records.  Retained historical runs also report separate-source
-acceptance of four archived two-colour certificates due to Monroe; final
-release rechecks remain open.  Applying the Blankenship--Cummings--Taranchuk
-recurrence gives, in particular,
+The registered numerical result comprises nine direct Rabung bounds for
+$W(3,k)$, $17\le k\le25$, headed by
+$W(3,17)>31\,385\,622\,833$. Five of these are the strongest bounds obtained
+for $17\le k\le21$ from an explicitly listed, dated corpus closed under the
+Blankenship--Cummings--Taranchuk and Xu recurrences; the other four improve the
+direct Rabung values for $22\le k\le25$ but not the best general bounds in that
+corpus. Four archived two-colour primes due to Monroe also yield, in
+particular,
 $W(3,25)>628\,673\,328\,287$ and
-$W(3,28)>2\,159\,051\,058\,266$.  A secondary holdout analysis compares three
-frozen forecasts with one cumulative trajectory; its disjoint increments are
-primary and every Poisson calculation is conditional on the stated model.
+$W(3,28)>2\,159\,051\,058\,266$. The GPU campaign only discovered candidate
+triples. For each triple $(p,r,k)$, a stand-alone, separate-source CPU verifier
+reconstructs the finite hypotheses of Rabung's theorem. A fail-closed audit of
+thirteen manifests binds the code, commands and raw outputs and accepts all
+$67$ registered local executions. A secondary, model-conditional holdout
+comparison is reported separately in an appendix.
 \end{abstract}
 % ============ STRUCTURE ============
 \input{sec1_intro}
 \input{sec4_bounds}
 \input{sec2_method}
 \input{sec3_campaign}
-\input{sec6_prereg}
-\input{sec5_density}
 \input{sec6_conclusion}
 \input{sec7_data}
-\input{appendix_bstar}
+\appendix
+\input{sec6_prereg}
+\input{sec5_density}
 \input{appendix_density}
 \input{sec9_ack}
 \input{sec8_disclosure}

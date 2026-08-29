@@ -2,7 +2,7 @@
 
 Status: **PASS_AGGREGATE_COUNTS**.
 
-| modulus `r` | re-scan `sum(HISTO[r])` | preregistered separate-source count |
+| modulus `r` | re-scan `sum(HISTO[r])` | earlier separate-source count |
 |---:|---:|---:|
 | 2 | 1,641,614 | 1,641,614 |
 | 3 | 821,005 | 821,005 |

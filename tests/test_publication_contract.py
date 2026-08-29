@@ -320,8 +320,14 @@ class PublicationContractTest(unittest.TestCase):
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["verdict"], "BLOCKED")
         codes = {item["code"] for item in report["blockers"]}
-        self.assertIn("gate.claim-manifests-13", codes)
-        self.assertIn("gate.campaign-archive-515", codes)
+        for gate_id in (
+            "claim-manifests-13",
+            "campaign-archive-515",
+            "ordered-prime-identity-515",
+            "cuda-release-qualification",
+        ):
+            self.assertEqual(report["gate_statuses"][gate_id], "passed")
+            self.assertNotIn(f"gate.{gate_id}", codes)
         self.assertIn("gate.external-replication-4", codes)
 
     def test_staging_and_report_accept_incompleteness_but_release_fails(self):

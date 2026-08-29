@@ -22,8 +22,26 @@ class ManuscriptClaimRegressionTest(unittest.TestCase):
             "first publicly checkable confirmation",
             "conjecturally final",
             "[repository url to be inserted at submission]",
+            "release manifests are not yet populated",
+            "release manifest pending",
+            "committed before",
+            "b7afe3a79de1",
         ):
             self.assertNotIn(forbidden, lowered)
+
+    def test_accepted_claim_ledgers_have_no_stale_pending_status(self):
+        audited_paths = (
+            ROOT / "REPRODUCIBILITY.md",
+            ROOT / "audit" / "claims.json",
+            ROOT / "results" / "claims" / "validated-claims.json",
+            ROOT / "results" / "claims" / "validated-claims.md",
+            ROOT / "results" / "claims" / "validated-claims.tex",
+        )
+        combined = "\n".join(
+            path.read_text(encoding="utf-8") for path in audited_paths
+        ).lower()
+        self.assertNotIn("release manifest pending", combined)
+        self.assertNotIn("b7afe3a79de1ff17c2051caadb6a3bf7", combined)
 
     def test_corrected_recurrence_bounds_are_present(self):
         table = (TEX / "generated_bounds_table.tex").read_text(encoding="utf-8")
@@ -67,17 +85,22 @@ class ManuscriptClaimRegressionTest(unittest.TestCase):
             r"\input{sec4_bounds}",
             r"\input{sec2_method}",
             r"\input{sec3_campaign}",
-            r"\input{sec6_prereg}",
-            r"\input{sec5_density}",
             r"\input{sec6_conclusion}",
             r"\input{sec7_data}",
-            r"\input{appendix_bstar}",
+            r"\appendix",
+            r"\input{sec6_prereg}",
+            r"\input{sec5_density}",
             r"\input{appendix_density}",
         )
         positions = [main.index(item) for item in ordered_inputs]
         self.assertEqual(positions, sorted(positions))
         self.assertTrue((TEX / "sec6_conclusion.tex").is_file())
         self.assertTrue((TEX / "appendix_density.tex").is_file())
+        method = (TEX / "sec2_method.tex").read_text(encoding="utf-8")
+        self.assertLess(
+            method.index(r"\input{appendix_bstar}"),
+            method.index(r"\subsection{Finite oracle audit"),
+        )
 
     def test_discovery_proof_and_ai_boundaries_are_explicit(self):
         campaign = (TEX / "sec3_campaign.tex").read_text(encoding="utf-8")

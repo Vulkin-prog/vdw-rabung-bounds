@@ -1,0 +1,6 @@
+[scan_gpu] NVIDIA GeForce RTX 5090 sm_120, 33.7 Go
+
+=== B7 multi-r DOUBLE-BUFFERED (2 streams), r<=9 ===
+premiers : 2 dans [1009,1100] ; elements : 2.058e+03
+debit : 0.000 x10^10 el/s  (0.00s)
+vs tri 2,76e10 : 0.00x | >=2x tri : NON

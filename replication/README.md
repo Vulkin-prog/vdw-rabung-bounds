@@ -1,10 +1,16 @@
 # CPU-only external replication kit
 
-This kit is for the four independent checks frozen in
+This kit is for the four cross-machine certificate rechecks frozen in
 `publication/external-replication.json`. One operator runs one assigned claim;
 the final set therefore contains four one-claim bundles from four distinct
 persistent operator IDs. The kit does not update the canonical ledger, close
 the publication gate, or assert that an incomplete/failed capture passed.
+
+These executions test reproducibility on separately administered hardware and
+software environments. Because they run the same verifier source, they are not
+independent software validations. Algorithmic separation instead comes from
+the distinct verifier, finite oracle, CPU walk, and non-Montgomery witness
+paths documented in the paper.
 
 ## Operator procedure
 

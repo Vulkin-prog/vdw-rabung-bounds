@@ -11,8 +11,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKIP_PARTS = {".git", "__pycache__", "build", "dist"}
 # Recurrence closure deliberately contains exact mathematical integers larger
-# than machine words.  All operational manifests remain 64-bit bounded.
-ARBITRARY_INTEGER_FILES = {Path("audit/generated/bounds_closure.json")}
+# than machine words.  The authenticated historical checkpoint also retains
+# Python's arbitrary-precision PRNG/state integers byte for byte; it is raw
+# evidence, not an operational manifest.  All operational manifests remain
+# 64-bit bounded.
+ARBITRARY_INTEGER_FILES = {
+    Path("audit/generated/bounds_closure.json"),
+    Path("results/campaign/raw/checkpoint.json"),
+}
 
 
 class StrictJSONError(ValueError):

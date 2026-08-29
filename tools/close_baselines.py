@@ -46,6 +46,20 @@ def primes_up_to(n: int):
     return out
 
 
+def least_prime_factor(n: int) -> int:
+    """Return the least prime divisor of an integer n >= 2."""
+    if n < 2:
+        raise ValueError("least_prime_factor requires n >= 2")
+    if n % 2 == 0:
+        return 2
+    divisor = 3
+    while divisor * divisor <= n:
+        if n % divisor == 0:
+            return divisor
+        divisor += 2
+    return n
+
+
 def tex_int(value: int) -> str:
     return f"{value:,}".replace(",", r"\,")
 
@@ -166,8 +180,10 @@ def closure():
                         changed = True
 
         winners = {key: best_id(nodes, ids) for key, ids in candidates.items()}
-        # Xu's concatenation recurrence in Monroe's notation:
-        # if 5 <= n < WR(s,k), then W(st,k) >= n (W(t,k)-1) + 1.
+        # Xu's concatenation recurrence in colour-first notation:
+        # if k >= 3, s,t >= 2, 5 <= n < WR(s,k), and the least prime
+        # divisor of n exceeds k, then
+        # W(st,k) >= n (W(t,k)-1) + 1.
         # From WR(s,k)>R and W(t,k)>B we may take n=R and obtain
         # W(st,k) >= R*B+1, i.e. the strict bound W(st,k)>R*B.
         for length in lengths:
@@ -176,9 +192,10 @@ def closure():
                 if not ring_parent:
                     continue
                 ring_bound = nodes[ring_parent]["lower_bound"]
-                if ring_bound < 5:
+                ring_lpf = least_prime_factor(ring_bound)
+                if ring_bound < 5 or ring_lpf <= length:
                     continue
-                for t in range(1, max_colors + 1):
+                for t in range(2, max_colors + 1):
                     colors = s * t
                     if colors > max_colors:
                         break
@@ -194,7 +211,12 @@ def closure():
                         ),
                         method="xu2013", source="xu2013",
                         parents=[ring_parent, ordinary_parent],
-                        parameters={"s": s, "t": t, "n": ring_bound},
+                        parameters={
+                            "s": s,
+                            "t": t,
+                            "n": ring_bound,
+                            "least_prime_factor_n": ring_lpf,
+                        },
                     )
                     old = winners.get(("ordinary", colors, length))
                     if old is None or best_id(nodes, [old, node_id]) != old:
@@ -274,8 +296,8 @@ def render_tex(nodes, winners, direct):
         r"obtained after closing the registered baselines under the published",
         r"Blankenship--Cummings--Taranchuk and Xu recurrences.  A dash means that the",
         r"GPU campaign made no direct three-colour claim for that length.  For",
-        r"$k=22,23,24,25$ the direct certificates are new champions within the direct Rabung",
-        r"family but are not general records.  Every entry is generated together with a",
+        r"$k=22,23,24,25$ the direct certificates are the strongest direct Rabung bounds",
+        r"located in the dated corpus but are not general records. Every entry is generated with a",
         r"machine-readable provenance path in \texttt{audit/generated/bounds\_closure.json}.}",
         r"\label{tab:r3}",
         r"\end{table}",

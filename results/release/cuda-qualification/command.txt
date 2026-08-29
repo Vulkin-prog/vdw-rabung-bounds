@@ -1,0 +1,1 @@
+bash tests/gpu/test_scan_sm120.sh

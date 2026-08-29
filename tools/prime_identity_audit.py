@@ -397,7 +397,15 @@ def load_campaign_manifest(
         )
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise PrimeIdentityError(f"cannot parse campaign manifest: {exc}") from exc
-    if not isinstance(campaign, dict) or campaign.get("interval") != interval:
+    # The campaign archive records its frozen chunk count in addition to the
+    # three geometric fields carried by the prime-identity manifest.  Keep the
+    # latter schema narrow, but compare the recovered campaign against its
+    # actual four-field interval contract.
+    campaign_interval = {"chunk_count": len(expected_ranges), **interval}
+    if (
+        not isinstance(campaign, dict)
+        or campaign.get("interval") != campaign_interval
+    ):
         raise PrimeIdentityError("campaign manifest interval differs from prime audit")
     chunks = campaign.get("chunks")
     if not isinstance(chunks, list) or len(chunks) != len(expected_ranges):

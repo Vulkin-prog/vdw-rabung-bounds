@@ -3,7 +3,7 @@
 
 The campaign preserved the run-valid survivor event list and aggregate counts,
 but not the complete per-prime max-run profile.  We use those data only to
-compare three frozen forecasts beyond a fixed training cut.  The comparison is
+compare three recorded forecasts beyond a fixed training cut. The comparison is
 not a theorem, a universal density law, or evidence that any Rabung search has
 been exhausted; every probabilistic statement is conditional on the stated
 count model.
@@ -36,19 +36,28 @@ The elementary Poisson-clumping reference is
   \qquad
   g_{0}(p)=e^{-\Lambda_{r,k}(p)}.
 \]
-It motivates only the qualitative scale $p\asymp k r^k$ at which direct
-Rabung survivors become rare.  We do not use the local fit to predict precise
+For an isolated prime this changes on the scale $r^k$. The additional factor
+$k$ comes only from the extreme over the available primes. Indeed, with
+$a_r=(r-1)/2$ and fixed $r$, the heuristic number of survivors beyond $x$ is
+\[
+ M(x)\approx\int_x^\infty
+ \frac{e^{-a_rt/r^k}}{\varphi(r)\log t}\,dt
+ \sim \frac{r^k}{a_r\varphi(r)\log x}e^{-a_rx/r^k}.
+\]
+Balancing $M(x)\asymp1$ gives
+$a_rx/r^k=k\log r-\log k+O_r(1)$, hence the qualitative extreme-value scale
+$x\asymp kr^k$. We do not use the local fit to predict precise
 numbers of future primes, declare a well exhausted, or assign narrow
 uncertainty intervals far outside the fitted window.
 
-The frozen program instead used
+The retained program instead used
 \[
   \widetilde\Lambda_{r,k}(p)=\frac{(r-1)p}{2r^k},
   \qquad
   \widetilde g_0(p)=e^{-\widetilde\Lambda_{r,k}(p)},
 \]
-so $\widetilde\Lambda-\Lambda=(r-1)/(2r^k)$.  We retain this convention to
-reproduce the frozen calculation while keeping $\Lambda$ as the natural
+so $\widetilde\Lambda-\Lambda=(r-1)/(2r^k)$. We retain this convention to
+reproduce the recorded calculation while keeping $\Lambda$ as the natural
 half-length reference.
 
 \begin{remark}[Domain of the empirical comparison]\label{r:domain}
@@ -68,32 +77,33 @@ freezing them prevents holdout tuning but does not remove their estimation
 uncertainty.
 \end{remark}
 
-\subsection{Prospective forecast comparison}\label{ss:eta}
+\subsection{Repository-recorded holdout comparison}\label{ss:eta}
 
 After chunk $180$, when $1727$ run-valid $(3,17)$ primes had been observed,
-the three candidates $\widetilde g_0,\widetilde g_1,\widetilde g_2$ were fixed
-under the protocol of Section~\ref{s:prereg}.
+the retained history records the three candidates
+$\widetilde g_0,\widetilde g_1,\widetilde g_2$ under the evidence boundary of
+Appendix~\ref{s:prereg}.
 
 For
 \[
  I_j=[970\,000\,000+(j-1)\,2\,000\,000,
       970\,000\,000+j\,2\,000\,000)
 \]
-and a set $A$ of chunks, the corrected mean derived from a frozen intensity is
+and a set $A$ of chunks, the corrected mean derived from a recorded intensity is
 \[
   \mu_\ell(A)=\sum_{j\in A}\int_{I_j}
-       \frac{\widetilde g_\ell(p)}{2\log p}\,dp,
+      \frac{\widetilde g_\ell(p)}{2\log p}\,dp,
   \qquad \ell\in\{0,1,2\}.
 \]
 The factor $1/(2\log p)$ is the analytic density used for primes
-$p\equiv1\pmod3$.  Table~\ref{tab:milestones} reports the prospectively
+$p\equiv1\pmod3$. Table~\ref{tab:milestones} reports the repository-recorded
 scheduled readings as disjoint increments.
 
 \input{generated_density_holdout_table}
 
 The corresponding cumulative observations are $90,110,126,132$.  They are
 four views of one trajectory, not four replications.  The fixed decaying
-forecast is close to the observed total, the frozen constant-floor candidate
+forecast is close to the observed total, the recorded constant-floor candidate
 substantially overpredicts it, and the bare reference underpredicts it.  The
 increments are non-overlapping but are conditionally independent only under
 the specified inhomogeneous-Poisson model; disjointness alone is not evidence

@@ -1,19 +1,32 @@
-\section{Prospective protocol and evidence boundary}\label{s:prereg}
+\section{Repository-recorded holdout protocol and evidence boundary}\label{s:prereg}
 
 The lower bounds and the holdout comparison have different epistemic status.
 The former follow from Rabung's theorem after machine verification of its
 hypotheses; the latter is empirical and conditional on the count model of
-Section~\ref{s:density}.  This section records what was fixed before the
-holdout was read and what the retained evidence can reproduce.
+Appendix~\ref{s:density}. This appendix states only what the retained history
+can reconstruct. It does not elevate that history into an externally
+timestamped preregistration.
 
-\paragraph{Frozen protocol.}
+\paragraph{Retained freeze record.}
 Chunks $1$--$180$ form the training window for the $(3,17)$ comparison.  At
-chunk $180$ the repository fixed the baseline count and the three numerical
-intensities of Remark~\ref{r:domain}.  A later commit, still before chunk $250$,
-fixed the reading schedule $250,300,400,515$.  No parameter was changed after
-the cut.  The word \emph{prospective} refers only to the data after chunk
-$180$; the discovery of the candidate forms and the choice of their parameters
-used the training data and are not called blind.
+the cut, retained commit \texttt{2b5f9f9} records the baseline count and the
+three numerical intensities of Remark~\ref{r:domain}. Its diff already contains
+one tracker output at chunk~181, so it does not prove that every displayed
+parameter preceded the first post-cut observation. A later retained commit,
+ordered before the chunk-250 reading in the preserved Git DAG, records the
+schedule $250,300,400,515$. No later retained revision changes the parameters.
+The Git objects and remotely visible DAG fix contents and relative order, but
+their commit dates are not an independent timestamping receipt. We therefore
+describe this as a \emph{repository-recorded holdout comparison}, not a
+\emph{preregistration}. The candidate forms and their parameters were selected using
+the training data and are not called blind.
+
+The retained training record explains $\eta$ as an empirical training-window
+level. It fixes $m=8\cdot10^{-4}$ and $\beta=1/2$ but does not recover an
+exhaustive set of candidate families, a formal objective function, or the
+number of exploratory trials used to choose those two values. Consequently,
+the appendix compares three historically fixed curves conditionally; it is
+not a confirmatory selection test over a prespecified model class.
 
 At each scheduled read the live program compared the cumulative observed
 increment with the three displayed means, identified the closest displayed
@@ -25,7 +38,7 @@ transcribed standardizations for the third candidate were erroneous; the
 counts and forecast functions were not.  The full-interval correction and all
 later sensitivity calculations are explicitly post hoc and are collected in
 Appendix~\ref{s:densitydiagnostics}; they do not retroactively become part of
-the prospective rule.  Likewise, freezing $m$ and $\beta$ prevents holdout
+the recorded rule. Likewise, retaining fixed $m$ and $\beta$ prevents holdout
 refitting but does not remove their training-window uncertainty; we make no
 family-wide or long-range extrapolative claim from this comparison.
 
@@ -40,7 +53,7 @@ Section~\ref{ss:eta}.
 The $515$ campaign chunks span eight git revisions and four scanner-source
 fingerprints.  The final fingerprint starts at chunk $79$, before the training
 cut, so the complete post-freeze comparison uses one scanner source.  This
-removes scanner-source changes as a confounder for the prospective comparison;
+removes scanner-source changes as a confounder for the recorded holdout comparison;
 descriptive whole-campaign summaries must nevertheless be accompanied by the
 full revision table and by tests across the earlier transitions.
 
@@ -61,11 +74,16 @@ predicate or prove that no run-valid prime was omitted.
 The live tracking script additionally reads
 \texttt{results/campaign/checkpoint.json}, while the campaign directory is
 excluded from ordinary source tracking.  An end-to-end archival claim therefore
-requires an immutable copy of the checkpoint, the raw per-chunk outputs, and a
-machine-readable revision map in the final data release.  Until those files are
-part of the cited release, the git history alone reproduces the narrow
-$(3,17)$ event-count analysis, not every campaign-level diagnostic.
+requires an immutable copy of the checkpoint and campaign journal, the $498$
+retained per-chunk histograms for chunks $18$--$515$, the audited aggregate
+re-scan covering chunks $1$--$17$, and a machine-readable revision map.  The
+recovered package now preserves those available artifacts.  The aggregate
+re-scan restores histogram coverage over the first $17$ chunks, but not a
+fictitious $17$-way decomposition; unavailable historical per-chunk streams
+are declared unavailable rather than reconstructed.  The git history alone
+remains sufficient only for the narrow $(3,17)$ event-count analysis; the
+archived evidence is required for campaign-level diagnostics.
 
-This boundary preserves the prospective record as executed, makes later
+This boundary preserves the reconstructed record as executed, makes later
 repairs visible as repairs, and limits the conclusions to what the released
 evidence can support.

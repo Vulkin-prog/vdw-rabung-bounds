@@ -1,0 +1,3 @@
+8d3aacfc7b2ae74b3f1e01103a6c6a407c9d3d06c072452c2230a0452e59e732  scripts/validate_cuda.sh
+05a907076ff88255ace7c46570391b766a096aea3f9edc7db6c86e3ba32cde21  src/scan_gpu.cu
+4d6805f0ab57b76e6e6544d0b12a85a00af5ded9afae50c40a93ee0fd6fa43fc  tests/gpu/test_scan_sm120.sh

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if (( $# != 2 )); then
-  printf 'usage: %s SOURCE_CHECKOUT NEW_OUTPUT_DIR\n' "$0" >&2
+if (( $# != 3 )) || [[ $1 != --public-campaign-scope ]]; then
+  printf 'usage: %s --public-campaign-scope SOURCE_CHECKOUT NEW_OUTPUT_DIR\n' "$0" >&2
   exit 2
 fi
 
@@ -13,8 +13,10 @@ for INVENTORY_COMMAND in git python3 realpath sha256sum; do
   fi
 done
 
-INVENTORY_SOURCE_REQUEST=$1
-INVENTORY_OUTPUT_REQUEST=$2
+INVENTORY_SCOPE_MODE=public_campaign_only
+INVENTORY_SCOPE_PATH=results/campaign/
+INVENTORY_SOURCE_REQUEST=$2
+INVENTORY_OUTPUT_REQUEST=$3
 
 if [[ ! -d "$INVENTORY_SOURCE_REQUEST" ]]; then
   printf 'ERROR: source checkout is not a directory: %s\n' "$INVENTORY_SOURCE_REQUEST" >&2
@@ -36,6 +38,12 @@ fi
 INVENTORY_SOURCE=$(git_read rev-parse --show-toplevel)
 INVENTORY_SOURCE=$(cd "$INVENTORY_SOURCE" && pwd -P)
 INVENTORY_OUTPUT=$(realpath -m -- "$INVENTORY_OUTPUT_REQUEST")
+INVENTORY_SCOPED_SOURCE=$INVENTORY_SOURCE/${INVENTORY_SCOPE_PATH%/}
+
+if [[ ! -d "$INVENTORY_SCOPED_SOURCE" || -L "$INVENTORY_SCOPED_SOURCE" ]]; then
+  printf 'ERROR: public campaign scope is not one real directory: %s\n' "$INVENTORY_SCOPED_SOURCE" >&2
+  exit 2
+fi
 
 case "$INVENTORY_OUTPUT/" in
   "$INVENTORY_SOURCE/"*)
@@ -69,10 +77,11 @@ INVENTORY_BRANCH=$(git_source_read symbolic-ref --quiet --short HEAD || printf '
 # optional locks and index refreshes are disabled so this script never writes
 # the source checkout.
 git_source_read status --porcelain=v2 --branch --untracked-files=all --ignored=matching -z \
+  -- "$INVENTORY_SCOPE_PATH" \
   >"$INVENTORY_OUTPUT/git-status-v2.z"
-git_source_read ls-files --others --exclude-standard -z \
+git_source_read ls-files --others --exclude-standard -z -- "$INVENTORY_SCOPE_PATH" \
   >"$INVENTORY_OUTPUT/git-untracked.z"
-git_source_read ls-files --others --ignored --exclude-standard -z \
+git_source_read ls-files --others --ignored --exclude-standard -z -- "$INVENTORY_SCOPE_PATH" \
   >"$INVENTORY_OUTPUT/git-ignored.z"
 
 export VDW_INVENTORY_SOURCE=$INVENTORY_SOURCE
@@ -82,6 +91,8 @@ export VDW_INVENTORY_HEAD=$INVENTORY_HEAD
 export VDW_INVENTORY_TREE=$INVENTORY_TREE
 export VDW_INVENTORY_COMMIT_DATE=$INVENTORY_COMMIT_DATE
 export VDW_INVENTORY_BRANCH=$INVENTORY_BRANCH
+export VDW_INVENTORY_SCOPE_MODE=$INVENTORY_SCOPE_MODE
+export VDW_INVENTORY_SCOPE_PATH=$INVENTORY_SCOPE_PATH
 
 python3 - <<'PY'
 import hashlib
@@ -94,20 +105,21 @@ from pathlib import Path
 
 source = Path(os.environ["VDW_INVENTORY_SOURCE"])
 output = Path(os.environ["VDW_INVENTORY_OUTPUT"])
+scope_mode = os.environ["VDW_INVENTORY_SCOPE_MODE"]
+scope_path = os.environ["VDW_INVENTORY_SCOPE_PATH"]
 manifest_path = output / "candidate-files.jsonl"
 temporary_path = output / "candidate-files.jsonl.tmp"
-tokens = (
-    "campaign", "checkpoint", "chunk", "claim", "cuda", "prime",
-    "rescan", "scan", "verify", "witness",
-)
+scope_parts = tuple(part for part in scope_path.split("/") if part)
 
 
-def is_candidate(relative: Path) -> bool:
-    parts = relative.parts
-    if parts and parts[0].lower() in {"results", "logs"}:
-        return True
-    lowered = relative.as_posix().lower()
-    return any(token in lowered for token in tokens)
+def scoped_root() -> Path:
+    current = source
+    for component in scope_parts:
+        current = current / component
+        metadata = os.lstat(current)
+        if stat.S_ISLNK(metadata.st_mode) or not stat.S_ISDIR(metadata.st_mode):
+            raise RuntimeError(f"public campaign scope component is not a real directory: {current}")
+    return current
 
 
 def digest_file(path: Path):
@@ -130,14 +142,16 @@ def digest_file(path: Path):
 
 
 candidates = []
-for directory, names, files in os.walk(source, topdown=True, followlinks=False):
+campaign_root = scoped_root()
+for directory, names, files in os.walk(campaign_root, topdown=True, followlinks=False):
     names[:] = sorted(name for name in names if name != ".git")
     directory_path = Path(directory)
     for name in sorted(files):
         path = directory_path / name
         relative = path.relative_to(source)
-        if is_candidate(relative):
-            candidates.append((relative, path))
+        if relative.parts[:len(scope_parts)] != scope_parts:
+            raise RuntimeError(f"candidate escaped public campaign scope: {relative.as_posix()}")
+        candidates.append((relative, path))
 
 errors = []
 records = 0
@@ -186,7 +200,11 @@ metadata = {
     "git_tree": os.environ["VDW_INVENTORY_TREE"],
     "ignored_path_count": nul_count(output / "git-ignored.z"),
     "inventory_errors": errors,
-    "schema": "vdw-pc-read-only-inventory/v1",
+    "schema": "vdw-pc-read-only-inventory/v2",
+    "scope": {
+        "mode": scope_mode,
+        "path": scope_path,
+    },
     "source_checkout_name": source.name,
     "started_utc": os.environ["VDW_INVENTORY_STARTED_UTC"],
     "untracked_path_count": nul_count(output / "git-untracked.z"),

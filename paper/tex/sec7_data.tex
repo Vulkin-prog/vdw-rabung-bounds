@@ -4,11 +4,12 @@ The publication-oriented repository is
 \href{https://github.com/Vulkin-prog/vdw-rabung-bounds}{\texttt{Vulkin-prog/vdw-rabung-bounds}}.
 It was exported under an explicit allowlist from the development repository at
 the immutable source commit
-\texttt{02796ae9e08da5b051a94b2d9001763908375f6e}.  At the time of this
+\texttt{02796ae9\allowbreak{}e08da5b0\allowbreak{}51a94b2d\allowbreak{}
+90017639\allowbreak{}08375f6e}.  At the time of this
 revision it remains a private preparation repository, not a citable release.
-Its machine-readable status ledger leaves, among others, the claim,
-campaign-recovery, ordered-prime, CUDA, external-replication, rights, and DOI
-gates open.  The
+Its machine-readable status ledger records the local claim, campaign-recovery,
+ordered-prime, and CUDA evidence as passed, while clean final CPU/document
+replays, external replication, rights, and DOI/tag freeze remain open.  The
 step-by-step operator and archival procedures are maintained in
 \texttt{REPRODUCIBILITY.md}; here we distinguish the three levels of evidence
 needed to interpret the paper.
@@ -18,10 +19,10 @@ The registry \texttt{audit/claims.json} contains exactly thirteen succinct
 Rabung certificates $(p,r,k)$.  A reader can check one triple without
 reproducing the campaign by rebuilding the stand-alone verifier, which re-establishes
 primality, the congruence and size preconditions, and conditions
-$(a)\wedge(B^*)$.  Release-level evidence additionally binds each verdict to
-the exact source, binary, command, environment, and raw output in a fail-closed
-manifest.  Those final manifests have not yet been populated: the placeholder
-under \texttt{results/claims/} is not evidence.  Four fixed triples must also be
+$(a)\wedge(B^*)$.  The current exact set of thirteen fail-closed manifests
+binds every verdict to the source, binary, command, environment, and raw
+output.  Its audit accepts all $67$ required executions, including the two
+Montgomery-free high-range witnesses.  Four fixed triples must still be
 rechecked on hardware administered by four distinct external operators.
 
 \paragraph{Derived tables and the holdout analysis.}
@@ -29,26 +30,25 @@ The separate registry \texttt{audit/baselines.json} records published,
 archived, and current strict lower bounds with source locators.
 \path{tools/close_baselines.py} closes those inputs under the registered
 recurrences, preserves a provenance path for each output, and generates the
-tables used in Section~\ref{s:bounds}.  The survivor list, preregistration
-ledger, and generated holdout audit reconstruct the disjoint counts and model
-means reported in Sections~\ref{s:prereg} and~\ref{s:density}, conditional on
+tables used in Section~\ref{s:bounds}.  The survivor list, reconstructed
+holdout ledger, and generated audit reproduce the disjoint counts and model
+means reported in Appendices~\ref{s:prereg} and~\ref{s:density}, conditional on
 the retained event list.  These artifacts reproduce the reported derivations;
 they do not by themselves re-evaluate every prime or establish complete
 campaign coverage.
 
 \paragraph{The complete campaign audit.}
 Claims about exhaustive coverage of
-$[9.7\times10^8,2\times10^9)$ require the full $515$-chunk record.  Material
-that was historically ignored must first be recovered read-only from the
-campaign PC, including checkpoint evidence for chunk~7, and mapped without
-inventing unavailable metadata.  The release must then establish byte-level
-identity between the scanner and separate CPU ordered-prime streams on every
-chunk; agreement of aggregate congruence counts is not a substitute.  The four
-historical scanner blobs and their revision map, together with the preserved
-aggregate re-scan of the first $17$ chunks, are already registered, but neither
-that re-scan nor the current summaries close the full campaign gate.  A complete
-GPU campaign rerun is required only if recovery reveals a material gap that
-cannot otherwise be closed.
+$[9.7\times10^8,2\times10^9)$ use the authenticated $515$-chunk record.  Its
+checkpoint covers every chunk; $514$ rows also have an exact journal match,
+while chunk~7 is explicitly and only recovered from the checkpoint.  The
+archive contains $498$ historical per-chunk histograms for chunks~18--515.  The
+earlier interval has no manufactured per-chunk cells: its preserved evidence is
+one aggregate re-scan of chunks~1--17.  A separate audit compared the scanner
+and CPU ordered-prime streams byte for byte on all $515$ chunks and found the
+same $48\,823\,489$ primes.  Thus the aggregate first-17 re-scan closes its
+stated count role, while ordered-prime identity supplies the stronger
+enumeration check; no complete GPU campaign rerun is required.
 
 The cyclic $W_c$ pilot and its proof artifacts are outside the scientific
 scope of this records paper and are intentionally absent from this repository.

@@ -28,7 +28,9 @@
     "xu2013": {
       "citation_key": "xu2013",
       "title": "A generalization of sets without long arithmetic progressions based on Szekeres algorithm",
-      "doi": "10.1016/j.jnt.2013.05.008"
+      "doi": "10.1016/j.jnt.2013.05.008",
+      "location": "Theorem 4",
+      "registered_preconditions": "k>=3, s,t>=2, 5<=n<WR(s,k), least_prime_factor(n)>k"
     },
     "monroe_phase2_archive": {
       "citation_key": "MonroePhase2Archive",

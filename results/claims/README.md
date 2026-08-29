@@ -1,11 +1,11 @@
-# Claim evidence — deferred, with a fail-closed capture protocol
+# Claim evidence — validated fail-closed capture
 
-This directory is a layout placeholder, not claim evidence. The final package
-must contain exactly one `results/claims/<claim-id>/manifest.json` plus its
-referenced raw streams for each ID in `audit/claims.json`. Until
-`tools/claim_audit.py validate-set results/claims --repository-root .` accepts
-the complete set and the corresponding status gate is marked `passed`, no
-large certificate should be described as reproduced by this repository.
+This directory contains exactly one `results/claims/<claim-id>/manifest.json`
+plus its referenced raw streams for each ID in `audit/claims.json`. The
+fail-closed set audit accepts all 13 manifests and all 67 required executions,
+including the two Montgomery-free high-range witnesses. This local result does
+not replace the four independently administered rechecks required before
+release.
 
 ## Machine-independent plan
 
@@ -23,7 +23,7 @@ two independent process invocations of `scan_gpu --verify1`, two of
 marked in `audit/claims.json` each add one Montgomery-free `highp_witness` run
 with the frozen sample count 20,000.
 
-## Capture on the qualified PC
+## Capture or replay on the qualified PC
 
 Commit the release-candidate sources first and start from a clean worktree.
 The simplest path builds all four programs using fixed compiler arguments:

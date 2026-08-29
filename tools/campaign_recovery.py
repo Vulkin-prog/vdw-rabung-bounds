@@ -4,7 +4,9 @@
 The pipeline has five deliberately separate stages:
 
 ``validate-inventory``
-    Authenticate and parse the read-only output of ``scripts/inventory_pc.sh``.
+    Authenticate and parse the explicitly public-campaign-scoped, read-only
+    output of ``scripts/inventory_pc.sh``. Any path outside
+    ``results/campaign/`` is rejected.
 ``propose-selection``
     Produce a complete review ledger.  Nothing is selected automatically.
 ``import``
@@ -45,7 +47,11 @@ from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
 
-INVENTORY_SCHEMA = "vdw-pc-read-only-inventory/v1"
+INVENTORY_SCHEMA = "vdw-pc-read-only-inventory/v2"
+INVENTORY_SCOPE = {
+    "mode": "public_campaign_only",
+    "path": "results/campaign/",
+}
 SELECTION_SCHEMA = "vdw-campaign-recovery-selection/v1"
 RECEIPT_SCHEMA = "vdw-campaign-recovery-import/v1"
 CAMPAIGN_SCHEMA = "vdw-campaign-archive/v1"
@@ -76,6 +82,7 @@ INVENTORY_METADATA_KEYS = {
     "ignored_path_count",
     "inventory_errors",
     "schema",
+    "scope",
     "source_checkout_name",
     "started_utc",
     "untracked_path_count",
@@ -504,7 +511,7 @@ def parse_checksum_bytes(raw: bytes) -> dict[str, str]:
     return rows
 
 
-def _validate_nul_bytes(raw: bytes, expected_count: int, label: str) -> None:
+def _validate_nul_bytes(raw: bytes, expected_count: int, label: str) -> list[bytes]:
     if raw and not raw.endswith(b"\0"):
         fail(f"{label} is not a canonical NUL-terminated Git path stream")
     if raw.count(b"\0") != expected_count:
@@ -514,6 +521,56 @@ def _validate_nul_bytes(raw: bytes, expected_count: int, label: str) -> None:
         fail(f"{label} contains an empty Git path")
     if len(entries) != len(set(entries)):
         fail(f"{label} contains duplicate Git paths")
+    return entries
+
+
+def _require_scoped_git_path(raw: bytes, label: str) -> None:
+    try:
+        value = raw.decode("utf-8", errors="strict")
+    except UnicodeDecodeError:
+        fail(f"{label} is not a canonical UTF-8 repository path")
+    if value == INVENTORY_SCOPE["path"]:
+        return
+    canonical_under(value, INVENTORY_SCOPE["path"], label)
+
+
+def _validate_scoped_status(raw: bytes) -> None:
+    if raw and not raw.endswith(b"\0"):
+        fail("Git status inventory is not a canonical NUL-terminated porcelain-v2 stream")
+    tokens = raw.split(b"\0")[:-1] if raw else []
+    if any(not token for token in tokens):
+        fail("Git status inventory contains an empty porcelain-v2 token")
+    expect_original = False
+    for index, token in enumerate(tokens):
+        if expect_original:
+            _require_scoped_git_path(token, f"Git status original path token {index}")
+            expect_original = False
+            continue
+        if token.startswith(b"# "):
+            continue
+        if token.startswith((b"? ", b"! ")):
+            path = token[2:]
+        elif token.startswith(b"1 "):
+            fields = token.split(b" ", 8)
+            if len(fields) != 9:
+                fail(f"Git status ordinary record {index} is malformed")
+            path = fields[8]
+        elif token.startswith(b"2 "):
+            fields = token.split(b" ", 9)
+            if len(fields) != 10:
+                fail(f"Git status rename record {index} is malformed")
+            path = fields[9]
+            expect_original = True
+        elif token.startswith(b"u "):
+            fields = token.split(b" ", 10)
+            if len(fields) != 11:
+                fail(f"Git status unmerged record {index} is malformed")
+            path = fields[10]
+        else:
+            fail(f"Git status record {index} has an unsupported porcelain-v2 type")
+        _require_scoped_git_path(path, f"Git status path token {index}")
+    if expect_original:
+        fail("Git status rename record lacks its original path token")
 
 
 def validate_inventory(directory: Path) -> dict:
@@ -537,6 +594,8 @@ def validate_inventory(directory: Path) -> dict:
     exact_keys(metadata, INVENTORY_METADATA_KEYS, "inventory metadata")
     if metadata["schema"] != INVENTORY_SCHEMA:
         fail(f"inventory schema must be {INVENTORY_SCHEMA}")
+    if metadata["scope"] != INVENTORY_SCOPE:
+        fail(f"inventory scope must be exactly {INVENTORY_SCOPE}")
     if not SHA1_RE.fullmatch(str(metadata["git_commit"])):
         fail("inventory git_commit must be a full lowercase SHA-1")
     if not SHA1_RE.fullmatch(str(metadata["git_tree"])):
@@ -570,6 +629,8 @@ def validate_inventory(directory: Path) -> dict:
             fail(f"candidate row {line_number} has unsupported type {kind!r}")
         exact_keys(record, expected, f"candidate row {line_number}")
         path = canonical_relative_path(record["path"], f"candidate row {line_number} path")
+        if not path.startswith(INVENTORY_SCOPE["path"]):
+            fail(f"candidate {path} is outside the authenticated public campaign scope")
         if previous is not None and path <= previous:
             fail("candidate inventory paths are duplicated or not strictly sorted")
         previous = path
@@ -587,17 +648,19 @@ def validate_inventory(directory: Path) -> dict:
         records.append(record)
     if len(records) != metadata["candidate_count"]:
         fail(f"candidate count differs: {len(records)} != {metadata['candidate_count']}")
-    _validate_nul_bytes(
+    ignored_entries = _validate_nul_bytes(
         snapshots["git-ignored.z"], metadata["ignored_path_count"], "ignored path inventory"
     )
-    _validate_nul_bytes(
+    untracked_entries = _validate_nul_bytes(
         snapshots["git-untracked.z"], metadata["untracked_path_count"], "untracked path inventory"
     )
-    status_raw = snapshots["git-status-v2.z"]
-    if status_raw and not status_raw.endswith(b"\0"):
-        fail("Git status inventory is not a canonical NUL-terminated porcelain-v2 stream")
-    if status_raw and any(not token for token in status_raw.split(b"\0")[:-1]):
-        fail("Git status inventory contains an empty porcelain-v2 token")
+    for label, entries in (
+        ("ignored path inventory", ignored_entries),
+        ("untracked path inventory", untracked_entries),
+    ):
+        for index, entry in enumerate(entries):
+            _require_scoped_git_path(entry, f"{label} entry {index}")
+    _validate_scoped_status(snapshots["git-status-v2.z"])
 
     commitment = {
         "candidate_files_sha256": checksums["candidate-files.jsonl"],

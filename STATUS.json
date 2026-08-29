@@ -42,7 +42,7 @@
         "paper/references.bib",
         "publication/bibliography-audit.json"
       ],
-      "note": "The thirteen cited entries were checked on 2026-08-28; the version-sensitive Fox--Hunter preprint is pinned to v1 and must be rechecked before the release freeze."
+      "note": "The fourteen cited entries were checked on 2026-08-28; the version-sensitive Fox--Hunter and Campos--Fox--Schildkraut preprints are pinned to v1 and must be rechecked before the release freeze."
     },
     {
       "id": "paper-clean-build",
@@ -55,39 +55,41 @@
     },
     {
       "id": "claim-manifests-13",
-      "status": "blocked_pc",
+      "status": "passed",
       "evidence": [
-        "results/claims"
+        "results/claims/validated-claims.json"
       ],
       "expected_count": 13,
       "minimum_recorded_runs": 67,
-      "note": "Requires two GPU verify1 runs, two CPU-criterion runs, and one stand-alone separate-source verifier run per claim, plus two high-range witnesses."
+      "note": "Thirteen canonical manifests record exactly 67 accepted executions: two GPU verify1 runs, two CPU-criterion runs, and one stand-alone separate-source verifier run per claim, plus two high-range witnesses. The manifests bind the clean qualification-source commit and exact source hashes."
     },
     {
       "id": "campaign-archive-515",
-      "status": "blocked_pc",
+      "status": "passed",
       "evidence": [
-        "results/campaign"
+        "results/campaign/campaign_manifest.json",
+        "results/campaign/import-receipt.json",
+        "results/campaign/recovery-selection.json"
       ],
       "expected_chunk_count": 515,
-      "note": "Recover the ignored historical campaign material read-only, including checkpoint evidence for chunk 7."
+      "note": "The authenticated archive contains 515 rows: 514 checkpoint-and-journal rows and checkpoint-only recovery for chunk 7. It preserves 498 per-chunk histograms for chunks 18--515 and the aggregate re-scan for chunks 1--17 without inventing unavailable per-chunk streams."
     },
     {
       "id": "ordered-prime-identity-515",
-      "status": "blocked_pc",
+      "status": "passed",
       "evidence": [
         "results/campaign/prime_identity_manifest.json"
       ],
       "expected_chunk_count": 515,
-      "note": "Count agreement is insufficient; ordered prime streams must agree for every chunk."
+      "note": "The scanner and independent CPU sieve produced byte-identical ordered streams on all 515 chunks: 48,823,489 primes and 535,628,154 bytes."
     },
     {
       "id": "cuda-release-qualification",
-      "status": "blocked_pc",
+      "status": "passed",
       "evidence": [
-        "results/release/cuda-qualification"
+        "results/release/cuda-qualification/manifest.json"
       ],
-      "note": "Clean CUDA build, GPU regression, compiler/driver/device metadata, source and binary hashes are required."
+      "note": "The SM120 regression passed on the clean qualification-source commit; the manifest binds its commit and tree, source and binary hashes, CUDA/compiler/driver/GPU identities, command, and raw streams."
     },
     {
       "id": "external-replication-4",

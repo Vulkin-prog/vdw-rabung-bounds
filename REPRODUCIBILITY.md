@@ -21,29 +21,36 @@ campaign nor claims to reproduce the 13 large certificates.
 A fresh full criterion/oracle sweep through `p < 10000` is archived under
 `results/cpu/`.  Its 20,170 cases and 190 stronger finite checks have zero
 disagreements, but its record explicitly remains preliminary because the
-worktree was not the final clean release candidate. A replay from the exact
-final-candidate commit, with durable raw outputs and environment metadata, is
-therefore still required before that candidate is tagged and published.
+worktree was not the final clean release candidate. A clean CPU replay and a
+clean deterministic document replay from the exact final candidate, with
+durable outputs and environment metadata, are therefore still required before
+that candidate is tagged and published.
 
-## 2. Read-only recovery on the campaign PC
+## 2. Completed read-only recovery on the campaign PC
 
-Do not rerun the 515-chunk search first. Preserve the historical state before
-changing or cleaning the source checkout. From a separate output directory:
+The campaign state was inventoried read-only before any rerun or cleanup.  The
+replayable command, from a separate output directory, is:
 
 ```bash
-./scripts/inventory_pc.sh /absolute/path/to/vdw-gpu-starter /absolute/path/to/inventory-output
+./scripts/inventory_pc.sh --public-campaign-scope \
+  /absolute/path/to/vdw-gpu-starter /absolute/path/to/inventory-output
 ```
 
 The script only reads the source checkout. It records the Git state, ignored
-and untracked paths, candidate campaign/claim files, sizes, mtimes, and SHA-256
-digests. It does not copy, delete, compile, or execute campaign software. Review
-that inventory before selecting files for import.
+and untracked paths, files, sizes, mtimes, and SHA-256 digests strictly below
+`results/campaign/`.  The scope is authenticated in the v2 inventory metadata,
+and the validator rejects any candidate or Git-path record outside that prefix.
+The explicit option is mandatory so a future public recovery cannot silently
+inventory filenames and hashes from unrelated private work. The script does not
+copy, delete, compile, or execute campaign software. Review that inventory before
+selecting files for import.
 
-The recovery gate requires the complete 515-row checkpoint/campaign evidence,
-raw or derived per-chunk artifacts, the missing journal case for chunk 7
-resolved from checkpoint evidence, historical transition outputs, and the
-sampled CPU-check evidence described by the manuscript. Every imported object
-must be hashed and mapped; do not reconstruct unavailable historical metadata.
+The authenticated import contains a complete 515-row manifest: 514 chunks have
+matching journal and checkpoint records, while chunk 7 is explicitly
+checkpoint-only.  It also preserves 498 per-chunk histograms for chunks
+18--515 and the one aggregate re-scan for chunks 1--17; it does not reconstruct
+the unavailable first-17 per-chunk histogram cells. Every imported object is
+hashed and mapped in the recovery ledger.
 
 ## 3. Targeted release-candidate calculations
 
@@ -61,25 +68,25 @@ the CUDA/compiler/driver/GPU identities, the command, logs, exit status, and
 verdict. A hardware preflight failure creates no evidence directory; a test
 failure may preserve diagnostic logs but never creates `manifest.json`.
 
-Then complete the remaining release-candidate evidence:
+The targeted PC evidence package then records:
 
-1. build the CPU executables from that same exact commit and preserve their
+1. CPU executables built from that same exact commit, with their
    command, environment, source, and binary identities;
-2. create exactly one directory per canonical claim under
+2. exactly one directory per canonical claim under
    `results/claims/<claim-id>/`;
-3. preserve two `scan_gpu --verify1` runs, two `rabung_criterion -q` runs, and
+3. two `scan_gpu --verify1` runs, two `rabung_criterion -q` runs, and
    one `verify_claim` run for each of 13 claims;
-4. additionally preserve a Montgomery-free `highp_witness` run for each of the
+4. a Montgomery-free `highp_witness` run for each of the
    two claims that requires one;
-5. validate the resulting 67-or-more recorded executions with
-   `tools/claim_audit.py validate-set results/claims`;
-6. compare the ordered scanner and independent CPU prime streams on all 515
-   campaign chunks with `tools/prime_identity_audit.py`.
+5. a fail-closed validation of exactly 13 manifests and 67 required executions;
+6. byte-for-byte agreement of the ordered scanner and independent CPU prime
+   streams on all 515 campaign chunks, totaling 48,823,489 primes.
 
-The exact Git commit must exist before these runs because it is part of every
-manifest. A full campaign rerun is not a default requirement; it becomes
-necessary only if the historical recovery or ordered-prime audit reveals a
-material gap that cannot otherwise be closed.
+The CUDA qualification is `PASS` for the complete SM120 suite.  The exact Git
+commit existed before these runs because it is part of every manifest.  The
+authenticated recovery and ordered-prime audit revealed no material gap, so a
+full campaign rerun is not required.  These completed PC calculations do not
+replace the still-open clean final CPU/PDF replays or external replication.
 
 ## 4. Independent replication and archival freeze
 

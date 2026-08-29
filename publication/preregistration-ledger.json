@@ -1,7 +1,7 @@
 {
-  "schema": "vdw-preregistration-ledger/v1",
+  "schema": "vdw-reconstructed-holdout-ledger/v1",
   "source_repository": "Vulkin-prog/vdw-gpu-starter",
-  "scope": "Prospective density comparison for run-valid (3,17) primes after campaign chunk 180",
+  "scope": "Repository-recorded held-out density comparison for run-valid (3,17) primes after campaign chunk 180",
   "training_freeze": {
     "commit": "2b5f9f94c94bff203022b3b43aa7b4206def1441",
     "last_training_chunk": 180,
@@ -36,6 +36,9 @@
   ],
   "public_derivation": "audit/generated/density_holdout_audit.json",
   "limitations": [
+    "The training-freeze commit already contains one tracker output at chunk 181; it documents the model at the cut but does not prove that all parameters preceded the first post-cut observation.",
+    "The retained Git DAG and remote commit records establish a relative documentary order, not a cryptographically independent wall-clock timestamp.",
+    "The retained record fixes eta from the training window and fixes the displayed m and beta values, but does not reconstruct an exhaustive candidate family, objective function, or number of exploratory trials for m and beta.",
     "The four cumulative readings are one trajectory, not four replications.",
     "Corrected integration limits and all dispersion diagnostics are retrospective.",
     "The ledger does not replace the missing campaign checkpoint and raw per-chunk archive."
