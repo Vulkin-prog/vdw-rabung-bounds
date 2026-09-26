@@ -36,8 +36,12 @@ native CPU smoke checks, the separate arithmetic check and a byte-identical
 PDF rebuild. Commands, environment, exit codes and raw logs are preserved in
 `results/publication-finalization/2026-09-26-audit/`. The earlier checks remain
 historical records. The Zenodo revision adds the actual DOI and release fields, and validates the
-combined preprint record with its distinct component licences. Its light-check
-evidence is recorded separately during the freeze.
+combined preprint record with its distinct component licences. Clean source candidate `e0c7a9c498ffe18ad2552c4479b602f4084948a9` passes 231 Python tests,
+native smoke tests, the separate arithmetic check and byte-identical full and
+standalone PDF builds. Its logs are in
+`results/publication-finalization/2026-09-26-zenodo/`.
+The ten gates cover the local frozen payload; they do not attest an
+already-public Zenodo record or a completed remote download comparison.
 
 ## What is already here
 

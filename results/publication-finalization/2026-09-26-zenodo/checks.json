@@ -1,0 +1,140 @@
+{
+  "schema": "vdw-finalization-checks/v1",
+  "date_utc": "2026-09-26T17:53:57.469908+00:00",
+  "tested_commit": "e0c7a9c498ffe18ad2552c4479b602f4084948a9",
+  "tested_tree": "f2187b0853d2b2bb09249f4060cbcca48eeb01c4",
+  "git_status_before": "",
+  "execution_environment": "ChatGPT managed Linux workspace; no execution on the author PC",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "g++": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "pdflatex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)"
+  },
+  "heavy_computations_rerun": false,
+  "independent_external_replication": false,
+  "checks": [
+    {
+      "name": "cpu-checks",
+      "command": [
+        "bash",
+        "scripts/run_cpu_checks.sh"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 18.645,
+      "log": "cpu-checks.log"
+    },
+    {
+      "name": "paper-build",
+      "command": [
+        "bash",
+        "scripts/build_paper.sh",
+        "/workspace/scratch/2fa008acabe5/validation/zenodo-candidate/rebuild.pdf"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 5.079,
+      "log": "paper-build.log"
+    },
+    {
+      "name": "editorial-consistency",
+      "command": [
+        "python3",
+        "publication/editorial-review/check_consistency.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.063,
+      "log": "editorial-consistency.log"
+    },
+    {
+      "name": "git-fsck",
+      "command": [
+        "git",
+        "fsck",
+        "--full",
+        "--no-dangling"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.215,
+      "log": "git-fsck.log"
+    },
+    {
+      "name": "standalone-latex",
+      "command": [
+        "bash",
+        "/workspace/scratch/2fa008acabe5/output/latex_sources/build.sh",
+        "/workspace/scratch/2fa008acabe5/validation/zenodo-candidate/standalone.pdf"
+      ],
+      "exit_code": 0,
+      "log": "standalone-latex.log",
+      "byte_identical_to_frozen_pdf": true
+    }
+  ],
+  "git_status_after": "",
+  "pdf": {
+    "path": "paper/main.pdf",
+    "pages": 27,
+    "sha256": "d9a679d7873966126982ac10e3b8ae770ab3253d9ff1e64470513025c29e4251",
+    "size": 640520,
+    "visual_review": "Unchanged pages retain the prior visual review; all pages affected by DOI integration were rendered and inspected."
+  },
+  "python_tests_passed": 231,
+  "scope_note": "This record tests the exact source candidate. The next evidence-only commit archives these logs and updates documentation, gate status and inventory; its structural contract is checked separately. Actual DOI/version metadata are now present. The next commit adds evidence and the successful local freeze; remote deposition remains an author action.",
+  "files": [
+    {
+      "path": "cpu-checks.log",
+      "size": 37637,
+      "sha256": "fbda6d8a41e204848345207d4ee36a06d887e8d6fb2d39a1dcfa1bfc68e0ecd3"
+    },
+    {
+      "path": "editorial-consistency.log",
+      "size": 2476,
+      "sha256": "1f987cb071bd808f38a55d67b0ffefe9c7ca06fadc397a9752c070258b3c9749"
+    },
+    {
+      "path": "git-fsck.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "initial-build.log",
+      "size": 283,
+      "sha256": "823e3d71fe3f993f759302eaef3aae6cef82507b998736eca8486e384abd9fc1"
+    },
+    {
+      "path": "native-logs/high-range-witness-smoke.log",
+      "size": 588,
+      "sha256": "abd92da4586bccb8dfd2dffd823230c1d8ba8ca5dd9b911e9d2a3f314498960f"
+    },
+    {
+      "path": "native-logs/ordered-reduction.log",
+      "size": 133,
+      "sha256": "ef5af9f0dbe5f3626d6d9a3a37a1b1d9e05dfdb731a3156173cd8fb0b8fbc100"
+    },
+    {
+      "path": "native-logs/rabung-criterion.log",
+      "size": 870,
+      "sha256": "272e40b370154b10a258969b336dc9855d428053291b42924a5b6298dddc697d"
+    },
+    {
+      "path": "native-logs/reference-oracle.log",
+      "size": 2170,
+      "sha256": "6301df639f1229dd103d9e82edbefd2c90a624860c42a37822a862afd30fed88"
+    },
+    {
+      "path": "native-logs/separate-source-verifier.log",
+      "size": 952,
+      "sha256": "d74824ffbd8cf96727014d90700424cb285fe213df1f14981ac086cc98091612"
+    },
+    {
+      "path": "paper-build.log",
+      "size": 283,
+      "sha256": "3719aa0791321c777b57f8732ce977c7f6eaecb58dbc4165e62be2c1fe73d202"
+    },
+    {
+      "path": "standalone-latex.log",
+      "size": 141,
+      "sha256": "5e05b1fa6dd776c2fa7d52ccbee717bd3c7843e2d5efb986738b83e857179044"
+    }
+  ],
+  "auxiliary_log_note": "initial-build.log records the pre-commit document build; the clean-candidate checks listed above have their own logs."
+}

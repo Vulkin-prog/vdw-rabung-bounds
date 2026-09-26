@@ -52,8 +52,12 @@ The small separate checker is
 No large certificate or GPU campaign is needed for these checks. The next Zenodo revision supplies DOI
 `10.5281/zenodo.22980965`, version `1.0.0`, and release date `2026-09-26`.
 It adds one regression test for the combined preprint/software deposit; the
-light checks are replayed on its exact committed source candidate during
-the archive freeze. No historical large calculation is re-executed.
+light checks passed on clean source commit `e0c7a9c498ffe18ad2552c4479b602f4084948a9`: 231 Python tests, native smoke checks,
+the separate arithmetic review, Git object checks, and identical full/standalone
+PDF builds. Raw evidence is in
+`results/publication-finalization/2026-09-26-zenodo/`.
+The following freeze commit adds only these logs, status/documentation, the
+inventory and MANIFEST.sha256. No historical large calculation is re-executed.
 
 ## 2. Completed read-only recovery on the campaign PC
 

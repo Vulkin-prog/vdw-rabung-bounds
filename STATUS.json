@@ -1,8 +1,8 @@
 {
   "schema": "vdw-publication-status/v1",
   "artifact": "vdw-rabung-bounds",
-  "repository_state": "private_preparation",
-  "citable_release": false,
+  "repository_state": "archived_release",
+  "citable_release": true,
   "source": {
     "repository": "Vulkin-prog/vdw-gpu-starter",
     "commit": "02796ae9e08da5b051a94b2d9001763908375f6e",
@@ -30,12 +30,12 @@
       "id": "cpu-ci-clean-tag",
       "status": "passed",
       "evidence": [
-        "results/publication-finalization/2026-09-26-audit/checks.json",
-        "results/publication-finalization/2026-09-26-audit/cpu-checks.log",
-        "results/publication-finalization/2026-09-26-audit/editorial-consistency.log",
+        "results/publication-finalization/2026-09-26-zenodo/checks.json",
+        "results/publication-finalization/2026-09-26-zenodo/cpu-checks.log",
+        "results/publication-finalization/2026-09-26-zenodo/editorial-consistency.log",
         "scripts/run_cpu_checks.sh"
       ],
-      "note": "All 230 Python tests, native smoke checks and the separate arithmetic review passed on clean source candidate 84ee9d583f3c1a27e922a44b197779bc567cfd88 on 26 September 2026. No heavy calculations or author-PC execution. The following evidence-only commit records these logs, updates documentation and inventory, and receives its own structural contract check."
+      "note": "All 231 Python tests, native CPU smoke checks, the separate arithmetic review and Git object checks passed on clean source candidate e0c7a9c498ffe18ad2552c4479b602f4084948a9. No heavy calculation and no author-PC execution. The following freeze commit adds these logs, status/documentation, the inventory and MANIFEST.sha256; its release contract is checked separately."
     },
     {
       "id": "bibliography-primary-source-audit",
@@ -50,11 +50,12 @@
       "id": "paper-clean-build",
       "status": "passed",
       "evidence": [
-        "results/publication-finalization/2026-09-26-audit/checks.json",
-        "results/publication-finalization/2026-09-26-audit/paper-build.log",
+        "results/publication-finalization/2026-09-26-zenodo/checks.json",
+        "results/publication-finalization/2026-09-26-zenodo/paper-build.log",
+        "results/publication-finalization/2026-09-26-zenodo/standalone-latex.log",
         "paper/main.pdf"
       ],
-      "note": "The 27-page A4 exposition-audit revision on clean source candidate 84ee9d583f3c1a27e922a44b197779bc567cfd88 rebuilds byte-identically: SHA-256 b5499f954245b52bff215ab24a6d019a5900d4bdaea9ae896fa67f5dc1e314ff. All pages visually reviewed. A light rebuild remains part of the actual DOI/version archive freeze."
+      "note": "The 27-page A4 PDF with DOI 10.5281/zenodo.22980965 rebuilds byte-identically from the clean source candidate and the standalone LaTeX bundle. SHA-256 d9a679d7873966126982ac10e3b8ae770ab3253d9ff1e64470513025c29e4251. All affected pages were rendered and visually checked."
     },
     {
       "id": "claim-manifests-13",
@@ -109,15 +110,16 @@
     },
     {
       "id": "doi-tag-archive-freeze",
-      "status": "open",
+      "status": "passed",
       "evidence": [
         "CITATION.cff",
         "release/zenodo-metadata.json",
         "release/SOURCE_DATE_EPOCH",
         "paper/main.pdf",
+        "MANIFEST.sha256",
         "tools/freeze_release.py"
       ],
-      "note": "At the final transition, after the other gates pass and the DOI metadata is final, stage the release-form STATUS (archived_release, citable_release true, all gates passed). For this gate, passed means that the metadata and staged payload are ready for the inner-freeze transaction; it does not attest a published tag, an uploaded archive, or an out-of-repository deposit receipt. Run freeze_release.py create; only if it succeeds, stage MANIFEST.sha256, commit, and create the local tag. A create failure must not be committed or published. The post-tag deposit comparison and receipt remain outside the repository and are not embedded evidence for this gate."
+      "note": "The author reserved DOI 10.5281/zenodo.22980965 for the single preprint/supporting-files record, version 1.0.0 dated 2026-09-26. Passed has only the documented transaction meaning: final metadata and staged payload ready for freeze_release.py create. This state is committed only after successful manifest creation, then checked against the local tag. It does not attest an uploaded file, a public tag, a public DOI record, or a remote deposit receipt. Those external actions remain separate."
     }
   ]
 }
