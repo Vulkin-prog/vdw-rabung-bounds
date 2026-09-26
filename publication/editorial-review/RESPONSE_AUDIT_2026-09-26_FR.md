@@ -48,8 +48,12 @@ d’exécution de certificats, de campagne et de qualification CUDA sont conserv
 sans modification. Les changements du générateur concernent le contrat des
 entrées et son explication, pas les valeurs numériques des récurrences.
 La sortie détaillée est `publication/editorial-review/consistency.json`.
-Les contrôles CPU et PDF sur le prochain candidat propre seront consignés dans
-`results/publication-finalization/2026-09-26-audit/` avant la livraison finale.
+Le candidat propre `84ee9d583f3c1a27e922a44b197779bc567cfd88` a passé les 230 tests Python,
+les essais CPU natifs, le contrôle arithmétique séparé, une reconstruction du
+PDF identique et la vérification des objets Git. Les commandes, sorties et
+identités sont conservées dans `results/publication-finalization/2026-09-26-audit/`.
+Le commit suivant n’ajoute que ces preuves, les statuts et la documentation
+associée ; son contrat structurel est contrôlé séparément.
 
 La mise en page de cette révision a été inspectée sur les 27 pages A4. Le PDF
 est obtenu par deux constructions propres donnant les mêmes octets :

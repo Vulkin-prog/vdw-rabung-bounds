@@ -27,8 +27,12 @@ formulation of the Xu input, two regression tests, a revised abstract and
 worked examples. The current manuscript has 27 A4 pages. Numerical inputs,
 all closure nodes and the five improvements are unchanged. See
 `publication/editorial-review/RESPONSE_AUDIT_2026-09-26_FR.md`.
-The earlier source checks remain historical records; fresh light CPU/PDF
-checks of this revised candidate will be recorded before delivery.
+Clean source candidate `84ee9d583f3c1a27e922a44b197779bc567cfd88` passes all 230 Python tests,
+native CPU smoke checks, the separate arithmetic check and a byte-identical
+PDF rebuild. Commands, environment, exit codes and raw logs are preserved in
+`results/publication-finalization/2026-09-26-audit/`. The earlier checks remain
+historical records. Nine of the ten release gates are passed; only the public
+DOI/tag/archive freeze remains open.
 
 ## What is already here
 

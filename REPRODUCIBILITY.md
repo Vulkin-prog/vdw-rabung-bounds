@@ -39,8 +39,14 @@ The exposition-audit revision restores that candidate, corrects the exact
 cyclic-witness convention for Xu, and clarifies the examples and narrative.
 Its 27-page A4 PDF has SHA-256
 `b5499f954245b52bff215ab24a6d019a5900d4bdaea9ae896fa67f5dc1e314ff`.
-Fresh light checks on a clean commit, with commands, environment and raw logs,
-will be recorded under `results/publication-finalization/2026-09-26-audit/`.
+Fresh light checks passed on clean commit `84ee9d583f3c1a27e922a44b197779bc567cfd88`:
+230 Python tests, native CPU smoke checks, the separate arithmetic review,
+byte-identical PDF reconstruction and Git object verification. Commands,
+environment, exit codes and raw logs are recorded under
+`results/publication-finalization/2026-09-26-audit/`. The worktree was clean
+before and after. The following evidence-only commit records these outputs
+and updates documentation, gate status and inventory; its structural
+publication contract is checked separately.
 The small separate checker is
 `python3 publication/editorial-review/check_consistency.py`.
 No large certificate or GPU campaign is needed for these checks. After

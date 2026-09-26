@@ -1,0 +1,43 @@
+=== vdw_reference : self-tests ===
+
+[5.1] Valeurs exactes par backtracking exhaustif
+  [ok] W(2,3) = 9 (attendu 9)
+  [ok] W(3,3) = 27 (attendu 27)
+  [ok] W(2,4) = 35 (attendu 35)
+
+[5.2] Comparaison croisee check_naive / check_bitset (400 colorations aleatoires)
+  [ok] accord naive/bitset : 400/400
+
+[5.3] Test de mutation : implantation d'une AP monochrome
+  [ok] coloration valide de [1,34] pour (r=2,k=4) trouvee
+  [ok] la coloration passe les deux oracles
+  [ok] naive rejette apres mutation
+  [ok] bitset rejette apres mutation
+
+[5.4] Known-answer Rabung + experience Q0 (forme exacte du +1)
+  p=37, (r=4,k=3) -> periodique/append : meilleure longueur 74 [periodique L=(k-1)p, sp=0]
+  [ok] forme periodique pure = (k-1)p = 74 pour p=37 (base saine)
+  p=11, (r=2,k=4) -> periodique/append : meilleure longueur 33 [periodique L=(k-1)p, sp=0]
+  [ok] forme periodique pure = (k-1)p = 33 pour p=11 (base saine)
+  Q0 p=37 (r=4,k=3), L=75 : 0 retouche(s) mono-position valides
+  Q0 p=11 (r=2,k=4), L=34 : 0 retouche(s) mono-position valides
+  -> Retouche mono-position : NON atteignable.
+  Q0/C p=37 (r=4,k=3), L=75, 3 jokers : meme-couleur=non, libres=60/64 — ex. [1,0,0]
+  Q0/C p=11 (r=2,k=4), L=34, 4 jokers : meme-couleur=non, libres=14/16 — ex. [1,0,0,0]
+  [ok] variante C atteint L=(k-1)p+1=75 pour p=37 (hypothese structurelle Q0)
+  [ok] variante C atteint L=(k-1)p+1=34 pour p=11 (hypothese structurelle Q0)
+     -> A confirmer en T1 contre Rabung (1979) / Rabung-Lotts (2012) ; le
+        certificat final est de toute facon prouve par l'oracle, pas par la theorie.
+
+[5.5] Mini-scan (r=2,k=5), p < 200 : coherence avec W(2,5)=178
+  meilleur : L=148 via p=37 [periodique L=(k-1)p, sp=0]
+  [ok] au moins un premier valide trouve
+  [ok] aucune longueur ne depasse W(2,5)-1=177 (coherence)
+
+[5.6] Taux de validite des premiers (r=2) : illustration de Q1
+  k=4 : 4/108 premiers valides (p<600), meilleur L=33 (p=11)
+  k=5 : 9/108 premiers valides (p<600), meilleur L=148 (p=37)
+  k=6 : 17/108 premiers valides (p<600), meilleur L=695 (p=139)
+  (attendu : effondrement du taux quand p >> r^(k-1) — a quantifier en T1)
+
+=== TOUS LES TESTS PASSENT : 0 echec(s) ===

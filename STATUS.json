@@ -28,13 +28,14 @@
     },
     {
       "id": "cpu-ci-clean-tag",
-      "status": "open",
+      "status": "passed",
       "evidence": [
-        "results/publication-finalization/2026-09-26/checks.json",
-        "results/publication-finalization/2026-09-26/cpu-checks.log",
+        "results/publication-finalization/2026-09-26-audit/checks.json",
+        "results/publication-finalization/2026-09-26-audit/cpu-checks.log",
+        "results/publication-finalization/2026-09-26-audit/editorial-consistency.log",
         "scripts/run_cpu_checks.sh"
       ],
-      "note": "The exact-modulus and exposition revision requires a fresh clean light replay. Earlier evidence is retained as historical; it is not relabelled for this candidate."
+      "note": "All 230 Python tests, native smoke checks and the separate arithmetic review passed on clean source candidate 84ee9d583f3c1a27e922a44b197779bc567cfd88 on 26 September 2026. No heavy calculations or author-PC execution. The following evidence-only commit records these logs, updates documentation and inventory, and receives its own structural contract check."
     },
     {
       "id": "bibliography-primary-source-audit",
@@ -47,13 +48,13 @@
     },
     {
       "id": "paper-clean-build",
-      "status": "open",
+      "status": "passed",
       "evidence": [
-        "results/publication-finalization/2026-09-26/checks.json",
-        "results/publication-finalization/2026-09-26/paper-build.log",
+        "results/publication-finalization/2026-09-26-audit/checks.json",
+        "results/publication-finalization/2026-09-26-audit/paper-build.log",
         "paper/main.pdf"
       ],
-      "note": "The exact-modulus and exposition revision requires a fresh clean light replay. Earlier evidence is retained as historical; it is not relabelled for this candidate."
+      "note": "The 27-page A4 exposition-audit revision on clean source candidate 84ee9d583f3c1a27e922a44b197779bc567cfd88 rebuilds byte-identically: SHA-256 b5499f954245b52bff215ab24a6d019a5900d4bdaea9ae896fa67f5dc1e314ff. All pages visually reviewed. A light rebuild remains part of the actual DOI/version archive freeze."
     },
     {
       "id": "claim-manifests-13",
