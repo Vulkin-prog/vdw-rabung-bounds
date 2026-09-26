@@ -1,10 +1,14 @@
 # vdw-rabung-bounds
 
-**Licensed publication candidate — archival DOI and release freeze to follow.**
+**Version 1.0.0 — preprint and reproducibility files for Zenodo DOI [10.5281/zenodo.22980965](https://doi.org/10.5281/zenodo.22980965).**
+
+The DOI was reserved by the author for a single deposit of the manuscript and
+its supporting files. Publication on Zenodo is performed by the author; the
+metadata and local freeze do not attest that the deposit is already public.
 
 This repository is the publication-oriented reproducibility package for
 *Succinct Rabung certificates and recurrence-closed lower bounds for van der
-Waerden numbers*. It is being assembled under an explicit allowlist from
+Waerden numbers*. It was assembled under an explicit allowlist from
 [`Vulkin-prog/vdw-gpu-starter`](https://github.com/Vulkin-prog/vdw-gpu-starter)
 at the immutable source commit
 `02796ae9e08da5b051a94b2d9001763908375f6e`.
@@ -18,7 +22,7 @@ The four two-colour certificates remain credited to Monroe's phase-2 project.
 
 The complete existing PC evidence is preserved. Finalization requires no
 new GPU campaign and no large-certificate rerun on the author's PC. The
-remaining publication steps concern the public DOI/tag/archive transaction; see `publication/FINALIZATION_2026-09-26.md`.
+public deposit uses the reserved identifier above; see `publication/ZENODO_2026-09-26_FR.md` and the archival protocol in `REPRODUCIBILITY.md`.
 The author approved MIT for the code and CC BY 4.0 for the manuscript and
 original data on 26 September 2026. The release ledger records this decision.
 
@@ -31,8 +35,9 @@ Clean source candidate `84ee9d583f3c1a27e922a44b197779bc567cfd88` passes all 230
 native CPU smoke checks, the separate arithmetic check and a byte-identical
 PDF rebuild. Commands, environment, exit codes and raw logs are preserved in
 `results/publication-finalization/2026-09-26-audit/`. The earlier checks remain
-historical records. Nine of the ten release gates are passed; only the public
-DOI/tag/archive freeze remains open.
+historical records. The Zenodo revision adds the actual DOI and release fields, and validates the
+combined preprint record with its distinct component licences. Its light-check
+evidence is recorded separately during the freeze.
 
 ## What is already here
 
@@ -72,8 +77,7 @@ be useful additional corroboration; it is not a condition of publication.
 python3 tools/check_publication_contract.py --mode staging
 ```
 
-The structural publication-contract check is expected to fail while any gate
-remains open:
+The frozen release also supports the complete structural publication-contract check:
 
 ```bash
 python3 tools/check_publication_contract.py --mode release
@@ -108,8 +112,11 @@ outside this repository. The enforced scope is in
 
 ## Citation and rights
 
-`CITATION.cff` has no DOI, version or release date until the archive is frozen.
+`CITATION.cff` identifies version 1.0.0, dated 26 September 2026, with the
+reserved DOI and a preferred citation for the preprint. The software component
+retains MIT as its top-level licence.
 Original code is licensed under MIT; the manuscript, PDF and original data
 are licensed under CC BY 4.0. See [`RIGHTS-STATUS.md`](RIGHTS-STATUS.md),
 [`LICENSE`](LICENSE) and `release/rights-map.json` for the component scope.
-Public archival deposit and the immutable release tag remain to be completed.
+The local freeze and the author-controlled Zenodo publication are separate
+steps. No GitHub release URL is invented for the private development repository.

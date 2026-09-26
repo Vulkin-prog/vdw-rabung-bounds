@@ -23,5 +23,6 @@ own terms. They were obtained from SPDX's licence-list-data repository and
 checked against the official Open Source Initiative and Creative Commons
 licence pages.
 
-The author decision closes the outbound-rights gate. DOI assignment, version
-metadata, the archive freeze and public deposit remain separate release steps.
+The author decision closes the outbound-rights gate. The single Zenodo record declares both licences and
+identifies their component scope in its description. Public deposit remains
+a separate author-controlled step.

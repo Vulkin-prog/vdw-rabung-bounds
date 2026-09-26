@@ -49,9 +49,11 @@ and updates documentation, gate status and inventory; its structural
 publication contract is checked separately.
 The small separate checker is
 `python3 publication/editorial-review/check_consistency.py`.
-No large certificate or GPU campaign is needed for these checks. After
-inserting actual DOI/version metadata, replay the light checks during the
-archive freeze described below.
+No large certificate or GPU campaign is needed for these checks. The next Zenodo revision supplies DOI
+`10.5281/zenodo.22980965`, version `1.0.0`, and release date `2026-09-26`.
+It adds one regression test for the combined preprint/software deposit; the
+light checks are replayed on its exact committed source candidate during
+the archive freeze. No historical large calculation is re-executed.
 
 ## 2. Completed read-only recovery on the campaign PC
 
@@ -118,6 +120,15 @@ full campaign rerun is not required.  These historical PC calculations are disti
 checks of the exact manuscript candidate described in Section 1.
 
 ## 4. Optional external replication and archival freeze
+
+For version 1.0.0 the reserved DOI is `10.5281/zenodo.22980965`. This is
+a single preprint record containing the manuscript and supporting package.
+`release/zenodo-metadata.json` is a local form-field specification, not a
+legacy API request: it declares both component licences and binds the local
+tag without inventing a separate paper DOI or a public GitHub release URL.
+See `publication/ZENODO_2026-09-26_FR.md` for the values to enter.
+Publication and remote byte-identity verification remain external actions
+after the local freeze. A passed local freeze does not attest a public deposit.
 
 No independently administered external replication has been performed.  The
 accepted local evidence combines GPU verification runs with CPU rechecks whose
@@ -233,8 +244,9 @@ staged so the transaction can validate it, and becomes a committed assertion onl
 with the manifest that a successful transaction produced.
 `tools/build_release_archive.py` deterministically renders and rechecks the outer
 container from the clean `HEAD` tree, and `tools/deposit_receipt.py` binds it to
-the separately downloaded draft copy without entering the payload. The final
-container and external deposit receipt do not yet exist and remain release work.
+the separately downloaded draft copy without entering the payload. The outer container is generated after the checked local tag.
+The external deposit receipt is created only from an actual downloaded
+copy of the uploaded file; it must not be fabricated from two local copies.
 Likewise, byte-identical PDF
 rebuilding is presently an intra-environment check: a long-term claim requires
 the TeX/font toolchain to be pinned or fully recorded. Public visibility is the

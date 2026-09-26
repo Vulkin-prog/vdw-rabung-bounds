@@ -1,9 +1,31 @@
 cff-version: 1.2.0
-message: "Cite the immutable archived release once its DOI and version are assigned. The current licensed candidate is not yet an archival release."
+message: "Cite the preprint and accompanying reproducibility files using the DOI below. The top-level MIT licence describes original code; see the component rights map for the manuscript and data."
 title: "Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers"
 type: software
+version: "1.0.0"
+date-released: "2026-09-26"
+doi: "10.5281/zenodo.22980965"
 authors:
   - family-names: "Pouly"
     given-names: "Brice"
 repository-code: "https://github.com/Vulkin-prog/vdw-rabung-bounds"
 license: MIT
+keywords:
+  - "van der Waerden numbers"
+  - "Rabung certificates"
+  - "power-residue colorings"
+  - "GPU computation"
+  - "reproducible research"
+preferred-citation:
+  type: article
+  title: "Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers"
+  authors:
+    - family-names: "Pouly"
+      given-names: "Brice"
+  doi: "10.5281/zenodo.22980965"
+  url: "https://doi.org/10.5281/zenodo.22980965"
+  journal: "Zenodo"
+  year: 2026
+  month: 9
+  day: 26
+  version: "1.0.0"
