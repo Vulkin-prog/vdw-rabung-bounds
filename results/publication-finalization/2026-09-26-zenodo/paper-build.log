@@ -1,0 +1,4 @@
+[paper] deterministic build 1/2
+[paper] SOURCE_DATE_EPOCH=1790380800 (release/SOURCE_DATE_EPOCH)
+[paper] deterministic build 2/2
+PAPER_BUILD_OK  d9a679d7873966126982ac10e3b8ae770ab3253d9ff1e64470513025c29e4251  /workspace/scratch/2fa008acabe5/validation/zenodo-candidate/rebuild.pdf

@@ -1,0 +1,118 @@
+{
+  "schema": "vdw-finalization-checks/v1",
+  "date_utc": "2026-09-26T12:30:05.922486+00:00",
+  "tested_commit": "84ee9d583f3c1a27e922a44b197779bc567cfd88",
+  "tested_tree": "8fcfa28210d307afe27a94388b50c673affe4506",
+  "git_status_before": "",
+  "execution_environment": "ChatGPT managed Linux workspace; no execution on the author PC",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "g++": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "pdflatex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)"
+  },
+  "heavy_computations_rerun": false,
+  "independent_external_replication": false,
+  "checks": [
+    {
+      "name": "cpu-checks",
+      "command": [
+        "bash",
+        "scripts/run_cpu_checks.sh"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 18.367,
+      "log": "cpu-checks.log"
+    },
+    {
+      "name": "paper-build",
+      "command": [
+        "bash",
+        "scripts/build_paper.sh",
+        "/workspace/scratch/2fa008acabe5/validation/audit-candidate/rebuild.pdf"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 5.408,
+      "log": "paper-build.log"
+    },
+    {
+      "name": "editorial-consistency",
+      "command": [
+        "python3",
+        "publication/editorial-review/check_consistency.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.063,
+      "log": "editorial-consistency.log"
+    },
+    {
+      "name": "git-fsck",
+      "command": [
+        "git",
+        "fsck",
+        "--full",
+        "--no-dangling"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.203,
+      "log": "git-fsck.log"
+    }
+  ],
+  "git_status_after": "",
+  "pdf": {
+    "path": "paper/main.pdf",
+    "pages": 27,
+    "sha256": "b5499f954245b52bff215ab24a6d019a5900d4bdaea9ae896fa67f5dc1e314ff",
+    "size": 640910,
+    "visual_review": "All 27 A4 pages rendered and inspected after the exposition-audit revision."
+  },
+  "python_tests_passed": 230,
+  "scope_note": "This record tests the exact source candidate. The next evidence-only commit archives these logs and updates documentation, gate status and inventory; its structural contract is checked separately. Actual DOI/version metadata and public freeze remain pending.",
+  "files": [
+    {
+      "path": "cpu-checks.log",
+      "size": 38240,
+      "sha256": "86316331b0c390bd175ae54f1d4f3d9983447370040f48a9af75e881831ffdbd"
+    },
+    {
+      "path": "editorial-consistency.log",
+      "size": 2476,
+      "sha256": "1f987cb071bd808f38a55d67b0ffefe9c7ca06fadc397a9752c070258b3c9749"
+    },
+    {
+      "path": "git-fsck.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-logs/high-range-witness-smoke.log",
+      "size": 588,
+      "sha256": "abd92da4586bccb8dfd2dffd823230c1d8ba8ca5dd9b911e9d2a3f314498960f"
+    },
+    {
+      "path": "native-logs/ordered-reduction.log",
+      "size": 133,
+      "sha256": "ef5af9f0dbe5f3626d6d9a3a37a1b1d9e05dfdb731a3156173cd8fb0b8fbc100"
+    },
+    {
+      "path": "native-logs/rabung-criterion.log",
+      "size": 870,
+      "sha256": "272e40b370154b10a258969b336dc9855d428053291b42924a5b6298dddc697d"
+    },
+    {
+      "path": "native-logs/reference-oracle.log",
+      "size": 2170,
+      "sha256": "6301df639f1229dd103d9e82edbefd2c90a624860c42a37822a862afd30fed88"
+    },
+    {
+      "path": "native-logs/separate-source-verifier.log",
+      "size": 952,
+      "sha256": "d74824ffbd8cf96727014d90700424cb285fe213df1f14981ac086cc98091612"
+    },
+    {
+      "path": "paper-build.log",
+      "size": 282,
+      "sha256": "865cacb28da7bae8bd0e9096856438ad676920519d54880053b7fc1fbb2223c0"
+    }
+  ]
+}

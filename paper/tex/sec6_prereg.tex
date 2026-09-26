@@ -57,13 +57,12 @@ removes scanner-source changes as a confounder for the recorded holdout comparis
 descriptive whole-campaign summaries must nevertheless be accompanied by the
 full revision table and by tests across the earlier transitions.
 
-The historical campaign journal also reports that $200$ sampled run-valid
-$(3,17)$ primes were re-tested through a separate CPU discrete-logarithm walk
-without a reported failure.  The present event-list audit does not reproduce
-that test; its sampled-prime list and complete raw output must be included and
-hashed in the release before the numerical statement is treated as
-machine-audited.  Even then, the check addresses false survivors, not
-omissions, prime enumeration, dispersion, or temporal dependence.
+The empirical reconstruction uses the retained event list and the campaign
+artifacts described below. It does not treat a historical sampled-survivor
+cross-check as an additional quantified validation result when its complete
+sample list and raw output are unavailable. Checking reported survivors would
+in any case address false positives, not omissions, enumeration, dispersion
+or temporal dependence.
 
 \paragraph{Reproducibility boundary.}
 The versioned $1859$-entry list of reported run-valid $(3,17)$ primes, labelled
@@ -71,13 +70,11 @@ complete by the historical analysis, is sufficient to reconstruct all $515$
 success counts and the disjoint increments in Table~\ref{tab:milestones},
 conditional on that list.  It does not by itself re-evaluate the max-run
 predicate or prove that no run-valid prime was omitted.
-The live tracking script additionally reads
-\texttt{results/campaign/checkpoint.json}, while the campaign directory is
-excluded from ordinary source tracking.  An end-to-end archival claim therefore
-requires an immutable copy of the checkpoint and campaign journal, the $498$
-retained per-chunk histograms for chunks $18$--$515$, the audited aggregate
-re-scan covering chunks $1$--$17$, and a machine-readable revision map.  The
-recovered package now preserves those available artifacts.  The aggregate
+The historical live tracking script also read a campaign checkpoint that was
+not part of ordinary source tracking. The recovered publication package now
+preserves an immutable checkpoint and campaign journal, the $498$ retained
+per-chunk histograms for chunks $18$--$515$, the audited aggregate re-scan
+covering chunks $1$--$17$, and the machine-readable revision map.  The aggregate
 re-scan restores histogram coverage over the first $17$ chunks, but not a
 fictitious $17$-way decomposition; unavailable historical per-chunk streams
 are declared unavailable rather than reconstructed.  The git history alone

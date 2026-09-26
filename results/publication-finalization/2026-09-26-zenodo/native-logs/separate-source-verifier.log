@@ -1,0 +1,12 @@
+[OK] (p=11 r=2 k=4) -> ACCEPT (attendu ACCEPT) : ACCEPT : (a) et (b) OK  {(2,4) valide {5,7,11}}
+[OK] (p=29 r=2 k=5) -> ACCEPT (attendu ACCEPT) : ACCEPT : (a) et (b) OK  {(2,5) valide}
+[OK] (p=521 r=520 k=3) -> ACCEPT (attendu ACCEPT) : ACCEPT : (a) et (b) OK  {regression classes >255 sans troncature}
+[OK] (p=43 r=3 k=8) -> ACCEPT (attendu ACCEPT) : ACCEPT : (a) et (b) OK  {(3,8) valide}
+[OK] (p=409 r=3 k=9) -> ACCEPT (attendu ACCEPT) : ACCEPT : (a) et (b) OK  {(3,9) valide}
+[OK] (p=13 r=2 k=4) -> REJECT (attendu REJECT) : (a) viole : run mono >= k  {(2,4) invalide}
+[OK] (p=17 r=2 k=4) -> REJECT (attendu REJECT) : (b) viole (B*)  {(2,4) invalide}
+[OK] (p=23 r=2 k=4) -> REJECT (attendu REJECT) : (a) viole : run mono >= k  {(2,4) invalide}
+[OK] (p=101 r=2 k=6) -> REJECT (attendu REJECT) : (a) viole : run mono >= k  {(2,6) invalide}
+[OK] (p=163 r=4 k=8) -> REJECT (attendu REJECT) : p != 1 (mod r)  {(4,8) invalide}
+
+== SELFTEST : 10/10 OK ==

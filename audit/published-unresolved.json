@@ -1,0 +1,18 @@
+{
+  "schema": "vdw-published-unresolved/v1",
+  "review_date": "2026-09-26",
+  "notation": "W(colors,length) > lower_bound",
+  "statements": [
+    {
+      "id": "landman_robertson_stronger_formula",
+      "status": "published_statement_proof_unresolved_in_this_review",
+      "source_keys": ["LandmanRobertson2004", "LandmanRobertson2014", "Monroe2026", "Johannson2007"],
+      "formula": "For primes p >= 5 and q: W(q,p+1) >= p*(q**p-1)+1",
+      "comparison_policy": "Include as a prior published comparator; exclude from the admitted proof registry. Nonverification is not disproof.",
+      "specializations": [
+        {"prime_p": 19, "prime_q": 3, "length": 20, "lower_bound": 22082967854},
+        {"prime_p": 23, "prime_q": 3, "length": 24, "lower_bound": 2165293112998}
+      ]
+    }
+  ]
+}

@@ -1,10 +1,19 @@
 {
-  "schema": "vdw-bibliography-audit/v1",
-  "checked_at_utc": "2026-08-28T00:00:00Z",
-  "policy": "Every cited key is checked against a publisher record, author-owned immutable source, or versioned primary preprint. No cited web object is redistributed by this file.",
+  "schema": "vdw-bibliography-audit/v2",
+  "checked_at_utc": "2026-09-26T00:00:00Z",
+  "policy": "Every cited key is checked against a publisher record, an institutional repository, an author-owned immutable source, or a versioned primary preprint. Numerical seeds are admitted only when the cited result and its finite specialization can be verified. Search non-detection is never treated as proof of global priority. No cited web object is redistributed by this file. Update on 26 September 2026 incorporates the supplied dated review. A per-entry update_scope distinguishes sources reopened in this finalization from the retained 29 August record. No general full-text rereading is claimed.",
   "cited_keys": [
+    "Berlekamp1968",
     "CamposFoxSchildkraut2026",
     "FoxHunter2026",
+    "GasarchHaeupler2011",
+    "Hunter2025",
+    "Johannson2007",
+    "KozikShabanov2014",
+    "LandmanRobertson2004",
+    "LandmanRobertson2014",
+    "Monroe2016v1",
+    "Monroe2017v4",
     "Monroe2026",
     "MonroeCodeTally",
     "MonroePage",
@@ -20,55 +29,157 @@
   ],
   "entries": [
     {
+      "key": "Berlekamp1968",
+      "status": "stable_publisher_record",
+      "source_url": "https://www.cambridge.org/core/journals/canadian-mathematical-bulletin/article/construction-for-partitions-which-avoid-long-arithmetic-progressions/F8101060236B2BDF91A28BF30CC2162E",
+      "doi": "10.4153/CMB-1968-047-7",
+      "supported_statement": "Theorem 1 is specialized and checked for field order 3 and progression lengths 12 through 28. At t=23 in Berlekamp's notation it gives the strict bound W(3,24)>23(3^23-1)/2=1082646556499. Exhaustive evaluation at lengths 3 through 11 proves that none supplies a stronger monotone predecessor than the registered length-12 seed.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
+    },
+    {
       "key": "rabung1979",
       "status": "stable_publisher_record",
       "source_url": "https://www.cambridge.org/core/journals/canadian-mathematical-bulletin/article/some-progressionfree-partitions-constructed-using-folkmans-method/BCD6002C60DB186DFA890540DC7ACD9F",
-      "doi": "10.4153/CMB-1979-012-1"
+      "doi": "10.4153/CMB-1979-012-1",
+      "note": "The title and introduction identify Folkman's method as the constructional lineage.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "herwig2007",
       "status": "stable_publisher_record",
       "source_url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v14i1r6",
       "doi": "10.37236/925",
-      "note": "The official PDF is 18 pages and the article identifier is R6."
+      "note": "The official PDF is 18 pages and the article identifier is R6.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
+    },
+    {
+      "key": "GasarchHaeupler2011",
+      "status": "stable_publisher_record",
+      "source_url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v18i1p64",
+      "doi": "10.37236/551",
+      "supported_statement": "The article distinguishes randomized-constructive, deterministic-constructive, and nonconstructive lower-bound proofs. In its length-first notation, Note 1.7(2) gives W(k,c) >= c^(k-1)/(e*k); after translation to this paper's colour-first notation, the strict integers floor(3^(k-1)/(e*k)) are registered for W(3,k) at every length 17 through 28 and are dominated throughout.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "rabunglotts2012",
       "status": "stable_publisher_record",
       "source_url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v19i2p35",
-      "doi": "10.37236/2363"
+      "doi": "10.37236/2363",
+      "supported_statement": "Table 1 is the original published source located for prime 7194013 and W(3,12)>79134144. This direct seed and its prime ring witness are admitted so that the monotone closure into the target range does not begin after a relevant three-colour predecessor.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "liang2012",
       "status": "stable_publisher_record_no_doi_found",
-      "source_url": "https://combinatorialpress.com/jcmcc-articles/volume-083/lower-bounds-on-some-van-der-waerden-numbers-based-on-quadratic-residues/"
+      "source_url": "https://combinatorialpress.com/jcmcc-articles/volume-083/lower-bounds-on-some-van-der-waerden-numbers-based-on-quadratic-residues/",
+      "supported_statement": "Table 2 and Theorem 5.1 report the ring witnesses and finite two-colour lower bounds W(2,k) through length 23. Ordinary rows from length 12 and prime ring rows from length 13 are registered; the zipped length-12 composite is excluded as a Xu input because its least prime factor fails Xu's hypothesis. The exact rows at lengths 17 through 20 are the original published source for values later reproduced and credited to Liang et al. in Monroe's summary; the dominated rows at lengths 21 through 23 are also retained. The primary abstract reports exhaustive checking to 60000000, not 27000000.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "bct2018",
       "status": "stable_publisher_record",
       "source_url": "https://www.sciencedirect.com/science/article/pii/S019566981730166X",
-      "doi": "10.1016/j.ejc.2017.10.007"
+      "doi": "10.1016/j.ejc.2017.10.007",
+      "version_history_url": "https://arxiv.org/abs/1705.09673v3",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "xu2013",
       "status": "stable_publisher_record",
       "source_url": "https://www.sciencedirect.com/science/article/pii/S0022314X13001601",
       "doi": "10.1016/j.jnt.2013.05.008",
-      "implementation_check": "The closure enforces k >= 3, s,t >= 2, 5 <= n < WR(s,k), and least-prime-factor(n) > k; every registered ring witness used as n is prime and exceeds k. The strict-bound recurrence stores R*B, consistent with Xu's published W_4(7) example."
+      "implementation_check": "Exact-witness concatenation: a progression-free cyclic s-colouring at the specific modulus R, with R >= 5 and least-prime-factor(R) > k, combines with an ordinary t-colouring on B points to give W(st,k) > R*B. Published ring seeds explicitly name witness_modulus; claim-backed entries use their Rabung prime. A threshold bound alone is rejected. The manuscript supplies the residue/block pair-colouring argument. The original Xu full text remains unavailable; historical use is read in Monroe, and no winning three-colour row depends on Xu.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "26 September exposition audit: threshold inference removed; exact-witness convention and elementary product argument checked. Original Xu full text not newly obtained."
+    },
+    {
+      "key": "LandmanRobertson2004",
+      "status": "author_scan_and_stable_doi",
+      "source_url": "https://www.cs.umd.edu/~gasarch/COURSES/752/S25/BOOKS/RTI-LR.pdf",
+      "doi": "10.1090/stml/024",
+      "chapter_doi": "10.1090/stml/024/02",
+      "supported_statement": "Theorem 2.19 on page 38 states the stronger formula without an accompanying proof.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
+    },
+    {
+      "key": "LandmanRobertson2014",
+      "status": "stable_publisher_record",
+      "source_url": "https://bookstore.ams.org/stml-73/",
+      "doi": "10.1090/stml/073",
+      "page_43_preview_url": "https://books.google.com/books?id=EflYBQAAQBAJ&pg=PA43",
+      "author_errata_url": "https://math.colgate.edu/~aaron/Errata%285.8.17%29.pdf",
+      "supported_statement": "Theorem 2.21 on page 43 of the second edition repeats the stronger formula. The 2017 author errata do not correct it, which is not treated as validation; the statement is not admitted as a seed because no proof or verifiable derivation was located.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
+    },
+    {
+      "key": "Johannson2007",
+      "status": "stable_institutional_thesis",
+      "source_url": "https://mspace.lib.umanitoba.ca/bitstreams/4709d49f-fe71-43c6-b59c-7ceba426e99a/download",
+      "handle": "https://hdl.handle.net/1993/321",
+      "supported_statement": "Theorem 5.3.8 proves the Berlekamp factor 1/(q-1); the discussion on page 90 explicitly reports that the author could not confirm the stronger adaptation attributed to Landman and Robertson.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
+    },
+    {
+      "key": "Monroe2016v1",
+      "status": "versioned_primary_preprint",
+      "source_url": "https://arxiv.org/abs/1603.03301v1",
+      "version": "v1",
+      "submitted_utc": "2016-03-09T03:29:25Z",
+      "doi": "10.48550/arXiv.1603.03301",
+      "supported_statement": "Version 1 is the first versioned public source located for Monroe's three-colour direct rows at lengths 13 through 15 and its then-best length-16 row, as well as the exact two-colour ordinary and ring rows at lengths 21 through 23. It marked the two-colour length-17 through length-20 rows as new even though the identical values and witnesses had appeared in Liang et al. (2012); version 4 later credits that earlier source.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "arXiv version-history metadata reopened on 2026-09-26; earlier full-text audit retained"
+    },
+    {
+      "key": "Monroe2017v4",
+      "status": "versioned_primary_preprint",
+      "source_url": "https://arxiv.org/abs/1603.03301v4",
+      "version": "v4",
+      "submitted_utc": "2017-11-06T16:24:39Z",
+      "doi": "10.48550/arXiv.1603.03301",
+      "supported_statement": "Version 4 is the first arXiv version containing the improved length-16 prime 612400081 and W(3,16)>9186001216, as well as prime 969347371 and W(3,17)>15509557937; versions 1 through 3 contain neither improved row.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "arXiv version-history metadata reopened on 2026-09-26; earlier full-text audit retained"
     },
     {
       "key": "Monroe2026",
       "status": "stable_publisher_record",
       "source_url": "https://combinatorialpress.com/jcmcc-articles/volume-128/new-lower-bounds-for-van-der-waerden-numbers-using-distributed-computing/",
       "doi": "10.61091/jcmcc128-19",
-      "note": "Volume year 2026; published online 4 December 2025."
+      "arxiv_first_relevant_version": "v4",
+      "arxiv_first_relevant_submitted_utc": "2017-11-06T16:24:39Z",
+      "note": "Volume year 2026; published online 4 December 2025. Its Tables 1 and 2 preserve the pre-window three-colour rows, but numerical priority is assigned to the versioned preprints and Rabung--Lotts. The four phase-2 values are absent from the article.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "arXiv version-history metadata reopened on 2026-09-26; earlier full-text audit retained"
+    },
+    {
+      "key": "Hunter2025",
+      "status": "stable_publisher_record",
+      "source_url": "https://link.springer.com/article/10.1007/s11856-025-2735-0",
+      "doi": "10.1007/s11856-025-2735-0",
+      "supported_statement": "The exponential improvement applies to diagonal van der Waerden numbers with at least five colours and therefore does not change the finite three-colour table.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "FoxHunter2026",
       "status": "versioned_preprint_recheck_at_release",
       "source_url": "https://arxiv.org/abs/2606.02541v1",
       "version": "v1",
-      "doi": "10.48550/arXiv.2606.02541"
+      "doi": "10.48550/arXiv.2606.02541",
+      "supported_statement": "The theorem applies for sufficiently large progression length and is not admitted as an explicit finite seed for lengths 17 through 28.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "arXiv version-history metadata reopened on 2026-09-26; earlier full-text audit retained"
     },
     {
       "key": "CamposFoxSchildkraut2026",
@@ -77,7 +188,9 @@
       "version": "v1",
       "submitted_utc": "2026-08-21",
       "doi": "10.48550/arXiv.2608.20824",
-      "supported_statement": "Theorem 1 gives w(k) >= (1-o(1)) k 2^(k-1) asymptotically. Evaluating the explicit product construction from Lemmas 2 and 4 over distinct-prime decompositions in the finite range does not improve any registered W(2,k) seed for 17 <= k <= 28; at k=28 it gives at most the strict integer 3168958653, versus the registered 93871785142."
+      "supported_statement": "Theorem 1 gives w(k) >= (1-o(1)) k 2^(k-1) asymptotically. The explicit product construction from Lemmas 2 and 4 is exhaustively maximized over distinct-prime decompositions and registered for every length 17 through 28; each exact seed is dominated, with strict integer 3168958653 at k=28 versus the winning 93871785142.",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "arXiv version-history metadata reopened on 2026-09-26; earlier full-text audit retained"
     },
     {
       "key": "MonroePage",
@@ -85,31 +198,97 @@
       "live_url": "https://daniel-monroe.github.io/projects.html",
       "immutable_url": "https://github.com/daniel-monroe/daniel-monroe.github.io/blob/825778cca5e669cbf60140e35170113603010076/projects.html",
       "immutable_commit": "825778cca5e669cbf60140e35170113603010076",
+      "first_public_commit": "fcc6844364a71442e1943413a6d4da140b82a9c5",
+      "first_public_commit_utc": "2025-07-08T04:48:34Z",
       "observed_html_sha256": "9ac30412b14f1e7f9f890fdb0d53cafc9e1ab5591fe10c59b71bcb7f53b5a23c",
-      "redistributed": false
+      "evidence_role": "Retrospective author statement, not contemporaneous evidence of gap-free 2021 coverage.",
+      "redistributed": false,
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "MonroeCodeTally",
       "status": "author_owned_immutable_source",
-      "source_url": "https://github.com/hmonroe/vdw/blob/f1223097f4adc0a41ccb92ace51ebafd2b996fb1/output.txt",
-      "immutable_commit": "f1223097f4adc0a41ccb92ace51ebafd2b996fb1",
+      "source_url": "https://github.com/hmonroe/vdw/blob/7000ad7d99cb779ae82b495d709f4a4e23fa7eef/output.txt",
+      "immutable_commit": "7000ad7d99cb779ae82b495d709f4a4e23fa7eef",
+      "commit_utc": "2019-03-06T19:13:54Z",
       "observed_sha256": "bd88e781acdceead847e0b736ca788cbc510aac744d025c2efbde4b152725774",
-      "redistributed": false
+      "redistributed": false,
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "MonroePhase2Archive",
       "status": "versioned_web_archive_capture",
       "source_url": "https://web.archive.org/web/20220428101631id_/http://vdwnumbers.org/bounds.txt",
       "original_url": "http://vdwnumbers.org/bounds.txt",
-      "capture_utc": "2022-04-28T10:16:31Z",
+      "first_surviving_exact_capture_utc": "2022-04-28T10:16:31Z",
+      "source_internal_date": "2021-08-18",
       "observed_sha256": "0e8f79232e3855cbc64026a4c2f3a82433c0508456e0c23f76eb1a400efeb556",
-      "redistributed": false
+      "historical_snapshots": [
+        {
+          "capture_utc": "2021-03-04T05:28:57Z",
+          "source_internal_date": "2021-02-22",
+          "url": "https://web.archive.org/web/20210304052857id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "e6fc1dcb7926196c1c523ae47a3568b8c1a7bbdf1628a02e114be3fb19bdce8c",
+          "final_values_present_for_lengths": [
+            25
+          ]
+        },
+        {
+          "capture_utc": "2021-04-17T07:30:48Z",
+          "source_internal_date": "2021-03-24",
+          "url": "https://web.archive.org/web/20210417073048id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "7b1dcf718dba89bede13adc9c57913dc3730ed0d232553286ca52adffbc6e470",
+          "final_values_present_for_lengths": [
+            25
+          ]
+        },
+        {
+          "capture_utc": "2021-05-05T20:52:49Z",
+          "source_internal_date": "2021-05-01",
+          "url": "https://web.archive.org/web/20210505205249id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "5553e7b68a77d33587a63c24f65e879719b3eb2d456fea09c78f21df35339400",
+          "final_values_present_for_lengths": [
+            25,
+            26
+          ]
+        },
+        {
+          "capture_utc": "2021-06-21T18:30:38Z",
+          "source_internal_date": "2021-05-19",
+          "url": "https://web.archive.org/web/20210621183038id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "71bbaffd76342508a6d46004afc07074cfc074075a09c0ea202c1d88be0c7c3b",
+          "final_values_present_for_lengths": [
+            25,
+            26
+          ]
+        },
+        {
+          "capture_utc": "2022-04-28T10:16:31Z",
+          "source_internal_date": "2021-08-18",
+          "url": "https://web.archive.org/web/20220428101631id_/http://vdwnumbers.org/bounds.txt",
+          "sha256": "0e8f79232e3855cbc64026a4c2f3a82433c0508456e0c23f76eb1a400efeb556",
+          "final_values_present_for_lengths": [
+            25,
+            26,
+            27,
+            28
+          ]
+        }
+      ],
+      "disclosure_boundary": "Public table evolution establishes disclosure windows for listed values; it does not establish exhaustive or gap-free scan coverage.",
+      "redistributed": false,
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "SorensonWebster2017",
       "status": "stable_publisher_record",
       "source_url": "https://doi.org/10.1090/mcom/3134",
-      "doi": "10.1090/mcom/3134"
+      "doi": "10.1090/mcom/3134",
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
     },
     {
       "key": "OliveiraSilvaPi",
@@ -117,7 +296,159 @@
       "live_url": "https://sweet.ua.pt/tos/primes/1d09.txt.gz",
       "immutable_url": "https://web.archive.org/web/20160704031247id_/http://sweet.ua.pt/tos/primes/1d09.txt.gz",
       "data_sha256": "0b1ee293cbdf18a4e1b0bc9c8e02a00d71cff166811623b7317615c871c89b06",
-      "redistributed": false
+      "redistributed": false,
+      "initial_audit_date": "2026-08-29",
+      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
+    },
+    {
+      "key": "KozikShabanov2014",
+      "status": "published_record_and_versioned_primary_preprint",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S0095895615001112",
+      "full_text_url": "https://arxiv.org/html/1409.6921v1",
+      "checked_at_utc": "2026-09-26T00:00:00Z",
+      "supported_statement": "Theorem 2: an absolute beta>0 gives W(r,k)>=beta*r^(k-1) in colour-first notation. General context only; no new numerical seed admitted.",
+      "update_scope": "Publisher metadata and Jagiellonian University publication record verified on 26 September 2026; theorem numbering remains explicitly tied to arXiv v1. No claim that published numbering was verified.",
+      "doi": "10.1016/j.jctb.2015.09.004",
+      "published_year": 2016,
+      "volume": "116",
+      "pages": "312-332",
+      "preprint_url": "https://arxiv.org/abs/1409.6921v1",
+      "institutional_record_url": "https://apacz.matinf.uj.edu.pl/publikacje/7679-improved_algorithms_for_colorings_of_simple_hypergraphs_and_applications"
     }
-  ]
+  ],
+  "priority_audit": {
+    "cutoff_utc": "2026-09-26T00:00:00Z",
+    "scope": "Finite strict lower bounds for ordinary W(3,k), 17 <= k <= 28, together with dated public provenance for every registered direct or recurrence input used in that comparison. Updated with the supplied 26 September review, the unresolved k=20 specialization, and the additional Kozik-Shabanov context reference.",
+    "admission_rule": "Admit a numerical seed only when a primary or stable scholarly source can be identified, the theorem or finite certificate is inspectable, all hypotheses and notation translations are checked, and the strict-integer value is reproducible. Preserve but exclude an unsupported printed statement rather than silently treating it as a theorem. Published statements not verified here remain visible in audit/published-unresolved.json and are included conservatively in the separate priority comparison.",
+    "search_methods": [
+      "Publisher, DOI, journal archive, institutional-repository, arXiv-version-history, author-repository, and Internet-Archive searches",
+      "Exact searches for every headline bound, prime, and the formulas competing in lengths 17 through 28",
+      "Backward citation tracing through Berlekamp, Folkman--Rabung, Liang--Xu--Shao--Xiu, Blankenship--Cummings--Taranchuk, Landman--Robertson, and Monroe",
+      "Independent integer recalculation of every admitted finite specialization and every recurrence consequence"
+    ],
+    "findings": [
+      {
+        "id": "berlekamp1968_w3_24",
+        "status": "admitted_verified_seed",
+        "source_keys": [
+          "Berlekamp1968",
+          "Johannson2007"
+        ],
+        "claim": "Berlekamp's 1968 theorem is evaluated for three colours from length 12, with every smaller relevant specialization checked; it gives W(3,24)>1082646556499, and elementary length monotonicity carries the same strict bound to W(3,25).",
+        "effect": "Replaces the previously displayed winners at lengths 24 and 25."
+      },
+      {
+        "id": "prewindow_three_colour_lineage",
+        "status": "admitted_dominated_priority_seeds",
+        "source_keys": [
+          "rabunglotts2012",
+          "Monroe2016v1",
+          "Monroe2017v4",
+          "Monroe2026"
+        ],
+        "claim": "Rabung--Lotts (2012) supplies W(3,12)>79134144. Monroe arXiv v1 first supplies the registered rows at lengths 13 through 15 and a then-best length-16 row; v4 first improves the length-16 value to W(3,16)>9186001216. These exact seeds are closed monotonically into the comparison window and remain dominated at length 17.",
+        "boundary": "The journal table is retained as a stable later record but does not overwrite the versioned or earlier published priority sources."
+      },
+      {
+        "id": "landman_robertson_stronger_formula",
+        "status": "excluded_unverified_statement",
+        "source_keys": [
+          "LandmanRobertson2004",
+          "LandmanRobertson2014",
+          "Johannson2007",
+          "Berlekamp1968"
+        ],
+        "claim": "The printed formula gives W(3,20)>22082967854 at p=19,q=3 and W(3,24)>2165293112998 at p=23,q=3; length monotonicity propagates these. The latter exceeds admitted values through length 28.",
+        "reason": "The textbook supplies no proof; the detailed Berlekamp proof yields the smaller factor 1/(q-1), a thesis explicitly reports failure to confirm the adaptation, and the standard coordinate-colouring argument does not establish the stronger extension. The statement is therefore excluded from the numerical registry.",
+        "comparison_policy": "Excluded only from the admitted proof registry, retained as a published comparator; all five new improvements survive. Nonverification is not disproof."
+      },
+      {
+        "id": "liang_monroe_two_colour_chronology",
+        "status": "corrected_original_source_attribution",
+        "source_keys": [
+          "liang2012",
+          "Monroe2016v1",
+          "Monroe2017v4",
+          "Monroe2026"
+        ],
+        "claim": "Liang et al. (2012) are the original published source for the exact ordinary bounds and ring witnesses at lengths 17 through 20. Monroe's length-21 through length-23 rows first appear in arXiv v1 on 9 March 2016, while his length-24 and length-25 rows first appear in v4 on 6 November 2017.",
+        "boundary": "A later summary table is not used to overwrite an earlier source. The audit registers Liang's dominated length-21 through length-23 rows as well as Monroe's later improvements."
+      },
+      {
+        "id": "monroe_three_colour_public_chronology",
+        "status": "dated_prior_public_evidence",
+        "source_keys": [
+          "Monroe2016v1",
+          "Monroe2017v4",
+          "MonroeCodeTally",
+          "Monroe2026"
+        ],
+        "claim": "Monroe's length-13 through length-15 three-colour rows and a then-best length-16 row appear in arXiv v1 on 9 March 2016. The improved length-16 prime 612400081, prime 969347371, and W(3,17)>15509557937 first appear in v4 on 6 November 2017; the immutable code tally was added on 6 March 2019 and the journal article was published online on 4 December 2025.",
+        "boundary": "This chronology attributes Monroe's earlier numerical result; it does not assign global priority to the different primes found in the present work."
+      },
+      {
+        "id": "monroe_phase2_public_chronology",
+        "status": "dated_archival_attribution",
+        "source_keys": [
+          "MonroePhase2Archive",
+          "MonroePage"
+        ],
+        "claim": "The earliest public evidence located attributes the four phase-2 primes to Daniel Monroe's Vdwnumbers.org project and its BOINC volunteers: the final k=25 value is captured by 4 March 2021, k=26 by 5 May 2021, and the final k=27 and k=28 values occur in a file internally dated 18 August 2021 whose first surviving exact capture is 28 April 2022.",
+        "boundary": "These dates support prior public attribution, but a surviving capture is not proof of the first discovery date or exhaustive historical coverage."
+      },
+      {
+        "id": "current_direct_three_colour_triples",
+        "status": "no_earlier_source_found_not_global_priority",
+        "source_keys": [
+          "rabung1979",
+          "herwig2007",
+          "rabunglotts2012",
+          "liang2012",
+          "Monroe2017v4",
+          "Monroe2026"
+        ],
+        "claim": "No earlier public source was located for the three primitive candidate triples used here at lengths 17, 18, and 19, nor for their exact strict bounds. Rabung-candidate admissibility of the length-19 triple extends it to six further direct certificates at lengths 20 through 25, each separately rechecked; this is distinct from ordinary bound monotonicity.",
+        "boundary": "Search non-detection does not establish global priority. The manuscript therefore claims new-to-the-audited-corpus direct certificates and supplies exact reproducible evidence, not an unqualified first-ever discovery."
+      },
+      {
+        "id": "constructive_and_asymptotic_context",
+        "status": "context_no_finite_table_effect",
+        "source_keys": [
+          "GasarchHaeupler2011",
+          "Hunter2025"
+        ],
+        "claim": "Gasarch--Haeupler supplies both constructive/nonconstructive methodological context and, after translating its length-first notation, the explicit finite family W(3,k) >= 3^(k-1)/(e*k), whose exact strict integers are retained but dominated throughout lengths 17 through 28. Hunter's 2025 exponential improvement begins at five colours and does not affect the three-colour table.",
+        "boundary": "Gasarch--Haeupler is admitted as a dominated numerical family; Hunter is cited only for broader asymptotic context."
+      },
+      {
+        "id": "finite_competitor_scan",
+        "status": "completed_to_cutoff_with_version_pins",
+        "source_keys": [
+          "Berlekamp1968",
+          "rabunglotts2012",
+          "Monroe2016v1",
+          "Monroe2017v4",
+          "bct2018",
+          "xu2013",
+          "FoxHunter2026",
+          "CamposFoxSchildkraut2026"
+        ],
+        "claim": "After admitting Berlekamp and closing the audited seeds under length monotonicity, BCT, and Xu, the direct certificates win at lengths 17 through 21, BCT consequences win at 22, 23, and 26 through 28, and Berlekamp wins at 24 and 25.",
+        "boundary": "The two 2026 preprints are pinned to v1. The explicit Campos--Fox--Schildkraut finite products are retained as dominated seeds; Fox--Hunter supplies no effective finite threshold in this range. Both preprints must be rechecked at release."
+      },
+      {
+        "id": "september_review_scope",
+        "status": "scoped_update",
+        "source_keys": [
+          "KozikShabanov2014",
+          "Monroe2016v1",
+          "FoxHunter2026",
+          "CamposFoxSchildkraut2026",
+          "xu2013"
+        ],
+        "claim": "Added Kozik-Shabanov, corrected Monroe v1 submission time, reopened three arXiv histories; no recent version change found for Fox-Hunter or Campos-Fox-Schildkraut. The original full text of Xu and the phase-2 web captures were not newly recovered; their earlier provenance is retained."
+      }
+    ],
+    "claim_language": "Every superlative is restricted to the audited, admitted source corpus as of the cutoff. A statement that no earlier source was located is reported as a search result and does not establish global priority."
+  }
 }

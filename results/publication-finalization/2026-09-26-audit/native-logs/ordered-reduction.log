@@ -1,0 +1,3 @@
+[info] ordre inverse best=21 vs ordonne=40 (l'ordre compte : DIFFERENT (attendu possible))
+
+== test_ordered_reduce : 4014/4014 OK ==

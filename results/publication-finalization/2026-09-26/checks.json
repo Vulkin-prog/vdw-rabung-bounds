@@ -1,0 +1,102 @@
+{
+  "schema": "vdw-finalization-checks/v1",
+  "date_utc": "2026-09-26T10:12:53.998663+00:00",
+  "tested_commit": "918992f9c0edca7d912598d518b0ae004206b51a",
+  "tested_tree": "f113d27d52ea7e120a36dd3606993c2ddfa759c3",
+  "git_status_before": "",
+  "execution_environment": "ChatGPT managed Linux workspace; no execution on the author PC",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "g++": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "pdflatex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)"
+  },
+  "heavy_computations_rerun": false,
+  "independent_external_replication": false,
+  "checks": [
+    {
+      "name": "cpu-checks",
+      "command": [
+        "bash",
+        "scripts/run_cpu_checks.sh"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 17.184,
+      "log": "cpu-checks.log"
+    },
+    {
+      "name": "paper-build",
+      "command": [
+        "bash",
+        "scripts/build_paper.sh"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.952,
+      "log": "paper-build.log"
+    },
+    {
+      "name": "git-fsck",
+      "command": [
+        "git",
+        "fsck",
+        "--full",
+        "--no-dangling"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.206,
+      "log": "git-fsck.log"
+    }
+  ],
+  "git_status_after": "",
+  "pdf": {
+    "path": "paper/main.pdf",
+    "pages": 27,
+    "sha256": "60478106a3829f74be4779e362c5c99b463e7259fc8d8d4e561d6a413ff8541a",
+    "size": 634827,
+    "visual_review": "All pages visually reviewed; final reference pages re-rendered and inspected after compaction to 27 pages."
+  },
+  "scope_note": "Tests validate the pinned source candidate. The following evidence-only commit records logs and gate status, and is checked separately for its publication contract. Final DOI/licence metadata requires a light rebuild and freeze before public deposit.",
+  "files": [
+    {
+      "path": "cpu-checks.log",
+      "size": 38257,
+      "sha256": "eb433719f7b95aca18d46dc911a1af0de0153485d3164c66327d91fedec50a7d"
+    },
+    {
+      "path": "git-fsck.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-logs/high-range-witness-smoke.log",
+      "size": 588,
+      "sha256": "abd92da4586bccb8dfd2dffd823230c1d8ba8ca5dd9b911e9d2a3f314498960f"
+    },
+    {
+      "path": "native-logs/ordered-reduction.log",
+      "size": 133,
+      "sha256": "ef5af9f0dbe5f3626d6d9a3a37a1b1d9e05dfdb731a3156173cd8fb0b8fbc100"
+    },
+    {
+      "path": "native-logs/rabung-criterion.log",
+      "size": 870,
+      "sha256": "272e40b370154b10a258969b336dc9855d428053291b42924a5b6298dddc697d"
+    },
+    {
+      "path": "native-logs/reference-oracle.log",
+      "size": 2170,
+      "sha256": "6301df639f1229dd103d9e82edbefd2c90a624860c42a37822a862afd30fed88"
+    },
+    {
+      "path": "native-logs/separate-source-verifier.log",
+      "size": 952,
+      "sha256": "d74824ffbd8cf96727014d90700424cb285fe213df1f14981ac086cc98091612"
+    },
+    {
+      "path": "paper-build.log",
+      "size": 276,
+      "sha256": "e09fe5116f4b904fd389350ed1696dd8dced586495d0de2121fde0f217415a1c"
+    }
+  ],
+  "post_build_cleanup": "An empty transient paper/.main.pdf.tmp.* output was removed before integrating the evidence; the committed PDF hash is unchanged."
+}

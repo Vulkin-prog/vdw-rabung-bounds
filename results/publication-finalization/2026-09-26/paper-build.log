@@ -1,0 +1,4 @@
+[paper] deterministic build 1/2
+[paper] SOURCE_DATE_EPOCH=1790380800 (release/SOURCE_DATE_EPOCH)
+[paper] deterministic build 2/2
+PAPER_BUILD_OK  60478106a3829f74be4779e362c5c99b463e7259fc8d8d4e561d6a413ff8541a  /workspace/scratch/2fa008acabe5/vdw-rabung-bounds/paper/main.pdf

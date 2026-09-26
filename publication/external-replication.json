@@ -1,6 +1,6 @@
 {
   "schema": "vdw-external-replication/v1",
-  "status": "pending",
+  "status": "not_performed",
   "claim_ids": [
     "w2_k25_p1138900957",
     "w3_k17_p1961601427",

@@ -1,0 +1,98 @@
+\section{Campaign coverage audit}\label{s:campaign-audit}
+
+The authenticated coverage-evidence package shows that the production run was
+configured to scan every prime in
+$[9.70\times 10^{8},\, 2.0\times 10^{9})$ (each prime tested for every
+$r\le 9$ dividing $p-1$), starting just above the largest
+published prime $969\,347\,371$ of Monroe's distributed scan~\cite{Monroe2026},
+in a single multi-$r$ pass ($r\le 9$). (The narrow interval
+$[969\,347\,371,\,9.70\times10^{8})$ was therefore not scanned; it is immaterial,
+since any valid prime in it would give a bound below every one we report.) The
+historical checkpoint reports that the range was processed in $515$
+restartable chunks of width $2\times 10^{6}$, each with a fixed walltime cap.
+The registered revision map spans \emph{eight} git revisions and \emph{four}
+scanner-source fingerprints.  Their exact allocation and the scientific
+effect of each transition are generated from the audit registry below.
+\input{generated_scanner_revisions}
+The $(3,17)$ max-run statistic and its target predicate are unchanged across
+all four fingerprints.  The first functional expansion added only
+$(2,26)$--$(2,28)$, whose early online tallies are therefore incomplete; the
+second added congruence counters and reproduced the previous target profiles
+and checksums in an old/new comparison.  This supports code-path
+comparability for the retained $(3,17)$ counts, although version-stratified
+dispersion diagnostics remain distinct from that code audit.  The historical
+journal also records automatic cross-checks every $50$ chunks: nine completed
+samples agreed across the redundant scan paths and separate CPU checks, while a
+tenth timed out and was not counted.  These samples do not turn the single
+production campaign into a duplicated run.  Checkpoint transaction mechanics
+are documented in \texttt{REPRODUCIBILITY.md}.  The authenticated
+coverage-evidence package contains the immutable checkpoint, a matching journal
+record for $514$ chunks, the checkpoint-only record for chunk~7, $498$
+per-chunk histograms for chunks~18--515, and the retained transition artifacts
+selected by the recovery ledger.
+
+\paragraph{Exhaustiveness of the prime enumeration.}
+The per-prime computation is validated by the redundancy above; the
+\emph{enumeration} of primes deserves its own audit, since the density claims of
+Appendix~\ref{s:density} are claims about \emph{all} primes in the window. The
+scanner enumerates primes with a plain in-process sieve per chunk; chunks are
+contiguous by construction ($[\,\mathrm{lo}+2i\cdot10^{6}$,
+$\mathrm{lo}+2(i{+}1)\cdot10^{6}\,)$), and the checkpoint protocol resumes only
+at chunk boundaries, so interruptions can neither skip nor duplicate primes
+within the range. We verified the retained aggregate coverage counts against a
+separately written segmented sieve with no shared code:
+over the $498$ chunks for which per-chunk histograms were logged (the histogram
+feature was added at an early restart, from $p=1.004\times10^{9}$ on), the
+campaign's per-chunk counts of primes in every congruence class $p\equiv1\pmod
+r$, $2\le r\le9$---$3\,984$ counts in all---agree with the separate-source sieve
+\emph{exactly}, with zero discrepancies ($47\,181\,875$ primes on those
+chunks). For the first $17$ chunks, which predate the histogram feature,
+per-class counts were not logged during the campaign; that range,
+$[9.70\times10^{8},1.004\times10^{9})$, was therefore re-scanned after the
+campaign in one aggregate invocation with the post-campaign audit build
+(commit \texttt{c81383885bd9}; full identities are in the registry).  The
+retained Git history places the eight separate-source counts in commit
+\texttt{30e8b83df3c0} before the completed re-scan transcript.  This establishes
+relative order inside the preserved Git DAG, not an independently timestamped
+precommitment.  A version-specific,
+fail-closed parser now checks the preserved transcript, whose SHA-256 is
+\texttt{dff4e409\ldots de184};
+it verifies every historical TARGET, candidate, COLQ, HISTO, and TOP row before
+comparing the eight histogram sums with those separately recorded counts.
+
+\input{generated_rescan17_table}
+
+The re-scan also lists exactly $405$ run-valid $(3,17)$ candidates, consistently
+with its TARGET row and its $r=3$ histogram.  It was one invocation over the
+whole interval, however, so it supplies aggregate class totals rather than
+$17\times8$ per-chunk cells.  These audits establish exact agreement of the
+counts; counts alone do not establish
+identity of the ordered prime lists.  The audit utility therefore also emits a
+canonical ordered stream for byte comparison and hashing.  Its final manifest
+records byte-for-byte scanner/CPU identity on all $515$ chunks, independently
+of the $3\,984$ matching counts.  The four historical scanner blobs contain a
+byte-identical $249$-byte \texttt{sieve\_primes}
+function (SHA-256 recorded in the registry).  That function accepted an
+inclusive upper endpoint, whereas the audit stream is half-open; every campaign
+boundary is an even integer greater than two, hence composite, so the two
+conventions enumerate exactly the same primes on all $515$ chunks.  The current
+scanner makes the half-open convention explicit.  In total the window
+$[9.7\times10^{8},2\times10^{9})$ contains $48\,823\,489$ primes in both
+byte-identical ordered streams.  Across the retained $498$-chunk histograms and
+the aggregate 17-chunk re-scan, the preserved outputs report corresponding
+per-class totals.  The separate-source
+sieve counts $1\,448\,736$ primes in
+$[9.7\times10^{8},10^{9})$, hence $47\,374\,753$ in
+$[10^{9},2\times10^{9})$.  This equals the externally published difference
+$\pi(2\times10^{9})-\pi(10^{9})=98\,222\,287-50\,847\,534$ from Oliveira e
+Silva's table~\cite{OliveiraSilvaPi}; it checks the interval difference, not
+either absolute value separately.
+
+The authenticated checkpoint and journal manifest accounts for all $515$
+contiguous chunks without inventing the absent chunk~7 journal row; the saved
+driver ordering establishes why that row can be recovered from the checkpoint.
+Together with the $515$-chunk ordered-prime identity audit, this closes the
+local coverage audit while preserving the distinction between the $498$
+per-chunk histograms and the one aggregate re-scan of chunks~1--17.  The
+strongest candidate direct bounds located by the scan were passed to
+Section~\ref{ss:protocol}; no bound was recorded from the scanning pass alone.

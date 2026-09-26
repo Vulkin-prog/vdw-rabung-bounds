@@ -1,3 +1,4 @@
+import json
 import unittest
 from pathlib import Path
 
@@ -29,35 +30,66 @@ class ManuscriptClaimRegressionTest(unittest.TestCase):
         ):
             self.assertNotIn(forbidden, lowered)
 
-    def test_accepted_claim_ledgers_have_no_stale_pending_status(self):
-        audited_paths = (
+    def test_current_narrative_has_no_stale_capture_status(self):
+        current_narrative_paths = (
             ROOT / "REPRODUCIBILITY.md",
-            ROOT / "audit" / "claims.json",
-            ROOT / "results" / "claims" / "validated-claims.json",
-            ROOT / "results" / "claims" / "validated-claims.md",
-            ROOT / "results" / "claims" / "validated-claims.tex",
         )
         combined = "\n".join(
-            path.read_text(encoding="utf-8") for path in audited_paths
+            path.read_text(encoding="utf-8") for path in current_narrative_paths
         ).lower()
         self.assertNotIn("release manifest pending", combined)
         self.assertNotIn("b7afe3a79de1ff17c2051caadb6a3bf7", combined)
 
+    def test_capture_time_claim_credit_remains_bound_to_the_manifests(self):
+        evidence_readme = (
+            ROOT / "results" / "claims" / "README.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("capture-time suffix", evidence_readme)
+        self.assertIn("`release manifest pending`", evidence_readme)
+        registry = json.loads(
+            (ROOT / "audit" / "claims.json").read_text(encoding="utf-8")
+        )
+        monroe_claims = [
+            claim for claim in registry["claims"]
+            if claim["origin"].startswith("monroe_phase2_archive")
+        ]
+        self.assertEqual(len(monroe_claims), 4)
+        for claim in monroe_claims:
+            manifest = json.loads(
+                (
+                    ROOT / "results" / "claims" / claim["id"] / "manifest.json"
+                ).read_text(encoding="utf-8")
+            )
+            self.assertEqual(manifest["claim"], claim)
+            self.assertTrue(
+                claim["priority_credit"].endswith("; release manifest pending")
+            )
+
     def test_corrected_recurrence_bounds_are_present(self):
         table = (TEX / "generated_bounds_table.tex").read_text(encoding="utf-8")
         self.assertIn(r"22 & $1\,999\,999\,927$ & $41\,999\,998\,468$ & $49\,058\,715\,046$", table)
-        self.assertIn(r"25 & $1\,999\,999\,927$ & $47\,999\,998\,249$ & $628\,673\,328\,287$", table)
+        self.assertIn(r"24 & $1\,999\,999\,927$ & $45\,999\,998\,322$ & $1\,082\,646\,556\,499$", table)
+        self.assertIn(r"25 & $1\,999\,999\,927$ & $47\,999\,998\,249$ & $1\,082\,646\,556\,499$", table)
         self.assertIn(r"W(3,28) &> 2\,159\,051\,058\,266", self.sources)
+
+    def test_priority_audit_language_is_conservative(self):
+        lowered = self.sources.lower()
+        self.assertIn("no earlier public source was located", lowered)
+        self.assertIn("does not establish global priority", lowered)
+        self.assertIn("excluded from the numerical registry", lowered)
+        self.assertNotIn("priority remains monroe's", lowered)
 
     def test_bounds_table_is_generated_not_retyped(self):
         bounds = (TEX / "sec4_bounds.tex").read_text(encoding="utf-8")
         self.assertIn(r"\input{generated_bounds_table}", bounds)
-        self.assertNotIn(r"41\,999\,998\,468", bounds)
+        self.assertNotIn(r"22 & $1\,999\,999\,927$", bounds)
 
     def test_validated_claim_table_is_optional_and_copied_by_builder(self):
         bounds = (TEX / "sec4_bounds.tex").read_text(encoding="utf-8")
         self.assertIn(r"\IfFileExists{generated_validated_claims.tex}", bounds)
-        self.assertIn(r"\input{generated_validated_claims}", bounds)
+        appendix = (TEX / "appendix_certificates.tex").read_text(encoding="utf-8")
+        self.assertIn(r"\input{generated_validated_claims}", appendix)
+        self.assertIn(r"\ref{s:certificate-evidence}", bounds)
         self.assertIn("Validated-claim table unavailable in this build", bounds)
         self.assertNotIn("Pending validated-claim table", bounds)
         self.assertNotIn("staging build", bounds)

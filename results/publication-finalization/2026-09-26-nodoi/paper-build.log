@@ -1,0 +1,4 @@
+[paper] deterministic build 1/2
+[paper] SOURCE_DATE_EPOCH=1790380800 (release/SOURCE_DATE_EPOCH)
+[paper] deterministic build 2/2
+PAPER_BUILD_OK  206895792f1276ab601ace45420b40a60a2dd5b2a7c63840d14358d45f0885ab  /workspace/scratch/2fa008acabe5/validation/nodoi/rebuild.pdf

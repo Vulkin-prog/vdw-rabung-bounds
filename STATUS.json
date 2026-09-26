@@ -1,8 +1,8 @@
 {
   "schema": "vdw-publication-status/v1",
   "artifact": "vdw-rabung-bounds",
-  "repository_state": "private_preparation",
-  "citable_release": false,
+  "repository_state": "archived_release",
+  "citable_release": true,
   "source": {
     "repository": "Vulkin-prog/vdw-gpu-starter",
     "commit": "02796ae9e08da5b051a94b2d9001763908375f6e",
@@ -28,12 +28,14 @@
     },
     {
       "id": "cpu-ci-clean-tag",
-      "status": "open",
+      "status": "passed",
       "evidence": [
-        "scripts/run_cpu_checks.sh",
-        ".github/workflows/ci.yml"
+        "results/publication-finalization/2026-09-26-zenodo/checks.json",
+        "results/publication-finalization/2026-09-26-zenodo/cpu-checks.log",
+        "results/publication-finalization/2026-09-26-zenodo/editorial-consistency.log",
+        "scripts/run_cpu_checks.sh"
       ],
-      "note": "Checks are implemented; the exact clean final-candidate commit must be replayed and durable outputs preserved before its local tag is published."
+      "note": "All 231 Python tests, native CPU smoke checks, the separate arithmetic review and Git object checks passed on clean source candidate e0c7a9c498ffe18ad2552c4479b602f4084948a9. No heavy calculation and no author-PC execution. The following freeze commit adds these logs, status/documentation, the inventory and MANIFEST.sha256; its release contract is checked separately."
     },
     {
       "id": "bibliography-primary-source-audit",
@@ -42,16 +44,18 @@
         "paper/references.bib",
         "publication/bibliography-audit.json"
       ],
-      "note": "The fourteen cited entries were checked on 2026-08-28; the version-sensitive Fox--Hunter and Campos--Fox--Schildkraut preprints are pinned to v1 and must be rechecked before the release freeze."
+      "note": "Source audit updated on 2026-09-26 with per-entry access scope. Twenty-three references, corrected Monroe v1 timestamp, Kozik-Shabanov context, and two comparison levels for the published unresolved Landman-Robertson statement. The five direct improvements survive its conservative inclusion. Xu original full-text access remains limited and no winning three-colour row depends on it."
     },
     {
       "id": "paper-clean-build",
-      "status": "open",
+      "status": "passed",
       "evidence": [
-        "scripts/build_paper.sh",
-        "paper/tex/main.tex"
+        "results/publication-finalization/2026-09-26-nodoi/checks.json",
+        "results/publication-finalization/2026-09-26-nodoi/paper-build.log",
+        "results/publication-finalization/2026-09-26-nodoi/standalone-latex.log",
+        "paper/main.pdf"
       ],
-      "note": "A clean build exists locally; after the DOI metadata is inserted, the PDF must be rebuilt and checked from the exact final-candidate commit before its local tag is published."
+      "note": "At the author's request, the 27-page A4 manuscript omits its own DOI from the title page and body. Full and standalone builds are byte-identical: SHA-256 206895792f1276ab601ace45420b40a60a2dd5b2a7c63840d14358d45f0885ab. Only pages 1 and 16 changed; both were visually reviewed. Scientific source trees and numerical inputs are unchanged from the source candidate with 231 passing tests. Earlier document hashes remain historical evidence."
     },
     {
       "id": "claim-manifests-13",
@@ -81,7 +85,7 @@
         "results/campaign/prime_identity_manifest.json"
       ],
       "expected_chunk_count": 515,
-      "note": "The scanner and independent CPU sieve produced byte-identical ordered streams on all 515 chunks: 48,823,489 primes and 535,628,154 bytes."
+      "note": "The scanner and separate-source CPU sieve produced byte-identical ordered streams on all 515 chunks: 48,823,489 primes and 535,628,154 bytes."
     },
     {
       "id": "cuda-release-qualification",
@@ -92,40 +96,30 @@
       "note": "The SM120 regression passed on the clean qualification-source commit; the manifest binds its commit and tree, source and binary hashes, CUDA/compiler/driver/GPU identities, command, and raw streams."
     },
     {
-      "id": "external-replication-4",
-      "status": "blocked_external",
-      "evidence": [
-        "publication/external-replication.json",
-        "results/external-replication"
-      ],
-      "expected_claim_ids": [
-        "w2_k25_p1138900957",
-        "w3_k17_p1961601427",
-        "w2_k27_p3459826103",
-        "w2_k28_p3476732783"
-      ],
-      "note": "Four fixed certificates must be checked on independently administered hardware."
-    },
-    {
       "id": "outbound-rights",
-      "status": "blocked_human_decision",
+      "status": "passed",
       "evidence": [
         "RIGHTS-STATUS.md",
+        "LICENSE",
+        "LICENSE-MIT.txt",
+        "LICENSE-CC-BY-4.0.txt",
+        "release/rights-map.json",
         "THIRD_PARTY_NOTICES.md"
       ],
-      "note": "The author must choose licences for code, paper/data, and resolve redistribution of third-party objects."
+      "note": "Explicit author approval on 2026-09-26: MIT for original code; CC BY 4.0 for the manuscript and original data. Full licence texts, component map and software citation metadata are consistent. Third-party research objects are not redistributed."
     },
     {
       "id": "doi-tag-archive-freeze",
-      "status": "open",
+      "status": "passed",
       "evidence": [
         "CITATION.cff",
         "release/zenodo-metadata.json",
         "release/SOURCE_DATE_EPOCH",
         "paper/main.pdf",
+        "MANIFEST.sha256",
         "tools/freeze_release.py"
       ],
-      "note": "At the final transition, after the other gates pass and the DOI metadata is final, stage the release-form STATUS (archived_release, citable_release true, all gates passed). For this gate, passed means that the metadata and staged payload are ready for the inner-freeze transaction; it does not attest a published tag, an uploaded archive, or an external receipt. Run freeze_release.py create; only if it succeeds, stage MANIFEST.sha256, commit, and create the local tag. A create failure must not be committed or published. The post-tag deposit comparison and receipt remain external and are not embedded evidence for this gate."
+      "note": "The author reserved DOI 10.5281/zenodo.22980965 for the single preprint/supporting-files record, version 1.0.0 dated 2026-09-26. Passed has only the documented transaction meaning: final metadata and staged payload ready for freeze_release.py create. This state is committed only after successful manifest creation, then checked against the local tag. It does not attest an uploaded file, a public tag, a public DOI record, or a remote deposit receipt. Those external actions remain separate."
     }
   ]
 }

@@ -160,6 +160,47 @@ def initialize_git(root: Path) -> None:
 
 
 class ReleaseFreezeTest(unittest.TestCase):
+    def test_combined_preprint_freeze_binds_doi_tag_and_all_component_licenses(self):
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            write_candidate(root)
+            path = root / MODULE.ZENODO_RELATIVE
+            value = json.loads(path.read_text(encoding="utf-8"))
+            value.update(
+                schema="vdw-zenodo-form-fields/v1",
+                deposit_scope="combined_preprint_and_reproducibility",
+                tag=TAG,
+                licenses=["CC-BY-4.0", "CC0-1.0", "MIT"],
+            )
+            value["metadata"].update(
+                title=TITLE, upload_type="publication", publication_type="preprint",
+                license="CC-BY-4.0", related_identifiers=[],
+            )
+            path.write_text(json.dumps(value) + "\n", encoding="utf-8")
+            initialize_git(root)
+            MODULE.create_freeze(root, TAG)
+            run("git", "add", MODULE.MANIFEST_RELATIVE, cwd=root)
+            run("git", "commit", "-m", "combined freeze", cwd=root)
+            run("git", "tag", TAG, cwd=root)
+            MODULE.check_freeze(root, TAG, require_head_tag=True)
+            mutations = (
+                (lambda x: x.update(licenses=["CC-BY-4.0"]), "component rights"),
+                (lambda x: x.update(tag="v9.9.9"), "release tag"),
+                (lambda x: x.update(doi="10.5281/zenodo.7654321"), "DOI"),
+                (lambda x: x["metadata"].update(license="MIT"), "metadata.license"),
+                (lambda x: x["metadata"].update(publication_type="article"), "publication/preprint"),
+                (lambda x: x["metadata"].update(related_identifiers=[
+                    {"identifier": DOI, "scheme": "doi", "relation": "isSupplementTo"}
+                ]), "separate paper DOI"),
+            )
+            for mutate, message in mutations:
+                with self.subTest(message=message):
+                    changed = json.loads(json.dumps(value))
+                    mutate(changed)
+                    path.write_text(json.dumps(changed) + "\n", encoding="utf-8")
+                    with self.assertRaisesRegex(MODULE.FreezeError, message):
+                        MODULE.validate_metadata(root, TAG)
+
     def test_complete_freeze_binds_inventory_pdf_metadata_and_tag(self):
         with tempfile.TemporaryDirectory() as raw:
             root = Path(raw)

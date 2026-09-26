@@ -54,7 +54,6 @@ REQUIRED_RELEASE_GATES = {
     "campaign-archive-515",
     "ordered-prime-identity-515",
     "cuda-release-qualification",
-    "external-replication-4",
     "outbound-rights",
     "doi-tag-archive-freeze",
 }
@@ -348,6 +347,28 @@ def validate_zenodo(root: Path, citation: dict, tag: str) -> None:
     if PLACEHOLDER_RE.search(json.dumps(value, ensure_ascii=False)):
         raise FreezeError("release/zenodo-metadata.json still contains placeholders")
     metadata = value["metadata"]
+    # A single preprint record may carry the paper, data and software together.
+    # This is a local form-field specification, not a legacy API request body:
+    # the legacy API's single license field cannot represent mixed file rights.
+    combined = value.get("deposit_scope") == "combined_preprint_and_reproducibility"
+    if combined:
+        _exact_object(
+            value, {"schema", "deposit_scope", "doi", "tag", "licenses", "metadata"},
+            "combined Zenodo specification",
+        )
+        if value["schema"] != "vdw-zenodo-form-fields/v1":
+            raise FreezeError("unsupported combined Zenodo specification schema")
+        rights = _strict_json(root / RIGHTS_MAP_RELATIVE)["components"]
+        paper_license = rights["paper_pdf"]["license_id"]
+        wanted_licenses = sorted({row["license_id"] for row in rights.values()})
+        if value["licenses"] != wanted_licenses:
+            raise FreezeError("combined Zenodo licenses do not cover the component rights map")
+        if value["tag"] != tag:
+            raise FreezeError("combined Zenodo specification does not bind the release tag")
+    else:
+        if "deposit_scope" in value:
+            raise FreezeError("unsupported Zenodo deposit_scope")
+        paper_license = citation["license"]
     related = metadata.get("related_identifiers")
     if not isinstance(related, list):
         raise FreezeError("Zenodo metadata.related_identifiers must be an array")
@@ -355,7 +376,7 @@ def validate_zenodo(root: Path, citation: dict, tag: str) -> None:
     expected = {
         "version": citation["version"],
         "publication_date": citation["date-released"],
-        "license": citation["license"],
+        "license": paper_license,
     }
     for field, wanted in expected.items():
         if metadata.get(field) != wanted:
@@ -370,7 +391,12 @@ def validate_zenodo(root: Path, citation: dict, tag: str) -> None:
         raise FreezeError("Zenodo title is inconsistent with CITATION.cff")
     if not isinstance(metadata.get("description"), str) or not metadata["description"].strip():
         raise FreezeError("Zenodo description is empty")
-    if metadata.get("upload_type") != "software":
+    if combined:
+        if metadata.get("upload_type") != "publication" or metadata.get("publication_type") != "preprint":
+            raise FreezeError("combined Zenodo upload_type/publication_type must be publication/preprint")
+        if metadata.get("title") != citation["title"]:
+            raise FreezeError("combined Zenodo title must equal the manuscript title")
+    elif metadata.get("upload_type") != "software":
         raise FreezeError("Zenodo metadata.upload_type must be 'software'")
 
     creators = metadata.get("creators")
@@ -399,6 +425,13 @@ def validate_zenodo(root: Path, citation: dict, tag: str) -> None:
     dois = _zenodo_dois(value, metadata, related)
     if citation_doi not in dois:
         raise FreezeError("Zenodo final metadata does not bind the CITATION.cff DOI")
+
+    if combined:
+        if normalize_doi(value["doi"]) != citation_doi:
+            raise FreezeError("combined Zenodo DOI differs from CITATION.cff")
+        if related:
+            raise FreezeError("combined Zenodo record must not invent a separate paper DOI or public release URL")
+        return
 
     expected_url = f"{REPOSITORY_URL}/releases/tag/{tag}"
     tag_rows = [

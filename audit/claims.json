@@ -9,7 +9,7 @@
       "prime": 1138900957,
       "lower_bound": 27333622969,
       "origin": "monroe_phase2_archive_and_this_scan",
-      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rediscovered and rechecked here",
+      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rediscovered and rechecked here; release manifest pending",
       "evidence_class": "succinct_rabung_certificate"
     },
     {
@@ -19,7 +19,7 @@
       "prime": 2125065391,
       "lower_bound": 53126634776,
       "origin": "monroe_phase2_archive",
-      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here",
+      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here; release manifest pending",
       "evidence_class": "succinct_rabung_certificate"
     },
     {
@@ -29,7 +29,7 @@
       "prime": 3459826103,
       "lower_bound": 89955478679,
       "origin": "monroe_phase2_archive",
-      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here",
+      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here; release manifest pending",
       "evidence_class": "succinct_rabung_certificate",
       "requires_montgomery_free_witness": true
     },
@@ -40,7 +40,7 @@
       "prime": 3476732783,
       "lower_bound": 93871785142,
       "origin": "monroe_phase2_archive",
-      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here",
+      "priority_credit": "Daniel Monroe (archived phase-2 table); historically rechecked here; release manifest pending",
       "evidence_class": "succinct_rabung_certificate",
       "requires_montgomery_free_witness": true
     },

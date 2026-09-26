@@ -1,16 +1,17 @@
-# CPU-only external replication kit
+# Optional CPU-only external replication kit
 
-This kit is for the four cross-machine certificate rechecks frozen in
-`publication/external-replication.json`. One operator runs one assigned claim;
-the final set therefore contains four one-claim bundles from four distinct
-persistent operator IDs. The kit does not update the canonical ledger, close
-the publication gate, or assert that an incomplete/failed capture passed.
+No external replication has been performed or is required for publication.
+This retained kit permits optional future corroboration of the four checks
+frozen in `publication/external-replication.json`. If used, one operator runs
+one assigned claim, so a complete optional set contains four one-claim bundles
+from four distinct persistent operator IDs. The kit does not update the
+optional ledger or assert that an incomplete or failed capture passed.
 
-These executions test reproducibility on separately administered hardware and
-software environments. Because they run the same verifier source, they are not
-independent software validations. Algorithmic separation instead comes from
-the distinct verifier, finite oracle, CPU walk, and non-Montgomery witness
-paths documented in the paper.
+If performed, these executions would test reproducibility on separately
+administered hardware and software environments. Because they would run the
+same verifier source, they would not be independent software validations.
+Algorithmic separation instead comes from the distinct verifier, finite oracle,
+CPU walk, and non-Montgomery witness paths documented in the paper.
 
 ## Operator procedure
 
@@ -102,6 +103,6 @@ python3 tools/external_replication.py ledger-fragment \
 
 Both fragment forms use repository-relative paths and retain the operator ID.
 They refuse non-accepting evidence. They still do not edit
-`publication/external-replication.json` or `STATUS.json`: copying the unchanged
-bundle set, importing its reviewed rows, and closing the gate remain explicit
-release actions.
+`publication/external-replication.json` or `STATUS.json`: copying an unchanged
+bundle set and importing its reviewed rows would remain explicit optional
+actions, separate from the publication gates.

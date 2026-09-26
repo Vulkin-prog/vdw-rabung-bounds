@@ -93,6 +93,6 @@ does not reconstruct unavailable raw scanner output.
 
 The separate ordered-prime audit is preserved in
 `prime_identity_manifest.json`.  It records byte equality of the scanner and
-independent CPU streams on all 515 chunks: 48,823,489 ordered primes and
+separate-source CPU streams on all 515 chunks: 48,823,489 ordered primes and
 535,628,154 stream bytes.  Aggregate counts or the recovery manifest alone
 would not replace that stronger check.

@@ -27,6 +27,11 @@ The same directory also contains a preliminary execution of the stand-alone
 verifier for `w2_k25_p1138900957`.  It accepted the strict bound
 `W(2,25) > 27333622969`.  Its progress stream is stored as base64 so
 carriage-return progress records remain byte-exact.  This clean committed run
-still predates the final release candidate and was not administered by an
-external operator, so it closes neither the claim-manifest gate nor the
-independent-replication gate.
+still predates the current accepted manifest set and is retained only as
+staging history.  It is not external or independent evidence and closes no
+additional publication gate.
+
+The frozen v1 JSON retains the historical field
+`external_replication_gate_satisfied: false` because it describes the release
+policy at capture time.  The current publication contract has removed that
+gate; preserving the false field avoids rewriting the captured staging record.

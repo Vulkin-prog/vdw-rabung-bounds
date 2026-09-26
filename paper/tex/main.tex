@@ -4,11 +4,18 @@
 \usepackage{microtype}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage[margin=1in]{geometry}
+\usepackage[a4paper,margin=24mm,headheight=14pt]{geometry}
 \usepackage{graphicx,booktabs,longtable,array}
 \usepackage[numbers,sort&compress]{natbib}
+\usepackage{tikz,fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Succinct Rabung certificates}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
 \usepackage[colorlinks]{hyperref}
-\hypersetup{pdftitle={Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers},
+\hypersetup{allcolors=blue!40!black,
+  pdftitle={Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers},
   pdfauthor={Brice Pouly},
   pdfsubject={van der Waerden numbers},
   pdfkeywords={van der Waerden numbers, lower bounds, power residues, Rabung, GPU, certificates}}
@@ -20,39 +27,32 @@
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \title{Succinct Rabung certificates and recurrence-closed\\
 lower bounds for van der Waerden numbers}
-\author{Brice Pouly}
+\author{Brice Pouly\thanks{Prepared with artificial-intelligence assistance; see the declaration at the end.}}
 \date{}
 \begin{document}\maketitle
-\begin{center}
-\fbox{\begin{minipage}{0.90\linewidth}\small
-\textbf{Qualification status (28 August 2026).}
-This is a private prepublication draft, not the citable release.  Open gates
-include clean final CPU and document replays, four external certificate
-rechecks, outbound licences, and DOI/tag freeze, as recorded in
-\texttt{STATUS.json}.  The local PC evidence now includes the fail-closed
-13-manifest claim audit, authenticated 515-chunk campaign recovery,
-515-of-515 ordered-prime identity, and SM120 CUDA qualification.  Numerical
-statements below report the current computation; the repository remains
-non-citable until every release gate has passed.
-\end{minipage}}
-\end{center}
 \begin{abstract}
-The registered numerical result comprises nine direct Rabung bounds for
-$W(3,k)$, $17\le k\le25$, headed by
-$W(3,17)>31\,385\,622\,833$. Five of these are the strongest bounds obtained
-for $17\le k\le21$ from an explicitly listed, dated corpus closed under the
-Blankenship--Cummings--Taranchuk and Xu recurrences; the other four improve the
-direct Rabung values for $22\le k\le25$ but not the best general bounds in that
-corpus. Four archived two-colour primes due to Monroe also yield, in
-particular,
-$W(3,25)>628\,673\,328\,287$ and
-$W(3,28)>2\,159\,051\,058\,266$. The GPU campaign only discovered candidate
-triples. For each triple $(p,r,k)$, a stand-alone, separate-source CPU verifier
-reconstructs the finite hypotheses of Rabung's theorem. A fail-closed audit of
-thirteen manifests binds the code, commands and raw outputs and accepts all
-$67$ registered local executions. A secondary, model-conditional holdout
-comparison is reported separately in an appendix.
+We present three primitive three-colour Rabung certificates, giving nine
+direct lower bounds for van der Waerden numbers $W(3,k)$ with $17\le k\le25$.
+The five bounds for $17\le k\le21$ improve the earlier comparators in the
+explicit catalogue reviewed through 26~September~2026. In particular,
+$W(3,17)>31\,385\,622\,833$, a factor of $2.02$ above the identified
+predecessor. Each certificate is a triple $(p,r,k)$ describing a power-residue
+colouring. Multiplicative symmetry reduces its verification to a run-length
+test and a boundary condition. A GPU search finds candidate triples; a
+stand-alone CPU verifier reconstructs these finite hypotheses of Rabung's
+theorem. We prove the equivalence of the implemented boundary test with the
+published criterion and compare the resulting bounds with a finite closure
+of earlier constructions under known recurrences. Four earlier two-colour
+certificates are rechecked and credited to Monroe's distributed project.
+A separate empirical comparison of search intensities does not enter the
+lower-bound proof.
 \end{abstract}
+\noindent\textbf{Keywords.} Van der Waerden numbers; power-residue colourings;
+Rabung certificates; computational Ramsey theory.
+\clearpage
+\setcounter{tocdepth}{1}
+\tableofcontents
+\bigskip
 % ============ STRUCTURE ============
 \input{sec1_intro}
 \input{sec4_bounds}
@@ -64,7 +64,15 @@ comparison is reported separately in an appendix.
 \input{sec6_prereg}
 \input{sec5_density}
 \input{appendix_density}
+\input{appendix_certificates}
+\input{appendix_sources}
+\input{appendix_campaign}
 \input{sec9_ack}
 \input{sec8_disclosure}
+\begingroup\small
+\setlength{\bibsep}{3pt}
+\phantomsection
+\addcontentsline{toc}{section}{References}
 \bibliographystyle{plainnat}\bibliography{../references}
+\endgroup
 \end{document}

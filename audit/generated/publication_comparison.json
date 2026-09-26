@@ -1,0 +1,579 @@
+{
+  "schema": "vdw-publication-comparison/v1",
+  "review_date": "2026-09-26",
+  "scope": "Finite registered constructions plus the published Landman-Robertson comparator; no claim of exhaustive global priority.",
+  "inputs_sha256": {
+    "audit/claims.json": "3b3ffc1739b091194e9b54d2f9435bcfbff7ab2ba84d7176330e9dead12d0aeb",
+    "audit/baselines.json": "c2188561be45fbda5a505915cb12de3344ed83a1b42399bf08cb833c8a493971",
+    "audit/published-unresolved.json": "35e1539c4d7b9a1e108e6556723aee40b287890a6d58cade48dbfafce7678936"
+  },
+  "primitive_three_colour_certificates": 3,
+  "improved_lengths": [
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "large_certificate_executions_performed": 0,
+  "rows": [
+    {
+      "length": 17,
+      "direct_bound": 31385622833,
+      "admitted_prior_bound": 15509557937,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 17,
+        "lower_bound": 15509557937,
+        "method": "published_seed",
+        "source": "monroe_code_tally",
+        "parents": [],
+        "parameters": {},
+        "label": "monroe_tally_w3_17",
+        "id": "ordinary-r3-k17-290e526dc1289a26"
+      },
+      "published_unresolved_bound": 20726186,
+      "published_unresolved_prime": 13,
+      "prior_comparator": 15509557937,
+      "comparator_status": "admitted",
+      "improved": true,
+      "winning_admitted_bound": 31385622833
+    },
+    {
+      "length": 18,
+      "direct_bound": 33999912468,
+      "admitted_prior_bound": 16479723552,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 18,
+        "lower_bound": 16479723552,
+        "method": "published_seed",
+        "source": "monroe_code_tally",
+        "parents": [],
+        "parameters": {},
+        "label": "monroe_tally_w3_18",
+        "id": "ordinary-r3-k18-55ca728e625f5406"
+      },
+      "published_unresolved_bound": 2195382754,
+      "published_unresolved_prime": 17,
+      "prior_comparator": 16479723552,
+      "comparator_status": "admitted",
+      "improved": true,
+      "winning_admitted_bound": 33999912468
+    },
+    {
+      "length": 19,
+      "direct_bound": 35999998687,
+      "admitted_prior_bound": 17449137523,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 19,
+        "lower_bound": 17449137523,
+        "method": "published_seed",
+        "source": "monroe_code_tally",
+        "parents": [],
+        "parameters": {},
+        "label": "monroe_tally_w3_19",
+        "id": "ordinary-r3-k19-9e4361096b48f4ad"
+      },
+      "published_unresolved_bound": 2195382754,
+      "published_unresolved_prime": 17,
+      "prior_comparator": 17449137523,
+      "comparator_status": "admitted",
+      "improved": true,
+      "winning_admitted_bound": 35999998687
+    },
+    {
+      "length": 20,
+      "direct_bound": 37999998614,
+      "admitted_prior_bound": 18418533254,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 20,
+        "lower_bound": 18418533254,
+        "method": "published_seed",
+        "source": "monroe_code_tally",
+        "parents": [],
+        "parameters": {},
+        "label": "monroe_tally_w3_20",
+        "id": "ordinary-r3-k20-67cdc014e553cc10"
+      },
+      "published_unresolved_bound": 22082967854,
+      "published_unresolved_prime": 19,
+      "prior_comparator": 22082967854,
+      "comparator_status": "published_unresolved",
+      "improved": true,
+      "winning_admitted_bound": 37999998614
+    },
+    {
+      "length": 21,
+      "direct_bound": 39999998541,
+      "admitted_prior_bound": 26783744079,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 21,
+        "lower_bound": 26783744079,
+        "method": "bct2018",
+        "source": "bct2018",
+        "parents": [
+          "ordinary-r2-k21-a3cde2958d0dc773"
+        ],
+        "parameters": {
+          "prime_q": 19
+        },
+        "label": null,
+        "id": "ordinary-r3-k21-712337b39233d0be"
+      },
+      "published_unresolved_bound": 22082967854,
+      "published_unresolved_prime": 19,
+      "prior_comparator": 26783744079,
+      "comparator_status": "admitted",
+      "improved": true,
+      "winning_admitted_bound": 39999998541
+    },
+    {
+      "length": 22,
+      "direct_bound": 41999998468,
+      "admitted_prior_bound": 49058715046,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 22,
+        "lower_bound": 49058715046,
+        "method": "bct2018",
+        "source": "bct2018",
+        "parents": [
+          "ordinary-r2-k22-4c22beb996c108d9"
+        ],
+        "parameters": {
+          "prime_q": 19
+        },
+        "label": null,
+        "id": "ordinary-r3-k22-f4f3459e0ab6982f"
+      },
+      "published_unresolved_bound": 22082967854,
+      "published_unresolved_prime": 19,
+      "prior_comparator": 49058715046,
+      "comparator_status": "admitted",
+      "improved": false,
+      "winning_admitted_bound": 49058715046
+    },
+    {
+      "length": 23,
+      "direct_bound": 43999998395,
+      "admitted_prior_bound": 142741265701,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 23,
+        "lower_bound": 142741265701,
+        "method": "bct2018",
+        "source": "bct2018",
+        "parents": [
+          "ordinary-r2-k23-ccbb6706d88601e5"
+        ],
+        "parameters": {
+          "prime_q": 23
+        },
+        "label": null,
+        "id": "ordinary-r3-k23-23b618726e04bfbc"
+      },
+      "published_unresolved_bound": 22082967854,
+      "published_unresolved_prime": 19,
+      "prior_comparator": 142741265701,
+      "comparator_status": "admitted",
+      "improved": false,
+      "winning_admitted_bound": 142741265701
+    },
+    {
+      "length": 24,
+      "direct_bound": 45999998322,
+      "admitted_prior_bound": 1082646556499,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 24,
+        "lower_bound": 1082646556499,
+        "method": "published_seed",
+        "source": "berlekamp1968",
+        "parents": [],
+        "parameters": {
+          "field_order": 3,
+          "berlekamp_t": 23,
+          "condition_denominator": 2
+        },
+        "label": "berlekamp_w3_24",
+        "id": "ordinary-r3-k24-3c89aed052b68ad1"
+      },
+      "published_unresolved_bound": 2165293112998,
+      "published_unresolved_prime": 23,
+      "prior_comparator": 2165293112998,
+      "comparator_status": "published_unresolved",
+      "improved": false,
+      "winning_admitted_bound": 1082646556499
+    },
+    {
+      "length": 25,
+      "direct_bound": 47999998249,
+      "admitted_prior_bound": 1082646556499,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 25,
+        "lower_bound": 1082646556499,
+        "method": "length_monotonicity",
+        "source": "elementary",
+        "parents": [
+          "ordinary-r3-k24-3c89aed052b68ad1"
+        ],
+        "parameters": {
+          "from_length": 24
+        },
+        "label": null,
+        "id": "ordinary-r3-k25-a1050674d80eadd0"
+      },
+      "published_unresolved_bound": 2165293112998,
+      "published_unresolved_prime": 23,
+      "prior_comparator": 2165293112998,
+      "comparator_status": "published_unresolved",
+      "improved": false,
+      "winning_admitted_bound": 1082646556499
+    },
+    {
+      "length": 26,
+      "direct_bound": null,
+      "admitted_prior_bound": 1221912599848,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 26,
+        "lower_bound": 1221912599848,
+        "method": "bct2018",
+        "source": "bct2018",
+        "parents": [
+          "ordinary-r2-k26-19ccd04d459b91f9"
+        ],
+        "parameters": {
+          "prime_q": 23
+        },
+        "label": null,
+        "id": "ordinary-r3-k26-787509abe64b7bb4"
+      },
+      "published_unresolved_bound": 2165293112998,
+      "published_unresolved_prime": 23,
+      "prior_comparator": 2165293112998,
+      "comparator_status": "published_unresolved",
+      "improved": false,
+      "winning_admitted_bound": 1221912599848
+    },
+    {
+      "length": 27,
+      "direct_bound": null,
+      "admitted_prior_bound": 2068976009617,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 27,
+        "lower_bound": 2068976009617,
+        "method": "bct2018",
+        "source": "bct2018",
+        "parents": [
+          "ordinary-r2-k27-3f088a9a4aea67bf"
+        ],
+        "parameters": {
+          "prime_q": 23
+        },
+        "label": null,
+        "id": "ordinary-r3-k27-d4fe08cb1b074b09"
+      },
+      "published_unresolved_bound": 2165293112998,
+      "published_unresolved_prime": 23,
+      "prior_comparator": 2165293112998,
+      "comparator_status": "published_unresolved",
+      "improved": false,
+      "winning_admitted_bound": 2068976009617
+    },
+    {
+      "length": 28,
+      "direct_bound": null,
+      "admitted_prior_bound": 2159051058266,
+      "admitted_prior_node": {
+        "kind": "ordinary",
+        "colors": 3,
+        "length": 28,
+        "lower_bound": 2159051058266,
+        "method": "bct2018",
+        "source": "bct2018",
+        "parents": [
+          "ordinary-r2-k28-81429e35417982e1"
+        ],
+        "parameters": {
+          "prime_q": 23
+        },
+        "label": null,
+        "id": "ordinary-r3-k28-5084d8e296dec8c3"
+      },
+      "published_unresolved_bound": 2165293112998,
+      "published_unresolved_prime": 23,
+      "prior_comparator": 2165293112998,
+      "comparator_status": "published_unresolved",
+      "improved": false,
+      "winning_admitted_bound": 2159051058266
+    }
+  ],
+  "admitted_prior_provenance_nodes": [
+    {
+      "kind": "ordinary",
+      "colors": 2,
+      "length": 21,
+      "lower_bound": 1409670741,
+      "method": "published_seed",
+      "source": "monroe2016v1",
+      "parents": [],
+      "parameters": {},
+      "label": "monroe_w2_21",
+      "id": "ordinary-r2-k21-a3cde2958d0dc773"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 2,
+      "length": 22,
+      "lower_bound": 2582037634,
+      "method": "published_seed",
+      "source": "monroe2016v1",
+      "parents": [],
+      "parameters": {},
+      "label": "monroe_w2_22",
+      "id": "ordinary-r2-k22-4c22beb996c108d9"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 2,
+      "length": 23,
+      "lower_bound": 6206141987,
+      "method": "published_seed",
+      "source": "monroe2016v1",
+      "parents": [],
+      "parameters": {},
+      "label": "monroe_w2_23",
+      "id": "ordinary-r2-k23-ccbb6706d88601e5"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 2,
+      "length": 26,
+      "lower_bound": 53126634776,
+      "method": "direct_rabung",
+      "source": "monroe_phase2_archive",
+      "parents": [],
+      "parameters": {},
+      "label": "w2_k26_p2125065391",
+      "id": "ordinary-r2-k26-19ccd04d459b91f9"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 2,
+      "length": 27,
+      "lower_bound": 89955478679,
+      "method": "direct_rabung",
+      "source": "monroe_phase2_archive",
+      "parents": [],
+      "parameters": {},
+      "label": "w2_k27_p3459826103",
+      "id": "ordinary-r2-k27-3f088a9a4aea67bf"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 2,
+      "length": 28,
+      "lower_bound": 93871785142,
+      "method": "direct_rabung",
+      "source": "monroe_phase2_archive",
+      "parents": [],
+      "parameters": {},
+      "label": "w2_k28_p3476732783",
+      "id": "ordinary-r2-k28-81429e35417982e1"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 17,
+      "lower_bound": 15509557937,
+      "method": "published_seed",
+      "source": "monroe_code_tally",
+      "parents": [],
+      "parameters": {},
+      "label": "monroe_tally_w3_17",
+      "id": "ordinary-r3-k17-290e526dc1289a26"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 18,
+      "lower_bound": 16479723552,
+      "method": "published_seed",
+      "source": "monroe_code_tally",
+      "parents": [],
+      "parameters": {},
+      "label": "monroe_tally_w3_18",
+      "id": "ordinary-r3-k18-55ca728e625f5406"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 19,
+      "lower_bound": 17449137523,
+      "method": "published_seed",
+      "source": "monroe_code_tally",
+      "parents": [],
+      "parameters": {},
+      "label": "monroe_tally_w3_19",
+      "id": "ordinary-r3-k19-9e4361096b48f4ad"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 20,
+      "lower_bound": 18418533254,
+      "method": "published_seed",
+      "source": "monroe_code_tally",
+      "parents": [],
+      "parameters": {},
+      "label": "monroe_tally_w3_20",
+      "id": "ordinary-r3-k20-67cdc014e553cc10"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 21,
+      "lower_bound": 26783744079,
+      "method": "bct2018",
+      "source": "bct2018",
+      "parents": [
+        "ordinary-r2-k21-a3cde2958d0dc773"
+      ],
+      "parameters": {
+        "prime_q": 19
+      },
+      "label": null,
+      "id": "ordinary-r3-k21-712337b39233d0be"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 22,
+      "lower_bound": 49058715046,
+      "method": "bct2018",
+      "source": "bct2018",
+      "parents": [
+        "ordinary-r2-k22-4c22beb996c108d9"
+      ],
+      "parameters": {
+        "prime_q": 19
+      },
+      "label": null,
+      "id": "ordinary-r3-k22-f4f3459e0ab6982f"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 23,
+      "lower_bound": 142741265701,
+      "method": "bct2018",
+      "source": "bct2018",
+      "parents": [
+        "ordinary-r2-k23-ccbb6706d88601e5"
+      ],
+      "parameters": {
+        "prime_q": 23
+      },
+      "label": null,
+      "id": "ordinary-r3-k23-23b618726e04bfbc"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 24,
+      "lower_bound": 1082646556499,
+      "method": "published_seed",
+      "source": "berlekamp1968",
+      "parents": [],
+      "parameters": {
+        "field_order": 3,
+        "berlekamp_t": 23,
+        "condition_denominator": 2
+      },
+      "label": "berlekamp_w3_24",
+      "id": "ordinary-r3-k24-3c89aed052b68ad1"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 25,
+      "lower_bound": 1082646556499,
+      "method": "length_monotonicity",
+      "source": "elementary",
+      "parents": [
+        "ordinary-r3-k24-3c89aed052b68ad1"
+      ],
+      "parameters": {
+        "from_length": 24
+      },
+      "label": null,
+      "id": "ordinary-r3-k25-a1050674d80eadd0"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 26,
+      "lower_bound": 1221912599848,
+      "method": "bct2018",
+      "source": "bct2018",
+      "parents": [
+        "ordinary-r2-k26-19ccd04d459b91f9"
+      ],
+      "parameters": {
+        "prime_q": 23
+      },
+      "label": null,
+      "id": "ordinary-r3-k26-787509abe64b7bb4"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 27,
+      "lower_bound": 2068976009617,
+      "method": "bct2018",
+      "source": "bct2018",
+      "parents": [
+        "ordinary-r2-k27-3f088a9a4aea67bf"
+      ],
+      "parameters": {
+        "prime_q": 23
+      },
+      "label": null,
+      "id": "ordinary-r3-k27-d4fe08cb1b074b09"
+    },
+    {
+      "kind": "ordinary",
+      "colors": 3,
+      "length": 28,
+      "lower_bound": 2159051058266,
+      "method": "bct2018",
+      "source": "bct2018",
+      "parents": [
+        "ordinary-r2-k28-81429e35417982e1"
+      ],
+      "parameters": {
+        "prime_q": 23
+      },
+      "label": null,
+      "id": "ordinary-r3-k28-5084d8e296dec8c3"
+    }
+  ]
+}

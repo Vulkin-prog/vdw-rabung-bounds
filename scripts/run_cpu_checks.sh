@@ -21,7 +21,19 @@ for CPU_COMMAND in "$CPU_PYTHON" "$CPU_CXX" "$CPU_CC" sha256sum; do
 done
 
 CPU_BUILD_DIR=$(mktemp -d "${TMPDIR:-/tmp}/vdw-rabung-cpu.XXXXXXXX")
+# Optional durable native logs, outside the repository being checked.
+if [[ -n "${CPU_CHECK_LOG_DIR:-}" ]]; then
+  mkdir -p -- "$CPU_CHECK_LOG_DIR"
+  CPU_CHECK_LOG_DIR=$(cd "$CPU_CHECK_LOG_DIR" && pwd -P)
+  if [[ "$CPU_CHECK_LOG_DIR" == "$REPOSITORY_ROOT" || "$CPU_CHECK_LOG_DIR" == "$REPOSITORY_ROOT/"* ]]; then
+    printf 'ERROR: CPU_CHECK_LOG_DIR must be outside the repository.\n' >&2
+    exit 2
+  fi
+fi
 cleanup_cpu_build() {
+  if [[ -n "${CPU_CHECK_LOG_DIR:-}" ]]; then
+    find "$CPU_BUILD_DIR" -maxdepth 1 -type f -name '*.log' -exec cp -- {} "$CPU_CHECK_LOG_DIR/" \;
+  fi
   rm -rf -- "$CPU_BUILD_DIR"
 }
 trap cleanup_cpu_build EXIT
@@ -42,6 +54,7 @@ printf '[cpu] strict JSON and generated-artifact checks\n'
 "$CPU_PYTHON" tools/strict_json_check.py
 "$CPU_PYTHON" tools/materialize_historical_sources.py --check
 "$CPU_PYTHON" tools/close_baselines.py --check
+"$CPU_PYTHON" tools/publication_comparison.py --check
 "$CPU_PYTHON" tools/density_holdout_audit.py --check
 "$CPU_PYTHON" tools/rescan17_audit.py --check
 "$CPU_PYTHON" tools/filter_bstar.py --check
@@ -65,16 +78,16 @@ printf '[cpu] native builds\n'
   tools/highp_witness.c -o "$CPU_BUILD_DIR/highp_witness"
 
 run_logged reference-oracle "$CPU_BUILD_DIR/vdw_reference"
-run_logged independent-verifier "$CPU_BUILD_DIR/verify_claim" --selftest
+run_logged separate-source-verifier "$CPU_BUILD_DIR/verify_claim" --selftest
 run_logged rabung-criterion "$CPU_BUILD_DIR/rabung_criterion" 1000
 run_logged ordered-reduction "$CPU_BUILD_DIR/test_ordered_reduce"
 run_logged high-range-witness-smoke "$CPU_BUILD_DIR/highp_witness" 1000003 1000
 
-printf '[cpu] independent prime-stream smoke test\n'
+printf '[cpu] separate-source prime-stream smoke test\n'
 PRIME_STREAM_ACTUAL=$("$CPU_BUILD_DIR/prime_coverage" --dump-primes 2 30)
 PRIME_STREAM_EXPECTED=$'VDW-PRIMES-v1\n2\n30\n2\n3\n5\n7\n11\n13\n17\n19\n23\n29'
 if [[ "$PRIME_STREAM_ACTUAL" != "$PRIME_STREAM_EXPECTED" ]]; then
-  printf 'ERROR: independent prime stream differs from its canonical fixture.\n' >&2
+  printf 'ERROR: separate-source prime stream differs from its canonical fixture.\n' >&2
   printf '%s\n' "$PRIME_STREAM_ACTUAL" >&2
   exit 1
 fi

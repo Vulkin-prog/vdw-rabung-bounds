@@ -1,21 +1,59 @@
 # vdw-rabung-bounds
 
-**Private preparation repository — no citable release yet.**
+**Version 1.0.0 — preprint and reproducibility files for Zenodo DOI [10.5281/zenodo.22980965](https://doi.org/10.5281/zenodo.22980965).**
+
+The DOI was reserved by the author for a single deposit of the manuscript and
+its supporting files. Publication on Zenodo is performed by the author; the
+metadata and local freeze do not attest that the deposit is already public.
 
 This repository is the publication-oriented reproducibility package for
 *Succinct Rabung certificates and recurrence-closed lower bounds for van der
-Waerden numbers*. It is being assembled under an explicit allowlist from
+Waerden numbers*. It was assembled under an explicit allowlist from
 [`Vulkin-prog/vdw-gpu-starter`](https://github.com/Vulkin-prog/vdw-gpu-starter)
 at the immutable source commit
 `02796ae9e08da5b051a94b2d9001763908375f6e`.
 
-The current repository is deliberately private and is not a scientific release.
-The local PC package now contains the accepted 13-manifest claim set, the
-authenticated 515-chunk campaign archive, the 515-of-515 ordered-prime identity
-audit, and the passing SM120 CUDA qualification. Open gates include clean final
-CPU and document replays, external certificate rechecks, licensing decisions,
-and the DOI/tag freeze. The machine-readable state is
-[`STATUS.json`](STATUS.json).
+The manuscript has been prepared for publication following the bibliographic
+review of 26 September 2026. The new contribution is three primitive
+three-colour certificates giving nine direct inequalities; five improve the
+identified prior comparators. The published Landman–Robertson statement is
+shown separately and is included conservatively in the priority comparison.
+The four two-colour certificates remain credited to Monroe's phase-2 project.
+
+The complete existing PC evidence is preserved. Finalization requires no
+new GPU campaign and no large-certificate rerun on the author's PC. The
+public deposit uses the reserved identifier above; see `publication/ZENODO_2026-09-26_FR.md` and the archival protocol in `REPRODUCIBILITY.md`.
+The author approved MIT for the code and CC BY 4.0 for the manuscript and
+original data on 26 September 2026. The release ledger records this decision.
+
+The exposition audit supplied on 26 September led to an exact-modulus
+formulation of the Xu input, two regression tests, a revised abstract and
+worked examples. The current manuscript has 27 A4 pages. Numerical inputs,
+all closure nodes and the five improvements are unchanged. See
+`publication/editorial-review/RESPONSE_AUDIT_2026-09-26_FR.md`.
+Clean source candidate `84ee9d583f3c1a27e922a44b197779bc567cfd88` passes all 230 Python tests,
+native CPU smoke checks, the separate arithmetic check and a byte-identical
+PDF rebuild. Commands, environment, exit codes and raw logs are preserved in
+`results/publication-finalization/2026-09-26-audit/`. The earlier checks remain
+historical records. The Zenodo revision adds the actual DOI and release fields, and validates the
+combined preprint record with its distinct component licences. Clean source candidate `e0c7a9c498ffe18ad2552c4479b602f4084948a9` passes 231 Python tests,
+native smoke tests, the separate arithmetic check and byte-identical full and
+standalone PDF builds. Its logs are in
+`results/publication-finalization/2026-09-26-zenodo/`.
+The ten gates cover the local frozen payload; they do not attest an
+already-public Zenodo record or a completed remote download comparison.
+
+
+The author then requested omission of the paper's own DOI from the document.
+Only the title page and the data-availability paragraph were changed; the
+reserved DOI remains in deposit/citation metadata. The corrected 27-page PDF
+was rebuilt twice and from its standalone sources with identical bytes.
+Only pages 1 and 16 changed and were visually reviewed. Code, tests,
+registries and scientific execution evidence retain their exact tree identities
+from the 231-test source candidate. This document-only check is recorded in
+`results/publication-finalization/2026-09-26-nodoi/`; the earlier logs keep
+their original commit and PDF identities. The prior unpublished draft remains
+in Git history; this corrected payload is the intended version 1.0.0.
 
 ## What is already here
 
@@ -41,6 +79,12 @@ Search and certification are separate. `src/scan_gpu.cu` finds candidates;
 different paths. A candidate from the scanner is not publication evidence by
 itself.
 
+No independently administered external replication has been performed. The
+accepted local certificate rechecks use separately written source and distinct
+arithmetic paths, but they were run within the author-controlled project
+environment and are not independent replications. External replication would
+be useful additional corroboration; it is not a condition of publication.
+
 ## Checks available without the campaign PC
 
 ```bash
@@ -49,8 +93,7 @@ itself.
 python3 tools/check_publication_contract.py --mode staging
 ```
 
-The structural publication-contract check is expected to fail while any gate
-remains open:
+The frozen release also supports the complete structural publication-contract check:
 
 ```bash
 python3 tools/check_publication_contract.py --mode release
@@ -77,7 +120,7 @@ completed read-only recovery record, and the remaining release procedure.
 
 ## Scope
 
-This package covers the Rabung/GPU records paper only. The cyclic \(W_c\)
+This package covers the Rabung/GPU computational-evidence paper only. The cyclic \(W_c\)
 pilot, the second and third papers, companion projects, exploratory Chowla and
 Liouville work, internal review transcripts, and conversational journals are
 outside this repository. The enforced scope is in
@@ -85,8 +128,11 @@ outside this repository. The enforced scope is in
 
 ## Citation and rights
 
-`CITATION.cff` intentionally has no DOI, version, or release date yet. No
-repository-wide reuse licence has been granted; see
-[`RIGHTS-STATUS.md`](RIGHTS-STATUS.md). Public visibility and archival deposit
-remain blocked until the author makes the outbound-licensing decisions and all
-scientific gates pass.
+`CITATION.cff` identifies version 1.0.0, dated 26 September 2026, with the
+reserved DOI and a preferred citation for the preprint. The software component
+retains MIT as its top-level licence.
+Original code is licensed under MIT; the manuscript, PDF and original data
+are licensed under CC BY 4.0. See [`RIGHTS-STATUS.md`](RIGHTS-STATUS.md),
+[`LICENSE`](LICENSE) and `release/rights-map.json` for the component scope.
+The local freeze and the author-controlled Zenodo publication are separate
+steps. No GitHub release URL is invented for the private development repository.

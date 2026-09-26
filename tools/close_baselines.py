@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Close van der Waerden lower-bound baselines under published recurrences.
+"""Close van der Waerden lower-bound baselines under audited operations.
 
-The input convention is always a strict integer bound W(r,k) > B, with the
-number of colors first.  The output retains a provenance DAG and generates the
-LaTeX table consumed by the records paper.  No table cell in the paper is meant
+Ordinary inputs are strict integer bounds W(r,k) > B, with colors first.
+Ring inputs identify a progression-free colouring at the exact modulus R;
+the legacy lower_bound field on ring nodes stores that modulus, not merely
+a lower bound for a cyclic threshold. The output retains a provenance DAG and
+generates the LaTeX table consumed by the computational-evidence paper. No cell is meant
 to be edited by hand.
 """
 
@@ -13,6 +15,7 @@ import argparse
 import hashlib
 import json
 import math
+from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,9 +27,10 @@ OUT_TEX = ROOT / "paper" / "tex" / "generated_bounds_table.tex"
 OUT_COR = ROOT / "paper" / "tex" / "generated_bct_corollaries.tex"
 
 METHOD_RANK = {
-    "direct_rabung": 5,
-    "published_seed": 4,
-    "archived_verified_seed": 4,
+    "direct_rabung": 6,
+    "published_seed": 5,
+    "archived_verified_seed": 5,
+    "length_monotonicity": 4,
     "bct2018": 3,
     "xu2013": 2,
     "one_color_exact": 1,
@@ -64,15 +68,110 @@ def tex_int(value: int) -> str:
     return f"{value:,}".replace(",", r"\,")
 
 
-def xu_strict_bound(ring_bound: int, ordinary_bound: int) -> int:
+def xu_strict_bound(witness_modulus: int, ordinary_bound: int) -> int:
     """Return the strict-bound integer produced by Xu's recurrence.
 
-    Here ``ring_bound`` and ``ordinary_bound`` encode ``WR(s,k) > R`` and
-    ``W(t,k) > B``.  Taking ``n=R`` in Xu's recurrence gives
+    The caller supplies a progression-free cyclic colouring at the exact
+    modulus ``R = witness_modulus``, with R >= 5 and least prime factor > k,
+    and an ordinary strict bound ``W(t,k) > B``. Concatenation gives
     ``W(st,k) >= R * (W(t,k) - 1) + 1 >= R * B + 1``, hence the strict
     integer convention used by this program is ``W(st,k) > R * B``.
+    A threshold inequality WR(s,k) > R alone does not supply this witness.
     """
-    return int(ring_bound) * int(ordinary_bound)
+    return int(witness_modulus) * int(ordinary_bound)
+
+
+def published_ring_witness_modulus(seed) -> int:
+    """Require an exact-modulus witness declaration for a published seed.
+
+    This validates the input contract, not the source's colouring. Published
+    witness provenance remains the cited source's responsibility; claim-backed
+    Rabung witnesses are obtained from their registered prime separately.
+    """
+    modulus = seed.get("witness_modulus")
+    if type(modulus) is not int or modulus < 5:
+        raise ValueError(f"{seed.get('id')}: exact cyclic witness modulus required")
+    if modulus != seed.get("lower_bound"):
+        raise ValueError(f"{seed.get('id')}: cyclic witness modulus mismatch")
+    return modulus
+
+
+def berlekamp_condition_denominator(t: int, field_order: int) -> int:
+    """Return the strongest denominator in Berlekamp's Theorem 1.
+
+    In Berlekamp's notation the progression length is ``t+1``. Conditions
+    (4) and (5) require comparison with ``field_order**d - 1`` for every
+    proper divisor ``d`` of ``t``, and with every divisor ``D < t`` of
+    ``field_order**t - 1``. The maximum of those denominators determines the
+    largest registered integer specialization.
+    """
+    if t < 2 or field_order < 2:
+        raise ValueError("Berlekamp parameters must be at least 2")
+    proper_divisor_terms = [
+        field_order**d - 1 for d in range(1, t) if t % d == 0
+    ]
+    power_minus_one = field_order**t - 1
+    small_divisors = [d for d in range(1, t) if power_minus_one % d == 0]
+    return max(proper_divisor_terms + small_divisors)
+
+
+def berlekamp_strict_bound(t: int, field_order: int) -> int:
+    """Return the largest strict integer from the registered specialization."""
+    denominator = berlekamp_condition_denominator(t, field_order)
+    numerator = t * (field_order**t - 1)
+    if numerator % denominator:
+        raise ValueError("Berlekamp specialization is not integral")
+    return numerator // denominator
+
+
+def cfs_max_product_specialization(length: int):
+    """Maximize the explicit CFS product over distinct-prime decompositions.
+
+    Lemmas 2 and 4 of Campos--Fox--Schildkraut give the strict integer
+    ``(length-1) * product(2**p - 1)`` when the distinct primes ``p`` sum to
+    ``length-1``. The audited range is tiny, so exhaustive subset enumeration
+    is preferable to relying on a hand-selected decomposition.
+    """
+    target = length - 1
+    primes = primes_up_to(target)
+    best = None
+    for mask in range(1, 1 << len(primes)):
+        factors = tuple(
+            prime for index, prime in enumerate(primes) if mask & (1 << index)
+        )
+        if sum(factors) != target:
+            continue
+        bound = target * math.prod(2**prime - 1 for prime in factors)
+        candidate = (bound, factors)
+        if best is None or candidate > best:
+            best = candidate
+    if best is None:
+        raise ValueError(f"no distinct-prime CFS decomposition for length {length}")
+    return best
+
+
+def gasarch_haeupler_strict_bound(length: int, colors: int) -> int:
+    """Certify floor(colors**(length-1)/(e*length)) using rational bounds.
+
+    The lower bound is the exponential series through 1/40!, and the upper
+    bound adds the standard tail estimate 1/(40*40!).  Exact Fraction
+    comparisons then prove the floor without treating a binary approximation
+    to ``e`` as mathematical evidence.
+    """
+    terms = 40
+    e_lower = sum(
+        (Fraction(1, math.factorial(index)) for index in range(terms + 1)),
+        Fraction(0),
+    )
+    e_upper = e_lower + Fraction(1, terms * math.factorial(terms))
+    numerator = colors ** (length - 1)
+    quotient_below = Fraction(numerator, length) / e_upper
+    candidate = quotient_below.numerator // quotient_below.denominator
+    if candidate * length * e_upper > numerator:
+        raise ValueError("invalid lower enclosure for the Gasarch--Haeupler floor")
+    if (candidate + 1) * length * e_lower <= numerator:
+        raise ValueError("rational bounds on e do not determine the required floor")
+    return candidate
 
 
 def add_node(nodes, candidates, *, kind, colors, length, bound, method,
@@ -110,15 +209,44 @@ def best_id(nodes, ids):
     )
 
 
-def closure():
+def closure(*, include_current_three_color=True):
     claims_doc = load_json(CLAIMS_PATH)
     baselines = load_json(BASELINES_PATH)
-    claims = {claim["id"]: claim for claim in claims_doc["claims"]}
+    claims = {claim["id"]: claim for claim in claims_doc["claims"]
+              if include_current_three_color or claim["colors"] != 3}
     scope = baselines["scope"]
-    lengths = range(scope["length_min"], scope["length_max"] + 1)
+    lengths = range(
+        scope.get("closure_length_min", scope["length_min"]),
+        scope["length_max"] + 1,
+    )
+    report_lengths = range(scope["length_min"], scope["length_max"] + 1)
     max_colors = scope["max_colors"]
     nodes = {}
     candidates = {}
+
+    berlekamp_seeds = [
+        seed for seed in baselines["ordinary_seeds"]
+        if seed.get("source") == "berlekamp1968"
+    ]
+    if berlekamp_seeds:
+        registered_lengths = sorted(seed["length"] for seed in berlekamp_seeds)
+        expected_lengths = list(range(min(lengths), scope["length_max"] + 1))
+        if registered_lengths != expected_lengths:
+            raise ValueError(
+                "Berlekamp seeds must cover the full closure interval: "
+                f"{registered_lengths} != {expected_lengths}"
+            )
+        first_seed = next(
+            seed for seed in berlekamp_seeds if seed["length"] == min(lengths)
+        )
+        earlier_max = max(
+            berlekamp_strict_bound(t, 3) for t in range(2, min(lengths) - 1)
+        )
+        if earlier_max > first_seed["lower_bound"]:
+            raise ValueError(
+                "an omitted earlier Berlekamp specialization would improve "
+                "the closure interval"
+            )
 
     for claim in claims.values():
         expected = (claim["length"] - 1) * claim["prime"] + 1
@@ -139,6 +267,76 @@ def closure():
             method = "direct_rabung"
             source = claim["origin"]
             return claim["colors"], claim["length"], bound, method, source, claim["id"]
+        if kind == "ring":
+            published_ring_witness_modulus(seed)
+        parameters = seed.get("parameters", {})
+        if "rabung_prime" in parameters:
+            prime = int(parameters["rabung_prime"])
+            if least_prime_factor(prime) != prime:
+                raise ValueError(f"{seed['id']}: Rabung witness is not prime")
+            expected_bound = (
+                (seed["length"] - 1) * prime + 1
+                if kind == "ordinary"
+                else prime
+            )
+            if seed["lower_bound"] != expected_bound:
+                raise ValueError(
+                    f"{seed['id']}: Rabung bound {seed['lower_bound']} "
+                    f"!= {expected_bound}"
+                )
+        if seed.get("source") == "berlekamp1968":
+            t = parameters.get("berlekamp_t")
+            field_order = parameters.get("field_order")
+            denominator = parameters.get("condition_denominator")
+            if t != seed["length"] - 1:
+                raise ValueError(f"{seed['id']}: inconsistent Berlekamp length")
+            expected_denominator = berlekamp_condition_denominator(t, field_order)
+            if denominator != expected_denominator:
+                raise ValueError(
+                    f"{seed['id']}: Berlekamp denominator {denominator} "
+                    f"!= {expected_denominator}"
+                )
+            expected_bound = berlekamp_strict_bound(t, field_order)
+            if seed["lower_bound"] != expected_bound:
+                raise ValueError(
+                    f"{seed['id']}: Berlekamp bound {seed['lower_bound']} "
+                    f"!= {expected_bound}"
+                )
+        if seed.get("source") == "cfs2026":
+            factors = seed.get("parameters", {}).get("distinct_primes", [])
+            if (
+                not factors
+                or len(factors) != len(set(factors))
+                or sum(factors) != seed["length"] - 1
+                or any(factor not in primes_up_to(factor) for factor in factors)
+            ):
+                raise ValueError(f"{seed['id']}: invalid CFS prime decomposition")
+            expected_bound = (seed["length"] - 1) * math.prod(
+                2**factor - 1 for factor in factors
+            )
+            if seed["lower_bound"] != expected_bound:
+                raise ValueError(
+                    f"{seed['id']}: CFS bound {seed['lower_bound']} "
+                    f"!= {expected_bound}"
+                )
+            maximal_bound, maximal_factors = cfs_max_product_specialization(
+                seed["length"]
+            )
+            if seed["lower_bound"] != maximal_bound:
+                raise ValueError(
+                    f"{seed['id']}: CFS bound {seed['lower_bound']} is not "
+                    f"the exhaustive maximum {maximal_bound} from "
+                    f"{list(maximal_factors)}"
+                )
+        if seed.get("source") == "gasarch2011":
+            expected_bound = gasarch_haeupler_strict_bound(
+                seed["length"], seed["colors"]
+            )
+            if seed["lower_bound"] != expected_bound:
+                raise ValueError(
+                    f"{seed['id']}: Gasarch--Haeupler bound "
+                    f"{seed['lower_bound']} != {expected_bound}"
+                )
         return (
             seed["colors"], seed["length"], seed["lower_bound"],
             "published_seed", seed["source"], seed["id"],
@@ -146,15 +344,45 @@ def closure():
 
     for kind, key in (("ordinary", "ordinary_seeds"), ("ring", "ring_seeds")):
         for seed in baselines[key]:
+            if not include_current_three_color and seed.get("claim_id") not in claims and "claim_id" in seed:
+                continue
             colors, length, bound, method, source, label = resolve_seed(seed, kind)
             add_node(
                 nodes, candidates, kind=kind, colors=colors, length=length,
                 bound=bound, method=method, source=source, label=label,
+                parameters=seed.get("parameters"),
             )
 
     changed = True
     while changed:
         changed = False
+        winners = {key: best_id(nodes, ids) for key, ids in candidates.items()}
+
+        # Length monotonicity: a colouring with no k-term progression also has
+        # no (k+1)-term progression. Thus W(r,k) > B implies W(r,k+1) > B.
+        # Recording this elementary closure step makes inherited literature
+        # bounds machine-traceable instead of duplicating them as input seeds.
+        for length in range(
+            scope.get("closure_length_min", scope["length_min"]),
+            scope["length_max"],
+        ):
+            for colors in range(1, max_colors + 1):
+                parent = winners.get(("ordinary", colors, length))
+                if not parent:
+                    continue
+                node_id = add_node(
+                    nodes, candidates, kind="ordinary", colors=colors,
+                    length=length + 1,
+                    bound=nodes[parent]["lower_bound"],
+                    method="length_monotonicity",
+                    source="elementary",
+                    parents=[parent],
+                    parameters={"from_length": length},
+                )
+                old = winners.get(("ordinary", colors, length + 1))
+                if old is None or best_id(nodes, [old, node_id]) != old:
+                    changed = True
+
         winners = {key: best_id(nodes, ids) for key, ids in candidates.items()}
 
         # Blankenship--Cummings--Taranchuk, Theorem 2.1, with q the largest
@@ -180,12 +408,12 @@ def closure():
                         changed = True
 
         winners = {key: best_id(nodes, ids) for key, ids in candidates.items()}
-        # Xu's concatenation recurrence in colour-first notation:
-        # if k >= 3, s,t >= 2, 5 <= n < WR(s,k), and the least prime
-        # divisor of n exceeds k, then
-        # W(st,k) >= n (W(t,k)-1) + 1.
-        # From WR(s,k)>R and W(t,k)>B we may take n=R and obtain
-        # W(st,k) >= R*B+1, i.e. the strict bound W(st,k)>R*B.
+        # Exact-witness form of Xu's concatenation, in colour-first notation:
+        # a cyclic s-colouring at the specific modulus R avoids k-term APs,
+        # k >= 3, s >= 2, t >= 1, R >= 5, and least-prime-factor(R) > k.
+        # Pair its residue colour with the ordinary block colour on B blocks.
+        # W(t,k)>B then yields W(st,k)>R*B. Ring-node lower_bound stores R;
+        # no smaller modulus is inferred from a cyclic threshold inequality.
         for length in lengths:
             for s in range(2, max_colors + 1):
                 ring_parent = winners.get(("ring", s, length))
@@ -195,7 +423,7 @@ def closure():
                 ring_lpf = least_prime_factor(ring_bound)
                 if ring_bound < 5 or ring_lpf <= length:
                     continue
-                for t in range(2, max_colors + 1):
+                for t in range(1, max_colors + 1):
                     colors = s * t
                     if colors > max_colors:
                         break
@@ -230,6 +458,7 @@ def closure():
     result = {
         "schema_version": 1,
         "notation": baselines["notation"],
+        "scope": scope,
         "inputs": {
             "claims": str(CLAIMS_PATH.relative_to(ROOT)),
             "claims_sha256": hashlib.sha256(CLAIMS_PATH.read_bytes()).hexdigest(),
@@ -240,7 +469,7 @@ def closure():
         "nodes": sorted(nodes.values(), key=lambda item: item["id"]),
         "winners": [],
     }
-    for length in lengths:
+    for length in report_lengths:
         for colors in range(1, max_colors + 1):
             node_id = winners.get(("ordinary", colors, length))
             if node_id:
@@ -260,13 +489,20 @@ def method_tex(node, nodes):
     if node["method"] == "bct2018":
         q = node["parameters"]["prime_q"]
         parent = nodes[node["parents"][0]]
-        if parent["source"] == "monroe2026":
+        if parent["source"] in {"monroe2016v1", "monroe2017v4", "monroe2026"}:
             source = r"published $W(2,k)$"
         else:
             source = r"archived input"
         return rf"BCT, $q={q}$ ({source})"
     if node["method"] == "xu2013":
         return "Xu recurrence"
+    if node["method"] == "published_seed" and node["source"] == "berlekamp1968":
+        return r"Berlekamp (1968)"
+    if node["method"] == "length_monotonicity":
+        parent = nodes[node["parents"][0]]
+        if parent["source"] == "berlekamp1968":
+            return r"Berlekamp + length monotonicity"
+        return r"length monotonicity"
     return node["method"].replace("_", r"\_")
 
 
@@ -277,7 +513,7 @@ def render_tex(nodes, winners, direct):
         r"\centering\footnotesize",
         r"\begin{tabular}{c r r r l}",
         r"\toprule",
-        r"$k$ & direct $p$ & direct bound & best closed bound & method \\",
+        r"$k$ & direct $p$ & direct bound & winning admitted bound & method \\",
         r"\midrule",
     ]
     for length in range(17, 29):
@@ -292,13 +528,15 @@ def render_tex(nodes, winners, direct):
     lines += [
         r"\bottomrule",
         r"\end{tabular}",
-        r"\caption{Direct three-colour Rabung certificates and the best general lower bounds",
-        r"obtained after closing the registered baselines under the published",
+        r"\caption{Direct three-colour Rabung certificates and the winning lower bounds",
+        r"obtained after closing the audited, admitted baselines under length monotonicity and the published",
         r"Blankenship--Cummings--Taranchuk and Xu recurrences.  A dash means that the",
         r"GPU campaign made no direct three-colour claim for that length.  For",
         r"$k=22,23,24,25$ the direct certificates are the strongest direct Rabung bounds",
-        r"located in the dated corpus but are not general records. Every entry is generated with a",
-        r"machine-readable provenance path in \texttt{audit/generated/bounds\_closure.json}.}",
+        r"located in the audited corpus but do not win the admitted comparison. Every entry is generated with a",
+        r"machine-readable provenance path in \texttt{audit/generated/bounds\_closure.json}.",
+        r"The stronger published Landman--Robertson statement is listed separately in",
+        r"Table~\ref{tab:unresolved}; this is not an unqualified table of best published bounds.}",
         r"\label{tab:r3}",
         r"\end{table}",
         "",

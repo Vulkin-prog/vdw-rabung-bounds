@@ -26,59 +26,83 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "c9971992b9d70d779aa8afa8ec00f3790db91aa8",
+      "git_blob_sha1": "0acf522b29188edfd5d29af91ac3f65166537126",
       "path": "CITATION.cff",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "49cbd0d1fddc81435b68180e2cb878166169eb88d718609d719a15cf41fe4070",
-      "size": 362
+      "sha256": "f4cbf78c8d513fa36527aef6d68f63e6ec1b8f89397106dd8b7207868c128382",
+      "size": 1056
     },
     {
       "classification": "new",
-      "git_blob_sha1": "9bd9436573c54911c6feaf766dec2993dcd783e2",
+      "git_blob_sha1": "0122d82f805806b3338f0206229efeb23d9fb8ca",
+      "path": "LICENSE",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "2f7d96406737b2c41bc28333be3148ca26504d385ce3ea7c4e55eaa2be303b09",
+      "size": 747
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "7c3ac04de172e4a6a2b1251754f6258a7124cfef",
+      "path": "LICENSE-CC-BY-4.0.txt",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "7f38c38147b1b5e3fc5788e34104c965873b60bbf639c52392a85297810ebcbe",
+      "size": 17024
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "770175164ca80fbf84c89d3fb097d07723d07b77",
+      "path": "LICENSE-MIT.txt",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "fdcccf9b6751679633c692ee40821f431952a5a8e6528a44ca86b4a014eb19a3",
+      "size": 1069
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "b4a6b1e341dcb279046cb4725c194b24fe4ba925",
       "path": "README.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "69165b4b96f334afd5f41654db9fc7591b880001c1e3c76fbd6900f6ce9dac02",
-      "size": 4310
+      "sha256": "27c34d3cb3166df170e3d9fc6854856b05c5bb7b7595919fa10c97717e11e566",
+      "size": 7676
     },
     {
       "classification": "new",
-      "git_blob_sha1": "34cec6693301d017f2a97eb02b242d6c0a409390",
+      "git_blob_sha1": "b60f7990f56a0f491c09817d38714969be5ec9ed",
       "path": "REPRODUCIBILITY.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "57a022e2eabdb4f0ffe33ab324ea9279e965f89fd153dfc1cdf96ccebf748dbb",
-      "size": 10170
+      "sha256": "519a193ed7577547526b526e19b68a8a5531140ac2d4aa4a1e8b3ae5ffdab65a",
+      "size": 14262
     },
     {
       "classification": "new",
-      "git_blob_sha1": "8b7c388629dd6fa5548e2dd82138a661658b1ade",
+      "git_blob_sha1": "7481fbc0cfdc3cf7b203647144b2aad267bdf09f",
       "path": "RIGHTS-STATUS.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "601f875c3e6ecb882174b49cbfcb14ec0b687752570f21ca9401b65efaaeb1eb",
-      "size": 945
+      "sha256": "76e30af1227037a7abf2cfa3db3f97fa941cce2352bcb3a1ff365c50ae94f25a",
+      "size": 1494
     },
     {
       "classification": "new",
-      "git_blob_sha1": "6cfd41e7c66f0cc936a2e998380d95fd36923f65",
+      "git_blob_sha1": "fc208a941a49a8c6e82be37bcd6941a475432b5b",
       "path": "STATUS.json",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "ec9db6d0a7fe22dce7349cdb2fe9d59336ce2b721dbaca7d40b9c60c0777c2a8",
-      "size": 5356
+      "sha256": "18c0a04681897b49ec149efee0a9d534b69e61e05036945b966ac8fc975b873f",
+      "size": 6109
     },
     {
       "classification": "new",
-      "git_blob_sha1": "9d7f1c5f2df06ca5132420e6fef089b07b45ef79",
+      "git_blob_sha1": "3ab7e1d25be65ec4f0bae8f04711a3f70d3eb8c5",
       "path": "THIRD_PARTY_NOTICES.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "7e03b10cd42c4ab341b7cd14b31cf72214a118a2fe236fad2070ed46677f85b0",
-      "size": 1775
+      "sha256": "4c5c0c6d73fd80050eeed2178f2e4c61eb330907ddf29b47b4a4a626b6f4236b",
+      "size": 1859
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "060a065d901b6f6e6fed58731545574e274a6f89",
+      "git_blob_sha1": "9508fff3e6670374aa3768cf1b0f81fc22064997",
       "path": "audit/baselines.json",
       "rationale": "Adapted to fail-closed public provenance and release validation.",
-      "sha256": "a31cbdf6b55f8a1cb5f3fb86fc2da6ea5973373595337cbe97d524aed455da45",
-      "size": 5651,
+      "sha256": "c2188561be45fbda5a505915cb12de3344ed83a1b42399bf08cb833c8a493971",
+      "size": 19621,
       "source": {
         "git_blob_sha1": "5829400cccb2b64888a1540fad75ec7905fb2dfe",
         "path": "audit/baselines.json",
@@ -102,11 +126,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "4d2072aadddb78a8914934d6da4beff75b510a73",
+      "git_blob_sha1": "04771463225d9e65a948ca8ddd641dfbc35551cc",
       "path": "audit/claims.json",
       "rationale": "Adapted to fail-closed public provenance and release validation.",
-      "sha256": "baf9407c0e93a5247d95926abe9b3fbbd5fe6c4fcdc63cce4e52a224777308b7",
-      "size": 3983,
+      "sha256": "3b3ffc1739b091194e9b54d2f9435bcfbff7ab2ba84d7176330e9dead12d0aeb",
+      "size": 4087,
       "source": {
         "git_blob_sha1": "591603e7d8e7b983b6ad81704ee2daabe927a07a",
         "path": "audit/claims.json",
@@ -116,11 +140,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "51a5ed466908c653cb65741a7898800d41ef10d2",
+      "git_blob_sha1": "e5e0224db72900a042164f458d318b63292a8658",
       "path": "audit/generated/bounds_closure.json",
       "rationale": "Regenerated from canonical inputs after the publication-scope adaptations.",
-      "sha256": "05d470af9eb345cb4b6a328d16535c1c02543e09ce0a90be19714d8f842780a6",
-      "size": 49289,
+      "sha256": "5c8bdced65ba6ec0ba2eb7802854275d340db5c4d2863aa916fe38b005f4d5ec",
+      "size": 124944,
       "source": {
         "git_blob_sha1": "e302ee33f27cfe0912b249fc6139bfb53f78b023",
         "path": "audit/generated/bounds_closure.json",
@@ -129,11 +153,12 @@
       }
     },
     {
-      "classification": "imported",
-      "git_blob_sha1": "fc6eea6e8d65ce588012a979cff1459a47ae801e",
+      "classification": "derived",
+      "git_blob_sha1": "e0910a5c6631e67a97e8c762a3ebd4ac25befaa2",
       "path": "audit/generated/bounds_closure.md",
-      "sha256": "27c9379a74fcc3b2196e062870f063afd876231645eebbe8e73df3e2ecf70ce1",
-      "size": 593,
+      "rationale": "Regenerated from canonical inputs after the publication-scope adaptations.",
+      "sha256": "1f1e5029c612e0d62166befdeb0887a873fdae836de47f647a980c2803c7ad8a",
+      "size": 616,
       "source": {
         "git_blob_sha1": "fc6eea6e8d65ce588012a979cff1459a47ae801e",
         "path": "audit/generated/bounds_closure.md",
@@ -166,6 +191,14 @@
         "sha256": "1dab085a5519736e07646897fa52f514cd45ed6cd01e0b63a506a02ca36cda41",
         "size": 45611
       }
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "262a0a98ac51b139bb1b53a274abc028026c4828",
+      "path": "audit/generated/publication_comparison.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "df8c185ad2b301d4dac01e9ad48ee6076817eda3438e5897ea5db9fe23d1e5d3",
+      "size": 15842
     },
     {
       "classification": "derived",
@@ -209,6 +242,14 @@
       }
     },
     {
+      "classification": "new",
+      "git_blob_sha1": "6b30d71c4bfdb5aa4f8202f92592006c4a32884d",
+      "path": "audit/published-unresolved.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "35e1539c4d7b9a1e108e6556723aee40b287890a6d58cade48dbfafce7678936",
+      "size": 797
+    },
+    {
       "classification": "derived",
       "git_blob_sha1": "70082bdcde689d1d0165e76f417f1c4ca9c149df",
       "path": "audit/rescan17.json",
@@ -237,19 +278,19 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "1a8d3a21f46c5572fe9caf08200b34efa63a4501",
+      "git_blob_sha1": "129b000de1ce2e78480c1a3b51c0013e19c86ae4",
       "path": "paper/main.pdf",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "644c10d82925281522d3b41218f27059f8d3bcab3f265e54e89437bdbbd52815",
-      "size": 598370
+      "sha256": "206895792f1276ab601ace45420b40a60a2dd5b2a7c63840d14358d45f0885ab",
+      "size": 640262
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "f901d1a357f98dc768919c3351355d5e4f55d61d",
+      "git_blob_sha1": "6b51e79bae5ef35338fce05f851efe946923b8bb",
       "path": "paper/references.bib",
       "rationale": "Reduced to the cited entries and corrected against the source-audit ledger.",
-      "sha256": "fe8543ae6000df46d4811e75e80af551eadc403a8f4ab1917692f96bdea12f4e",
-      "size": 6353,
+      "sha256": "9c5bb47086dc737b3854a1765a8d39f9f7cdde88ddf893af2b5060269ab30a58",
+      "size": 9350,
       "source": {
         "git_blob_sha1": "8b41ae9ecd724acc34a136f26c748874b8a569ca",
         "path": "paper/references.bib",
@@ -259,17 +300,33 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "c4bd670d0ec71999891bbfc79c77c02b18a31708",
+      "git_blob_sha1": "8f3ece300df40ca91cbfcc0ae34977f69c094a8e",
       "path": "paper/tex/appendix_bstar.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "1d92f18b7bbeea0fbd67aaaeb9ff93e2dc76b3c1c2b7f05009ff1a7865824dad",
-      "size": 7135,
+      "sha256": "ca3beae1bd4ecd5dd22bae48c3ab30751c2eaa53116ff6c3f0b614061ab6dc1b",
+      "size": 7276,
       "source": {
         "git_blob_sha1": "13a3b1a7ae04f872a30eef4251ced70460136b21",
         "path": "paper/tex/appendix_bstar.tex",
         "sha256": "a2042deaf1e89d0f70225c5038fcd17b13e4afdd3d4b7a57c494cd8ee92435dc",
         "size": 7439
       }
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "41b18289ee6d4ca8abb6de62a30740993570efa9",
+      "path": "paper/tex/appendix_campaign.tex",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "93fb5f3f3607a167a7488abf11da8f4c3761154d1c0be4e13d110485334a7625",
+      "size": 6476
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "cdc3e64a5144334b689114743d14b3e0f28b99c4",
+      "path": "paper/tex/appendix_certificates.tex",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "a60b7f8c878d1c0dcb834a5492ac178d317a6de5f84fc5d7b4e24f29565b40f9",
+      "size": 606
     },
     {
       "classification": "new",
@@ -280,11 +337,28 @@
       "size": 3020
     },
     {
-      "classification": "imported",
-      "git_blob_sha1": "449df971ec795f162a07736cc2cf1c003d1b75eb",
+      "classification": "new",
+      "git_blob_sha1": "137ad961a023f55bb8a779a7edf8f8886ac12e70",
+      "path": "paper/tex/appendix_sources.tex",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "6515378fd193017a8fc94e64293130b4ab4b05c46ff8a15d1668410ab33cd92f",
+      "size": 2855
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "2a8497eba25d7bee173b9dd26253d1b2f956fb1b",
+      "path": "paper/tex/figure_evidence_flow.tex",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "befbefd8f88013556fe0fc80b1b2e778eb86488d4ac1cc7a3427e758011bb85e",
+      "size": 1084
+    },
+    {
+      "classification": "derived",
+      "git_blob_sha1": "e78778ed6d9e160e903cb8682f6861dd1a82b9be",
       "path": "paper/tex/generated_bct_corollaries.tex",
-      "sha256": "b1a7fc44f686e24edb41d815ed9a4749608ac28d1db5407e3ff80e6deac36404",
-      "size": 228,
+      "rationale": "Regenerated from canonical inputs after the publication-scope adaptations.",
+      "sha256": "0d6ffb888e42af5b9d6ac43e899d3e0273750fcf7c568e42f5be98dd606c0eaf",
+      "size": 231,
       "source": {
         "git_blob_sha1": "449df971ec795f162a07736cc2cf1c003d1b75eb",
         "path": "paper/tex/generated_bct_corollaries.tex",
@@ -294,11 +368,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "ac192bd5c63e17887b7e44ac8b0116bcf48ce33b",
+      "git_blob_sha1": "8c95ce99b43456c5e8418344322aa4587ba8f2db",
       "path": "paper/tex/generated_bounds_table.tex",
       "rationale": "Regenerated from canonical inputs after the publication-scope adaptations.",
-      "sha256": "9a297be543364a84b0e2d81b13b6a39423d265898c72b15fac802eceb529cc96",
-      "size": 1891,
+      "sha256": "727c8687988c3cbdf07eba5a1ddbc487cc2691b07a14a1b16fc5a5d05eca4993",
+      "size": 2091,
       "source": {
         "git_blob_sha1": "f4564d2ebef55664a3a1f3a546e588343d0f3ae4",
         "path": "paper/tex/generated_bounds_table.tex",
@@ -319,6 +393,14 @@
         "sha256": "68018ce6d16c97f618a10693ef99eda4c98580a38efb89bbca6cd05fc80e49b5",
         "size": 691
       }
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "1f034b6216ef5899369fb209739e7c0c1a60644f",
+      "path": "paper/tex/generated_priority_comparison.tex",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "16f575276868bac8162072f41d5e253f3939cd51f9d61ebdb8a21155bf8af56a",
+      "size": 971
     },
     {
       "classification": "derived",
@@ -348,12 +430,20 @@
       }
     },
     {
+      "classification": "new",
+      "git_blob_sha1": "a4850ce8254962244dc8ff34200dd870d468ad7f",
+      "path": "paper/tex/generated_unresolved_comparison.tex",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "85c96da81ea3cfc274a1c81ef0d89e210b25cbb8cf18955f457d1151baac4c91",
+      "size": 897
+    },
+    {
       "classification": "derived",
-      "git_blob_sha1": "275ffd79be98e4f857ad76f71c63dc65a6adb2f0",
+      "git_blob_sha1": "e8c2bf776281ec24881963c2491c9b8d3cf7746e",
       "path": "paper/tex/main.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "2bfec5c40bf93d0a3a03799780a722634255f7a87408d0df52231e8295fe651c",
-      "size": 3182,
+      "sha256": "ea0f831e3d8da56cdd9a7dd5608cfe8b36cf37b9f4a083050373834edde318e7",
+      "size": 3278,
       "source": {
         "git_blob_sha1": "717435996b215b0ad447d51f050262848c7ecb8b",
         "path": "paper/tex/main.tex",
@@ -363,11 +453,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "1da1e4acef5eb0f7d31b91abfdfb78b359b2602b",
+      "git_blob_sha1": "a16733f98ef9075996169304add52fdcd93e89f4",
       "path": "paper/tex/sec1_intro.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "a55ba8c4802ca7d25ef228946f5d796b3130075877ff7ea1294bbd75d372770b",
-      "size": 5630,
+      "sha256": "c4eaecd7019bf7dbc946b80f085ef139519e7bb1fe56568f052a5106e9eca701",
+      "size": 7033,
       "source": {
         "git_blob_sha1": "0ca11487d628e668420252ee6925d6ba46f783f8",
         "path": "paper/tex/sec1_intro.tex",
@@ -377,11 +467,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "6111a4e2f3c576c68ddf1907137f57782eb3338b",
+      "git_blob_sha1": "37ee4de6d83d30f099d6176a8706a3592dc16c9a",
       "path": "paper/tex/sec2_method.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "53e6738929da9da0e7ad2005373258142d89d94bdef6247ceeb24a77ead95ab3",
-      "size": 10962,
+      "sha256": "a58250082ee0292d7331554b1106dd2699d71008f93497dd0febdbebced96232",
+      "size": 11224,
       "source": {
         "git_blob_sha1": "b448b2e660e7126b8b2306d3d93758795fc96152",
         "path": "paper/tex/sec2_method.tex",
@@ -391,11 +481,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "96b1d9fd71b21c6f09b9fb93681ee28b1d3a8803",
+      "git_blob_sha1": "de745d1a33a0e2cf042990c4d24f048b37cbbb18",
       "path": "paper/tex/sec3_campaign.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "538fd636ee514a8de82bb390bc9cf6f974922b3611c690ca75de204fa12b0a95",
-      "size": 15138,
+      "sha256": "80ace5d4a5ed515211b94e47effc0ffdb33d7c9e8eee7d7f945a292c16af7adc",
+      "size": 7285,
       "source": {
         "git_blob_sha1": "8094adf7bfd2268e9eb87219f84f62a7e5b54075",
         "path": "paper/tex/sec3_campaign.tex",
@@ -405,11 +495,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "e939fc4ef4bf545c78641ce111fc74a53cc64287",
+      "git_blob_sha1": "09dc013e1554c7c52588487492d880f82390f79f",
       "path": "paper/tex/sec4_bounds.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "47d65929880fd7fe0269a9fe72c8f996f7d0ab44a3b81c19957a8583993ac125",
-      "size": 10359,
+      "sha256": "0a36b5f3447790563e675dc876b21625b59e339f9c12199aaf369d788c79675f",
+      "size": 14687,
       "source": {
         "git_blob_sha1": "994a2768b45a00ebaaf192a64b76fb29511e8078",
         "path": "paper/tex/sec4_bounds.tex",
@@ -433,19 +523,19 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "48d677b7515df030a7afaa28d7adf9972c76f1f2",
+      "git_blob_sha1": "76b2a6e0e8678059dfdd8e8c33143fc1e812a9d0",
       "path": "paper/tex/sec6_conclusion.tex",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "b61beacf63c804c4dac554b8fb96d3b3613585d425f2ac8bb89f2e7f544e4c13",
-      "size": 2448
+      "sha256": "fa2aa71460072ebe1b77a1e03be537cadaaf48f8af4568c5b5c4d129169ce3fc",
+      "size": 2627
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "f120470d9954618f346566a32acca8f8633007b4",
+      "git_blob_sha1": "061572a733bb2ae8487c0d2c812f2a15f46cb17b",
       "path": "paper/tex/sec6_prereg.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "b9572baeebed791ebc4141cfa91f2b11b4119e36c19fa3c1ed7e9f88cf4c9077",
-      "size": 5582,
+      "sha256": "6bbaa5da3074f8fb31073ad1e31161f4b1b0b96332048f5acc873cf661eea645",
+      "size": 5356,
       "source": {
         "git_blob_sha1": "a137275b4f2e0a002b55850634f161a90cd2d88f",
         "path": "paper/tex/sec6_prereg.tex",
@@ -455,11 +545,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "d9d3a2a2024bb1558fbc504bfe5a1e1a6e148088",
+      "git_blob_sha1": "d59f5fb328762bd2163e57e40169dac426cefbff",
       "path": "paper/tex/sec7_data.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "ecb0b1470ae2a320708370b5c94cb50d647e89a411ebec8e022378755ef506a5",
-      "size": 4115,
+      "sha256": "25bafa55d3aaa70158d756699d368c45775f47972ecb45be972aba6348139bbc",
+      "size": 4636,
       "source": {
         "git_blob_sha1": "2c596bdb48136d28ccaa7c5edcf4cfe2ecfc86e2",
         "path": "paper/tex/sec7_data.tex",
@@ -469,11 +559,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "b52bb6ef46b61aac02d02452b91b93f778c40bc7",
+      "git_blob_sha1": "3edf65f09c8d85adaec6c80616202798a54c9c8f",
       "path": "paper/tex/sec8_disclosure.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "a5e01de866bd17829617b619f759b26d294dc9180c78c421b3a2deaef09c6b05",
-      "size": 1602,
+      "sha256": "6df507687c01092c036605a8ffe8fe5b68c0c364b5730617908c5b1b7fc33ea4",
+      "size": 1872,
       "source": {
         "git_blob_sha1": "202e5f1558da3be62ff52fca57166bb4027c7f45",
         "path": "paper/tex/sec8_disclosure.tex",
@@ -483,11 +573,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "aa72f6256a2e67291007f8bf733803b20f65931d",
+      "git_blob_sha1": "d386d1c506f26a83a258701d297dc8ec8666bcca",
       "path": "paper/tex/sec9_ack.tex",
       "rationale": "Adapted to the focused repository, public evidence paths, and release gates.",
-      "sha256": "2c21891526f59bd118af53e1ff9d7f5d45ce1d14f6cc91f2d2d4fe4d9adfd74f",
-      "size": 619,
+      "sha256": "047184f02051a9777ce7db3e7793cd64ec62a77ff32ed9f9925922ddfbebc2fb",
+      "size": 645,
       "source": {
         "git_blob_sha1": "3bdd4b1bc7b3a05b77175d6b9e7f953542435eb0",
         "path": "paper/tex/sec9_ack.tex",
@@ -617,27 +707,83 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "d3f0a63a894bf8aa0330a44ccfc1f5e7f34f7e51",
+      "git_blob_sha1": "2d98b29685496ff0558e4f6b2d461fe901f30370",
+      "path": "publication/FINALIZATION_2026-09-26.md",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "c5f367172dec4f90563799f31d545aab44fbc79bcc8eadb23f289fb53fa647d5",
+      "size": 4235
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "508af5a2bec313de4d08d8e465e043bcfb46f094",
+      "path": "publication/ZENODO_2026-09-26_FR.md",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "b517161c95176bc062347bb46ef94b1c16ef11e4b791631f793568ea623b0664",
+      "size": 3291
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "9f6a3eb3a8a86656d356fabdd13512f5ac86b7f0",
       "path": "publication/baseline-provenance.json",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "c12ebe9389dca0c8a13a0c8ec16f3029d527a6351cd7af70e21035a1a2d68a76",
-      "size": 3320
+      "sha256": "ab503bc40e803c546261cd7a04907dcfac7a1c5e6e3d26ab76816f51c412dfae",
+      "size": 12422
     },
     {
       "classification": "new",
-      "git_blob_sha1": "b964c2ba6957d846b1e9abb4da6e714ec12be628",
+      "git_blob_sha1": "f750963656c58262c5bf2aa034302969178ca853",
       "path": "publication/bibliography-audit.json",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "95a0c66741c50a94ebd008511d0689298cce2e34a19b15e1340406ebf5bc0fb9",
-      "size": 5466
+      "sha256": "ead33a59dbbf1c00d11c5029547f682edc6c889b4a59ff0b3a187edce7c247e3",
+      "size": 29211
     },
     {
       "classification": "new",
-      "git_blob_sha1": "4a0da2a2fbbd990b2982cb9edc65a3cdd552b85a",
+      "git_blob_sha1": "5711390a403b7e19e34a7264d60c7847cd84b32a",
+      "path": "publication/editorial-review/RESPONSE_AUDIT_2026-09-26_FR.md",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "ec946b61bdce0f0955aa215adb3fd4acc91af40890a5b5cbfc66ac0e366ad4ef",
+      "size": 7092
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "73e3763cb43e9b39e2f1e4fe809a9a70a6cec415",
+      "path": "publication/editorial-review/REVIEW_FR.md",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "4f89a7e5578f4fb5696aee0fc240b791d563cf43b27732c0f7d1d32b5b8141ce",
+      "size": 9293
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "a9dbe002bfe4faeba6737296aecd6e36508d788d",
+      "path": "publication/editorial-review/check_consistency.py",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "fcd7099d9a6fe2fd941e525a8821b0f326829fd2a5fee262176fea87e7899113",
+      "size": 9667
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "1ea1a8b136a96cc5186d39acb03e831c216da411",
+      "path": "publication/editorial-review/consistency.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "1f987cb071bd808f38a55d67b0ffefe9c7ca06fadc397a9752c070258b3c9749",
+      "size": 2476
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "98809c7c400a0575329c5410ffd2eed2c04c61ce",
+      "path": "publication/editorial-review/consistency_initial.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "aab33631a715aee77a10d9f74da9b79cdc507ee586beefdd7d3b8f13501118b8",
+      "size": 2513
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "a989d6987fe05047e7c74a1e2ccecaaf79a8944b",
       "path": "publication/external-replication.json",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "726c3b3781ae4d89646aa68bd36695e94948297de8c6b6a0c4bd3dd2f5ef3154",
-      "size": 539
+      "sha256": "2ce3edcea0ebb2f591f6542de1de29ca39ea926e1388614f2c4e18d82114ce34",
+      "size": 545
     },
     {
       "classification": "new",
@@ -649,11 +795,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "ad60398e2df0df6e6e099521f1340d908d94b7d5",
+      "git_blob_sha1": "aff42835472452ba45ba7e9581f8caec8a589516",
       "path": "publication/scope.json",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "547c18a37a7fe93b0573e27660beefdf0fa43f16eb218e199f4d1305388f5cd2",
-      "size": 54455
+      "sha256": "05782baceba9ac385cf8dcadb00a06a87e1caf257f39423acb0b8ac5f7464fb9",
+      "size": 58267
     },
     {
       "classification": "new",
@@ -664,11 +810,28 @@
       "size": 15648
     },
     {
-      "classification": "imported",
-      "git_blob_sha1": "67a0abde73dd488c8277e87dca9c47da75815c5f",
+      "classification": "new",
+      "git_blob_sha1": "9c8878079b8d805f9d39881d797ad56dbc762f57",
+      "path": "publication/zenodo-abstract.txt",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "6fa4d0d915ef0189b61904bd2bfb1c4e40b6ec13f228840b7b2fb98df7bf3627",
+      "size": 1054
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "b46b9d3e77016e7ff9cf9b6cd0578a781254be66",
+      "path": "publication/zenodo-description.txt",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "9ed87733e2e6bb2f37868b6f795108757e9e27b57dc77eac7189bfd8fd3c9522",
+      "size": 1427
+    },
+    {
+      "classification": "derived",
+      "git_blob_sha1": "6891f94f1c80cab3086f6ed9b4d5062669275eb7",
       "path": "reference/README.md",
-      "sha256": "b2a0d767ea6c8993221e49fb8764270cd78aea349aeac33d8f3d71f5f74159d9",
-      "size": 446,
+      "rationale": "Adapted for the focused publication package; source and target identities are retained.",
+      "sha256": "faa958520071b87ca58044561ecccda08ae1b77ad2842df3bb0dd8b85a5c055a",
+      "size": 559,
       "source": {
         "git_blob_sha1": "67a0abde73dd488c8277e87dca9c47da75815c5f",
         "path": "reference/README.md",
@@ -691,35 +854,59 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "4172dc6d13776138d6f2c5dabb6fcbe01735a174",
+      "git_blob_sha1": "9a7326f88bf141c1db3be91b590a788cc36edb4d",
+      "path": "release/PROPOSED-LICENSING.md",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "60f6bbfc0cc5708cb476320f6ce2307ddc8bae9114a468a5c48f948e860bdd86",
+      "size": 730
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "8e80ef290d7aa17e1234cc6f2f57f4204b725fe3",
       "path": "release/SOURCE_DATE_EPOCH",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "ba084b6cef7dd2b41b07e672ea8cfb9a5c7c50528452b228df3fc6a55c83cceb",
+      "sha256": "c87d4f3de564323e5e4258d7314c0d2a90cb482e4025563be847ac77849b885a",
       "size": 11
     },
     {
       "classification": "new",
-      "git_blob_sha1": "b627f870e2c17837466d51496528733207dfe488",
+      "git_blob_sha1": "7742f7fac218673c9c7bc0d88ee8837876deebc9",
+      "path": "release/rights-map.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "b1c5022faef5637595264c904fb55aa42378e3a07a4440939889204a60424b47",
+      "size": 486
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "7742f7fac218673c9c7bc0d88ee8837876deebc9",
       "path": "release/rights-map.json.in",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "348e8a496a633447a807870cbf3515ce0eb605bb3be8cc6f7ddeb9839a57f25f",
-      "size": 538
+      "sha256": "b1c5022faef5637595264c904fb55aa42378e3a07a4440939889204a60424b47",
+      "size": 486
     },
     {
       "classification": "new",
-      "git_blob_sha1": "3ae9bdc2c381af905bf3c7ef04e400c3ad147d1a",
+      "git_blob_sha1": "bcd8775b9dfcab50165c70f3e067bf319bb23a24",
+      "path": "release/zenodo-metadata.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "b71768b428b46bfb50cbf3c8bb5c47e94ccfb1e7dc2ced7fbaff523e803b8b3d",
+      "size": 2309
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "bcd8775b9dfcab50165c70f3e067bf319bb23a24",
       "path": "release/zenodo-metadata.json.in",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "f67a6fcea7416ff9a6c1a01c375e8d3dae108d076b82993c6b24ea9b544b0d29",
-      "size": 953
+      "sha256": "b71768b428b46bfb50cbf3c8bb5c47e94ccfb1e7dc2ced7fbaff523e803b8b3d",
+      "size": 2309
     },
     {
       "classification": "new",
-      "git_blob_sha1": "8a99ffd4258ca6d1f06417888eae81a81e00936c",
+      "git_blob_sha1": "dd4917911b5523f2cd9dc4df9924bd9a1bbe8da6",
       "path": "replication/README.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "cc22891c9fbe72d4aea040a9c111c3e4f1e71bfcb7be12f70c54e6783780126f",
-      "size": 4903
+      "sha256": "b0f2c2a2ffd7f6c9a89211e0c75ca9c05e3b76b3a8e5dcf161a78b620ec2b350",
+      "size": 5042
     },
     {
       "classification": "new",
@@ -731,11 +918,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "10a9a99ac181cc92249fa98e8b66b0342bb3fd0c",
+      "git_blob_sha1": "e421a3526d935f7325eb3212813c86f9ab8b30ed",
       "path": "results/campaign/README.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "ce735d2890e66a508b8dd6f545d157154268952e625437e4808a531e3f8814a3",
-      "size": 4874
+      "sha256": "5deadfa220da6a4dbd8bcbf1b00c44857f196587c8e588bbb7072c1fac7957f8",
+      "size": 4878
     },
     {
       "classification": "new",
@@ -4955,11 +5142,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "2406c954697c422148449e807474f1073c8e96f1",
+      "git_blob_sha1": "780b779290cd4fb32e45370689af2c68ae4f2819",
       "path": "results/claims/README.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "690c2b4a3520c1667e1597440776ab0448df0295a283e22e9359aac2650879c8",
-      "size": 4826
+      "sha256": "f50cde47c4e50a1afa800b13c5ffa4d803a6520ec7dcb473dc93bfeaaa37a382",
+      "size": 5257
     },
     {
       "classification": "new",
@@ -5003,19 +5190,19 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "929a9291b8a913a52f2640b4b0c12a823cca206e",
+      "git_blob_sha1": "5863f35d25a924a3b6745fda5376e73432b82664",
       "path": "results/claims/validated-claims.json",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "f09a37d0c947e87356d53893299e86ec9189ed01869efe417279549bb31c9992",
-      "size": 10878
+      "sha256": "db2a55bd9e389bb9937aaab6a144efcadc530721ad8e895988f97b076f5634e1",
+      "size": 11086
     },
     {
       "classification": "new",
-      "git_blob_sha1": "7248f77ea3466e75b58e7a58e1a3b518ea02a25b",
+      "git_blob_sha1": "0bfe08e9f08c95de99c54c79fac2368bd5410597",
       "path": "results/claims/validated-claims.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "6613dce569cab1fbe44b6d783ce3e356e7d0d7f107b280c9066875903feedd75",
-      "size": 4343
+      "sha256": "b21874024037d66d72fa1a8f85d684b0c264191dea762332a7a40e3651ca3467",
+      "size": 4447
     },
     {
       "classification": "new",
@@ -6203,11 +6390,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "b6586dbe354b3fbc06ec572f8ee363374ff61cf2",
+      "git_blob_sha1": "e839fdc5a742a39a69269f35e3a2a620b7372e95",
       "path": "results/cpu/README.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "260db2275eb269d4dec9056395f1a725908f744985212492c6f93e2880b52b6f",
-      "size": 1501
+      "sha256": "95cac7ad2f3b3cd14753a5c462b2e2b8b6705c7d404b97a0ceef1ff83560db0a",
+      "size": 1783
     },
     {
       "classification": "new",
@@ -6264,6 +6451,278 @@
       "rationale": "Created specifically for the focused publication and release contract.",
       "sha256": "59f7ef171eb5b3cac6d9f44421cf1f0183fd0455f86e513996e9bf0ac1926df0",
       "size": 56
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "a58224883ac0e2d9e132348b0fa62dfe48d3fa4b",
+      "path": "results/publication-finalization/2026-09-26-audit/checks.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "9f64761556c2fc96edc7ab86c30733ee766b32903b5ef4acf98799d9498c2e98",
+      "size": 3696
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "5a1c2cb214f76e1f72ce885063a1ae26b60f6780",
+      "path": "results/publication-finalization/2026-09-26-audit/cpu-checks.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "86316331b0c390bd175ae54f1d4f3d9983447370040f48a9af75e881831ffdbd",
+      "size": 38240
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "1ea1a8b136a96cc5186d39acb03e831c216da411",
+      "path": "results/publication-finalization/2026-09-26-audit/editorial-consistency.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "1f987cb071bd808f38a55d67b0ffefe9c7ca06fadc397a9752c070258b3c9749",
+      "size": 2476
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "results/publication-finalization/2026-09-26-audit/git-fsck.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "f515e03d34b5e62ffc4306126cd1ae6cd4952c04",
+      "path": "results/publication-finalization/2026-09-26-audit/native-logs/high-range-witness-smoke.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "abd92da4586bccb8dfd2dffd823230c1d8ba8ca5dd9b911e9d2a3f314498960f",
+      "size": 588
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "6f92788fc5df9f4e8f9055f718f72a7ef95815f7",
+      "path": "results/publication-finalization/2026-09-26-audit/native-logs/ordered-reduction.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "ef5af9f0dbe5f3626d6d9a3a37a1b1d9e05dfdb731a3156173cd8fb0b8fbc100",
+      "size": 133
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "4f6b320f0b8c271199e7c4cffac81c01dc882a63",
+      "path": "results/publication-finalization/2026-09-26-audit/native-logs/rabung-criterion.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "272e40b370154b10a258969b336dc9855d428053291b42924a5b6298dddc697d",
+      "size": 870
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e4af080879a4ab2ce78a61e8f1ab72ec0de0d6b8",
+      "path": "results/publication-finalization/2026-09-26-audit/native-logs/reference-oracle.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "6301df639f1229dd103d9e82edbefd2c90a624860c42a37822a862afd30fed88",
+      "size": 2170
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "d104bc663c55fcc79147191f547e1f01c44c6876",
+      "path": "results/publication-finalization/2026-09-26-audit/native-logs/separate-source-verifier.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "d74824ffbd8cf96727014d90700424cb285fe213df1f14981ac086cc98091612",
+      "size": 952
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e654c7310541c807111ff2e80e0ae52dd70ece49",
+      "path": "results/publication-finalization/2026-09-26-audit/paper-build.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "865cacb28da7bae8bd0e9096856438ad676920519d54880053b7fc1fbb2223c0",
+      "size": 282
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "2ff2fc605015027bfd022445311f8ddeb0508a9f",
+      "path": "results/publication-finalization/2026-09-26-nodoi/checks.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "76b8d25342e6f985dc6eb423fb8fc1652c2116f2a6ec46dbd9e1355fc03cb150",
+      "size": 4782
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "9e7cd25e412a1f0479b7ab69fc553de5c3a4c9e3",
+      "path": "results/publication-finalization/2026-09-26-nodoi/paper-build.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "0b3b9ae035bda15c320a568d01b25529485971f10172d07f1685673479ac55e5",
+      "size": 272
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "59ccbbe7d16bd182f0d5a3fc5491cb0ea422f058",
+      "path": "results/publication-finalization/2026-09-26-nodoi/standalone-latex.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "294a27f770bb583ba0fc8928bf776583970562b6334055edd744e56f4aedab23",
+      "size": 130
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "650feabf74ff248b01b3501421faf8b6de347456",
+      "path": "results/publication-finalization/2026-09-26-zenodo/checks.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "8e72f20877f243a440402c0e0fb3171707ad2d299408dd0aee38e0de2a05b3d1",
+      "size": 4625
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "452e866da636b0d1e5b6effbbc809c030260fd6f",
+      "path": "results/publication-finalization/2026-09-26-zenodo/cpu-checks.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "fbda6d8a41e204848345207d4ee36a06d887e8d6fb2d39a1dcfa1bfc68e0ecd3",
+      "size": 37637
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "1ea1a8b136a96cc5186d39acb03e831c216da411",
+      "path": "results/publication-finalization/2026-09-26-zenodo/editorial-consistency.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "1f987cb071bd808f38a55d67b0ffefe9c7ca06fadc397a9752c070258b3c9749",
+      "size": 2476
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "results/publication-finalization/2026-09-26-zenodo/git-fsck.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e92dec962d611329d20d84fad64f421550467870",
+      "path": "results/publication-finalization/2026-09-26-zenodo/initial-build.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "823e3d71fe3f993f759302eaef3aae6cef82507b998736eca8486e384abd9fc1",
+      "size": 283
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "f515e03d34b5e62ffc4306126cd1ae6cd4952c04",
+      "path": "results/publication-finalization/2026-09-26-zenodo/native-logs/high-range-witness-smoke.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "abd92da4586bccb8dfd2dffd823230c1d8ba8ca5dd9b911e9d2a3f314498960f",
+      "size": 588
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "6f92788fc5df9f4e8f9055f718f72a7ef95815f7",
+      "path": "results/publication-finalization/2026-09-26-zenodo/native-logs/ordered-reduction.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "ef5af9f0dbe5f3626d6d9a3a37a1b1d9e05dfdb731a3156173cd8fb0b8fbc100",
+      "size": 133
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "4f6b320f0b8c271199e7c4cffac81c01dc882a63",
+      "path": "results/publication-finalization/2026-09-26-zenodo/native-logs/rabung-criterion.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "272e40b370154b10a258969b336dc9855d428053291b42924a5b6298dddc697d",
+      "size": 870
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e4af080879a4ab2ce78a61e8f1ab72ec0de0d6b8",
+      "path": "results/publication-finalization/2026-09-26-zenodo/native-logs/reference-oracle.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "6301df639f1229dd103d9e82edbefd2c90a624860c42a37822a862afd30fed88",
+      "size": 2170
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "d104bc663c55fcc79147191f547e1f01c44c6876",
+      "path": "results/publication-finalization/2026-09-26-zenodo/native-logs/separate-source-verifier.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "d74824ffbd8cf96727014d90700424cb285fe213df1f14981ac086cc98091612",
+      "size": 952
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "ddbfce293d158158ca54195c7e0fc4c216747ae8",
+      "path": "results/publication-finalization/2026-09-26-zenodo/paper-build.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "3719aa0791321c777b57f8732ce977c7f6eaecb58dbc4165e62be2c1fe73d202",
+      "size": 283
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "d8a8ce40279560af494b9672aaf869788c463b8d",
+      "path": "results/publication-finalization/2026-09-26-zenodo/standalone-latex.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "5e05b1fa6dd776c2fa7d52ccbee717bd3c7843e2d5efb986738b83e857179044",
+      "size": 141
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "a74fad46f780b2057ad111771076f12f11e67ac2",
+      "path": "results/publication-finalization/2026-09-26/checks.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "f6cdbb7019eb527dcfdce18d2cd45b5ab7c366356662db8de09295f4b72fe4d2",
+      "size": 3351
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "c1af9bb620507e4336ec987011be02c317d1b6a3",
+      "path": "results/publication-finalization/2026-09-26/cpu-checks.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "eb433719f7b95aca18d46dc911a1af0de0153485d3164c66327d91fedec50a7d",
+      "size": 38257
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "results/publication-finalization/2026-09-26/git-fsck.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "f515e03d34b5e62ffc4306126cd1ae6cd4952c04",
+      "path": "results/publication-finalization/2026-09-26/native-logs/high-range-witness-smoke.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "abd92da4586bccb8dfd2dffd823230c1d8ba8ca5dd9b911e9d2a3f314498960f",
+      "size": 588
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "6f92788fc5df9f4e8f9055f718f72a7ef95815f7",
+      "path": "results/publication-finalization/2026-09-26/native-logs/ordered-reduction.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "ef5af9f0dbe5f3626d6d9a3a37a1b1d9e05dfdb731a3156173cd8fb0b8fbc100",
+      "size": 133
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "4f6b320f0b8c271199e7c4cffac81c01dc882a63",
+      "path": "results/publication-finalization/2026-09-26/native-logs/rabung-criterion.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "272e40b370154b10a258969b336dc9855d428053291b42924a5b6298dddc697d",
+      "size": 870
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e4af080879a4ab2ce78a61e8f1ab72ec0de0d6b8",
+      "path": "results/publication-finalization/2026-09-26/native-logs/reference-oracle.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "6301df639f1229dd103d9e82edbefd2c90a624860c42a37822a862afd30fed88",
+      "size": 2170
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "d104bc663c55fcc79147191f547e1f01c44c6876",
+      "path": "results/publication-finalization/2026-09-26/native-logs/separate-source-verifier.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "d74824ffbd8cf96727014d90700424cb285fe213df1f14981ac086cc98091612",
+      "size": 952
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "4082185208bdc6aefd40d21b093a597e1aa0453f",
+      "path": "results/publication-finalization/2026-09-26/paper-build.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "e09fe5116f4b904fd389350ed1696dd8dced586495d0de2121fde0f217415a1c",
+      "size": 276
     },
     {
       "classification": "imported",
@@ -6505,11 +6964,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "aa4feac7ce20ca2db96111803cefa9f6ebecff48",
+      "git_blob_sha1": "d1da4610c12610e4c60540b6bcb293df15a1ca0c",
       "path": "scripts/run_cpu_checks.sh",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "1a49b714f36f83d2c1ba359e2f8e6ec60808aa327a305d099e563645e91758d5",
-      "size": 3111
+      "sha256": "3842ad1af22e24d3e6ac92d029f754c63d03bd26664736b256c3a18ac791d426",
+      "size": 3735
     },
     {
       "classification": "new",
@@ -6710,11 +7169,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "4556a7bccad51ef00edbba1381188bbc10f8d399",
+      "git_blob_sha1": "ebac169dd73fd21debdf5ad60da37b06f3eecd55",
       "path": "tests/test_close_baselines.py",
       "rationale": "Hardened for portable, fail-closed publication validation.",
-      "sha256": "03d8df49a604fe2c00b8a8e2ddd940f1f282f4a90f1e7b2e661b6bb3ebc3267b",
-      "size": 4198,
+      "sha256": "96c511ac0be56610e52178f162b50b6107be06ce264aa4fedbe54fa5bc5f0c42",
+      "size": 13957,
       "source": {
         "git_blob_sha1": "dc4fe688c9713450a1109dbadb36a2645663cdb2",
         "path": "tests/test_close_baselines.py",
@@ -6761,11 +7220,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "b14c8c499d8daeca2ae1ad715a4e3a7dbb8a37af",
+      "git_blob_sha1": "13fe7b27c3d138247f4d88eb6b968fc1f2cf792f",
       "path": "tests/test_freeze_release.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "12f2a5f161fb1ec334741ae5f81be4b5252712494a3f1c875b2e75a847a969e4",
-      "size": 17111
+      "sha256": "582cf5fe5dc3462c836e06f6e7b134fafaf13b7d6b430f5a37ea6c0b52800760",
+      "size": 19329
     },
     {
       "classification": "new",
@@ -6777,11 +7236,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "e9267c24ecc5674e18acb87c9a85a3765d46dbe1",
+      "git_blob_sha1": "2d2cdd19a53df510ce2158a8c3abe084bb2a7fe0",
       "path": "tests/test_manuscript_claims.py",
       "rationale": "Hardened for portable, fail-closed publication validation.",
-      "sha256": "22ff8c31c4bff11e450b11979d3f0460cf36e6cacf6fca32bfb3dcbfad7c8e2a",
-      "size": 5424,
+      "sha256": "d8e7c053fda0c093958fdf6cb11729ccff923391f1f50de39ef394d68f8331cc",
+      "size": 6895,
       "source": {
         "git_blob_sha1": "7e63d5bc878586297e3e309dc3c8d8f734cb9aca",
         "path": "tests/test_manuscript_claims.py",
@@ -6831,11 +7290,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "a03316a06f00715ebb0c4d9a646b3c4f443ad87e",
+      "git_blob_sha1": "71adb103567441a8ebc71d678740aad37c9822f2",
       "path": "tests/test_publication_contract.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "76d58ba24f1bf463c6493abe9d717d4ad1dcd510bfed6ba0d229ec4c82691940",
-      "size": 34271
+      "sha256": "db5ea3f291d0faf9b331b88743dea36d90d2254748c31aacc06174be6a009cc7",
+      "size": 34067
     },
     {
       "classification": "new",
@@ -6937,11 +7396,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "36fca51cbe2a1a0f464f32f2485bed9486fc6f7c",
+      "git_blob_sha1": "eea73a4792824e407feb53f36da46d4128f7b067",
       "path": "tools/check_publication_contract.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "2850636e37a5368f1db12edfed3b9f46e28b3e223750fe4d3aac410ee3e99596",
-      "size": 99524
+      "sha256": "3c0664d141a8e6d2b78a20a484aeefe54ef0c2565039ff159708845ba33638cc",
+      "size": 102657
     },
     {
       "classification": "derived",
@@ -6959,11 +7418,11 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "42990710d3b4d30c32699a7a258c7fb468f0f88b",
+      "git_blob_sha1": "0cad4d1ca0b827e7f51983e29dd0541fcec5f874",
       "path": "tools/close_baselines.py",
       "rationale": "Hardened for portable, fail-closed publication validation.",
-      "sha256": "471a63d02e9048520f8cfa4f067f7570cf9df7d83d6a27c5cb64c606d3e565db",
-      "size": 13712,
+      "sha256": "8759368b46240859b4578437e202248cee0d149de90c0c222c9c49c9b985d4f9",
+      "size": 24863,
       "source": {
         "git_blob_sha1": "5a3b045e89d50d9faecf69e64a8fc51c80e1b4ff",
         "path": "tools/close_baselines.py",
@@ -6987,19 +7446,19 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "71428dae9390c6ea260acb3c1211797e25028a87",
+      "git_blob_sha1": "220958ff8550fdcad1d35b94276bce514310d9ba",
       "path": "tools/deposit_receipt.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "05f58c9a81e879be3b0c45c21775c5161969a657376a6cd55a7864619d96db62",
-      "size": 25449
+      "sha256": "dab14bf455983c414ebcfd9f2a2e4d9323b22503d6c13b488552af63ce92e791",
+      "size": 25455
     },
     {
       "classification": "new",
-      "git_blob_sha1": "d9e36d2b8c72cef9043b338c4a19d9f27a38ab31",
+      "git_blob_sha1": "0feb29e9211dc52cf171257f53ac2956448c4b04",
       "path": "tools/external_replication.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "265581007daa30bd6b1355c0b6200097c057f5b144d9462d21031fa8b0505a71",
-      "size": 47921
+      "sha256": "f762ec2d8fb9d0e5badfd20d257ce59660a9cefc1e7ec622f8738ddbc11ef870",
+      "size": 47932
     },
     {
       "classification": "new",
@@ -7011,11 +7470,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "6345cf36e2fa9c98004c8cb3146091992bc9a271",
+      "git_blob_sha1": "4f7e32b8f26ec3d84f47748eb96bb45007f0cfea",
       "path": "tools/freeze_release.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "78f04f7ef22f21a50669299795148c301bf25688171fe9e2500141020379dc27",
-      "size": 36577
+      "sha256": "d172fc11e8642ca7c74e0f8d616d3aeadbda27447606cc4586a2d6ecec6b209b",
+      "size": 38503
     },
     {
       "classification": "imported",
@@ -7066,17 +7525,25 @@
     },
     {
       "classification": "derived",
-      "git_blob_sha1": "7798fa0e2c32996cf6e8fcad99569336e9fc97f9",
+      "git_blob_sha1": "eff5fe771e43834be0aa97e143b946348d426fab",
       "path": "tools/prime_identity_audit.py",
       "rationale": "Hardened for portable, fail-closed publication validation.",
-      "sha256": "eef9eff43a67a36a2f1ef68aaa8c4da48a0df22eafa0516da1f6e7f6e3beffb2",
-      "size": 21338,
+      "sha256": "d7ed1b1f5268d4acf84b85a1768b1a922e4e972bf690947c38a9d9cc40b7de95",
+      "size": 21582,
       "source": {
         "git_blob_sha1": "75cef255c82eb614ff8cd609c8263b80010350c0",
         "path": "tools/prime_identity_audit.py",
         "sha256": "a49cd1b96e56e69c7b91e6a002e7f38065eb64a5c282a893bfdf3e1b8e7273e5",
         "size": 6749
       }
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "68502a41abe3baba38bce352303fe3515d28857d",
+      "path": "tools/publication_comparison.py",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "e2bba43222d00350d8b7e6284127b9183743358cc81a917ac2d878f057ba3519",
+      "size": 6308
     },
     {
       "classification": "derived",
@@ -7162,10 +7629,10 @@
     "repository": "Vulkin-prog/vdw-gpu-starter"
   },
   "summary": {
-    "derived": 38,
-    "imported": 29,
-    "new": 779,
+    "derived": 41,
+    "imported": 26,
+    "new": 837,
     "omitted_source": 0,
-    "total_present": 846
+    "total_present": 904
   }
 }

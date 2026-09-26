@@ -1,5 +1,9 @@
 # Reproducibility protocol
 
+The September finalization adds `tools/publication_comparison.py --check` for
+the five improvements, including the unresolved published comparator. It uses
+exact small integer calculations and does not rerun the large certificates.
+
 This package distinguishes four evidence levels. Passing a lower level does not
 stand in for a higher one.
 
@@ -14,17 +18,58 @@ Run from the repository root:
 
 The CPU suite runs unit tests; checks every committed generated audit artifact;
 compiles and exercises the reference oracle, Rabung criterion, stand-alone
-claim verifier, high-range witness, and independent prime enumerator; and
+claim verifier, high-range witness, and separate-source prime enumerator; and
 validates the staging publication contract. It neither launches the full GPU
 campaign nor claims to reproduce the 13 large certificates.
 
 A fresh full criterion/oracle sweep through `p < 10000` is archived under
 `results/cpu/`.  Its 20,170 cases and 190 stronger finite checks have zero
 disagreements, but its record explicitly remains preliminary because the
-worktree was not the final clean release candidate. A clean CPU replay and a
-clean deterministic document replay from the exact final candidate, with
-durable outputs and environment metadata, are therefore still required before
-that candidate is tagged and published.
+worktree was not the final clean release candidate.
+
+The initial 26 September checks are retained in
+`results/publication-finalization/2026-09-26/`. They describe the first
+27-page, pre-licensing edition at source commit
+`918992f9c0edca7d912598d518b0ae004206b51a` and must not be relabelled as checks
+of a later PDF. The subsequent licensed 26-page candidate
+`14c3a04f758310371039f41a576d0712ed4aa0bc` was successfully checked, as
+recorded in PR 5, but its new raw logs were lost with the unavailable workspace.
+
+The exposition-audit revision restores that candidate, corrects the exact
+cyclic-witness convention for Xu, and clarifies the examples and narrative.
+Its 27-page A4 PDF has SHA-256
+`b5499f954245b52bff215ab24a6d019a5900d4bdaea9ae896fa67f5dc1e314ff`.
+Fresh light checks passed on clean commit `84ee9d583f3c1a27e922a44b197779bc567cfd88`:
+230 Python tests, native CPU smoke checks, the separate arithmetic review,
+byte-identical PDF reconstruction and Git object verification. Commands,
+environment, exit codes and raw logs are recorded under
+`results/publication-finalization/2026-09-26-audit/`. The worktree was clean
+before and after. The following evidence-only commit records these outputs
+and updates documentation, gate status and inventory; its structural
+publication contract is checked separately.
+The small separate checker is
+`python3 publication/editorial-review/check_consistency.py`.
+No large certificate or GPU campaign is needed for these checks. The next Zenodo revision supplies DOI
+`10.5281/zenodo.22980965`, version `1.0.0`, and release date `2026-09-26`.
+It adds one regression test for the combined preprint/software deposit; the
+light checks passed on clean source commit `e0c7a9c498ffe18ad2552c4479b602f4084948a9`: 231 Python tests, native smoke checks,
+the separate arithmetic review, Git object checks, and identical full/standalone
+PDF builds. Raw evidence is in
+`results/publication-finalization/2026-09-26-zenodo/`.
+The following freeze commit adds only these logs, status/documentation, the
+inventory and MANIFEST.sha256. No historical large calculation is re-executed.
+
+
+The author then requested omission of the paper's own DOI from the document.
+Only the title page and the data-availability paragraph were changed; the
+reserved DOI remains in deposit/citation metadata. The corrected 27-page PDF
+was rebuilt twice and from its standalone sources with identical bytes.
+Only pages 1 and 16 changed and were visually reviewed. Code, tests,
+registries and scientific execution evidence retain their exact tree identities
+from the 231-test source candidate. This document-only check is recorded in
+`results/publication-finalization/2026-09-26-nodoi/`; the earlier logs keep
+their original commit and PDF identities. The prior unpublished draft remains
+in Git history; this corrected payload is the intended version 1.0.0.
 
 ## 2. Completed read-only recovery on the campaign PC
 
@@ -52,9 +97,11 @@ checkpoint-only.  It also preserves 498 per-chunk histograms for chunks
 the unavailable first-17 per-chunk histogram cells. Every imported object is
 hashed and mapped in the recovery ledger.
 
-## 3. Targeted release-candidate calculations
+## 3. Completed targeted calculations (historical reproduction only)
 
-After the candidate source is committed and the worktree is clean:
+The original qualification procedure below is documented for optional historical
+reproduction. It has already been completed; it is not a task for finalizing this
+manuscript. Do not rerun it merely to rebuild the publication files.
 
 ```bash
 ./scripts/validate_cuda.sh
@@ -77,31 +124,47 @@ The targeted PC evidence package then records:
 3. two `scan_gpu --verify1` runs, two `rabung_criterion -q` runs, and
    one `verify_claim` run for each of 13 claims;
 4. a Montgomery-free `highp_witness` run for each of the
-   two claims that requires one;
+   two claims that require one;
 5. a fail-closed validation of exactly 13 manifests and 67 required executions;
-6. byte-for-byte agreement of the ordered scanner and independent CPU prime
+6. byte-for-byte agreement of the ordered scanner and separate-source CPU prime
    streams on all 515 campaign chunks, totaling 48,823,489 primes.
 
 The CUDA qualification is `PASS` for the complete SM120 suite.  The exact Git
 commit existed before these runs because it is part of every manifest.  The
 authenticated recovery and ordered-prime audit revealed no material gap, so a
-full campaign rerun is not required.  These completed PC calculations do not
-replace the still-open clean final CPU/PDF replays or external replication.
+full campaign rerun is not required.  These historical PC calculations are distinct from the light CPU/PDF
+checks of the exact manuscript candidate described in Section 1.
 
-## 4. Independent replication and archival freeze
+## 4. Optional external replication and archival freeze
 
-An independently administered machine must recheck the four fixed claim IDs in
-`publication/external-replication.json`, preserving commit and verifier hashes,
-commands, environment, stdout, stderr, exit codes, and verdicts. CPU-only use of
-the stand-alone verifier is acceptable if the final protocol and resource
-record show that this is the independent path being claimed.
+For version 1.0.0 the reserved DOI is `10.5281/zenodo.22980965`. This is
+a single preprint record containing the manuscript and supporting package.
+`release/zenodo-metadata.json` is a local form-field specification, not a
+legacy API request: it declares both component licences and binds the local
+tag without inventing a separate paper DOI or a public GitHub release URL.
+See `publication/ZENODO_2026-09-26_FR.md` for the values to enter.
+Publication and remote byte-identity verification remain external actions
+after the local freeze. A passed local freeze does not attest a public deposit.
+
+No independently administered external replication has been performed.  The
+accepted local evidence combines GPU verification runs with CPU rechecks whose
+source and arithmetic paths are separated from the GPU scanner.  All runs were
+performed on one author-controlled PC; none is an independent replication.
+This absence is disclosed and does not block publication.
+
+The repository nevertheless retains an optional protocol for external
+corroboration of the four fixed claim IDs in
+`publication/external-replication.json`.  A future operator can preserve commit
+and verifier hashes, commands, environment, stdout, stderr, exit codes, and
+verdicts. CPU-only use of the stand-alone verifier is suitable for that
+optional path.
 
 The ready-to-send CPU-only operator procedure is in
-`replication/README.md`. Each of four distinct operators receives one frozen
-claim. The runner requires a clean committed checkout, a persistent operator
-ID, and an explicit attestation; it builds and self-tests the verifier source
-extracted from that commit, executes exactly the assigned claim, and emits a
-self-verifying bundle without changing the canonical ledger or gate:
+`replication/README.md`. It can assign one frozen claim to each of four distinct
+operators. The runner requires a clean committed checkout, a persistent
+operator ID, and an explicit attestation; it builds and self-tests the verifier
+source extracted from that commit, executes exactly the assigned claim, and
+emits a self-verifying bundle without changing the optional ledger:
 
 ```bash
 python3 tools/external_replication.py run \
@@ -119,8 +182,8 @@ The archival freeze has two layers and one deliberately narrow transactional
 meaning for the final status change:
 
 1. First complete the scientific, campaign-recovery, ordered-prime,
-   independent-replication, bibliography, and rights gates that do not depend
-   on final DOI metadata or a final tag. Reserving a draft archive DOI comes
+   bibliography, and rights gates that do not depend on final DOI metadata or
+   a final tag. Reserving a draft archive DOI comes
    **after those pre-freeze gates**, not after the DOI/tag gate itself.
 2. Insert the reserved DOI, version, and release metadata, replace the
    preparation-only manuscript wording, and rerun the CPU and PDF checks on the
@@ -156,9 +219,9 @@ meaning for the final status change:
 5. Produce a deterministic archive from that checked local tag. This archive is the
    **outer layer**. Its own SHA-256 cannot be stored inside the archive without
    a hash cycle, so record the archive filename, byte length, SHA-256, draft
-   deposit identifiers, and byte-for-byte upload comparison in an external
-   deposit receipt or release record. The implemented builder and byte-identity
-   check are run with destinations outside the repository:
+   deposit identifiers, and byte-for-byte upload comparison in an
+   out-of-repository deposit receipt or release record. The implemented builder
+   and byte-identity check are run with destinations outside the repository:
 
    ```bash
    python3 tools/build_release_archive.py build /absolute/path/vdw-rabung-bounds-vX.Y.Z.tar.gz
@@ -166,7 +229,7 @@ meaning for the final status change:
    ```
 
    After uploading the draft, download it to a distinct external file and
-   create, then recheck, the external receipt:
+   create, then recheck, the deposit receipt:
 
    ```bash
    python3 tools/deposit_receipt.py create \
@@ -197,8 +260,9 @@ staged so the transaction can validate it, and becomes a committed assertion onl
 with the manifest that a successful transaction produced.
 `tools/build_release_archive.py` deterministically renders and rechecks the outer
 container from the clean `HEAD` tree, and `tools/deposit_receipt.py` binds it to
-the separately downloaded draft copy without entering the payload. The final
-container and external deposit receipt do not yet exist and remain release work.
+the separately downloaded draft copy without entering the payload. The outer container is generated after the checked local tag.
+The external deposit receipt is created only from an actual downloaded
+copy of the uploaded file; it must not be fabricated from two local copies.
 Likewise, byte-identical PDF
 rebuilding is presently an intra-environment check: a long-term claim requires
 the TeX/font toolchain to be pinned or fully recorded. Public visibility is the
