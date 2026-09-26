@@ -24,7 +24,8 @@ recorded separately in `publication/baseline-provenance.json`.  In particular:
 The historical scanner and campaign-driver sources under
 `provenance/scanners/` originate in the author's pinned private source
 repository.  They are original project material, not third-party imports, and
-remain subject to the outbound licence decision in `RIGHTS-STATUS.md`.
+are covered by the MIT licence selected in `RIGHTS-STATUS.md`. Standard
+licence texts are provided for applying those licences and retain their own terms.
 
 If any verbatim third-party object is proposed for the final package, record
 its author, source URL, capture date, exact SHA-256, observed licence,

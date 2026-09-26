@@ -1,8 +1,9 @@
 cff-version: 1.2.0
-message: "This is a private staging artifact. Cite the immutable archived release once it exists."
+message: "Cite the immutable archived release once its DOI and version are assigned. The current licensed candidate is not yet an archival release."
 title: "Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers"
 type: software
 authors:
   - family-names: "Pouly"
     given-names: "Brice"
 repository-code: "https://github.com/Vulkin-prog/vdw-rabung-bounds"
+license: MIT

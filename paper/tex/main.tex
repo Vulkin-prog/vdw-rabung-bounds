@@ -4,11 +4,18 @@
 \usepackage{microtype}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage[margin=1in]{geometry}
+\usepackage[a4paper,margin=24mm,headheight=14pt]{geometry}
 \usepackage{graphicx,booktabs,longtable,array}
 \usepackage[numbers,sort&compress]{natbib}
+\usepackage{tikz,fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Succinct Rabung certificates}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
 \usepackage[colorlinks]{hyperref}
-\hypersetup{pdftitle={Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers},
+\hypersetup{allcolors=blue!40!black,
+  pdftitle={Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers},
   pdfauthor={Brice Pouly},
   pdfsubject={van der Waerden numbers},
   pdfkeywords={van der Waerden numbers, lower bounds, power residues, Rabung, GPU, certificates}}
@@ -40,6 +47,12 @@ project are re-verified and credited to that project. An empirical comparison
 of search intensities is reported separately and is not used to establish
 the lower bounds.
 \end{abstract}
+\noindent\textbf{Keywords.} Van der Waerden numbers; power-residue colourings;
+Rabung certificates; computational Ramsey theory.
+\clearpage
+\setcounter{tocdepth}{1}
+\tableofcontents
+\bigskip
 % ============ STRUCTURE ============
 \input{sec1_intro}
 \input{sec4_bounds}
@@ -52,9 +65,14 @@ the lower bounds.
 \input{sec5_density}
 \input{appendix_density}
 \input{appendix_certificates}
+\input{appendix_sources}
+\input{appendix_campaign}
 \input{sec9_ack}
 \input{sec8_disclosure}
 \begingroup\small
+\setlength{\bibsep}{3pt}
+\phantomsection
+\addcontentsline{toc}{section}{References}
 \bibliographystyle{plainnat}\bibliography{../references}
 \endgroup
 \end{document}

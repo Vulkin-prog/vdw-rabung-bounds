@@ -1,20 +1,15 @@
-# Proposition de licences — décision de l'auteur requise
+# Licences approuvées — 26 septembre 2026
 
-**Cette proposition n'accorde aucune licence.** Elle prépare la décision de
-diffusion requise par `RIGHTS-STATUS.md`.
+La proposition antérieure a été explicitement acceptée par Brice Pouly.
 
-| Élément original du projet | Licence proposée | Effet principal |
-| --- | --- | --- |
-| Code, scripts, tests et outils | MIT | Réutilisation, modification et redistribution, y compris commerciale, sous conservation de la notice ; absence de garantie. |
-| Manuscrit, sources LaTeX et PDF | CC BY 4.0 | Partage et adaptation, y compris commerciale, avec attribution et indication des modifications. |
-| Données originales, journaux et registres | CC BY 4.0 | Partage et adaptation avec attribution, dans la mesure des droits détenus par l'auteur. |
-| Travaux et objets de tiers | Aucun changement | Les droits de leurs titulaires sont conservés ; aucune permission supplémentaire n'est présumée. |
+| Élément original | Licence appliquée |
+| --- | --- |
+| Code, scripts, tests, programmes et documentation logicielle | MIT |
+| Manuscrit, sources LaTeX et PDF | CC BY 4.0 |
+| Données originales, journaux, registres et tableaux | CC BY 4.0 |
+| Éléments tiers | Aucun changement de droits ; objets de recherche non redistribués |
 
-Textes officiels : [MIT](https://opensource.org/license/mit) et
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode.en).
-
-Après accord de Brice Pouly, ajouter les textes complets des licences, renseigner
-`release/rights-map.json`, mettre à jour `RIGHTS-STATUS.md`, `CITATION.cff` et les
-métadonnées du dépôt. Ne pas marquer le contrôle `outbound-rights` comme acquis
-avant cette décision. Aucun document, code ou capture de tiers n'est ajouté
-à la redistribution par cette proposition.
+Les textes complets figurent dans `LICENSE-MIT.txt` et
+`LICENSE-CC-BY-4.0.txt`. `RIGHTS-STATUS.md` et `release/rights-map.json`
+précisent le périmètre. La mise à disposition publique et les métadonnées du
+DOI restent des opérations distinctes de cette décision.

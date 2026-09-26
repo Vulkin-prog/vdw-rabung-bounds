@@ -1,6 +1,6 @@
 # vdw-rabung-bounds
 
-**Private preparation repository — no citable release yet.**
+**Licensed publication candidate — archival DOI and release freeze to follow.**
 
 This repository is the publication-oriented reproducibility package for
 *Succinct Rabung certificates and recurrence-closed lower bounds for van der
@@ -18,14 +18,17 @@ The four two-colour certificates remain credited to Monroe's phase-2 project.
 
 The complete existing PC evidence is preserved. Finalization requires no
 new GPU campaign and no large-certificate rerun on the author's PC. The
-remaining publication decisions concern outbound licences and the public
-DOI/tag/archive transaction; see `publication/FINALIZATION_2026-09-26.md`.
-The release ledger remains honest about those unresolved decisions.
+remaining publication steps concern the public DOI/tag/archive transaction; see `publication/FINALIZATION_2026-09-26.md`.
+The author approved MIT for the code and CC BY 4.0 for the manuscript and
+original data on 26 September 2026. The release ledger records this decision.
 
 The clean source candidate passed all 228 Python tests, native CPU smoke
-checks and deterministic PDF builds on 26 September 2026. The 27-page paper
+checks and deterministic PDF builds on 26 September 2026. The revised 26-page paper
 and durable verification record are available as `paper/main.pdf` and
-`results/publication-finalization/2026-09-26/checks.json`.
+`results/publication-finalization/2026-09-26/checks.json`. The subsequent
+licensed editorial review, compared directly with Long runs v3, is recorded
+in `publication/editorial-review/REVIEW_FR.md`; its own light replay is
+recorded separately.
 
 ## What is already here
 
@@ -101,8 +104,8 @@ outside this repository. The enforced scope is in
 
 ## Citation and rights
 
-`CITATION.cff` intentionally has no DOI, version, or release date yet. No
-repository-wide reuse licence has been granted; see
-[`RIGHTS-STATUS.md`](RIGHTS-STATUS.md). Public visibility and archival deposit
-remain blocked until the author makes the outbound-licensing decisions and all
-scientific gates pass.
+`CITATION.cff` has no DOI, version or release date until the archive is frozen.
+Original code is licensed under MIT; the manuscript, PDF and original data
+are licensed under CC BY 4.0. See [`RIGHTS-STATUS.md`](RIGHTS-STATUS.md),
+[`LICENSE`](LICENSE) and `release/rights-map.json` for the component scope.
+Public archival deposit and the immutable release tag remain to be completed.

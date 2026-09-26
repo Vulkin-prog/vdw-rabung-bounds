@@ -116,43 +116,12 @@ hash-derived node identifier. These tie-breaks affect provenance only. Since
 all three operators are monotone in their input bounds, a dominated parent
 cannot improve a descendant. Iteration stops when no winning node changes.
 
-The admitted numerical seed set was assembled on 29~August~2026. The source
-review was updated on 26~September~2026 without changing those seeds. It consists of the
-seeds listed in \texttt{audit/baselines.json}: all seventeen finite three-colour
-specializations of Berlekamp's Theorem~1 from length 12 through 28,
-Rabung--Lotts' direct and prime-ring length-12 row, Liang et al.'s ordinary rows
-from length 12 through 23 and Xu-admissible prime ring rows from lengths 13 through 23,
-Monroe's version-pinned pre-window three-colour and later two-colour rows, the
-immutable direct tally distributed with his code, the twelve
-version-pinned explicit finite products of Campos, Fox and Schildkraut, the
-twelve explicit three-colour specializations of Gasarch and Haeupler, four
-archived phase-2 rows, and the thirteen claims of this work. The exact rows at
-lengths 17 through 20 that Monroe's summary credits to Liang et al. are sourced
-to that earlier 2012 paper~\cite{liang2012}, not reassigned to the later table.
-Monroe's rows at lengths 21 through 23 are pinned to arXiv v1 of
-9~March~2016, while the rows at lengths 24 and 25 first appear in v4 of
-6~November~2017~\cite{Monroe2016v1,Monroe2017v4}.
-Published entries require a stable primary locator. An unpublished or
-archived entry is included only with an immutable source identity and dated
-attribution; a merely announced value is not silently promoted to a seed. The
-generated output embeds this catalogue, SHA-256 hashes of both registries, and
-the winning provenance paths. Accordingly, ``strongest'' below always means
-strongest verified consequence of these explicitly admitted inputs, not global
-optimality over an unspecified literature corpus.
-
-\paragraph{Literature and priority audit.}
-Beginning the closure at length 12 is deliberate. Rabung and Lotts' Table~1
-gives prime $7\,194\,013$ and
-$W(3,12)>79\,134\,144$~\cite{rabunglotts2012}. Monroe's arXiv v1 is the first
-versioned public source located for the registered direct rows at lengths 13
-through 15 and a then-best length-16 row; v4 first replaces the latter by
-prime $612\,400\,081$ and
-$W(3,16)>9\,186\,001\,216$~\cite{Monroe2016v1,Monroe2017v4}. The registry
-retains the superseded v1 length-16 row as well. Every corresponding prime and
-strict-bound identity is recomputed; their strongest monotone consequence at
-length 17 remains below the direct certificate of this work. Thus the target
-window is not insulated from an unexamined earlier winner, while the later
-journal table is used as a stable record rather than as the source of priority.
+The seed registry and its dated source catalogue are detailed in
+Appendix~\ref{s:source-catalogue}. Published and archived predecessors are
+loaded from length $12$, so consequences entering the reported window from
+earlier lengths are retained. Throughout this paper, an \emph{admitted bound}
+means a consequence of those explicitly registered inputs and operations.
+The separately displayed Landman--Robertson statement has a different status.
 
 Berlekamp writes $W(K,t)$ for $K$ colours and progressions of length $t+1$.
 Specializing his Theorem~1 to $K=3,t=23$ gives
@@ -183,7 +152,7 @@ $1/(q-1)$, with its stronger extension confined to $q=2$, and Johannson's
 detailed reconstruction reports that the proposed general adaptation could
 not be confirmed~\cite[pp.~88--90]{Johannson2007}.
 This does not disprove the textbook statement. It is excluded from the numerical registry
-of consequences whose proofs or certificates were checked, but retained as a
+of admitted constructions and certificates, but retained as a
 published statement with unresolved proof status in our audit.
 Table~\ref{tab:unresolved} makes its numerical effect explicit. In particular,
 the admitted values for $24\le k\le28$ must not be described without this

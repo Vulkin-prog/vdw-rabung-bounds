@@ -1,22 +1,27 @@
 # Rights status
 
-**Outbound licence: decision pending.**
+The author approved these licences on 26 September 2026.
 
-No permission to copy, modify, or redistribute material should be inferred
-from access to this private preparation repository. This file is a status
-notice, not a licence grant.
+Copyright 2026 Brice Pouly. Original code, scripts, tests, workflow definitions,
+archived original source code, compiled original programs and their software
+usage documentation are licensed under MIT; see `LICENSE-MIT.txt`.
 
-Before the repository becomes public, the author must make separate decisions
-for:
+The manuscript, LaTeX sources, PDF, original data, logs, registries, generated
+tables and research documentation are licensed under CC BY 4.0; see
+`LICENSE-CC-BY-4.0.txt`. The grant applies only to rights held by the author;
+it does not restrict uncopyrightable facts or change third-party rights.
 
-1. original source code and scripts;
-2. manuscript text and the built PDF;
-3. original data, logs, registries, and generated tables;
-4. any third-party material that might be redistributed.
+`LICENSE` provides the component overview. `release/rights-map.json` records
+the code, paper/PDF and data choices used by the archive tooling.
+`CITATION.cff` describes the software package and therefore records MIT;
+the manuscript and data retain their separate CC BY 4.0 scope.
 
-A common publication arrangement would be a standard open-source licence for
-code and CC BY 4.0 for the manuscript and original data, but this repository
-does not select or grant either. Once the author decides, the chosen full
-licence texts, SPDX identifiers where applicable, `CITATION.cff`, archival
-metadata, and file-level notices must be made consistent. The
-`outbound-rights` gate in `STATUS.json` remains blocked until then.
+Third-party research articles, code, captures and archived result tables are
+not redistributed. Factual bibliographic locators and numerical attributions
+are retained; see `THIRD_PARTY_NOTICES.md`. Standard licence texts retain their
+own terms. They were obtained from SPDX's licence-list-data repository and
+checked against the official Open Source Initiative and Creative Commons
+licence pages.
+
+The author decision closes the outbound-rights gate. DOI assignment, version
+metadata, the archive freeze and public deposit remain separate release steps.

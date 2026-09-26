@@ -3,14 +3,14 @@
     "title": "Reproducibility package for: Succinct Rabung certificates and recurrence-closed lower bounds for van der Waerden numbers",
     "upload_type": "software",
     "publication_date": "@@RELEASE_DATE@@",
-    "description": "@@FINAL_ABSTRACT_AND_SCOPE@@",
+    "description": "We present three primitive Rabung certificates at three colours, giving nine direct lower bounds for van der Waerden numbers $W(3,k)$ with $17\\le k\\le25$. The five bounds for $17\\le k\\le21$ improve the earlier comparators identified in a source audit updated on 26 September 2026, including the relevant specializations of a stronger published statement whose proof status remains unresolved in that audit. In particular, we obtain $W(3,17)>31\\,385\\,622\\,833$, improving the identified predecessor by a factor of $2.02$. The GPU search supplies candidate triples $(p,r,k)$; a stand-alone CPU verifier reconstructs the finite hypotheses of Rabung's theorem. We prove the equivalence of the implemented boundary test with the published criterion and provide a provenance-bearing finite closure under known recurrences. Four earlier two-colour certificates from Monroe's distributed project are re-verified and credited to that project. An empirical comparison of search intensities is reported separately and is not used to establish the lower bounds.\n\nThis reproducibility package accompanies the manuscript. Original code is licensed under MIT; the manuscript and original data are licensed under CC BY 4.0. Third-party research objects are not redistributed.",
     "creators": [
       {
         "name": "Pouly, Brice"
       }
     ],
     "version": "@@VERSION@@",
-    "license": "@@LICENSE_ID@@",
+    "license": "MIT",
     "keywords": [
       "van der Waerden numbers",
       "Rabung certificates",

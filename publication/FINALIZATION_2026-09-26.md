@@ -1,5 +1,11 @@
 # Finalisation pour publication — 26 septembre 2026
 
+Mise à jour : les licences ont été approuvées par l’auteur. La revue
+éditoriale et de cohérence suivante est consignée dans
+`publication/editorial-review/REVIEW_FR.md`. Les identités ci-dessous
+concernent le premier candidat finalisé ; les nouveaux contrôles sont
+conservés séparément.
+
 Le manuscrit a été finalisé à partir de la PR 5, commit
 `62e4149bfdd29256080462cd4339e972e58e4aee`, en intégrant la revue bibliographique
 du 26 septembre. Aucune campagne GPU et aucune exécution de grand certificat
@@ -43,7 +49,7 @@ ne constituent pas une nouvelle réplication externe des grands calculs.
 Le candidat propre `918992f9c0edca7d912598d518b0ae004206b51a` a passé
 les 228 tests Python, les essais CPU natifs et deux constructions identiques
 du PDF. Les journaux et métadonnées se trouvent dans
-`results/publication-finalization/2026-09-26/`. Le PDF final compte 27 pages ;
+`results/publication-finalization/2026-09-26/`. Le PDF du premier candidat compte 27 pages ;
 son SHA-256 est
 `60478106a3829f74be4779e362c5c99b463e7259fc8d8d4e561d6a413ff8541a`.
 Le commit suivant ajoute uniquement ce relevé, les statuts et la documentation
@@ -53,12 +59,12 @@ est contrôlé séparément.
 ## Ce qui reste une décision de diffusion
 
 Le dépôt reste privé et aucune release publique ni aucun DOI ne sont inventés.
-`RIGHTS-STATUS.md` demande une décision de l'auteur. La proposition concrète est
-MIT pour le code original, CC BY 4.0 pour le manuscrit et les données originales,
-avec exclusion des éléments tiers. Elle est détaillée dans
-`release/PROPOSED-LICENSING.md` et n'est pas encore une autorisation accordée.
+L'auteur a approuvé MIT pour le code original et CC BY 4.0 pour le
+manuscrit et les données originales. Les textes complets et le périmètre sont
+appliqués dans `LICENSE`, `RIGHTS-STATUS.md` et `release/rights-map.json`.
+Les éléments tiers conservent leurs droits et attributions.
 
-Après ce choix, réserver le DOI de l'archive, reporter les identifiants réels
+Il reste à réserver le DOI de l'archive, reporter les identifiants réels
 dans les métadonnées, puis exécuter le gel tag–archive et le contrôle des fichiers
 déposés selon `REPRODUCIBILITY.md`. Ce sont des opérations légères de diffusion,
 pas une nouvelle campagne de calcul sur le PC. Une archive de préparation

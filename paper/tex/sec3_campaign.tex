@@ -15,12 +15,12 @@ administered replication, and no external replication has been performed.
 \subsection{Fused character evaluation}\label{ss:b7}
 
 The scan kernel exploits the fact that the additive order of positions is free:
-we iterate $x=1,2,\dots,p-1$ directly and evaluate the color of $x$ on the fly
+we iterate $x=1,2,\dots,p-1$ directly and evaluate the colour of $x$ on the fly
 by modular exponentiation, fused with the run-length bookkeeping. Nothing is
 sorted and no per-element value is materialized in memory. A single pass
 evaluates $y=x^{(p-1)/m}$ with $m=\operatorname{lcm}\{\,r\le 9 : r \mid p-1\,\}
 \le 2520$; a table lookup of $y$ among the $m$-th roots of unity gives
-$\operatorname{ind}(x) \bmod m$, hence the color for every modulus $r\le 9$
+$\operatorname{ind}(x) \bmod m$, hence the colour for every modulus $r\le 9$
 simultaneously. Runs are summarized per segment by (prefix, suffix, best
 interior) triples combined with an associative, order-respecting reduction.
 
@@ -31,31 +31,16 @@ at the center. We refer to this half-interval variant as the mirror scan.
 
 \subsection{Redundant and separate-source validation paths}\label{ss:validation}
 
-Correctness is supported by cross-agreement among redundant paths and by
-separate-source checkers rather than by trust in any single path. On all primes $p<105\,000$ (both residue classes of $p \bmod 4$ and varied
-$m$; the $r$-range of each comparison set is given with it):
-\begin{itemize}
-\item the sort-based GPU pipeline (an earlier, algorithmically distinct GPU
-  design retained as a redundant path) agrees with the CPU reference on $50\,105$
-  comparisons ($r\in[2,6]$) with zero disagreements;
-\item the fused multi-$r$ kernel agrees with the CPU reference on $27\,508$
-  comparisons ($r\in[2,9]$) with zero disagreements (and the specialized $r=2,3$ variant on a
-  further $9\,068$);
-\item the mirror scan, the fused full scan, the sort-based pipeline, and the
-  CPU reference agree on $33\,327$ comparisons over $10^{4}$ primes with zero
-  disagreements.
-\end{itemize}
-These comparison totals and the performance measurements below are historical
-pre-flight records.  Neither the authenticated campaign recovery nor the
-current SM120 qualification reclassifies them as fresh executions; each
-current evidence object has its own manifest, while these totals retain their
-stated historical scope.
-For $r=2$ a CPU Jacobi-symbol evaluation provides a further
-separate-arithmetic route. This redundancy is not decorative: during pre-flight testing the
-cross-check caught a genuine bug (a non-commutative run-summary operator fed to
-a reduction that assumes commutativity, producing phantom runs at
-$p\sim 1.8\times 10^{9}$); the repaired, order-respecting reduction is covered
-by a regression test that has run at every commit since.
+The retained CUDA qualification compares the mirror, full-interval,
+sort-based and CPU-walk paths on small primes, tests the boundary condition
+by two constructions, and exercises the high-range modular arithmetic.
+Its raw logs and source identities are preserved with the qualification
+manifest. The current CPU suite also tests the order-respecting run reduction.
+The historical development exposed why this matters: run summaries compose
+associatively but not commutatively, so a reduction that reorders them can
+produce an incorrect profile. The archived scanner uses the repaired
+ordered reduction. Agreement between implementations is interpreted according
+to the components they share, not as independent external replication.
 
 The main paths have the following dependency structure; agreement between
 paths is interpreted in light of their shared source and arithmetic.
@@ -119,129 +104,27 @@ commands, logs, exit status, and clean pre-build state.  This qualifies the
 discovery implementation and hardware path; it does not replace any Rabung
 certificate check.
 
-\subsection{Measured throughput}\label{ss:throughput}
-
-On the target hardware (one consumer RTX~5090, CUDA, 32-bit Montgomery
-arithmetic) the mirror multi-$r$ kernel was benchmarked at
-$4.86\times10^{10}$ physical evaluations of $x$ per second at
-$p\approx1.2\times10^9$.  Mirror reconstruction makes this equivalent to
-$9.72\times10^{10}$ positions of the full sequence per second.  The same run
-performed $2.09\times10^{12}$ modular multiplications per second, $61\%$ of the
-measured pure-multiplication plateau ($3.40\times10^{12}$).  Under the
-$431$\,W campaign power cap the observed kernel throughput was
-$4.2$--$4.45\times10^{10}$ physical evaluations, or
-$8.4$--$8.9\times10^{10}$ reconstructed full-sequence positions, per second.
-These are active-kernel rates.  The ten-day campaign duration is wall time and
-also includes sieving, host work, checkpointing, cross-checks, and restarts; we
-do not quote a wall-clock modular-multiplication rate. Several plausible
-optimizations (e.g.\ a 2-adic factorization of the exponentiation) were
-implemented, measured, and rejected as memory-bound regressions.
-
-These retained figures are historical engineering measurements, not a
-standardized performance study: the surviving record does not reconstruct a
-fixed warm-up, repetition count, dispersion statistic, clock state or complete
-power telemetry for every figure. They are not used in any mathematical claim.
-If they remain in the citable release, the accompanying CUDA artifact must
-separately record driver and toolkit versions, compiler flags, source and
-binary hashes, frequencies and power limit, warm-up, repetitions, and median
-and dispersion; otherwise only the qualitative campaign description will be
-retained.
-
 \subsection{Campaign execution}\label{ss:execution}
 
-The authenticated coverage-evidence package shows that the production run was
-configured to scan every prime in
-$[9.70\times 10^{8},\, 2.0\times 10^{9})$ (each prime tested for every
-$r\le 9$ dividing $p-1$), starting just above the largest
-published prime $969\,347\,371$ of Monroe's distributed scan~\cite{Monroe2026},
-in a single multi-$r$ pass ($r\le 9$). (The narrow interval
-$[969\,347\,371,\,9.70\times10^{8})$ was therefore not scanned; it is immaterial,
-since any valid prime in it would give a bound below every one we report.) The
-historical checkpoint reports that the range was processed in $515$
-restartable chunks of width $2\times 10^{6}$, each with a fixed walltime cap.
-The registered revision map spans \emph{eight} git revisions and \emph{four}
-scanner-source fingerprints.  Their exact allocation and the scientific
-effect of each transition are generated from the audit registry below.
-\input{generated_scanner_revisions}
-The $(3,17)$ max-run statistic and its target predicate are unchanged across
-all four fingerprints.  The first functional expansion added only
-$(2,26)$--$(2,28)$, whose early online tallies are therefore incomplete; the
-second added congruence counters and reproduced the previous target profiles
-and checksums in an old/new comparison.  This supports code-path
-comparability for the retained $(3,17)$ counts, although version-stratified
-dispersion diagnostics remain distinct from that code audit.  The historical
-journal also records automatic cross-checks every $50$ chunks: nine completed
-samples agreed across the redundant scan paths and separate CPU checks, while a
-tenth timed out and was not counted.  These samples do not turn the single
-production campaign into a duplicated run.  Checkpoint transaction mechanics
-are documented in \texttt{REPRODUCIBILITY.md}.  The authenticated
-coverage-evidence package contains the immutable checkpoint, a matching journal
-record for $514$ chunks, the checkpoint-only record for chunk~7, $498$
-per-chunk histograms for chunks~18--515, and the retained transition artifacts
-selected by the recovery ledger.
+The production interval was $[970\,000\,000,2\,000\,000\,000)$, partitioned
+into $515$ contiguous chunks of width $2\times10^6$. Each prime was evaluated
+for the active colour counts $r\le9$ dividing $p-1$. The checkpoint accounts
+for every chunk; $514$ also have matching journal records, while chunk~7 is
+recovered from the checkpoint alone. The surviving outputs contain $498$
+per-chunk histograms and one aggregate re-scan of the first $17$ chunks.
 
-\paragraph{Exhaustiveness of the prime enumeration.}
-The per-prime computation is validated by the redundancy above; the
-\emph{enumeration} of primes deserves its own audit, since the density claims of
-Section~\ref{s:density} are claims about \emph{all} primes in the window. The
-scanner enumerates primes with a plain in-process sieve per chunk; chunks are
-contiguous by construction ($[\,\mathrm{lo}+2i\cdot10^{6}$,
-$\mathrm{lo}+2(i{+}1)\cdot10^{6}\,)$), and the checkpoint protocol resumes only
-at chunk boundaries, so interruptions can neither skip nor duplicate primes
-within the range. We verified the retained aggregate coverage counts against a
-separately written segmented sieve with no shared code:
-over the $498$ chunks for which per-chunk histograms were logged (the histogram
-feature was added at an early restart, from $p=1.004\times10^{9}$ on), the
-campaign's per-chunk counts of primes in every congruence class $p\equiv1\pmod
-r$, $2\le r\le9$---$3\,984$ counts in all---agree with the separate-source sieve
-\emph{exactly}, with zero discrepancies ($47\,181\,875$ primes on those
-chunks). For the first $17$ chunks, which predate the histogram feature,
-per-class counts were not logged during the campaign; that range,
-$[9.70\times10^{8},1.004\times10^{9})$, was therefore re-scanned after the
-campaign in one aggregate invocation with the post-campaign audit build
-(commit \texttt{c81383885bd9}; full identities are in the registry).  The
-retained Git history places the eight separate-source counts in commit
-\texttt{30e8b83df3c0} before the completed re-scan transcript.  This establishes
-relative order inside the preserved Git DAG, not an independently timestamped
-precommitment.  A version-specific,
-fail-closed parser now checks the preserved transcript, whose SHA-256 is
-\texttt{dff4e409\ldots de184};
-it verifies every historical TARGET, candidate, COLQ, HISTO, and TOP row before
-comparing the eight histogram sums with those separately recorded counts.
+A separately written CPU sieve and the scanner produce byte-identical
+ordered prime streams on all $515$ chunks, containing $48\,823\,489$ primes.
+This checks the enumeration underlying the coverage statement. It does not
+replace the pointwise criterion tests for a certificate. Four historical
+scanner fingerprints were used, with no change to the $(3,17)$ target
+predicate; the complete holdout segment uses the final fingerprint.
+Appendix~\ref{s:campaign-audit} gives the revision table, the distinction
+between histogram and ordered-stream checks, and the recovery of the early
+aggregate evidence.
 
-\input{generated_rescan17_table}
-
-The re-scan also lists exactly $405$ run-valid $(3,17)$ candidates, consistently
-with its TARGET row and its $r=3$ histogram.  It was one invocation over the
-whole interval, however, so it supplies aggregate class totals rather than
-$17\times8$ per-chunk cells.  These audits establish exact agreement of the
-counts; counts alone do not establish
-identity of the ordered prime lists.  The audit utility therefore also emits a
-canonical ordered stream for byte comparison and hashing.  Its final manifest
-records byte-for-byte scanner/CPU identity on all $515$ chunks, independently
-of the $3\,984$ matching counts.  The four historical scanner blobs contain a
-byte-identical $249$-byte \texttt{sieve\_primes}
-function (SHA-256 recorded in the registry).  That function accepted an
-inclusive upper endpoint, whereas the audit stream is half-open; every campaign
-boundary is an even integer greater than two, hence composite, so the two
-conventions enumerate exactly the same primes on all $515$ chunks.  The current
-scanner makes the half-open convention explicit.  In total the window
-$[9.7\times10^{8},2\times10^{9})$ contains $48\,823\,489$ primes in both
-byte-identical ordered streams.  Across the retained $498$-chunk histograms and
-the aggregate 17-chunk re-scan, the preserved outputs report corresponding
-per-class totals.  The separate-source
-sieve counts $1\,448\,736$ primes in
-$[9.7\times10^{8},10^{9})$, hence $47\,374\,753$ in
-$[10^{9},2\times10^{9})$.  This equals the externally published difference
-$\pi(2\times10^{9})-\pi(10^{9})=98\,222\,287-50\,847\,534$ from Oliveira e
-Silva's table~\cite{OliveiraSilvaPi}; it checks the interval difference, not
-either absolute value separately.
-
-The authenticated checkpoint and journal manifest accounts for all $515$
-contiguous chunks without inventing the absent chunk~7 journal row; the saved
-driver ordering establishes why that row can be recovered from the checkpoint.
-Together with the $515$-chunk ordered-prime identity audit, this closes the
-local coverage audit while preserving the distinction between the $498$
-per-chunk histograms and the one aggregate re-scan of chunks~1--17.  The
-strongest candidate direct bounds located by the scan were passed to
-Section~\ref{ss:protocol}; no bound was recorded from the scanning pass alone.
+The GPU method made this finite survey practicable, but the retained material
+does not constitute a controlled throughput study with a common repetition
+and telemetry protocol. We therefore report the algorithm and coverage,
+without using historical kernel rates as publication benchmarks. None of the
+numerical lower bounds depends on a performance claim.

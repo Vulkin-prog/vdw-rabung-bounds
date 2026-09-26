@@ -28,13 +28,13 @@
     },
     {
       "id": "cpu-ci-clean-tag",
-      "status": "passed",
+      "status": "open",
       "evidence": [
         "results/publication-finalization/2026-09-26/checks.json",
         "results/publication-finalization/2026-09-26/cpu-checks.log",
         "scripts/run_cpu_checks.sh"
       ],
-      "note": "Clean source candidate 918992f9c0edca7d912598d518b0ae004206b51a passed 228 Python tests and native CPU checks in the managed Linux workspace on 2026-09-26. Durable logs and environment metadata are preserved. The following commit adds only evidence, status and documentation. Replay these light checks after final DOI/licence metadata is inserted; no large certificate rerun is required."
+      "note": "The previous clean-candidate checks remain archived. The licensed editorial revision must receive a fresh light CPU/document replay before this gate is closed again."
     },
     {
       "id": "bibliography-primary-source-audit",
@@ -47,13 +47,13 @@
     },
     {
       "id": "paper-clean-build",
-      "status": "passed",
+      "status": "open",
       "evidence": [
         "results/publication-finalization/2026-09-26/checks.json",
         "results/publication-finalization/2026-09-26/paper-build.log",
         "paper/main.pdf"
       ],
-      "note": "Two clean builds on source candidate 918992f9c0edca7d912598d518b0ae004206b51a produced the identical 27-page PDF with SHA-256 60478106a3829f74be4779e362c5c99b463e7259fc8d8d4e561d6a413ff8541a. Visual layout review completed. The final DOI/licence metadata transition requires a light rebuild before public freeze."
+      "note": "The previous clean-candidate checks remain archived. The licensed editorial revision must receive a fresh light CPU/document replay before this gate is closed again."
     },
     {
       "id": "claim-manifests-13",
@@ -95,12 +95,16 @@
     },
     {
       "id": "outbound-rights",
-      "status": "blocked_human_decision",
+      "status": "passed",
       "evidence": [
         "RIGHTS-STATUS.md",
+        "LICENSE",
+        "LICENSE-MIT.txt",
+        "LICENSE-CC-BY-4.0.txt",
+        "release/rights-map.json",
         "THIRD_PARTY_NOTICES.md"
       ],
-      "note": "The author must choose licences for code, paper/data, and resolve redistribution of third-party objects."
+      "note": "Explicit author approval on 2026-09-26: MIT for original code; CC BY 4.0 for the manuscript and original data. Full licence texts, component map and software citation metadata are consistent. Third-party research objects are not redistributed."
     },
     {
       "id": "doi-tag-archive-freeze",
