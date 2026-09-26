@@ -34,19 +34,19 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "25a67a8e609fd61b66fc1f38bf580f832d703fd1",
+      "git_blob_sha1": "0f3a6d3691135e48683221f6178b366d06ea70c7",
       "path": "README.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "65f4239f5104a34c026502bad0e78ee4a4f4988ab07e64b24ccc5a1c7639bf93",
-      "size": 5043
+      "sha256": "2f9e8e773ae8fc2747a1acea45adfcafeff36e68b8c212a1b42eafc62dc47fce",
+      "size": 5322
     },
     {
       "classification": "new",
-      "git_blob_sha1": "ad91c6b820766450b2191ef73fa0ba24204427b4",
+      "git_blob_sha1": "1a9360bb2c59043836f707bbb641585624da6703",
       "path": "REPRODUCIBILITY.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "4c630a1195ad225f3004a7ac3a454f98bf6096fb95b23e3b08d9383dba75eb31",
-      "size": 10913
+      "sha256": "7ec802bc725456a02bc830ddfb6eb698746dae2b3fd67a09184c4d5985f61b9a",
+      "size": 11410
     },
     {
       "classification": "new",
@@ -58,11 +58,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "5c70ee0103b6a04599be1fe4bfbdf5fb51926ca0",
+      "git_blob_sha1": "bad5a08e6d1f414ff6eef5a7d227f94162cd74a4",
       "path": "STATUS.json",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "4bb8e3787a86f8b9864625e930284b0dbac739da5f81553a5ebae561e0f91115",
-      "size": 5124
+      "sha256": "f4c2566e6dc543509dbd891f078190fd770787bd1571ff81ad56d7ac14f8451e",
+      "size": 5710
     },
     {
       "classification": "new",
@@ -659,11 +659,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "9f8e8964f85629d72362ed55dbb8ed5813174ffd",
+      "git_blob_sha1": "84a898cc4220b8067243c1f7ba5b1d5d50591659",
       "path": "publication/FINALIZATION_2026-09-26.md",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "23a834e2190cfb24acfc7fddf93a562e59e59951bfebca1c6bd505ff30501420",
-      "size": 3388
+      "sha256": "4ced9ca83aaa4eb63511d2ec3d302972f83941fd3dbce0fdd8c1802273b86bf6",
+      "size": 3946
     },
     {
       "classification": "new",
@@ -699,11 +699,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "c1cc812a83f1267f3be8134d3b05f0bc35e9f3cb",
+      "git_blob_sha1": "a768d2d32b8184ef47fc2ed3e72bf2820035caa3",
       "path": "publication/scope.json",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "e768bdbb43fd2c13b6f6490180c857e25b6963a397f2fe4eb0b196672cd1393f",
-      "size": 54868
+      "sha256": "d279dbecb9a474a3fbd47696f1b45c3460b22a8d7fa048b11f8a79fabc382082",
+      "size": 55565
     },
     {
       "classification": "new",
@@ -6333,6 +6333,78 @@
       "size": 56
     },
     {
+      "classification": "new",
+      "git_blob_sha1": "a74fad46f780b2057ad111771076f12f11e67ac2",
+      "path": "results/publication-finalization/2026-09-26/checks.json",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "f6cdbb7019eb527dcfdce18d2cd45b5ab7c366356662db8de09295f4b72fe4d2",
+      "size": 3351
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "c1af9bb620507e4336ec987011be02c317d1b6a3",
+      "path": "results/publication-finalization/2026-09-26/cpu-checks.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "eb433719f7b95aca18d46dc911a1af0de0153485d3164c66327d91fedec50a7d",
+      "size": 38257
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "results/publication-finalization/2026-09-26/git-fsck.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "f515e03d34b5e62ffc4306126cd1ae6cd4952c04",
+      "path": "results/publication-finalization/2026-09-26/native-logs/high-range-witness-smoke.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "abd92da4586bccb8dfd2dffd823230c1d8ba8ca5dd9b911e9d2a3f314498960f",
+      "size": 588
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "6f92788fc5df9f4e8f9055f718f72a7ef95815f7",
+      "path": "results/publication-finalization/2026-09-26/native-logs/ordered-reduction.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "ef5af9f0dbe5f3626d6d9a3a37a1b1d9e05dfdb731a3156173cd8fb0b8fbc100",
+      "size": 133
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "4f6b320f0b8c271199e7c4cffac81c01dc882a63",
+      "path": "results/publication-finalization/2026-09-26/native-logs/rabung-criterion.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "272e40b370154b10a258969b336dc9855d428053291b42924a5b6298dddc697d",
+      "size": 870
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "e4af080879a4ab2ce78a61e8f1ab72ec0de0d6b8",
+      "path": "results/publication-finalization/2026-09-26/native-logs/reference-oracle.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "6301df639f1229dd103d9e82edbefd2c90a624860c42a37822a862afd30fed88",
+      "size": 2170
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "d104bc663c55fcc79147191f547e1f01c44c6876",
+      "path": "results/publication-finalization/2026-09-26/native-logs/separate-source-verifier.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "d74824ffbd8cf96727014d90700424cb285fe213df1f14981ac086cc98091612",
+      "size": 952
+    },
+    {
+      "classification": "new",
+      "git_blob_sha1": "4082185208bdc6aefd40d21b093a597e1aa0453f",
+      "path": "results/publication-finalization/2026-09-26/paper-build.log",
+      "rationale": "Created specifically for the focused publication and release contract.",
+      "sha256": "e09fe5116f4b904fd389350ed1696dd8dced586495d0de2121fde0f217415a1c",
+      "size": 276
+    },
+    {
       "classification": "imported",
       "git_blob_sha1": "bb6134adc931f865170b1dc9a8645342a07453a6",
       "path": "results/redo17/redo_17chunks_v2.txt",
@@ -7239,8 +7311,8 @@
   "summary": {
     "derived": 41,
     "imported": 26,
-    "new": 788,
+    "new": 797,
     "omitted_source": 0,
-    "total_present": 855
+    "total_present": 864
   }
 }

@@ -22,6 +22,11 @@ remaining publication decisions concern outbound licences and the public
 DOI/tag/archive transaction; see `publication/FINALIZATION_2026-09-26.md`.
 The release ledger remains honest about those unresolved decisions.
 
+The clean source candidate passed all 228 Python tests, native CPU smoke
+checks and deterministic PDF builds on 26 September 2026. The 27-page paper
+and durable verification record are available as `paper/main.pdf` and
+`results/publication-finalization/2026-09-26/checks.json`.
+
 ## What is already here
 
 - the CUDA search source and the separate-source CPU reference/verifier sources;

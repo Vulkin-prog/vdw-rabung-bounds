@@ -28,12 +28,13 @@
     },
     {
       "id": "cpu-ci-clean-tag",
-      "status": "open",
+      "status": "passed",
       "evidence": [
-        "scripts/run_cpu_checks.sh",
-        ".github/workflows/ci.yml"
+        "results/publication-finalization/2026-09-26/checks.json",
+        "results/publication-finalization/2026-09-26/cpu-checks.log",
+        "scripts/run_cpu_checks.sh"
       ],
-      "note": "Checks are implemented; the exact clean final-candidate commit must be replayed and durable outputs preserved before its local tag is published."
+      "note": "Clean source candidate 918992f9c0edca7d912598d518b0ae004206b51a passed 228 Python tests and native CPU checks in the managed Linux workspace on 2026-09-26. Durable logs and environment metadata are preserved. The following commit adds only evidence, status and documentation. Replay these light checks after final DOI/licence metadata is inserted; no large certificate rerun is required."
     },
     {
       "id": "bibliography-primary-source-audit",
@@ -46,12 +47,13 @@
     },
     {
       "id": "paper-clean-build",
-      "status": "open",
+      "status": "passed",
       "evidence": [
-        "scripts/build_paper.sh",
-        "paper/tex/main.tex"
+        "results/publication-finalization/2026-09-26/checks.json",
+        "results/publication-finalization/2026-09-26/paper-build.log",
+        "paper/main.pdf"
       ],
-      "note": "A clean build exists locally; after the DOI metadata is inserted, the PDF must be rebuilt and checked from the exact final-candidate commit before its local tag is published."
+      "note": "Two clean builds on source candidate 918992f9c0edca7d912598d518b0ae004206b51a produced the identical 27-page PDF with SHA-256 60478106a3829f74be4779e362c5c99b463e7259fc8d8d4e561d6a413ff8541a. Visual layout review completed. The final DOI/licence metadata transition requires a light rebuild before public freeze."
     },
     {
       "id": "claim-manifests-13",

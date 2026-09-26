@@ -40,6 +40,16 @@ la construction déterministe et les résultats de contrôle du candidat sont
 conservés dans le dossier de vérification livré avec le paquet. Ces contrôles
 ne constituent pas une nouvelle réplication externe des grands calculs.
 
+Le candidat propre `918992f9c0edca7d912598d518b0ae004206b51a` a passé
+les 228 tests Python, les essais CPU natifs et deux constructions identiques
+du PDF. Les journaux et métadonnées se trouvent dans
+`results/publication-finalization/2026-09-26/`. Le PDF final compte 27 pages ;
+son SHA-256 est
+`60478106a3829f74be4779e362c5c99b463e7259fc8d8d4e561d6a413ff8541a`.
+Le commit suivant ajoute uniquement ce relevé, les statuts et la documentation
+associés, avec mise à jour de l'inventaire des fichiers. Son contrat structurel
+est contrôlé séparément.
+
 ## Ce qui reste une décision de diffusion
 
 Le dépôt reste privé et aucune release publique ni aucun DOI ne sont inventés.

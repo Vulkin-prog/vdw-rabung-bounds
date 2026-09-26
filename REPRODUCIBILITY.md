@@ -25,10 +25,18 @@ campaign nor claims to reproduce the 13 large certificates.
 A fresh full criterion/oracle sweep through `p < 10000` is archived under
 `results/cpu/`.  Its 20,170 cases and 190 stronger finite checks have zero
 disagreements, but its record explicitly remains preliminary because the
-worktree was not the final clean release candidate. A clean CPU replay and a
-clean deterministic document replay from the exact final candidate, with
-durable outputs and environment metadata, are therefore still required before
-that candidate is tagged and published.
+worktree was not the final clean release candidate.
+
+On 26 September 2026, the CPU suite (228 Python tests and native smoke checks)
+and two byte-identical clean document builds passed on clean source candidate
+`918992f9c0edca7d912598d518b0ae004206b51a`. The commands, environment,
+exit codes and raw outputs are in
+`results/publication-finalization/2026-09-26/checks.json` and its adjacent logs.
+The following evidence commit only records these checks, updates gate status
+and documentation, and refreshes the file inventory; its structural contract
+is checked separately. The PDF has 27 pages. No large certificate or GPU
+campaign was rerun. After inserting real licence and DOI metadata, replay
+these light checks during the final archive freeze described below.
 
 ## 2. Completed read-only recovery on the campaign PC
 
