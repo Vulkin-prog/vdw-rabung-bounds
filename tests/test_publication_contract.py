@@ -305,10 +305,11 @@ def make_campaign_manifest(root: Path) -> dict:
 
 
 class PublicationContractTest(unittest.TestCase):
-    def test_current_repository_is_an_honest_staging_package(self):
-        report = MODULE.audit_repository(ROOT, "staging")
+    def test_current_repository_is_a_complete_publication_package(self):
+        report = MODULE.audit_repository(ROOT, "release")
         self.assertEqual(report["errors"], [])
-        self.assertEqual(report["verdict"], "BLOCKED")
+        self.assertEqual(report["verdict"], "PASS")
+        self.assertEqual(report["blockers"], [])
         codes = {item["code"] for item in report["blockers"]}
         for gate_id in (
             "claim-manifests-13",
