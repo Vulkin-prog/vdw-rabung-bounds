@@ -18,13 +18,14 @@ paper requires no repetition of the GPU campaign.
   \texttt{audit/claims.json} hold.
   \end{theorem}
   \begin{proof}
-  For each row, the archived execution of the stand-alone verifier establishes
-  primality, $p\equiv1\pmod r$, $p>k$, and conditions
-  $(a)\wedge(B^{*})$.  Proposition~\ref{p:bstar} identifies the operational
-  condition with Rabung's boundary criterion, and Rabung's theorem then gives
-  the displayed inequality. The build audit checks the exact set of thirteen
-  manifests and their bound source, executable and output hashes before including
-  the table; it does not repeat those long executions.
+  For each listed prime, the finite computation gives maximum run $<k$ and
+  non-monochromatic boundary strings $(B^{*})$, together with primality,
+  $p\equiv1\pmod r$ and $p>k$. Proposition~\ref{p:bstar} identifies
+  $(B^{*})$ with Rabung's boundary criterion. Rabung's theorem therefore
+  constructs a progression-free colouring of $(k-1)p+1$ positions.
+  The stand-alone checker and its retained execution results are described in
+  Section~\ref{ss:certificates} and Appendix~\ref{s:certificate-evidence};
+  their file identities are checked when the table is built.
   \end{proof}
   The full execution-identity table is provided in Appendix~\ref{s:certificate-evidence}.
 }{%
@@ -41,8 +42,7 @@ paper requires no repetition of the GPU campaign.
 
 \subsection{Three colours: direct and recurrence-closed bounds}\label{ss:r3}
 
-The historical scan produced nine direct Rabung rows, all now accepted by the
-final manifest audit. They involve only three distinct primes. By
+The nine three-colour rows involve only three distinct primes. By
 Lemma~\ref{lem:k-monotone}, the certificate
 $(1\,999\,999\,927,3,19)$ implies all six rows with the same prime and
 $20\le k\le25$. Thus only seven triples in the thirteen-row theorem are
@@ -86,23 +86,40 @@ $W(2,k)-1\ge B$, and the generated consequence is exactly
 \end{equation}
 with no off-by-one ambiguity.
 
-For completeness, write $WR(s,k)$ for Xu's ring van der Waerden number: the
-least $N$ such that, for every $n\ge N$, every $s$-colouring of
-$\mathbb Z/n\mathbb Z$ has a monochromatic $k$-term arithmetic progression.
-The prime-witness specialization of Xu's concatenation recurrence used in
-Monroe's later computation~\cite{xu2013,Monroe2026} has $k\ge3$, $s\ge2$,
-$t\ge1$, and
-$5\le n<WR(s,k)$ whose least prime divisor exceeds $k$,
+For example, the published input $W(2,22)>2\,582\,037\,634$ gives
+\[
+ W(3,22)>19\times2\,582\,037\,634=49\,058\,715\,046,
+\]
+which exceeds our direct value $41\,999\,998\,468$. This is the first length
+at which the new direct row loses to a recurrence consequence in the table.
+
+We use Xu's concatenation in its \emph{exact-witness} form
+\cite{xu2013,Monroe2026}. Let $k\ge3$, $s\ge2$, $t\ge1$, and suppose an
+$s$-colouring of $\mathbb Z/R\mathbb Z$ contains no nonzero-step $k$-term
+arithmetic progression. Require $R\ge5$ and that the least prime divisor
+of $R$ exceed $k$; the terms of every such progression are then distinct.
+If $W(t,k)>B$, concatenation gives
 \begin{equation}\label{eq:xu}
-  W(st,k)\ge n\bigl(W(t,k)-1\bigr)+1.
+  W(st,k)>RB.
 \end{equation}
-The original full text of Xu was not obtained in the latest review; the
-specialization used here was read in Monroe's account, and its numerical
-preconditions are checked for every registered witness. No winning
-three-colour row depends on Xu. Our registry stores strict integer bounds. Every ring witness $R$ used here
-has least prime divisor greater than $k$, a precondition checked by the closure
-tests. Hence inputs $WR(s,k)>R$ and $W(t,k)>B$ permit $n=R$ and give exactly
-$W(st,k)>RB$, with no rounding or off-by-one convention left implicit.
+Indeed, write $x=Rq+a$ for $0\le x<RB$, with $0\le a<R$, and colour $x$
+by the pair consisting of the cyclic colour of $a$ and a progression-free
+$t$-colouring of $q\in\{0,\ldots,B-1\}$. A monochromatic progression whose
+step is not divisible by $R$ contradicts the cyclic colouring; if its step
+is divisible by $R$, its block indices contradict the ordinary colouring.
+Thus the product bound uses a colouring at the specific modulus $R$.
+
+A lower bound for a cyclic threshold alone would not supply this witness.
+The registry's \texttt{ring\_seeds} therefore records exact moduli, together
+with their source attribution or Rabung claim identity. For a Rabung input,
+conditions $(a)\wedge(B^{*})$ also give the cyclic colouring at modulus $p$:
+a nonzero step dilates to consecutive residues, and windows meeting zero
+are excluded by $(B^{*})$, whatever colour is assigned to zero.
+The published witness inputs retain their cited provenance; they are not
+new large computations of this work. The original full text of Xu was not
+obtained in the latest review; its use in the preceding literature was read
+in Monroe's account. The exact-witness product argument above makes the
+operation used here explicit. No winning three-colour row depends on Xu.
 
 The baseline program iterates elementary length monotonicity, the registered
 BCT specialization and \eqref{eq:xu} to a fixed point. Its closure state covers

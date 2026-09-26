@@ -34,7 +34,7 @@
         "results/publication-finalization/2026-09-26/cpu-checks.log",
         "scripts/run_cpu_checks.sh"
       ],
-      "note": "The previous clean-candidate checks remain archived. The licensed editorial revision must receive a fresh light CPU/document replay before this gate is closed again."
+      "note": "The exact-modulus and exposition revision requires a fresh clean light replay. Earlier evidence is retained as historical; it is not relabelled for this candidate."
     },
     {
       "id": "bibliography-primary-source-audit",
@@ -53,7 +53,7 @@
         "results/publication-finalization/2026-09-26/paper-build.log",
         "paper/main.pdf"
       ],
-      "note": "The previous clean-candidate checks remain archived. The licensed editorial revision must receive a fresh light CPU/document replay before this gate is closed again."
+      "note": "The exact-modulus and exposition revision requires a fresh clean light replay. Earlier evidence is retained as historical; it is not relabelled for this candidate."
     },
     {
       "id": "claim-manifests-13",

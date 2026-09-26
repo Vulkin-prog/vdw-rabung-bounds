@@ -28,8 +28,10 @@ $p \nmid d$ by $u=d^{-1} \bmod p$ shifts all colours by the constant $c(u)$ and
 maps the progression to $k$ \emph{consecutive} residues modulo $p$. The search
 for monochromatic progressions therefore reduces to a linear scan of the run
 lengths of the sequence $c(1),c(2),\dots,c(p-1)$, plus a boundary condition at
-the multiples of $p$; this reduction from an $O(p^2/k)$ test to an $O(p)$ test
-per prime is what makes a mass scan possible.
+the multiples of $p$. Once the colour array is known, this replaces an
+$O(p^2/k)$ progression test by an $O(p)$ scan. Computing that array is a
+separate cost: the stand-alone checker uses $O(p\log p)$ modular-arithmetic
+steps, as described below.
 
 \subsection{Rabung's theorem and the operational criterion}\label{ss:criterion}
 
@@ -87,9 +89,20 @@ are $(c(1),c(2),c(3),c(4))=(0,1,1,0)$. The longest run is $2<4$, and the
 boundary interval $\{1,2\}$ contains both colours. Thus the criterion gives
 $W(2,4)>16$: the colouring on $[0,15]$ consists of three repeated nonzero
 residue blocks separated by four joker positions. Every non-constant
-assignment to those jokers works. This example illustrates the construction;
+assignment to those jokers works. For instance, joker colours $(0,0,0,1)$
+give the following word on positions $0,\ldots,15$:
+\[
+ \mathtt{0011000110001101}.
+\]
+Its $35$ progressions of length $4$ can be checked directly.
+This example illustrates the construction;
 it is not asserted to be the best bound at this small length. It also shows
 why replacing the ceiling by a floor would discard a valid certificate.
+
+The same prime also gives a longer progression-free interval when the target
+length increases. This is stronger than merely inheriting the previous
+numerical bound by monotonicity of $W(r,k)$: the interval length grows from
+$(k-1)p+1$ to $(\ell-1)p+1$.
 
 \begin{lemma}[Monotonicity at fixed prime]\label{lem:k-monotone}
 Let $r\ge2$, let $3\le k\le \ell<p$, and let $p\equiv1\pmod r$ be prime. If

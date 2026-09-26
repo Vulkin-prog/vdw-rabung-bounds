@@ -27,16 +27,25 @@ A fresh full criterion/oracle sweep through `p < 10000` is archived under
 disagreements, but its record explicitly remains preliminary because the
 worktree was not the final clean release candidate.
 
-On 26 September 2026, the CPU suite (228 Python tests and native smoke checks)
-and two byte-identical clean document builds passed on clean source candidate
-`918992f9c0edca7d912598d518b0ae004206b51a`. The commands, environment,
-exit codes and raw outputs are in
-`results/publication-finalization/2026-09-26/checks.json` and its adjacent logs.
-The following evidence commit only records these checks, updates gate status
-and documentation, and refreshes the file inventory; its structural contract
-is checked separately. The PDF has 27 pages. No large certificate or GPU
-campaign was rerun. After inserting real licence and DOI metadata, replay
-these light checks during the final archive freeze described below.
+The initial 26 September checks are retained in
+`results/publication-finalization/2026-09-26/`. They describe the first
+27-page, pre-licensing edition at source commit
+`918992f9c0edca7d912598d518b0ae004206b51a` and must not be relabelled as checks
+of a later PDF. The subsequent licensed 26-page candidate
+`14c3a04f758310371039f41a576d0712ed4aa0bc` was successfully checked, as
+recorded in PR 5, but its new raw logs were lost with the unavailable workspace.
+
+The exposition-audit revision restores that candidate, corrects the exact
+cyclic-witness convention for Xu, and clarifies the examples and narrative.
+Its 27-page A4 PDF has SHA-256
+`b5499f954245b52bff215ab24a6d019a5900d4bdaea9ae896fa67f5dc1e314ff`.
+Fresh light checks on a clean commit, with commands, environment and raw logs,
+will be recorded under `results/publication-finalization/2026-09-26-audit/`.
+The small separate checker is
+`python3 publication/editorial-review/check_consistency.py`.
+No large certificate or GPU campaign is needed for these checks. After
+inserting actual DOI/version metadata, replay the light checks during the
+archive freeze described below.
 
 ## 2. Completed read-only recovery on the campaign PC
 
@@ -99,8 +108,8 @@ The targeted PC evidence package then records:
 The CUDA qualification is `PASS` for the complete SM120 suite.  The exact Git
 commit existed before these runs because it is part of every manifest.  The
 authenticated recovery and ordered-prime audit revealed no material gap, so a
-full campaign rerun is not required.  These completed PC calculations do not
-replace the still-open clean final CPU/PDF replays.
+full campaign rerun is not required.  These historical PC calculations are distinct from the light CPU/PDF
+checks of the exact manuscript candidate described in Section 1.
 
 ## 4. Optional external replication and archival freeze
 

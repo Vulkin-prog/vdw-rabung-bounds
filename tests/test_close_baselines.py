@@ -3,6 +3,7 @@ import importlib.util
 import json
 import math
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -238,8 +239,28 @@ class ClosureTests(unittest.TestCase):
             self.assertEqual(node["parameters"]["prime_q"], expected_q, node["id"])
 
     def test_xu_published_w4_7_example_has_no_off_by_one(self):
-        # WR(2,7)>617 and W(2,7)>3703 give W(4,7)>617*3703.
+        # An exact cyclic witness at 617 and W(2,7)>3703 give W(4,7)>617*3703.
         self.assertEqual(MODULE.xu_strict_bound(617, 3703), 2_284_751)
+
+    def test_closure_rejects_threshold_only_ring_input(self):
+        baselines = MODULE.load_json(MODULE.BASELINES_PATH)
+        del baselines["ring_seeds"][0]["witness_modulus"]
+        original_loader = MODULE.load_json
+        with patch.object(MODULE, "load_json", side_effect=lambda path:
+                          baselines if path == MODULE.BASELINES_PATH
+                          else original_loader(path)):
+            with self.assertRaisesRegex(ValueError, "exact cyclic witness modulus required"):
+                MODULE.closure()
+
+    def test_closure_rejects_a_different_cyclic_modulus(self):
+        baselines = MODULE.load_json(MODULE.BASELINES_PATH)
+        baselines["ring_seeds"][0]["witness_modulus"] -= 2
+        original_loader = MODULE.load_json
+        with patch.object(MODULE, "load_json", side_effect=lambda path:
+                          baselines if path == MODULE.BASELINES_PATH
+                          else original_loader(path)):
+            with self.assertRaisesRegex(ValueError, "cyclic witness modulus mismatch"):
+                MODULE.closure()
 
     def test_xu_nodes_store_the_strict_product(self):
         for node in self.nodes.values():

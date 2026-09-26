@@ -22,13 +22,13 @@ remaining publication steps concern the public DOI/tag/archive transaction; see 
 The author approved MIT for the code and CC BY 4.0 for the manuscript and
 original data on 26 September 2026. The release ledger records this decision.
 
-The clean source candidate passed all 228 Python tests, native CPU smoke
-checks and deterministic PDF builds on 26 September 2026. The revised 26-page paper
-and durable verification record are available as `paper/main.pdf` and
-`results/publication-finalization/2026-09-26/checks.json`. The subsequent
-licensed editorial review, compared directly with Long runs v3, is recorded
-in `publication/editorial-review/REVIEW_FR.md`; its own light replay is
-recorded separately.
+The exposition audit supplied on 26 September led to an exact-modulus
+formulation of the Xu input, two regression tests, a revised abstract and
+worked examples. The current manuscript has 27 A4 pages. Numerical inputs,
+all closure nodes and the five improvements are unchanged. See
+`publication/editorial-review/RESPONSE_AUDIT_2026-09-26_FR.md`.
+The earlier source checks remain historical records; fresh light CPU/PDF
+checks of this revised candidate will be recorded before delivery.
 
 ## What is already here
 

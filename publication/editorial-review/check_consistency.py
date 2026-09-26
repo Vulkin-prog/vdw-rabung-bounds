@@ -9,7 +9,7 @@ from functools import cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-BASE = 'd2759d745647d53a2bb6d99ca0a9e9b3effb517b'
+BASE = '14c3a04f758310371039f41a576d0712ed4aa0bc'
 
 
 def require(condition, message):
@@ -82,7 +82,7 @@ def check_nodes(rows, claims):
         elif method == 'xu2013':
             ring, ordinary = parents
             params = n['parameters']; q, s, t = params['n'], params['s'], params['t']
-            require(q >= 5 and least_factor(q) > k and q <= ring['lower_bound'], n['id'])
+            require(q >= 5 and least_factor(q) > k and q == ring['lower_bound'], n['id'])
             require(ring['kind'] == 'ring' and ordinary['kind'] == 'ordinary', n['id'])
             require(ring['colors'] == s and ordinary['colors'] == t and r == s*t, n['id'])
             require(ring['length'] == ordinary['length'] == k and bound == q*ordinary['lower_bound'], n['id'])
@@ -129,11 +129,40 @@ def main():
     examples = [small_example(5,4), small_example(5,3), small_example(13,4)]
     require(examples[0]['valid_extensions'] == 14 and not examples[0]['criterion_floor'], 'floor counterexample')
     require(examples[1]['maxrun'] < 3 and not examples[1]['boundary_correct'], 'singleton counterexample')
+    word = [int(c) for c in '0011000110001101']
+    aps = [(a,d) for d in range(1,6) for a in range(16-3*d)]
+    require(len(aps) == 35 and all(len({word[a+j*d] for j in range(4)}) > 1
+            for a,d in aps), 'printed 16-position example')
+    cyclic = word[:5]
+    require(all(len({cyclic[(a+j*d)%5] for j in range(4)}) > 1
+            for a in range(5) for d in range(1,5)), 'exact cyclic witness at modulus 5')
+    product = [(cyclic[x%5],word[x//5]) for x in range(80)]
+    product_aps = [(a,d) for d in range(1,27) for a in range(80-3*d)]
+    require(all(len({product[a+j*d] for j in range(4)}) > 1
+            for a,d in product_aps), 'exact-witness product colouring')
+    baselines = read('audit/baselines.json')
+    for seed in baselines['ring_seeds']:
+        if 'claim_id' not in seed:
+            require(seed.get('witness_modulus') == seed['lower_bound'], seed)
+    old_baselines = json.loads(subprocess.check_output(
+        ['git','show',BASE+':audit/baselines.json'],cwd=ROOT))
+    normalized = json.loads(json.dumps(baselines))
+    normalized.pop('ring_seed_convention')
+    for seed in normalized['ring_seeds']:
+        seed.pop('witness_modulus',None)
+    require(normalized == old_baselines, 'numerical baseline inputs changed')
+    old_closure = json.loads(subprocess.check_output(
+        ['git','show',BASE+':audit/generated/bounds_closure.json'],cwd=ROOT))
+    require(closure['nodes'] == old_closure['nodes'] and
+            closure['winners'] == old_closure['winners'], 'closure values or provenance changed')
+    old_comparison = json.loads(subprocess.check_output(
+        ['git','show',BASE+':audit/generated/publication_comparison.json'],cwd=ROOT))
+    require(comparison['rows'] == old_comparison['rows'] and
+            comparison['admitted_prior_provenance_nodes'] == old_comparison['admitted_prior_provenance_nodes'],
+            'priority comparison changed')
     preserved = {}
     for name in ['src/scan_gpu.cu','tools/verify_claim.cpp','tools/rabung_criterion.cpp',
-                 'tools/highp_witness.c','reference/vdw_reference.cpp','audit/claims.json',
-                 'audit/baselines.json','audit/generated/bounds_closure.json',
-                 'audit/generated/publication_comparison.json']:
+                 'tools/highp_witness.c','reference/vdw_reference.cpp','audit/claims.json']:
         current=(ROOT/name).read_bytes()
         old=subprocess.check_output(['git','show',BASE+':'+name],cwd=ROOT)
         require(current == old, 'scientific source changed: '+name)
@@ -147,6 +176,10 @@ def main():
       'closure_nodes_checked':len(nodes),'prior_ancestry_nodes_checked':len(prior),
       'winning_rows_checked':len(closure['winners']),'improved_lengths':improved,
       'small_explicit_cases':examples,'preserved_scientific_inputs_sha256':preserved,
+      'printed_word_verified':'0011000110001101',
+      'exact_witness_product_example':{'modulus':5,'block_count':16,'colours':4,
+          'length':4,'positions':80,'progressions_checked':len(product_aps)},
+      'baseline_numbers_closure_nodes_and_priority_rows_unchanged':True,
       'interpretation':'Arithmetic and consistency audit only; archived large runs are validated separately, not replayed. Published seed theorems are not proved by this script.'}
     print(json.dumps(result,indent=2,sort_keys=True))
 

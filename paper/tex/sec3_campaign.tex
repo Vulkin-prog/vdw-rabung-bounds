@@ -7,11 +7,6 @@ the verification protocol below.  The authenticated coverage-evidence package
 supports the coverage and density statements, but is not needed for the
 pointwise validity of an accepted certificate.
 
-All qualification runs and claim rechecks reported here were run on one
-author-controlled PC.  ``Separate-source'' denotes separation of implementation
-and arithmetic paths from the GPU scanner; it does not denote an independently
-administered replication, and no external replication has been performed.
-
 \subsection{Fused character evaluation}\label{ss:b7}
 
 The scan kernel exploits the fact that the additive order of positions is free:
@@ -39,11 +34,8 @@ manifest. The current CPU suite also tests the order-respecting run reduction.
 The historical development exposed why this matters: run summaries compose
 associatively but not commutatively, so a reduction that reorders them can
 produce an incorrect profile. The archived scanner uses the repaired
-ordered reduction. Agreement between implementations is interpreted according
-to the components they share, not as independent external replication.
-
-The main paths have the following dependency structure; agreement between
-paths is interpreted in light of their shared source and arithmetic.
+ordered reduction. The table below identifies the source and arithmetic
+shared by each path; Section~\ref{s:data} states the replication status.
 \begin{table}[ht]
 \centering\scriptsize
 \begin{tabular}{P{2.3cm} P{1.7cm} P{2.4cm} P{2.4cm} P{3.0cm}}
@@ -68,7 +60,7 @@ high-range arithmetic defect, the Montgomery-free witness.}
 
 \subsection{Claim-verification protocol}\label{ss:protocol}
 
-The computational source of truth registers exactly thirteen direct Rabung
+The certificate registry contains exactly thirteen direct Rabung
 claims: nine three-colour triples for $17\le k\le25$ and four two-colour
 triples for $25\le k\le28$.  For each triple $(p,r,k)$ the release protocol
 requires:
@@ -91,9 +83,8 @@ thirteen accepted manifests.
 
 This rule is stricter than the historical transcript, whose max-run checksum
 did not bind $p$ and whose pasted \texttt{verify\_claim} outputs were sometimes
-truncated.  Those files remain historical evidence, not the final source of
-truth.  The targeted PC run populated the exact thirteen-manifest set, and the
-fail-closed audit accepts its $67$ required executions: five per claim plus the
+truncated. Those files remain historical records. The targeted PC run
+supplied the thirteen complete manifests, recording $67$ required executions: five per claim plus the
 two additional Montgomery-free high-range witnesses.
 
 \paragraph{Current CUDA qualification.}

@@ -2,8 +2,10 @@
 
 The accompanying reproducibility package contains the manuscript sources,
 certificate registries, verification programs, archived execution evidence and
-table generators. Its development repository is
-\href{https://github.com/Vulkin-prog/vdw-rabung-bounds}{\texttt{Vulkin-prog/vdw-rabung-bounds}}.
+table generators. The complete package is supplied as a separate archive with this manuscript.
+Its development repository,
+\href{https://github.com/Vulkin-prog/vdw-rabung-bounds}{\texttt{Vulkin-prog/vdw-rabung-bounds}},
+is private at the time of preparation and is not the public archival record.
 The package was separated from the earlier development repository under an
 explicit file allowlist. The source-import ledger preserves the original
 commit identities and byte-level provenance. Reproduction instructions are
@@ -15,7 +17,7 @@ The registry \texttt{audit/claims.json} contains exactly thirteen succinct
 Rabung certificates $(p,r,k)$.  A reader can check one triple without
 reproducing the campaign by rebuilding the stand-alone verifier, which re-establishes
 primality, the congruence and size preconditions, and conditions
-$(a)\wedge(B^*)$.  The current exact set of thirteen fail-closed manifests
+$(a)\wedge(B^*)$. The thirteen execution manifests
 binds every verdict to the source, binary, command, environment, and raw
 output.  Its audit accepts all $67$ required executions, including the two
 Montgomery-free high-range witnesses.  This local evidence combines GPU checks
@@ -24,7 +26,8 @@ replication.  External rechecks remain an optional avenue for corroboration.
 
 \paragraph{Derived tables and the holdout analysis.}
 The separate registry \texttt{audit/baselines.json} records admitted published,
-archived, and current strict lower bounds with source locators, while
+archived, and current strict lower bounds, and exact-modulus cyclic witnesses,
+with source locators, while
 \texttt{publication/bibliography-audit.json} records the search methods,
 version pins, priority boundaries, and the published statement excluded from the admitted proof registry.
 A separate ledger, \path{audit/published-unresolved.json}, retains that statement

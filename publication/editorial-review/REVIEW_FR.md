@@ -1,5 +1,7 @@
 # Revue de cohérence et d'exposition — 26 septembre 2026
 
+> Historique : cette première revue décrit le candidat `14c3a04f758310371039f41a576d0712ed4aa0bc` de 26 pages. Le traitement ultérieur de l’audit fourni par l’auteur est dans `RESPONSE_AUDIT_2026-09-26_FR.md`. La sortie numérique de cette première passe est conservée dans `consistency_initial.json` ; `consistency.json` suit la passe courante.
+
 Le noyau numérique est cohérent avec les registres et les preuves d'exécution
 conservées. La relecture a toutefois trouvé des corrections utiles : un exemple
 de bord ambigu, une formulation trop rapide sur la surjectivité, des mesures

@@ -95,9 +95,9 @@
       "status": "stable_publisher_record",
       "source_url": "https://www.sciencedirect.com/science/article/pii/S0022314X13001601",
       "doi": "10.1016/j.jnt.2013.05.008",
-      "implementation_check": "The closure implements the prime-witness specialization reproduced in Monroe's later publication: k >= 3, s >= 2, t >= 1, 5 <= n < WR(s,k), and least-prime-factor(n) > k; every registered ring witness used as n is prime and exceeds k. The strict-bound recurrence stores R*B. The publisher record and abstract were checked directly; automated access to the archived full text was blocked during this audit, so the manuscript does not claim a broader Xu closure than this independently reproduced specialization.",
+      "implementation_check": "Exact-witness concatenation: a progression-free cyclic s-colouring at the specific modulus R, with R >= 5 and least-prime-factor(R) > k, combines with an ordinary t-colouring on B points to give W(st,k) > R*B. Published ring seeds explicitly name witness_modulus; claim-backed entries use their Rabung prime. A threshold bound alone is rejected. The manuscript supplies the residue/block pair-colouring argument. The original Xu full text remains unavailable; historical use is read in Monroe, and no winning three-colour row depends on Xu.",
       "initial_audit_date": "2026-08-29",
-      "update_scope": "29 August provenance retained; supplied 26 September review incorporated; not reopened during finalization"
+      "update_scope": "26 September exposition audit: threshold inference removed; exact-witness convention and elementary product argument checked. Original Xu full text not newly obtained."
     },
     {
       "key": "LandmanRobertson2004",
@@ -302,12 +302,18 @@
     },
     {
       "key": "KozikShabanov2014",
-      "status": "versioned_primary_preprint",
-      "source_url": "https://arxiv.org/abs/1409.6921v1",
+      "status": "published_record_and_versioned_primary_preprint",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S0095895615001112",
       "full_text_url": "https://arxiv.org/html/1409.6921v1",
       "checked_at_utc": "2026-09-26T00:00:00Z",
       "supported_statement": "Theorem 2: an absolute beta>0 gives W(r,k)>=beta*r^(k-1) in colour-first notation. General context only; no new numerical seed admitted.",
-      "update_scope": "Primary abstract, metadata and Theorem 2 read directly on 26 September 2026."
+      "update_scope": "Publisher metadata and Jagiellonian University publication record verified on 26 September 2026; theorem numbering remains explicitly tied to arXiv v1. No claim that published numbering was verified.",
+      "doi": "10.1016/j.jctb.2015.09.004",
+      "published_year": 2016,
+      "volume": "116",
+      "pages": "312-332",
+      "preprint_url": "https://arxiv.org/abs/1409.6921v1",
+      "institutional_record_url": "https://apacz.matinf.uj.edu.pl/publikacje/7679-improved_algorithms_for_colorings_of_simple_hypergraphs_and_applications"
     }
   ],
   "priority_audit": {

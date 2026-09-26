@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Close van der Waerden lower-bound baselines under audited operations.
 
-The input convention is always a strict integer bound W(r,k) > B, with the
-number of colors first.  The output retains a provenance DAG and generates the
-LaTeX table consumed by the computational-evidence paper. No table cell is meant
+Ordinary inputs are strict integer bounds W(r,k) > B, with colors first.
+Ring inputs identify a progression-free colouring at the exact modulus R;
+the legacy lower_bound field on ring nodes stores that modulus, not merely
+a lower bound for a cyclic threshold. The output retains a provenance DAG and
+generates the LaTeX table consumed by the computational-evidence paper. No cell is meant
 to be edited by hand.
 """
 
@@ -66,15 +68,32 @@ def tex_int(value: int) -> str:
     return f"{value:,}".replace(",", r"\,")
 
 
-def xu_strict_bound(ring_bound: int, ordinary_bound: int) -> int:
+def xu_strict_bound(witness_modulus: int, ordinary_bound: int) -> int:
     """Return the strict-bound integer produced by Xu's recurrence.
 
-    Here ``ring_bound`` and ``ordinary_bound`` encode ``WR(s,k) > R`` and
-    ``W(t,k) > B``.  Taking ``n=R`` in Xu's recurrence gives
+    The caller supplies a progression-free cyclic colouring at the exact
+    modulus ``R = witness_modulus``, with R >= 5 and least prime factor > k,
+    and an ordinary strict bound ``W(t,k) > B``. Concatenation gives
     ``W(st,k) >= R * (W(t,k) - 1) + 1 >= R * B + 1``, hence the strict
     integer convention used by this program is ``W(st,k) > R * B``.
+    A threshold inequality WR(s,k) > R alone does not supply this witness.
     """
-    return int(ring_bound) * int(ordinary_bound)
+    return int(witness_modulus) * int(ordinary_bound)
+
+
+def published_ring_witness_modulus(seed) -> int:
+    """Require an exact-modulus witness declaration for a published seed.
+
+    This validates the input contract, not the source's colouring. Published
+    witness provenance remains the cited source's responsibility; claim-backed
+    Rabung witnesses are obtained from their registered prime separately.
+    """
+    modulus = seed.get("witness_modulus")
+    if type(modulus) is not int or modulus < 5:
+        raise ValueError(f"{seed.get('id')}: exact cyclic witness modulus required")
+    if modulus != seed.get("lower_bound"):
+        raise ValueError(f"{seed.get('id')}: cyclic witness modulus mismatch")
+    return modulus
 
 
 def berlekamp_condition_denominator(t: int, field_order: int) -> int:
@@ -248,6 +267,8 @@ def closure(*, include_current_three_color=True):
             method = "direct_rabung"
             source = claim["origin"]
             return claim["colors"], claim["length"], bound, method, source, claim["id"]
+        if kind == "ring":
+            published_ring_witness_modulus(seed)
         parameters = seed.get("parameters", {})
         if "rabung_prime" in parameters:
             prime = int(parameters["rabung_prime"])
@@ -387,12 +408,12 @@ def closure(*, include_current_three_color=True):
                         changed = True
 
         winners = {key: best_id(nodes, ids) for key, ids in candidates.items()}
-        # Xu's concatenation recurrence in colour-first notation:
-        # if k >= 3, s >= 2, t >= 1, 5 <= n < WR(s,k), and the least prime
-        # divisor of n exceeds k, then
-        # W(st,k) >= n (W(t,k)-1) + 1.
-        # From WR(s,k)>R and W(t,k)>B we may take n=R and obtain
-        # W(st,k) >= R*B+1, i.e. the strict bound W(st,k)>R*B.
+        # Exact-witness form of Xu's concatenation, in colour-first notation:
+        # a cyclic s-colouring at the specific modulus R avoids k-term APs,
+        # k >= 3, s >= 2, t >= 1, R >= 5, and least-prime-factor(R) > k.
+        # Pair its residue colour with the ordinary block colour on B blocks.
+        # W(t,k)>B then yields W(st,k)>R*B. Ring-node lower_bound stores R;
+        # no smaller modulus is inferred from a cyclic threshold inequality.
         for length in lengths:
             for s in range(2, max_colors + 1):
                 ring_parent = winners.get(("ring", s, length))

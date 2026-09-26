@@ -1,17 +1,8 @@
 {
-  "baseline_numbers_closure_nodes_and_priority_rows_unchanged": true,
-  "basis_commit": "14c3a04f758310371039f41a576d0712ed4aa0bc",
+  "basis_commit": "d2759d745647d53a2bb6d99ca0a9e9b3effb517b",
   "claim_integer_identities_checked": 13,
   "closure_nodes_checked": 309,
   "distinct_claim_primes_checked": 7,
-  "exact_witness_product_example": {
-    "block_count": 16,
-    "colours": 4,
-    "length": 4,
-    "modulus": 5,
-    "positions": 80,
-    "progressions_checked": 1027
-  },
   "gpu_executions_performed": 0,
   "improved_lengths": [
     17,
@@ -23,14 +14,16 @@
   "interpretation": "Arithmetic and consistency audit only; archived large runs are validated separately, not replayed. Published seed theorems are not proved by this script.",
   "large_certificate_executions_performed": 0,
   "preserved_scientific_inputs_sha256": {
+    "audit/baselines.json": "13144df63880e4eaead1e03bc278cf759e608a60ee36820d65f15a96d124b481",
     "audit/claims.json": "3b3ffc1739b091194e9b54d2f9435bcfbff7ab2ba84d7176330e9dead12d0aeb",
+    "audit/generated/bounds_closure.json": "e292635973f45e269adfd424090e4fb861e02bcb79b639b678b8677c7e259987",
+    "audit/generated/publication_comparison.json": "0567397a00e836eaa59b1952fa2c89197ca8edc0da8baa3251cc9d6f710f9b85",
     "reference/vdw_reference.cpp": "7602781ded7bd53b36debc81a1bdf300bde69322c07b7e569ab1eaea9eea9d7c",
     "src/scan_gpu.cu": "05a907076ff88255ace7c46570391b766a096aea3f9edc7db6c86e3ba32cde21",
     "tools/highp_witness.c": "c0db025c3720cd206c95406d197887ea0755e490558e26614a1356609b677fcd",
     "tools/rabung_criterion.cpp": "b7ef60c3d23b1e3d1c3172b06276ddf005d35921e833d32c2ebb1807b417bb44",
     "tools/verify_claim.cpp": "072a52fa2391a6f9376b7bb17b26307653e5b0d32385bb1ae504ab556104286c"
   },
-  "printed_word_verified": "0011000110001101",
   "prior_ancestry_nodes_checked": 18,
   "schema": "vdw-editorial-consistency/v1",
   "small_explicit_cases": [

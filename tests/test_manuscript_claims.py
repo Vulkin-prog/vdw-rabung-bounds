@@ -82,7 +82,7 @@ class ManuscriptClaimRegressionTest(unittest.TestCase):
     def test_bounds_table_is_generated_not_retyped(self):
         bounds = (TEX / "sec4_bounds.tex").read_text(encoding="utf-8")
         self.assertIn(r"\input{generated_bounds_table}", bounds)
-        self.assertNotIn(r"41\,999\,998\,468", bounds)
+        self.assertNotIn(r"22 & $1\,999\,999\,927$", bounds)
 
     def test_validated_claim_table_is_optional_and_copied_by_builder(self):
         bounds = (TEX / "sec4_bounds.tex").read_text(encoding="utf-8")
