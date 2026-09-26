@@ -50,12 +50,12 @@
       "id": "paper-clean-build",
       "status": "passed",
       "evidence": [
-        "results/publication-finalization/2026-09-26-zenodo/checks.json",
-        "results/publication-finalization/2026-09-26-zenodo/paper-build.log",
-        "results/publication-finalization/2026-09-26-zenodo/standalone-latex.log",
+        "results/publication-finalization/2026-09-26-nodoi/checks.json",
+        "results/publication-finalization/2026-09-26-nodoi/paper-build.log",
+        "results/publication-finalization/2026-09-26-nodoi/standalone-latex.log",
         "paper/main.pdf"
       ],
-      "note": "The 27-page A4 PDF with DOI 10.5281/zenodo.22980965 rebuilds byte-identically from the clean source candidate and the standalone LaTeX bundle. SHA-256 d9a679d7873966126982ac10e3b8ae770ab3253d9ff1e64470513025c29e4251. All affected pages were rendered and visually checked."
+      "note": "At the author's request, the 27-page A4 manuscript omits its own DOI from the title page and body. Full and standalone builds are byte-identical: SHA-256 206895792f1276ab601ace45420b40a60a2dd5b2a7c63840d14358d45f0885ab. Only pages 1 and 16 changed; both were visually reviewed. Scientific source trees and numerical inputs are unchanged from the source candidate with 231 passing tests. Earlier document hashes remain historical evidence."
     },
     {
       "id": "claim-manifests-13",

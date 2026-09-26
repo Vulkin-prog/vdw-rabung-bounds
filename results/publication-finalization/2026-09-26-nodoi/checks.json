@@ -1,0 +1,85 @@
+{
+  "schema": "vdw-document-correction/v1",
+  "date_utc": "2026-09-26T19:59:19.568748+00:00",
+  "predecessor_commit": "674efac139a3b21ce5a16dec14e3ac4c5c48f4b0",
+  "author_request": "Omit the paper DOI from the document; preserve it in deposit and citation metadata.",
+  "changed_manuscript_sources": [
+    "paper/tex/main.tex",
+    "paper/tex/sec7_data.tex"
+  ],
+  "unchanged_scientific_inputs": {
+    "src": "0770b6f2184425173729287006da56836fcb4fe9",
+    "tools": "4d1e31e55e8de3916f99f25d039daa491cbc1170",
+    "tests": "95852697af85d3d904120753cacac79e8acd51c8",
+    "reference": "260582a59ec11fcf55d0d3946bd8d5dc386549f8",
+    "audit": "c9b14eb18a2f99288830427e4259322c19cbc0c3",
+    "results/claims": "3598f6569b49217db75855d99d6b8d66bdc2404b",
+    "results/campaign": "9fec94b9dcaeb03cba6a23760d12f23a72aa94ab",
+    "results/release": "f58c9f8483878c0685d4c0afccbbef9f159d8af6",
+    "scripts": "0059f82ad9ddf9ae0bd5fca2dd599920acc3f2bd"
+  },
+  "prior_cpu_test_commit": "e0c7a9c498ffe18ad2552c4479b602f4084948a9",
+  "prior_python_tests_passed": 231,
+  "cpu_suite_rerun": false,
+  "heavy_calculations_rerun": false,
+  "paper": {
+    "pages": 27,
+    "sha256": "206895792f1276ab601ace45420b40a60a2dd5b2a7c63840d14358d45f0885ab",
+    "bytes": 640262,
+    "own_doi_absent_from_text_metadata_and_links": true,
+    "changed_pages": [
+      1,
+      16
+    ],
+    "changed_pages_visually_reviewed": true
+  },
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "scripts/build_paper.sh",
+        "/workspace/scratch/2fa008acabe5/validation/nodoi/rebuild.pdf"
+      ],
+      "exit_code": 0,
+      "log": "paper-build.log",
+      "two_clean_builds_byte_identical": true
+    },
+    {
+      "command": [
+        "bash",
+        "/workspace/scratch/2fa008acabe5/output/latex_sources/build.sh",
+        "/workspace/scratch/2fa008acabe5/validation/nodoi/standalone.pdf"
+      ],
+      "exit_code": 0,
+      "log": "standalone-latex.log",
+      "byte_identical_to_main_pdf": true
+    }
+  ],
+  "manuscript_input_hashes": {
+    "paper/tex/appendix_bstar.tex": "ca3beae1bd4ecd5dd22bae48c3ab30751c2eaa53116ff6c3f0b614061ab6dc1b",
+    "paper/tex/appendix_campaign.tex": "93fb5f3f3607a167a7488abf11da8f4c3761154d1c0be4e13d110485334a7625",
+    "paper/tex/appendix_certificates.tex": "a60b7f8c878d1c0dcb834a5492ac178d317a6de5f84fc5d7b4e24f29565b40f9",
+    "paper/tex/appendix_density.tex": "b53a109cb862dc46ae4e5a548fc41af9a3f5525ea828cc9982a684a2efe62da8",
+    "paper/tex/appendix_sources.tex": "6515378fd193017a8fc94e64293130b4ab4b05c46ff8a15d1668410ab33cd92f",
+    "paper/tex/figure_evidence_flow.tex": "befbefd8f88013556fe0fc80b1b2e778eb86488d4ac1cc7a3427e758011bb85e",
+    "paper/tex/generated_bct_corollaries.tex": "0d6ffb888e42af5b9d6ac43e899d3e0273750fcf7c568e42f5be98dd606c0eaf",
+    "paper/tex/generated_bounds_table.tex": "727c8687988c3cbdf07eba5a1ddbc487cc2691b07a14a1b16fc5a5d05eca4993",
+    "paper/tex/generated_density_holdout_table.tex": "d7a6b3cb8e933d8dc6d7fd927f3329351580d1c0b5e9a8b08382f1c6f7f8c103",
+    "paper/tex/generated_priority_comparison.tex": "16f575276868bac8162072f41d5e253f3939cd51f9d61ebdb8a21155bf8af56a",
+    "paper/tex/generated_rescan17_table.tex": "2984047bb84d98d689e1ff098d3db758532f7f287e1a43e2633aaa1af8c4b289",
+    "paper/tex/generated_scanner_revisions.tex": "f75d3f60d622021b32661336db4a01c48f3547eda37629db2cb3f905b0001c26",
+    "paper/tex/generated_unresolved_comparison.tex": "85c96da81ea3cfc274a1c81ef0d89e210b25cbb8cf18955f457d1151baac4c91",
+    "paper/tex/main.tex": "ea0f831e3d8da56cdd9a7dd5608cfe8b36cf37b9f4a083050373834edde318e7",
+    "paper/tex/sec1_intro.tex": "c4eaecd7019bf7dbc946b80f085ef139519e7bb1fe56568f052a5106e9eca701",
+    "paper/tex/sec2_method.tex": "a58250082ee0292d7331554b1106dd2699d71008f93497dd0febdbebced96232",
+    "paper/tex/sec3_campaign.tex": "80ace5d4a5ed515211b94e47effc0ffdb33d7c9e8eee7d7f945a292c16af7adc",
+    "paper/tex/sec4_bounds.tex": "0a36b5f3447790563e675dc876b21625b59e339f9c12199aaf369d788c79675f",
+    "paper/tex/sec5_density.tex": "4e399189c1cd0d000e143ceb16313b6e142726e766b40920e1f9a7d73953675b",
+    "paper/tex/sec6_conclusion.tex": "fa2aa71460072ebe1b77a1e03be537cadaaf48f8af4568c5b5c4d129169ce3fc",
+    "paper/tex/sec6_prereg.tex": "6bbaa5da3074f8fb31073ad1e31161f4b1b0b96332048f5acc873cf661eea645",
+    "paper/tex/sec7_data.tex": "25bafa55d3aaa70158d756699d368c45775f47972ecb45be972aba6348139bbc",
+    "paper/tex/sec8_disclosure.tex": "6df507687c01092c036605a8ffe8fe5b68c0c364b5730617908c5b1b7fc33ea4",
+    "paper/tex/sec9_ack.tex": "047184f02051a9777ce7db3e7793cd64ec62a77ff32ed9f9925922ddfbebc2fb"
+  },
+  "scope": "Document-only correction. Prior CPU evidence is retained with its original commit and PDF identities; document reconstruction and the local freeze are checked afresh."
+}

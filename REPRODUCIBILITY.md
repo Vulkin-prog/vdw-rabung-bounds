@@ -59,6 +59,18 @@ PDF builds. Raw evidence is in
 The following freeze commit adds only these logs, status/documentation, the
 inventory and MANIFEST.sha256. No historical large calculation is re-executed.
 
+
+The author then requested omission of the paper's own DOI from the document.
+Only the title page and the data-availability paragraph were changed; the
+reserved DOI remains in deposit/citation metadata. The corrected 27-page PDF
+was rebuilt twice and from its standalone sources with identical bytes.
+Only pages 1 and 16 changed and were visually reviewed. Code, tests,
+registries and scientific execution evidence retain their exact tree identities
+from the 231-test source candidate. This document-only check is recorded in
+`results/publication-finalization/2026-09-26-nodoi/`; the earlier logs keep
+their original commit and PDF identities. The prior unpublished draft remains
+in Git history; this corrected payload is the intended version 1.0.0.
+
 ## 2. Completed read-only recovery on the campaign PC
 
 The campaign state was inventoried read-only before any rerun or cleanup.  The
