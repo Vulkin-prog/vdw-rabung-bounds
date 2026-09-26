@@ -10,11 +10,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "b8989150f2f9524b08a6875c58edcb8d957ec52a",
+      "git_blob_sha1": "2e820adbbb4ae30368d9b04153d5f4f670d16b1a",
       "path": ".github/workflows/ci.yml",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "5e40b558f442b49628145830335a75e47945a1c6312b54bde4a08f30003eef25",
-      "size": 4095
+      "sha256": "32f43b7b1f2a7f6f9f0c94a8eb9c096a7bd6c6df669d5740485695a9e272510e",
+      "size": 4126
     },
     {
       "classification": "new",

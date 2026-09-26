@@ -57,7 +57,8 @@ jobs:
             lmodern \
             texlive-fonts-recommended \
             texlive-latex-base \
-            texlive-latex-recommended
+            texlive-latex-recommended \
+            texlive-pictures
       - name: Build the paper twice and compare bytes
         run: ./scripts/build_paper.sh
       - name: Verify the complete immutable release freeze
