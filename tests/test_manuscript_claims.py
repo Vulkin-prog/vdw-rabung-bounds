@@ -87,7 +87,9 @@ class ManuscriptClaimRegressionTest(unittest.TestCase):
     def test_validated_claim_table_is_optional_and_copied_by_builder(self):
         bounds = (TEX / "sec4_bounds.tex").read_text(encoding="utf-8")
         self.assertIn(r"\IfFileExists{generated_validated_claims.tex}", bounds)
-        self.assertIn(r"\input{generated_validated_claims}", bounds)
+        appendix = (TEX / "appendix_certificates.tex").read_text(encoding="utf-8")
+        self.assertIn(r"\input{generated_validated_claims}", appendix)
+        self.assertIn(r"\ref{s:certificate-evidence}", bounds)
         self.assertIn("Validated-claim table unavailable in this build", bounds)
         self.assertNotIn("Pending validated-claim table", bounds)
         self.assertNotIn("staging build", bounds)

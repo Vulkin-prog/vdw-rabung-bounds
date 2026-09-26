@@ -1,19 +1,14 @@
-\section{Data, code, and release status}\label{s:data}
+\section{Data, code, and reproducibility}\label{s:data}
 
-The publication-oriented repository is
+The accompanying reproducibility package contains the manuscript sources,
+certificate registries, verification programs, archived execution evidence and
+table generators. Its development repository is
 \href{https://github.com/Vulkin-prog/vdw-rabung-bounds}{\texttt{Vulkin-prog/vdw-rabung-bounds}}.
-It was exported under an explicit allowlist from the development repository at
-the immutable source commit
-\texttt{02796ae9\allowbreak{}e08da5b0\allowbreak{}51a94b2d\allowbreak{}
-90017639\allowbreak{}08375f6e}.  At the time of this
-revision it remains a private preparation repository, not a citable release.
-Its machine-readable status ledger records the local claim, campaign-recovery,
-ordered-prime, and CUDA evidence as passed, while clean final CPU/document
-replays, rights, and DOI/tag freeze remain open.  The absence of external
-replication is disclosed but is not a publication gate.  The
-step-by-step operator and archival procedures are maintained in
-\texttt{REPRODUCIBILITY.md}; here we distinguish the three levels of evidence
-needed to interpret the paper.
+The package was separated from the earlier development repository under an
+explicit file allowlist. The source-import ledger preserves the original
+commit identities and byte-level provenance. Reproduction instructions are
+provided in \texttt{REPRODUCIBILITY.md}; three distinct levels of evidence
+should be distinguished.
 
 \paragraph{Individual triples.}
 The registry \texttt{audit/claims.json} contains exactly thirteen succinct
@@ -31,8 +26,9 @@ replication.  External rechecks remain an optional avenue for corroboration.
 The separate registry \texttt{audit/baselines.json} records admitted published,
 archived, and current strict lower bounds with source locators, while
 \texttt{publication/bibliography-audit.json} records the search methods,
-version pins, priority boundaries, and the published statement excluded for
-lack of a verifiable proof. \path{tools/close_baselines.py} closes the admitted
+version pins, priority boundaries, and the published statement excluded from the admitted proof registry.
+A separate ledger, \path{audit/published-unresolved.json}, retains that statement
+and its exact numerical specializations for priority comparisons. \path{tools/close_baselines.py} closes the admitted
 inputs under length monotonicity and the registered recurrences, preserves a
 provenance path for each output, and generates the tables used in
 Section~\ref{s:bounds}. The survivor list, reconstructed
@@ -55,18 +51,16 @@ same $48\,823\,489$ primes.  Thus the aggregate first-17 re-scan closes its
 stated count role, while ordered-prime identity supplies the stronger
 enumeration check; no complete GPU campaign rerun is required.
 
-The cyclic $W_c$ pilot and its proof artifacts are outside the scientific
-scope of this computational-evidence paper and are intentionally absent from this repository.
-The archived two-colour phase-2 source is credited and located, but a verbatim
-third-party web capture is not redistributed unless its rights status is
-resolved.  Outbound licences for code, paper, and data also remain an explicit
-author decision.  These rights and provenance records support redistribution
-and priority attribution; they do not convert an archival coverage statement
-into a newly audited fact.
+The archived phase-2 source is credited and located; third-party articles,
+code and web captures are not redistributed in this package. Private commit
+dates document development history, not public availability. Public priority
+must be dated from the public article or deposited archive.
 
-After the scientific, campaign, and rights gates pass, the final metadata and
-DOI will be inserted into the exact release candidate.  A checked,
-immutable tagged archive---not a moving branch---will then be deposited and
-cited.  Until that archive and its post-upload byte-identity deposit receipt
-exist, this private repository and manuscript are not represented as a complete
-citable release.
+\paragraph{Rebuilding and checking.}
+The documented CPU checks validate the retained evidence and exercise small
+oracle cases; the paper builder performs two clean builds and requires
+byte-identical PDFs. These operations require no GPU. A reader who wishes to
+re-evaluate a large individual certificate can run the stand-alone checker on
+its triple; this is a separate, substantially longer calculation and is not
+performed by the archive checks. The publication metadata, rights choices and
+deposit receipt belong to the archival record accompanying the files.

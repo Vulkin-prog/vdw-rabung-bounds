@@ -1,5 +1,9 @@
 # Reproducibility protocol
 
+The September finalization adds `tools/publication_comparison.py --check` for
+the five improvements, including the unresolved published comparator. It uses
+exact small integer calculations and does not rerun the large certificates.
+
 This package distinguishes four evidence levels. Passing a lower level does not
 stand in for a higher one.
 
@@ -52,9 +56,11 @@ checkpoint-only.  It also preserves 498 per-chunk histograms for chunks
 the unavailable first-17 per-chunk histogram cells. Every imported object is
 hashed and mapped in the recovery ledger.
 
-## 3. Targeted release-candidate calculations
+## 3. Completed targeted calculations (historical reproduction only)
 
-After the candidate source is committed and the worktree is clean:
+The original qualification procedure below is documented for optional historical
+reproduction. It has already been completed; it is not a task for finalizing this
+manuscript. Do not rerun it merely to rebuild the publication files.
 
 ```bash
 ./scripts/validate_cuda.sh

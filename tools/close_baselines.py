@@ -190,10 +190,11 @@ def best_id(nodes, ids):
     )
 
 
-def closure():
+def closure(*, include_current_three_color=True):
     claims_doc = load_json(CLAIMS_PATH)
     baselines = load_json(BASELINES_PATH)
-    claims = {claim["id"]: claim for claim in claims_doc["claims"]}
+    claims = {claim["id"]: claim for claim in claims_doc["claims"]
+              if include_current_three_color or claim["colors"] != 3}
     scope = baselines["scope"]
     lengths = range(
         scope.get("closure_length_min", scope["length_min"]),
@@ -322,6 +323,8 @@ def closure():
 
     for kind, key in (("ordinary", "ordinary_seeds"), ("ring", "ring_seeds")):
         for seed in baselines[key]:
+            if not include_current_three_color and seed.get("claim_id") not in claims and "claim_id" in seed:
+                continue
             colors, length, bound, method, source, label = resolve_seed(seed, kind)
             add_node(
                 nodes, candidates, kind=kind, colors=colors, length=length,
@@ -510,7 +513,9 @@ def render_tex(nodes, winners, direct):
         r"GPU campaign made no direct three-colour claim for that length.  For",
         r"$k=22,23,24,25$ the direct certificates are the strongest direct Rabung bounds",
         r"located in the audited corpus but do not win the admitted comparison. Every entry is generated with a",
-        r"machine-readable provenance path in \texttt{audit/generated/bounds\_closure.json}.}",
+        r"machine-readable provenance path in \texttt{audit/generated/bounds\_closure.json}.",
+        r"The stronger published Landman--Robertson statement is listed separately in",
+        r"Table~\ref{tab:unresolved}; this is not an unqualified table of best published bounds.}",
         r"\label{tab:r3}",
         r"\end{table}",
         "",

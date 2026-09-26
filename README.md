@@ -9,13 +9,18 @@ Waerden numbers*. It is being assembled under an explicit allowlist from
 at the immutable source commit
 `02796ae9e08da5b051a94b2d9001763908375f6e`.
 
-The current repository is deliberately private and is not a scientific release.
-The local PC package now contains the accepted 13-manifest claim set, the
-authenticated 515-chunk campaign archive, the 515-of-515 ordered-prime identity
-audit, and the passing SM120 CUDA qualification. Open gates include clean final
-CPU and document replays, licensing decisions, and the DOI/tag freeze. The
-machine-readable state is
-[`STATUS.json`](STATUS.json).
+The manuscript has been prepared for publication following the bibliographic
+review of 26 September 2026. The new contribution is three primitive
+three-colour certificates giving nine direct inequalities; five improve the
+identified prior comparators. The published Landman–Robertson statement is
+shown separately and is included conservatively in the priority comparison.
+The four two-colour certificates remain credited to Monroe's phase-2 project.
+
+The complete existing PC evidence is preserved. Finalization requires no
+new GPU campaign and no large-certificate rerun on the author's PC. The
+remaining publication decisions concern outbound licences and the public
+DOI/tag/archive transaction; see `publication/FINALIZATION_2026-09-26.md`.
+The release ledger remains honest about those unresolved decisions.
 
 ## What is already here
 

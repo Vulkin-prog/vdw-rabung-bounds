@@ -42,7 +42,7 @@
         "paper/references.bib",
         "publication/bibliography-audit.json"
       ],
-      "note": "The twenty-two cited entries and the numerical priority audit were checked on 2026-08-29. Berlekamp's verified finite bound is admitted; the stronger Landman--Robertson statement is documented but excluded because no proof was located. Version-sensitive preprints are pinned and must be rechecked before the release freeze."
+      "note": "Source audit updated on 2026-09-26 with per-entry access scope. Twenty-three references, corrected Monroe v1 timestamp, Kozik-Shabanov context, and two comparison levels for the published unresolved Landman-Robertson statement. The five direct improvements survive its conservative inclusion. Xu original full-text access remains limited and no winning three-colour row depends on it."
     },
     {
       "id": "paper-clean-build",

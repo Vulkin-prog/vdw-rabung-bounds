@@ -8,7 +8,7 @@ is instead the succinct triple $(p,r,k)$, whose finite Rabung hypotheses can be
 re-established from scratch by a separate-source CPU verifier.  Only after
 that pointwise certification do we use recurrence closure to decide whether a
 direct-method improvement also wins a finite comparison in a dated,
-primary-source-audited corpus.
+source-audited corpus.
 
 For integers $r\ge2$ (colours) and $k\ge3$, the van der Waerden number
 $W(r,k)$ is the least $N$ such that every $r$-colouring of $\{1,\dots,N\}$
@@ -16,8 +16,8 @@ contains a monochromatic arithmetic progression of length $k$.  We put the
 number of colours first.  Monroe~\cite{Monroe2026} uses the reverse convention
 $W(k,r)$, while Fox and Hunter~\cite{FoxHunter2026} write $w(k;r)$.
 
-The registered numerical claim contains nine direct three-colour Rabung
-certificates, for $17\le k\le25$.  The headline certificate is
+The new numerical contribution consists of three primitive three-colour Rabung
+certificates, which give nine direct bounds for $17\le k\le25$.  The headline certificate is
 \[
   W(3,17)>31\,385\,622\,833,
 \]
@@ -28,7 +28,12 @@ the strongest values located in the registered corpus for $17\le k\le21$.
 For $22\le k\le25$ they remain improvements within the direct Rabung family
 but do not win the admitted comparison. Berlekamp's 1968 construction supplies
 the winning value $W(3,24)>1\,082\,646\,556\,499$ and, by length monotonicity,
-the same winning strict bound at $k=25$~\cite{Berlekamp1968}. This distinction
+the same winning strict bound at $k=25$~\cite{Berlekamp1968}.
+A stronger statement attributed to Landman--Robertson is displayed separately
+as a published comparison with unresolved proof status in our audit; it would
+dominate the admitted values for $24\le k\le28$. The five improvements at
+$17\le k\le21$ survive its inclusion among prior comparators.
+This distinction
 between a direct Rabung certificate and the strongest verified consequence in
 the audited corpus is part of the claim, not a bibliographic
 afterthought.
@@ -63,7 +68,11 @@ Gasarch and Haeupler~\cite[Note~1.7(2)]{GasarchHaeupler2011} provide both
 methodological context for separating existence, efficient search and a
 checkable construction, and the explicit family
 $W(3,k)\ge3^{k-1}/(ek)$ in our colour-first notation. Its exact finite specializations are retained below
-but are dominated throughout the target window. Hunter's 2025 exponential
+but are dominated throughout the target window.
+Kozik and Shabanov~\cite[Theorem~2]{KozikShabanov2014} subsequently proved
+$W(r,k)\ge\beta r^{k-1}$ for an absolute constant $\beta>0$. This supplies
+general probabilistic context; no specialization of that result exceeding our
+finite comparators is asserted here. Hunter's 2025 exponential
 improvement begins at five colours~\cite{Hunter2025} and therefore does not
 alter the three-colour finite table.
 
@@ -102,7 +111,9 @@ Relative to that lineage, our contribution is the combination of direct
 three-colour triples new to the audited corpus, a recurrence-closed and
 provenance-bearing comparison, and a
 stand-alone verification path whose arithmetic and source are separate from
-the GPU engine.  We do not claim global optimality, exhaustive coverage beyond
+the GPU engine. Publishing a prime together with checking code has antecedents
+in this literature; certification itself is not claimed as a new principle.
+We do not claim global optimality, exhaustive coverage beyond
 the stated window, unqualified global priority for the direct triples, first
 discovery of Monroe's archived primes, or a universal density law.
 
@@ -111,6 +122,6 @@ closure and their exact scope before the technical inventory.
 Section~\ref{s:method} gives the Rabung criterion, proves the operational form
 and explains the stand-alone certificate check.  Section~\ref{s:campaign}
 describes discovery and the evidence needed for campaign coverage.  We conclude
-with the scientific boundary and release contract.  The reconstructed holdout
+with the scope of the results and the accompanying reproducibility package.  The reconstructed holdout
 record and its model-conditional analysis are separated into
 Appendices~\ref{s:prereg}--\ref{s:densitydiagnostics}.

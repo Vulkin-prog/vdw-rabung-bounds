@@ -21,7 +21,19 @@ for CPU_COMMAND in "$CPU_PYTHON" "$CPU_CXX" "$CPU_CC" sha256sum; do
 done
 
 CPU_BUILD_DIR=$(mktemp -d "${TMPDIR:-/tmp}/vdw-rabung-cpu.XXXXXXXX")
+# Optional durable native logs, outside the repository being checked.
+if [[ -n "${CPU_CHECK_LOG_DIR:-}" ]]; then
+  mkdir -p -- "$CPU_CHECK_LOG_DIR"
+  CPU_CHECK_LOG_DIR=$(cd "$CPU_CHECK_LOG_DIR" && pwd -P)
+  if [[ "$CPU_CHECK_LOG_DIR" == "$REPOSITORY_ROOT" || "$CPU_CHECK_LOG_DIR" == "$REPOSITORY_ROOT/"* ]]; then
+    printf 'ERROR: CPU_CHECK_LOG_DIR must be outside the repository.\n' >&2
+    exit 2
+  fi
+fi
 cleanup_cpu_build() {
+  if [[ -n "${CPU_CHECK_LOG_DIR:-}" ]]; then
+    find "$CPU_BUILD_DIR" -maxdepth 1 -type f -name '*.log' -exec cp -- {} "$CPU_CHECK_LOG_DIR/" \;
+  fi
   rm -rf -- "$CPU_BUILD_DIR"
 }
 trap cleanup_cpu_build EXIT
@@ -42,6 +54,7 @@ printf '[cpu] strict JSON and generated-artifact checks\n'
 "$CPU_PYTHON" tools/strict_json_check.py
 "$CPU_PYTHON" tools/materialize_historical_sources.py --check
 "$CPU_PYTHON" tools/close_baselines.py --check
+"$CPU_PYTHON" tools/publication_comparison.py --check
 "$CPU_PYTHON" tools/density_holdout_audit.py --check
 "$CPU_PYTHON" tools/rescan17_audit.py --check
 "$CPU_PYTHON" tools/filter_bstar.py --check

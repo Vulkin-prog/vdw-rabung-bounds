@@ -20,41 +20,25 @@
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \title{Succinct Rabung certificates and recurrence-closed\\
 lower bounds for van der Waerden numbers}
-\author{Brice Pouly}
+\author{Brice Pouly\thanks{Prepared with artificial-intelligence assistance; see the declaration at the end.}}
 \date{}
 \begin{document}\maketitle
-\begin{center}
-\fbox{\begin{minipage}{0.90\linewidth}\small
-\textbf{Qualification status (29 August 2026).}
-This is a private prepublication draft, not the citable release.  Open gates
-include clean final CPU and document replays, outbound licences, and DOI/tag
-freeze, as recorded in
-\texttt{STATUS.json}.  The local PC evidence now includes the fail-closed
-13-manifest claim audit, authenticated 515-chunk campaign recovery,
-515-of-515 ordered-prime identity, and SM120 CUDA qualification.  Numerical
-statements below report the current computation; the repository remains
-non-citable until every release gate has passed.
-\end{minipage}}
-\end{center}
 \begin{abstract}
-The registered numerical result comprises nine direct Rabung bounds for
-$W(3,k)$, $17\le k\le25$, headed by
-$W(3,17)>31\,385\,622\,833$. Five direct bounds win for
-$17\le k\le21$ in an explicitly listed source corpus audited through
-29~August~2026. A primary-source review adds Berlekamp's 1968 bound
-$W(3,24)>1\,082\,646\,556\,499$, which also wins at $k=25$ by length
-monotonicity. Blankenship--Cummings--Taranchuk consequences win at
-$k=22,23,26,27,28$, including
-$W(3,28)>2\,159\,051\,058\,266$. A stronger textbook statement for $k=24$
-is documented but excluded because no proof or verifiable derivation was
-located. The GPU campaign only discovered candidate triples. For each triple
-$(p,r,k)$, a stand-alone, separate-source CPU verifier reconstructs the finite
-hypotheses of Rabung's theorem. A fail-closed audit of thirteen manifests binds
-the code, commands and raw outputs and accepts all $67$ registered local
-executions. All qualification runs and rechecks were performed on one
-author-controlled PC; no independently administered external replication has
-been performed. A secondary, model-conditional holdout comparison is reported
-separately in an appendix.
+We present three primitive Rabung certificates at three colours, giving nine
+direct lower bounds for van der Waerden numbers $W(3,k)$ with $17\le k\le25$.
+The five bounds for $17\le k\le21$ improve the earlier comparators identified
+in a source audit updated on 26~September~2026, including the relevant
+specializations of a stronger published statement whose proof status remains
+unresolved in that audit. In particular, we obtain
+$W(3,17)>31\,385\,622\,833$, improving the identified predecessor by a factor
+of $2.02$. The GPU search supplies candidate triples $(p,r,k)$; a stand-alone
+CPU verifier reconstructs the finite hypotheses of Rabung's theorem.
+We prove the equivalence of the implemented boundary test with the published
+criterion and provide a provenance-bearing finite closure under known
+recurrences. Four earlier two-colour certificates from Monroe's distributed
+project are re-verified and credited to that project. An empirical comparison
+of search intensities is reported separately and is not used to establish
+the lower bounds.
 \end{abstract}
 % ============ STRUCTURE ============
 \input{sec1_intro}
@@ -67,6 +51,7 @@ separately in an appendix.
 \input{sec6_prereg}
 \input{sec5_density}
 \input{appendix_density}
+\input{appendix_certificates}
 \input{sec9_ack}
 \input{sec8_disclosure}
 \begingroup\small

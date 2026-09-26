@@ -1,12 +1,10 @@
 \section{Main results and exact scope}\label{s:bounds}
 
-The computational source of truth registers exactly thirteen direct Rabung
-claims: nine three-colour triples for $17\le k\le25$ and four two-colour
-triples for $25\le k\le28$.  The exact set of thirteen fail-closed manifests
-is present and accepted in the current evidence package.  In the validated
-build below, the finite hypotheses established by those manifests are facts,
-not assumptions attached to a future claim.  The resulting numerical theorem
-is therefore unconditional in this build.
+The computation gives the thirteen direct inequalities stated below: nine
+at three colours and four re-verifications of earlier two-colour certificates.
+Their supporting evidence consists of archived executions bound to exact
+source code, binaries and raw output. Checking the archive and rebuilding this
+paper requires no repetition of the GPU campaign.
 
 \IfFileExists{generated_validated_claims.tex}{%
   \begin{theorem}[Certified Rabung bounds]\label{thm:certified-rabung}
@@ -20,14 +18,15 @@ is therefore unconditional in this build.
   \texttt{audit/claims.json} hold.
   \end{theorem}
   \begin{proof}
-  The generated table exists only after the fail-closed claim audit has checked
-  the exact registered set.  For each row, the stand-alone verifier establishes
+  For each row, the archived execution of the stand-alone verifier establishes
   primality, $p\equiv1\pmod r$, $p>k$, and conditions
   $(a)\wedge(B^{*})$.  Proposition~\ref{p:bstar} identifies the operational
   condition with Rabung's boundary criterion, and Rabung's theorem then gives
-  the displayed inequality.
+  the displayed inequality. The build audit checks the exact set of thirteen
+  manifests and their bound source, executable and output hashes before including
+  the table; it does not repeat those long executions.
   \end{proof}
-  \input{generated_validated_claims}%
+  The full execution-identity table is provided in Appendix~\ref{s:certificate-evidence}.
 }{%
   \begin{center}
   \fbox{\begin{minipage}{0.91\linewidth}\small
@@ -62,6 +61,15 @@ $15\,509\,557\,937$ by a factor $2.02$~\cite{Monroe2026}.  A direct
 certificate is not automatically a general record: a published bound in
 another colour column may imply a stronger result through a recurrence.
 
+Table~\ref{tab:priority} states the five improvements against the earlier
+comparators identified in our review. For this comparison the new three-colour
+claims are removed from the finite closure, and the published
+Landman--Robertson statement is included as a conservative comparator even
+though its proof was not verified here. Thus the comparison does not obtain
+an artificial gain by discarding that statement.
+
+\input{generated_priority_comparison}
+
 Let $q_k$ denote the largest prime not exceeding $k$.  From
 Blankenship--Cummings--Taranchuk~\cite[Theorem~2.1]{bct2018},
 \[
@@ -88,7 +96,10 @@ $5\le n<WR(s,k)$ whose least prime divisor exceeds $k$,
 \begin{equation}\label{eq:xu}
   W(st,k)\ge n\bigl(W(t,k)-1\bigr)+1.
 \end{equation}
-Our registry stores strict integer bounds. Every ring witness $R$ used here
+The original full text of Xu was not obtained in the latest review; the
+specialization used here was read in Monroe's account, and its numerical
+preconditions are checked for every registered witness. No winning
+three-colour row depends on Xu. Our registry stores strict integer bounds. Every ring witness $R$ used here
 has least prime divisor greater than $k$, a precondition checked by the closure
 tests. Hence inputs $WR(s,k)>R$ and $W(t,k)>B$ permit $n=R$ and give exactly
 $W(st,k)>RB$, with no rounding or off-by-one convention left implicit.
@@ -105,7 +116,8 @@ hash-derived node identifier. These tie-breaks affect provenance only. Since
 all three operators are monotone in their input bounds, a dominated parent
 cannot improve a descendant. Iteration stops when no winning node changes.
 
-The comparison corpus was frozen on 29~August~2026 and consists exactly of the
+The admitted numerical seed set was assembled on 29~August~2026. The source
+review was updated on 26~September~2026 without changing those seeds. It consists of the
 seeds listed in \texttt{audit/baselines.json}: all seventeen finite three-colour
 specializations of Berlekamp's Theorem~1 from length 12 through 28,
 Rabung--Lotts' direct and prime-ring length-12 row, Liang et al.'s ordinary rows
@@ -160,22 +172,33 @@ $p\ge5$ and $q$,
 \]
 in their first and second editions~\cite[Theorem~2.19, p.~38]{LandmanRobertson2004}
 \cite[Theorem~2.21, p.~43]{LandmanRobertson2014}.
-At $p=23,q=3$ this would imply the strict bound
-$W(3,24)>2\,165\,293\,112\,998$ and, by monotonicity, dominate the displayed
-comparison through $k=28$. We do not admit it. Berlekamp's primary construction
-proves the general factor $1/(q-1)$, with its stronger extension confined to
-$q=2$, and Johannson's detailed reconstruction explicitly reports that the
-proposed general adaptation could not be confirmed~\cite[pp.~88--90]{Johannson2007}.
-This does not disprove the textbook statement; absent a proof, explicit
-colouring, or machine-checkable certificate, it is recorded as a published but
-unverified bibliographic anomaly and excluded from the numerical registry.
+For $q=3$, its specializations at $p=19$ and $p=23$ give respectively
+\[
+ W(3,20)>22\,082\,967\,854,
+ \qquad W(3,24)>2\,165\,293\,112\,998.
+\]
+The latter would dominate the admitted comparison through $k=28$ by length
+monotonicity. Berlekamp's primary construction proves the general factor
+$1/(q-1)$, with its stronger extension confined to $q=2$, and Johannson's
+detailed reconstruction reports that the proposed general adaptation could
+not be confirmed~\cite[pp.~88--90]{Johannson2007}.
+This does not disprove the textbook statement. It is excluded from the numerical registry
+of consequences whose proofs or certificates were checked, but retained as a
+published statement with unresolved proof status in our audit.
+Table~\ref{tab:unresolved} makes its numerical effect explicit. In particular,
+the admitted values for $24\le k\le28$ must not be described without this
+qualification as the best published bounds. The $k=20$ specialization is
+already included in Table~\ref{tab:priority} and does not remove that improvement.
+
+\input{generated_unresolved_comparison}
 
 The arXiv version history dates Monroe's earlier
 $W(3,17)>15\,509\,557\,937$ and prime $969\,347\,371$ to version~4 of
 6~November~2017; versions~1--3 do not contain them~\cite{Monroe2017v4}.
 Exact-number, prime, publisher, preprint, citation-chain, repository and web
 archive searches were performed. No earlier public source was located for the
-three primitive direct triples used here at $k=17,18,19$. This bounded search result does not establish global priority. We therefore describe those certificates as new to
+three primitive direct triples used here at $k=17,18,19$ in the review updated
+on 26~September~2026. This bounded search result does not establish global priority. We therefore describe those certificates as new to
 the audited corpus rather than assert an unqualified first discovery. The
 search methods, version pins, admitted and excluded findings, and exact cutoff
 are machine-readable in \texttt{publication/bibliography-audit.json}.
@@ -247,8 +270,7 @@ The winning admitted bounds for this four-length block are therefore
 The first line comes from Berlekamp and length monotonicity; the last three are
 BCT consequences of the corresponding phase-2 two-colour inputs. They are not
 additional GPU discoveries. Xu's recurrence is included in the automatic
-closure but does not improve any winner. Release readiness remains conditional
-on the open gates described in Section~\ref{s:data}.
+closure but does not improve any winner. The accompanying data and checks are described in Section~\ref{s:data}.
 
 For $k=25$ the authenticated campaign record identifies the same last
 candidate in $[9.7\times10^8,2\times10^9)$ as the archived table, and the

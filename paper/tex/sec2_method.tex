@@ -117,9 +117,8 @@ $p\equiv 1 \pmod r$, $p>k$, $r\in[2,6]$, $k\in[3,8]$ --- $20\,170$ cases, of
 which $4\,499$ were valid according to the criterion --- reported zero
 disagreements.  A fresh staging replay reproduced those counts and its exact
 source identity, environment, and output streams are archived with this
-repository.  Because that replay was not made from the final clean release
-candidate, the final CPU gate must still rerun it from the exact candidate
-commit and preserve durable raw outputs before the local tag is published. A
+repository. This larger oracle sweep is historical evidence; the final CPU
+suite separately repeats the small oracle cases and checks the retained record. A
 stronger test enumerates all $r^{k}$ colorings of the joker positions
 ($p<150$, $r\le 4$, $k\le 5$) and confirms both directions of the equivalence:
 (a)$\wedge$(b) holds if and only if some valid extension exists, and when it
