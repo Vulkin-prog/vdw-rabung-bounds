@@ -30,6 +30,9 @@ jobs:
     steps:
       - name: Check out the candidate
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          # Evidence audits resolve historical calculation commits and blobs.
+          fetch-depth: 0
       - name: Select Python 3.12
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
@@ -44,6 +47,9 @@ jobs:
     steps:
       - name: Check out the candidate
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          # Paper generation audits the same historical calculation evidence.
+          fetch-depth: 0
       - name: Install the minimal TeX toolchain
         run: |
           sudo apt-get update
@@ -51,7 +57,8 @@ jobs:
             lmodern \
             texlive-fonts-recommended \
             texlive-latex-base \
-            texlive-latex-recommended
+            texlive-latex-recommended \
+            texlive-pictures
       - name: Build the paper twice and compare bytes
         run: ./scripts/build_paper.sh
       - name: Verify the complete immutable release freeze
@@ -93,6 +100,9 @@ jobs:
     steps:
       - name: Check out the candidate
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          # The publication contract binds evidence to its historical sources.
+          fetch-depth: 0
       - name: Select Python 3.12
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:

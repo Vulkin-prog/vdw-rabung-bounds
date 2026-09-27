@@ -10,11 +10,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "40b5bbec49e1c9d940e1c91db4c5d9359212f6f8",
+      "git_blob_sha1": "2e820adbbb4ae30368d9b04153d5f4f670d16b1a",
       "path": ".github/workflows/ci.yml",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "f87878bbdc9099a603e0f7d0b9e138b42822166a83173505b1a5684bc75e9383",
-      "size": 3743
+      "sha256": "32f43b7b1f2a7f6f9f0c94a8eb9c096a7bd6c6df669d5740485695a9e272510e",
+      "size": 4126
     },
     {
       "classification": "new",
@@ -7290,11 +7290,11 @@
     },
     {
       "classification": "new",
-      "git_blob_sha1": "71adb103567441a8ebc71d678740aad37c9822f2",
+      "git_blob_sha1": "8aadde3a22562130e827fe7076527eddfe5aa040",
       "path": "tests/test_publication_contract.py",
       "rationale": "Created specifically for the focused publication and release contract.",
-      "sha256": "db5ea3f291d0faf9b331b88743dea36d90d2254748c31aacc06174be6a009cc7",
-      "size": 34067
+      "sha256": "23838fbc8409eb80d289599e345a93695fb9fe2408c9a4b1d01ce3500a83a69d",
+      "size": 34118
     },
     {
       "classification": "new",
